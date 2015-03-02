@@ -11,7 +11,7 @@
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">    
 	   
        <!-- Scans the classpath of this application for @Components to deploy as beans -->
-       <context:component-scan base-package="com.ventura.secure.web" />
+       <context:component-scan base-package="com.ventura.compras.web" />
 
        <!-- Configures the @Controller programming model -->
        
