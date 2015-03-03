@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
-import com.ventura.compras.service.login.PermisoManager;
 import com.ventura.compras.service.login.UserManager;
 
 @Controller
@@ -31,9 +30,9 @@ public class IndexController {
 	@Autowired
 	private UserManager userManager;
 	
-	@Autowired
+	/*@Autowired
 	private PermisoManager permisoManager;
-		
+		*/
 	@RequestMapping(value = "/ingreso", method = RequestMethod.GET)
 	public String employee(Map<String, Object> model) {
 		model.put("user", new User());
@@ -47,8 +46,8 @@ public class IndexController {
 	  } else {
 		  User uss = userManager.val(user.getId(), user.getPass());
 		  if (uss != null) {
-			  String ret = "";
-			  session ses = null;
+			  String ret = "key/index";
+			  /*	  session ses = null;
 			  ses = new session(uss.getId(), permisoManager.getPermisos(uss), uss.getTip_usuario().getDescripcion(), uss.getLevel().getDescripcion(), uss.getComp().getDescripcion());
 			  if(uss.getTip_usuario().getDescripcion().equalsIgnoreCase("gerente general")) {				  				  
 				  ret = "redirect:/flash/info";  
@@ -60,7 +59,7 @@ public class IndexController {
 				  return "key/index";
 			  }	
 			  model.addAttribute("user_inicio", ses);			  
-			  return ret;
+			*/  return ret;
 		  } else {
 			  model.addAttribute("msg", "<script type=\"text/javascript\">$( window ).load(function() { adv(); }); </script>");
 			  return "key/index";

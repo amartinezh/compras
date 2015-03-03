@@ -16,15 +16,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.ventura.compras.domain.login.User;
 
 @Entity
-@Table(name="company", schema="adm")
+@Table(name="company", schema="admin")
 public class Company {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @Column(name = "comp_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="adm.company_comp_id_seq")
-	@SequenceGenerator(name="adm.company_comp_id_seq", sequenceName="adm.company_comp_id_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="admin.company_comp_id_seq")
+	@SequenceGenerator(name="admin.company_comp_id_seq", sequenceName="admin.company_comp_id_seq", allocationSize=1)
     private int id;
 	
 	@NotEmpty(message = "Por favor ingrese la descripción")

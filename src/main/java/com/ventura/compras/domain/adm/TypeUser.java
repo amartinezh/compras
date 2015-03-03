@@ -19,15 +19,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.ventura.compras.domain.login.User;
 
 @Entity
-@Table(name="tipo_usuarios", schema="adm")
+@Table(name="type_users", schema="admin")
 public class TypeUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="adm.tipo_usuarios_id_seq")
-	@SequenceGenerator(name="adm.tipo_usuarios_id_seq", sequenceName="adm.tipo_usuarios_id_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="admin.type_users_id_seq")
+	@SequenceGenerator(name="admin.type_users_id_seq", sequenceName="admin.type_users_id_seq", allocationSize=1)
     private int id;
 	
 	@NotEmpty(message = "Por favor ingrese la descripción")

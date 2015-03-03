@@ -17,15 +17,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.ventura.compras.domain.login.User;
 
 @Entity
-@Table(name="level", schema="adm")
+@Table(name="level", schema="admin")
 public class Level implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @Column(name = "level_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="adm.level_level_id_seq")
-	@SequenceGenerator(name="adm.level_level_id_seq", sequenceName="adm.level_level_id_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="admin.level_level_id_seq")
+	@SequenceGenerator(name="admin.level_level_id_seq", sequenceName="admin.level_level_id_seq", allocationSize=1)
     private int id;
 	
 	@NotEmpty(message = "Por favor ingrese la descripción")

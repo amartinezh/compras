@@ -19,28 +19,26 @@ import com.ventura.compras.domain.adm.Level;
 import com.ventura.compras.domain.adm.TypeUser;
 
 @Entity
-@Table(name="usuarios", schema="adm") 
+@Table(name="users", schema="admin") 
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id")
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotEmpty 
-    @Email (message = "Por favor ingrese su correo.")
+    @NotEmpty(message = "Por favor ingrese usuario") 
     private String id;
 
     @Column(name = "pass")
-    @NotEmpty(message = "Por favor ingrese su contraseña.")    
+    @NotEmpty(message = "Por favor ingrese su contraseña")    
     private String pass;
     
     @ManyToOne
     private TypeUser tip_usuario;
-      
+     
     @ManyToOne
     private Level level;
-    
+   
     @ManyToOne
     private Company comp;
     
