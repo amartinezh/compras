@@ -46,35 +46,20 @@ public class IndexController {
 			return "key/index";
 		} else {
 			User uss = userManager.val(user.getId(), user.getPass());
-			if (uss != null) {
+			if (uss != null) {				
+				if (uss.getType() != null) {
 					session ses = new session(uss.getId());
 					String ret = null;
 					if (uss.getType().getDescripcion().equalsIgnoreCase("administrador")) {
-						
 						ret = "redirect:/admin/listar";
+					} else {
+						ret = "redirect:/compras/mostrar";
 					}
-
-					/*
-					 * session ses = null; ses = new session(uss.getId(),
-					 * permisoManager.getPermisos(uss),
-					 * uss.getTip_usuario().getDescripcion(),
-					 * uss.getLevel().getDescripcion(),
-					 * uss.getComp().getDescripcion());
-					 * if(uss.getTip_usuario().getDescripcion
-					 * ().equalsIgnoreCase("gerente general")) { ret =
-					 * "redirect:/flash/info"; } else
-					 * if(uss.getTip_usuario().getDescripcion
-					 * ().equalsIgnoreCase("gerente agencia")) { ret =
-					 * "redirect:/agencia/reporte"; } else
-					 * if(uss.getTip_usuario(
-					 * ).getDescripcion().equalsIgnoreCase("vendedor")) { ret =
-					 * "redirect:/vendedor/inicio"; }else { return "key/index";
-					 * } 
-					 * model.addAttribute("user_inicio", ses);
-					 */
 					model.addAttribute("user_inicio", ses);
 					return ret;
-				
+				} else {
+					return "key/index";
+				}
 			} else {
 				model.addAttribute(
 						"msg",
