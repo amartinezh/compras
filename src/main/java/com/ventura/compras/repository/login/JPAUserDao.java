@@ -28,7 +28,7 @@ public class JPAUserDao implements UserDao {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<User> getUserList() {
-        return em.createQuery("select p from User p GROUP BY p.id order by p.id").getResultList();
+        return em.createQuery("select p from User p").getResultList();
     }
     
     @Transactional(readOnly = true)

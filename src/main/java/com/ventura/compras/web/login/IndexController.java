@@ -20,8 +20,8 @@ import com.ventura.compras.domain.session.session;
 import com.ventura.compras.service.login.UserManager;
 
 @Controller
-@RequestMapping(value="/index")
-@SessionAttributes({"user_inicio"})
+@RequestMapping(value = "/index")
+@SessionAttributes({ "user_inicio" })
 public class IndexController {
 
 	/** Logger for this class and subclasses */
@@ -29,42 +29,59 @@ public class IndexController {
 
 	@Autowired
 	private UserManager userManager;
-	
-	/*@Autowired
-	private PermisoManager permisoManager;
-		*/
+
+	/*
+	 * @Autowired private PermisoManager permisoManager;
+	 */
 	@RequestMapping(value = "/ingreso", method = RequestMethod.GET)
 	public String employee(Map<String, Object> model) {
 		model.put("user", new User());
 		return "key/index";
 	}
-	
+
 	@RequestMapping(value = "/validar", method = RequestMethod.POST)
-	public String addEmployee(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
-	  if (result.hasErrors()) {
-		  return "key/index";
-	  } else {
-		  User uss = userManager.val(user.getId(), user.getPass());
-		  if (uss != null) {
-			  String ret = "key/index";
-			  /*	  session ses = null;
-			  ses = new session(uss.getId(), permisoManager.getPermisos(uss), uss.getTip_usuario().getDescripcion(), uss.getLevel().getDescripcion(), uss.getComp().getDescripcion());
-			  if(uss.getTip_usuario().getDescripcion().equalsIgnoreCase("gerente general")) {				  				  
-				  ret = "redirect:/flash/info";  
-			  } else if(uss.getTip_usuario().getDescripcion().equalsIgnoreCase("gerente agencia")) {
-				  ret = "redirect:/agencia/reporte";
-			  } else if(uss.getTip_usuario().getDescripcion().equalsIgnoreCase("vendedor")) {
-				  ret = "redirect:/vendedor/inicio";
-			  }else {			  
-				  return "key/index";
-			  }	
-			  model.addAttribute("user_inicio", ses);			  
-			*/  return ret;
-		  } else {
-			  model.addAttribute("msg", "<script type=\"text/javascript\">$( window ).load(function() { adv(); }); </script>");
-			  return "key/index";
-		  }
-	  }
+	public String addEmployee(@Valid @ModelAttribute("user") User user,
+			BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "key/index";
+		} else {
+			User uss = userManager.val(user.getId(), user.getPass());
+			if (uss != null) {
+					session ses = new session(uss.getId());
+					String ret = null;
+					if (uss.getType().getDescripcion().equalsIgnoreCase("administrador")) {
+						
+						ret = "redirect:/admin/listar";
+					}
+
+					/*
+					 * session ses = null; ses = new session(uss.getId(),
+					 * permisoManager.getPermisos(uss),
+					 * uss.getTip_usuario().getDescripcion(),
+					 * uss.getLevel().getDescripcion(),
+					 * uss.getComp().getDescripcion());
+					 * if(uss.getTip_usuario().getDescripcion
+					 * ().equalsIgnoreCase("gerente general")) { ret =
+					 * "redirect:/flash/info"; } else
+					 * if(uss.getTip_usuario().getDescripcion
+					 * ().equalsIgnoreCase("gerente agencia")) { ret =
+					 * "redirect:/agencia/reporte"; } else
+					 * if(uss.getTip_usuario(
+					 * ).getDescripcion().equalsIgnoreCase("vendedor")) { ret =
+					 * "redirect:/vendedor/inicio"; }else { return "key/index";
+					 * } 
+					 * model.addAttribute("user_inicio", ses);
+					 */
+					model.addAttribute("user_inicio", ses);
+					return ret;
+				
+			} else {
+				model.addAttribute(
+						"msg",
+						"<script type=\"text/javascript\">$( window ).load(function() { adv(); }); </script>");
+				return "key/index";
+			}
+		}
 	}
 
 	public void setuserManager(UserManager userManager) {
@@ -74,5 +91,5 @@ public class IndexController {
 	public UserManager getUserManager() {
 		return userManager;
 	}
-			
+
 }

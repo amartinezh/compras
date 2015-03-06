@@ -34,7 +34,7 @@ public class TypeUser implements Serializable {
 	@Column(name = "descripcion")	
 	private String descripcion;
 	
-	@OneToMany(mappedBy="tip_usuario")
+	@OneToMany(mappedBy="type")
 	private Set<User> users;
 	
 	public TypeUser() {

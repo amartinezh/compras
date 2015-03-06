@@ -34,7 +34,7 @@ public class User implements Serializable {
     private String pass;
     
     @ManyToOne
-    private TypeUser tip_usuario;
+    private TypeUser type;
      
     @ManyToOne
     private Level level;
@@ -61,12 +61,12 @@ public class User implements Serializable {
         this.pass = pass;
     }
    
-    public TypeUser getTip_usuario() {
-    	return tip_usuario;
+    public TypeUser getType() {
+    	return type;
    	}
     
-    public void setTip_usuario(TypeUser tip_usuario) {
-		this.tip_usuario = tip_usuario;
+    public void setType(TypeUser type) {
+		this.type = type;
 	}
     
     public Level getLevel() {
