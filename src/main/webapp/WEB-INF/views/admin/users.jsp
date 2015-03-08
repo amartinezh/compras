@@ -178,7 +178,7 @@
 													<td><c:out value="${userr.id}" /></td>
 													<td><c:out value="${userr.type.descripcion}" /></td>
 													<td><c:out value="${userr.comp.descripcion}" /></td>
-													<td align="center"><a href="d"><i class="fa fa-pencil"></i></a></td>
+													<td align="center"><a href="d/${userr.id}"><i class="fa fa-pencil"></i></a></td>
 													<td align="center" title="Eliminar usuario ${userr.id}"><c:if test="${userr.type.id != 1}"><a href="d" 
 													data-action="userLogout"
 													data-logout-msg="¿Desea eliminar al usuario ${userr.id}?">
