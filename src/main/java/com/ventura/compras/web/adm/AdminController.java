@@ -3,6 +3,7 @@ package com.ventura.compras.web.adm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -39,6 +40,22 @@ public class AdminController {
 			model.addAttribute("redireccion", "listar");
 			model.addAttribute("accion", "insertar");
 			return "admin/events/addUser";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/insertar", method = RequestMethod.POST)
+	public String insertUser(@ModelAttribute("user") User user, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			if (userManager.addUser(user)) {
+				return "redirect:listar";
+			} else {
+				model.addAttribute("user", user);
+				model.addAttribute("redireccion", "listar");
+				model.addAttribute("accion", "insertar");
+				return "admin/events/addUser";
+			}
 		} else {
 			return "redirect:/index/ingreso";
 		}

@@ -30,7 +30,7 @@ public class User implements Serializable {
     private String id;
 
     @Column(name = "pass")
-    @NotEmpty(message = "Por favor ingrese su contraseña")    
+    @NotEmpty(message = "Por favor ingrese contraseña")    
     private String pass;
     
     @ManyToOne

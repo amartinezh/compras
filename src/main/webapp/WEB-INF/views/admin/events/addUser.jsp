@@ -135,8 +135,13 @@
 											 		<section class="col col-6">
 														<label class="label">Contraseña</label>
 														<form:input path="pass" />														
-													</section>												
-													
+													</section>										
+													<section class="col col-6">
+														<label class="label">Tipo Usuario</label>
+													</section>
+													<section class="col col-6">
+														<label class="label">Codigo</label>
+													</section>
 												</div>
 											</fieldset>
 											<footer>

@@ -27,4 +27,8 @@ public class SimpleUserManager implements UserManager {
 	public User val(String k, String p) {
 		return userDao.val(k,p);
 	}
+
+	public boolean addUser(User user) {
+		return userDao.addUser(user);
+	}
 }
