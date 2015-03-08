@@ -42,6 +42,10 @@ public class User implements Serializable {
     @ManyToOne
     private Company comp;
     
+    public User() {
+		// TODO Auto-generated constructor stub
+	}
+        
     public String getId()
     {
         return id;

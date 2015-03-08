@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
@@ -38,4 +39,11 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
+	
+	@RequestMapping(value = "/salir", method = RequestMethod.GET)
+	public String salir(Model model,  SessionStatus status) {		 
+		status.setComplete();
+		return "redirect:/index/ingreso";
+	}
+	
 }

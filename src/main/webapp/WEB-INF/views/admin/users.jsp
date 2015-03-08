@@ -163,7 +163,10 @@
 									<thead>
 										<tr>
 											<th data-hide="phone">Usuario</th>
-											<th data-hide="phone">Tipo de usuario</th>											
+											<th data-hide="phone">Tipo de usuario</th>
+											<th data-hide="phone">Codigo</th>
+											<th data-hide="phone">Editar</th>
+											<th data-hide="phone">Borrar</th>											
 										</tr>
 									</thead>
 									<tbody>
@@ -171,18 +174,19 @@
 											<tr
 												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
 												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
-												bgcolor="#EFF2EF">
-												
-														<td><c:out value="${userr.id}" /></td>
-														<td><c:out value="${userr.type.descripcion}" /></td>
-												
+												bgcolor="#EFF2EF">												
+													<td><c:out value="${userr.id}" /></td>
+													<td><c:out value="${userr.type.descripcion}" /></td>
+													<td><c:out value="${userr.comp.descripcion}" /></td>
+													<td align="center"><a href="d"><i class="fa fa-pencil"></i></a></td>
+													<td align="center"><c:if test="${userr.type.id != 1}"><a href="d"><i class="fa fa-times"></i></a></c:if></td>
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="2" align="center"></td>
+											<td colspan="5" align="center"><a href="agregar" title="Adicionar Nuevo Usuario"><i class="fa fa-plus"></i></a></td>
 										</tr>
 										<tr>
-											<td colspan="2" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
+											<td colspan="5" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>
 								</table>
