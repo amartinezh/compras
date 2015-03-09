@@ -10,5 +10,6 @@ public interface UserManager extends Serializable {
     public List<User> getUsers();
     public User val(String k, String p);
     public boolean addUser(User user);
+    public void deleteUser(String id);
 
 }

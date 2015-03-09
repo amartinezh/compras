@@ -31,4 +31,8 @@ public class SimpleUserManager implements UserManager {
 	public boolean addUser(User user) {
 		return userDao.addUser(user);
 	}
+	
+	public void deleteUser(String id) {
+		userDao.deleteUser(id);
+	}
 }

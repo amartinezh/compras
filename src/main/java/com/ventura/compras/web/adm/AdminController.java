@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -27,6 +28,7 @@ public class AdminController {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			model.addAttribute("listuser", userManager.getUsers());
+			model.addAttribute("user", new User());
 			return "admin/users";
 		} else {
 			return "redirect:/index/ingreso";
@@ -57,6 +59,25 @@ public class AdminController {
 				return "admin/events/addUser";
 			}
 		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String deleteUser(@ModelAttribute("user") User user, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			userManager.deleteUser(user.getId());
+			return "redirect:/admin/listar";
+		}else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String editUser(@ModelAttribute("user") User user, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			return "redirect:/admin/listar";
+		}else {
 			return "redirect:/index/ingreso";
 		}
 	}

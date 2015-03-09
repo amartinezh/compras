@@ -166,30 +166,47 @@
 											<th data-hide="phone">Tipo de usuario</th>
 											<th data-hide="phone">Codigo</th>
 											<th data-hide="phone">Editar</th>
-											<th data-hide="phone">Borrar</th>											
+											<th data-hide="phone">Borrar</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listuser}" var="userr" varStatus="loopCounter">
+										<c:forEach items="${listuser}" var="userr"
+											varStatus="loopCounter">
 											<tr
 												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
 												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
-												bgcolor="#EFF2EF">												
-													<td><c:out value="${userr.id}" /></td>
-													<td><c:out value="${userr.type.descripcion}" /></td>
-													<td><c:out value="${userr.comp.descripcion}" /></td>
-													<td align="center"><a href="d/${userr.id}"><i class="fa fa-pencil"></i></a></td>
-													<td align="center" title="Eliminar usuario ${userr.id}"><c:if test="${userr.type.id != 1}"><a href="d" 
-													data-action="userLogout"
-													data-logout-msg="¿Desea eliminar al usuario ${userr.id}?">
-													<i class="fa fa-trash-o"></i></a></c:if></td>
+												bgcolor="#EFF2EF">
+												<td><c:out value="${userr.id}" /></td>
+												<td><c:out value="${userr.type.descripcion}" /></td>
+												<td><c:out value="${userr.comp.descripcion}" /></td>
+												<td align="center"><form:form method="POST"
+														action="edit" ModelAttribute="user" commandName="user">
+														<form:input path="id" type="hidden" value="${userr.id}"/>
+														<form:input path="comp.id" type="hidden" value="${userr.type.id}"/>
+														<button type="submit" class="btn btn-primary">
+															<i class="fa fa-pencil"></i>
+														</button>
+													</form:form></td>
+												<td align="center" title="Eliminar usuario ${userr.id}">
+													<c:if test="${userr.type.id != 1}">
+														<form:form method="POST" action="delete"
+															ModelAttribute="user" commandName="user">
+															<form:input path="id" type="hidden" value="${userr.id}"/>
+															<button type="submit" class="btn btn-primary">
+																<i class="fa fa-trash-o"></i>
+															</button>
+														</form:form>
+													</c:if>
+												</td>
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="5" align="center"><a href="agregar" title="Adicionar Nuevo Usuario"><i class="fa fa-plus"></i></a></td>
+											<td colspan="5" align="center"><a href="agregar"
+												title="Adicionar Nuevo Usuario"><i class="fa fa-plus"></i></a></td>
 										</tr>
 										<tr>
-											<td colspan="5" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
+											<td colspan="5" align="center">Usuario: <c:out
+													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>
 								</table>

@@ -53,5 +53,13 @@ public class JPAUserDao implements UserDao {
 			return false;
 		}
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)	
+	public void deleteUser(String id) {
+		User user = em.find(User.class, id);
+		if(user != null) {
+			em.remove(user);
+		}
+	}
 
 }
