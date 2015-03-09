@@ -97,6 +97,8 @@ public class AdminController {
 	public String editUser(@ModelAttribute("user") User user, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			model.addAttribute("useredit", user);
+			model.addAttribute("redireccion", "listar");
+			model.addAttribute("accion", "editar");
 			return "redirect:/admin/listar";
 		}else {
 			return "redirect:/index/ingreso";
