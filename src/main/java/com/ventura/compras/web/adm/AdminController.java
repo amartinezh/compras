@@ -96,6 +96,7 @@ public class AdminController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String editUser(@ModelAttribute("user") User user, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
+			model.addAttribute("useredit", user);
 			return "redirect:/admin/listar";
 		}else {
 			return "redirect:/index/ingreso";
