@@ -138,9 +138,11 @@
 													</section>										
 													<section class="col col-6">
 														<label class="label">Tipo Usuario</label>
+														<form:select path="type.id" items="${ listype }" />
 													</section>
 													<section class="col col-6">
 														<label class="label">Codigo</label>
+														<form:select path="comp.id" items="${ listcomp }" />
 													</section>
 												</div>
 											</fieldset>

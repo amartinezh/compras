@@ -183,7 +183,7 @@
 														action="edit" ModelAttribute="user" commandName="user">
 														<form:input path="id" type="hidden" value="${userr.id}"/>
 														<form:input path="comp.id" type="hidden" value="${userr.type.id}"/>
-														<button type="submit" class="btn btn-primary">
+														<button type="submit">
 															<i class="fa fa-pencil"></i>
 														</button>
 													</form:form></td>
@@ -192,7 +192,7 @@
 														<form:form method="POST" action="delete"
 															ModelAttribute="user" commandName="user">
 															<form:input path="id" type="hidden" value="${userr.id}"/>
-															<button type="submit" class="btn btn-primary">
+															<button type="submit">
 																<i class="fa fa-trash-o"></i>
 															</button>
 														</form:form>

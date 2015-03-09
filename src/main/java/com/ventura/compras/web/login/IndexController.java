@@ -1,5 +1,7 @@
 package com.ventura.compras.web.login;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
+import com.ventura.compras.service.adm.CompanyService;
+import com.ventura.compras.service.adm.TypeUserService;
 import com.ventura.compras.service.login.UserManager;
 
 @Controller
@@ -30,6 +34,12 @@ public class IndexController {
 	@Autowired
 	private UserManager userManager;
 
+	@Autowired
+	private TypeUserService typeUserService;
+	
+	@Autowired
+	private CompanyService companyService;
+	
 	/*
 	 * @Autowired private PermisoManager permisoManager;
 	 */
@@ -39,6 +49,7 @@ public class IndexController {
 		return "key/index";
 	}
 
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/validar", method = RequestMethod.POST)
 	public String addEmployee(@Valid @ModelAttribute("user") User user,
 			BindingResult result, Model model) {
@@ -50,11 +61,16 @@ public class IndexController {
 				if (uss.getType() != null) {
 					session ses = new session(uss.getId());
 					String ret = null;
-					if (uss.getType().getDescripcion().equalsIgnoreCase("administrador")) {
+					List<Object> info = null;
+					if (uss.getType().getDescripcion().equalsIgnoreCase("administrador")) {						
+						info = new LinkedList<Object>();
+						info.add(0, typeUserService.listTypeUser());
+						info.add(1, companyService.listCompany());
 						ret = "redirect:/admin/listar";
 					} else {
 						ret = "redirect:/compras/mostrar";
 					}
+					ses.setInformacion(info);
 					model.addAttribute("user_inicio", ses);
 					return ret;
 				} else {

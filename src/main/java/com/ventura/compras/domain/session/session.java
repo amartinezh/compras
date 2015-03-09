@@ -20,6 +20,7 @@ public class session implements Serializable{
 	}
 	
 	private String usuario;
+	private List<Object> informacion;
 //	private List<Map<String,String>> permisos;
 //	private String tipo;
 //	private String nivel;
@@ -52,6 +53,11 @@ public class session implements Serializable{
 	public String getUsuario() {
 		return usuario;
 	}
+	
+	public List<Object> getInformacion() {
+		return informacion;
+	}
+	
 	/*
 	public String getCompany() {
 		return company;
@@ -72,6 +78,11 @@ public class session implements Serializable{
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+	
+	public void setInformacion(List<Object> informacion) {
+		this.informacion = informacion;
+	}
+	
 		/*
 	public void setCompany(String company) {
 		this.company = company;
