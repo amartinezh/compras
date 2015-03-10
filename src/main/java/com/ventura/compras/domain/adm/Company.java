@@ -1,5 +1,6 @@
 package com.ventura.compras.domain.adm;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import com.ventura.compras.domain.login.User;
 
 @Entity
 @Table(name="company", schema="admin")
-public class Company {
+public class Company implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
