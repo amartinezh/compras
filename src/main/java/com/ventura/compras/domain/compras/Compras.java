@@ -154,6 +154,10 @@ public class Compras implements Serializable {
 	BigDecimal pqtyr;
 	
 	@NotEmpty
+	@Column(name = "pqtyu")
+	BigDecimal pqtyu;
+	
+	@NotEmpty
 	@Column(name = "pqtyp")
 	BigDecimal pqtyp;
 	
@@ -233,7 +237,7 @@ public class Compras implements Serializable {
 				+ ", pipro=" + pipro + ", pides=" + pides + ", puntd=" + puntd
 				+ ", punin=" + punin + ", pcstp=" + pcstp + ", nroor=" + nroor
 				+ ", fecre=" + fecre + ", pmond=" + pmond + ", pqtyo=" + pqtyo
-				+ ", pqtyd=" + pqtyd + ", pqtyr=" + pqtyr + ", pqtyp=" + pqtyp
+				+ ", pqtyd=" + pqtyd + ", pqtyr=" + pqtyr + ", pqtyu=" + pqtyu + ", pqtyp=" + pqtyp
 				+ ", pvalbo=" + pvalbo + ", pvalto=" + pvalto + ", pvalbd="
 				+ pvalbd + ", pvaltd=" + pvaltd + ", pvalbr=" + pvalbr
 				+ ", pvaltr=" + pvaltr + ", pvalpo=" + pvalpo + ", pvalve="
@@ -280,6 +284,7 @@ public class Compras implements Serializable {
 		result = prime * result + ((pqtyo == null) ? 0 : pqtyo.hashCode());
 		result = prime * result + ((pqtyp == null) ? 0 : pqtyp.hashCode());
 		result = prime * result + ((pqtyr == null) ? 0 : pqtyr.hashCode());
+		result = prime * result + ((pqtyu == null) ? 0 : pqtyu.hashCode());
 		result = prime * result + ((preg == null) ? 0 : preg.hashCode());
 		result = prime * result + ((ptyno == null) ? 0 : ptyno.hashCode());
 		result = prime * result + ((ptype == null) ? 0 : ptype.hashCode());
@@ -463,6 +468,11 @@ public class Compras implements Serializable {
 			if (other.pqtyr != null)
 				return false;
 		} else if (!pqtyr.equals(other.pqtyr))
+			return false;
+		if (pqtyu == null) {
+			if (other.pqtyu != null)
+				return false;
+		} else if (!pqtyu.equals(other.pqtyu))
 			return false;
 		if (preg == null) {
 			if (other.preg != null)
@@ -664,6 +674,10 @@ public class Compras implements Serializable {
 	public BigDecimal getPqtyr() {
 		return pqtyr;
 	}
+	
+	public BigDecimal getPqtyu() {
+		return pqtyu;
+	}
 
 	public BigDecimal getPqtyp() {
 		return pqtyp;
@@ -855,6 +869,10 @@ public class Compras implements Serializable {
 
 	public void setPqtyr(BigDecimal pqtyr) {
 		this.pqtyr = pqtyr;
+	}
+	
+	public void setPqtyu(BigDecimal pqtyu) {
+		this.pqtyu = pqtyu;
 	}
 
 	public void setPqtyp(BigDecimal pqtyp) {
