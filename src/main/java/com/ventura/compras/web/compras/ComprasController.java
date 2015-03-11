@@ -34,6 +34,7 @@ public class ComprasController {
 		if(model.containsAttribute("user_inicio") == true) {
 			session ses = (session)model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("listcomp", comprasService.getCompras());
 			return "dashboard";
 		} else {
 			return "redirect:/index/ingreso";

@@ -162,109 +162,25 @@
 									<thead>
 										<tr>
 											<th data-hide="phone">Distrito</th>
-											<th data-hide="phone">Valor Facturado</th>
-											<th data-hide="phone">Presup.</th>
-											<th data-hide="phone">Total</th>
-											<th data-hide="phone">Qty</th>
-											<th data-hide="phone">Vrl</th>
-											<th data-hide="phone">BackLog</th>
-											<th data-hide="phone">Pedidas Mes</th>
-											<th data-hide="phone">Venta Día</th>
-											<th data-hide="phone">Pedidas Día</th>
-											<th data-hide="phone">Cartera</th>
-											<th data-hide="phone">Prec Prom</th>
-											<th data-hide="phone">% Cump</th>
-											<th data-hide="phone">Mar</th>
-											<th data-hide="phone">Cli</th>
-											<th data-hide="phone">Ven</th>
-											<th data-hide="phone">Cat</th>
-											<th data-hide="phone">Ite</th>
+											<th data-hide="phone">Unidades recibidas</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${flash1ist}" var="Flashh"
+										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr
 												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
 												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
-												bgcolor="#EFF2EF">
-												<c:choose>
-													<c:when test="${ Flashh.cozon == 'a' }">
-														<c:if test="${mostrar < 1}">
-															<td colspan="15" align="center"><c:out
-																	value="${Flashh.codesz}" /></td>
-														</c:if>
-													</c:when>
-													<c:otherwise>
-														<c:choose>
-															<c:when test="${ Flashh.cozon == 'b' }">
-																<td><a href="dz/${Flashh.codesz}"><c:out
-																			value="${Flashh.codesz}" /></a></td>
-															</c:when>
-															<c:when test="${ Flashh.cozon == 'c' }">
-																<td><a href="dz"><c:out
-																			value="${Flashh.codesz}" /></a></td>
-															</c:when>
-															<c:otherwise>
-																<td><a href="c/${Flashh.cozon}"><c:out
-																			value="${Flashh.codzbp}" /></a></td>
-															</c:otherwise>
-														</c:choose>
-														<td><fmt:formatNumber type="currency"
-																value="${Flashh.clnet}" /></td>
-														<td><c:out value="${Flashh.cpqty}" /></td>
-														<td><c:out value="${Flashh.clqty}" /></td>
-														<td><c:out value="${Flashh.clqtyb}" /></td>
-														<td><c:out value="${Flashh.clnetb}" /></td>
-														<td><c:out value="${Flashh.cpdte}" /></td>
-														<td><c:out value="${Flashh.clord}" /></td>
-														<td><c:out value="${Flashh.cldev}" /></td>
-														<td><c:out value="${Flashh.ckqty}" /></td>
-														<td><fmt:formatNumber type="currency"
-																value="${Flashh.clcar}" /></td>
-														<c:choose>
-															<c:when test="${ Flashh.clqty != 0 }">
-																<td><fmt:formatNumber type="currency" value="${Flashh.clnet/Flashh.clqty}"/></td>	
-															</c:when>
-															<c:otherwise>															
-																<td><fmt:formatNumber type="currency" value="${Flashh.clqty}" /></td>
-															</c:otherwise>
-														</c:choose>														
-														<td><fmt:formatNumber type="percent" maxIntegerDigits="3" maxFractionDigits="2" value="000.00" /></td>															
-														<c:choose>
-															<c:when test="${ Flashh.cozon == 'b' }">
-																<td><a href="mz/${Flashh.cozon}"> Marca </a></td>
-																<td><a href="cliz/${Flashh.cozon}">Clientes</a></td>
-																<td><a href="vz/${Flashh.cozon}">Vend</a></td>
-																<td><a href="catz/${Flashh.cozon}">Categorias</a></td>
-																<td><a href="iz/${Flashh.cozon}">Item</a></td>
-															</c:when>
-															<c:when test="${ Flashh.cozon == 'c' }">
-																<td><a href="mz/${Flashh.cozon}"> Marca </a></td>
-																<td><a href="cliz/${Flashh.cozon}">Clientes</a></td>
-																<td><a href="vz/${Flashh.cozon}">Vend</a></td>
-																<td><a href="catz/${Flashh.cozon}">Categorias</a></td>
-																<td><a href="iz/${Flashh.cozon}">Item</a></td>
-															</c:when>
-															<c:otherwise>
-																<td><a href="m/${Flashh.cozon}"> Marca </a></td>
-																<td><a href="cli/${Flashh.cozon}">Clientes</a></td>
-																<td><a href="v/${Flashh.cozon}">Vend</a></td>
-																<td><a href="cat/${Flashh.cozon}">Categorias</a></td>
-																<td><a href="i/${Flashh.cozon}">Item</a></td>
-															</c:otherwise>
-
-														</c:choose>
-													</c:otherwise>
-												</c:choose>
-
+												bgcolor="#EFF2EF">																								
+														<td><c:out value="${compp.ptyno}" /></td>
+														<td><c:out value="${compp.pqtyd}" /></td>
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="15" align="center"></td>
+											<td colspan="2" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="15" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
+											<td colspan="2" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>
 								</table>

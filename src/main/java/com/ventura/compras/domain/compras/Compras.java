@@ -116,9 +116,9 @@ public class Compras implements Serializable {
 	@Column(name = "pides")
 	String pides;
 	
-	@NotEmpty
-	@Column(name = "puntd")
-	String puntd;
+	//@NotEmpty
+	@Column(name = "punid")
+	String punid;
 	
 	@NotEmpty
 	@Column(name = "punin")
@@ -224,6 +224,12 @@ public class Compras implements Serializable {
 	public Compras() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Compras(String ptype, String ptyno, BigDecimal pqtyd) {
+		this.ptype = ptype;
+		this.ptyno = ptyno;
+		this.pqtyd = pqtyd;
+	}
 
 	@Override
 	public String toString() {
@@ -234,7 +240,7 @@ public class Compras implements Serializable {
 				+ ", ptyno=" + ptyno + ", pnit=" + pnit + ", pcomd=" + pcomd
 				+ ", pnomd=" + pnomd + ", ppais=" + ppais + ", pnpas=" + pnpas
 				+ ", tipoc=" + tipoc + ", picla=" + picla + ", picln=" + picln
-				+ ", pipro=" + pipro + ", pides=" + pides + ", puntd=" + puntd
+				+ ", pipro=" + pipro + ", pides=" + pides + ", punid=" + punid
 				+ ", punin=" + punin + ", pcstp=" + pcstp + ", nroor=" + nroor
 				+ ", fecre=" + fecre + ", pmond=" + pmond + ", pqtyo=" + pqtyo
 				+ ", pqtyd=" + pqtyd + ", pqtyr=" + pqtyr + ", pqtyu=" + pqtyu + ", pqtyp=" + pqtyp
@@ -289,7 +295,7 @@ public class Compras implements Serializable {
 		result = prime * result + ((ptyno == null) ? 0 : ptyno.hashCode());
 		result = prime * result + ((ptype == null) ? 0 : ptype.hashCode());
 		result = prime * result + ((punin == null) ? 0 : punin.hashCode());
-		result = prime * result + ((puntd == null) ? 0 : puntd.hashCode());
+		result = prime * result + ((punid == null) ? 0 : punid.hashCode());
 		result = prime * result + ((pvalbd == null) ? 0 : pvalbd.hashCode());
 		result = prime * result + ((pvalbo == null) ? 0 : pvalbo.hashCode());
 		result = prime * result + ((pvalbr == null) ? 0 : pvalbr.hashCode());
@@ -494,10 +500,10 @@ public class Compras implements Serializable {
 				return false;
 		} else if (!punin.equals(other.punin))
 			return false;
-		if (puntd == null) {
-			if (other.puntd != null)
+		if (punid == null) {
+			if (other.punid != null)
 				return false;
-		} else if (!puntd.equals(other.puntd))
+		} else if (!punid.equals(other.punid))
 			return false;
 		if (pvalbd == null) {
 			if (other.pvalbd != null)
@@ -639,8 +645,8 @@ public class Compras implements Serializable {
 		return pides;
 	}
 
-	public String getPuntd() {
-		return puntd;
+	public String getpunid() {
+		return punid;
 	}
 
 	public String getPunin() {
@@ -835,8 +841,8 @@ public class Compras implements Serializable {
 		this.pides = pides;
 	}
 
-	public void setPuntd(String puntd) {
-		this.puntd = puntd;
+	public void setpunid(String punid) {
+		this.punid = punid;
 	}
 
 	public void setPunin(String punin) {
