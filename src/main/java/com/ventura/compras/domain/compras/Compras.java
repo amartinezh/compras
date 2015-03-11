@@ -225,10 +225,14 @@ public class Compras implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Compras(String ptype, String ptyno, BigDecimal pqtyd) {
+	public Compras(String ptype, String ptyno, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac) {
 		this.ptype = ptype;
 		this.ptyno = ptyno;
 		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;		
 	}
 
 	@Override

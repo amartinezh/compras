@@ -163,6 +163,10 @@
 										<tr>
 											<th data-hide="phone">Distrito</th>
 											<th data-hide="phone">Unidades recibidas</th>
+											<th data-hide="phone">Unidades rechazadas</th>
+											<th data-hide="phone">Val. base recibido</th>
+											<th data-hide="phone">Saldo Proveedor</th>
+											<th data-hide="phone">Precio Compra</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -174,6 +178,10 @@
 												bgcolor="#EFF2EF">																								
 														<td><c:out value="${compp.ptyno}" /></td>
 														<td><c:out value="${compp.pqtyd}" /></td>
+														<td><c:out value="${compp.pqtyr}" /></td>													
+														<td><c:out value="${compp.pvalbd}" /></td>
+														<td><c:out value="${compp.pvalpo}" /></td>
+														<td><c:out value="${compp.ppreac}" /></td>		
 											</tr>
 										</c:forEach>
 										<tr>

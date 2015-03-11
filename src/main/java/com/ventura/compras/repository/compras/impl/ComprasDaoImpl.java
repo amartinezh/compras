@@ -24,10 +24,11 @@ public class ComprasDaoImpl implements ComprasDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Compras> getCompras() {
-		List<Object[]> result = em.createQuery("SELECT c.ptype as ptype, c.ptyno as ptyno, sum(c.pqtyd) as pqtyd FROM Compras as c GROUP BY c.ptype, c.ptyno").getResultList();
+		List<Object[]> result = em.createQuery("SELECT c.ptype as ptype, c.ptyno as ptyno, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac"
+				+ " FROM Compras as c GROUP BY c.ptype, c.ptyno").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		for(Object[] obj: result) {
-			compras.add(new Compras((String)obj[0], (String)obj[1], new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+			compras.add(new Compras((String)obj[0], (String)obj[1], new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
 		}
 		return compras;		
 	}
