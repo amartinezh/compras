@@ -23,6 +23,22 @@ public class ComprasServiceImpl implements ComprasService {
 	public List<Compras> getCompradores(Map<String, String> condiciones, String cond) {
 		return comprasDao.getCompradores(condiciones, cond);
 	}
+	
+	public List<Compras> getProveedores(Map<String, String> condiciones, String cond) {
+		return comprasDao.getProveedores(condiciones, cond);
+	}
+	
+	public List<Compras> getItems(Map<String, String> condiciones, String cond) {
+		return comprasDao.getItems(condiciones, cond);
+	}
+	
+	public List<Compras> getClases(Map<String, String> condiciones, String cond) {
+		return comprasDao.getClases(condiciones, cond);
+	}
 
+	public List<Compras> getCentros(Map<String, String> condiciones, String cond) {
+		return comprasDao.getCentros(condiciones, cond);
+	}
+	
 	
 }

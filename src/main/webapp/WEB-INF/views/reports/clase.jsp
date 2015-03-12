@@ -122,10 +122,12 @@
 						class="fa fa-sign-out"></i></a>
 				</span>
 			</div>
-			<div id="actualizar" class="btn-header transparent pull-right">
-				<span> <a href="actualizar" title="Actualizar">Actualizar</a>
-				</span>
-			</div>
+		<!-- <div id="regresar" class="btn-header transparent pull-right">										
+				<span> <a href="${devolveritems}" title="Atras">Atras</a> </span>
+			</div> -->	
+			<div id="iinicio" class="btn-header transparent pull-right">										
+				<span> <a href="mostrar" title="Inicio">Inicio</a> </span>
+			</div>			
 			<!-- end logout button -->
 
 		</div>
@@ -161,76 +163,30 @@
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<th data-hide="phone">Tipo</th>
+											<th>Clase</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
 											<th data-hide="phone">Val. base recibido</th>
 											<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th>
-											<th data-hide="phone">Comprador</th>
-											<th data-hide="phone">Proveedor</th>
-											<th data-hide="phone">Item</th>
-											<th data-hide="phone">Clase</th>
-											<th data-hide="phone">Cent. Costo</th>
+											<th data-hide="phone">Precio Compra</th>																						
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
-											<tr
-												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
-												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
-												bgcolor="#EFF2EF">
-												<td><c:out value="${compp.ptyno}" /></td>
+											<tr>
+												<td><c:out value="${compp.picln}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
-												<td><c:out value="${compp.pqtyr}" /></td>
+												<td><c:out value="${compp.pqtyr}" /></td>													
 												<td><c:out value="${compp.pvalbd}" /></td>
 												<td><c:out value="${compp.pvalpo}" /></td>
 												<td><c:out value="${compp.ppreac}" /></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<button type="submit" Value="compra" name="next">
-															Comp</button>
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<button type="submit" Value="prove" name="next">
-															Prov</button>
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<button type="submit" Value="ite" name="next">
-															Item</button>
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<button type="submit" Value="clas" name="next">
-															Clase</button>
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<button type="submit" Value="centr" name="next">
-															Centro</button>
-
-													</form:form></td>
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="7" align="center"></td>
-										</tr>
-										<tr>
-											<td colspan="7" align="center">Usuario: <c:out
-													value="${usuarioactuall}" /></td>
+											<td colspan="6" align="center"></td>
+											</tr><tr>
+											<td colspan="6" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>
 								</table>
@@ -257,6 +213,17 @@
 
 	</div>
 	<!-- END MAIN CONTENT -->
+
+	<!--
+	<div class="page-footer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<span class="txt-color-white">Flash Ventas - 2014</span>
+			</div>
+		</div>
+	</div>
+	 END PAGE FOOTER -->
+
 
 	<!--================================================== -->
 
@@ -777,6 +744,8 @@
 		})(jQuery, window);
 	</script>
 
+
+
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -794,6 +763,8 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+
+
 
 </body>
 

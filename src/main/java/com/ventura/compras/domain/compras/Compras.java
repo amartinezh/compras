@@ -235,9 +235,54 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac;		
 	}
 
+	//Constructor Proveedor	
+	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac) {
+		this.pprov = pprov;
+		this.ppnov = ppnov;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;		
+	}
+	
+	//Constructor Comprador
 	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd) {
 		this.pcomd = pcomd;
 		this.pnomd = pnomd;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;		
+	}
+	
+	//Constructor Item
+	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, String pipro, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pides) {
+		this.pipro = pipro;
+		this.pides = pides;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;		
+	}
+	
+	//Construtor Clase
+	public Compras(BigDecimal pqtyd, String picla, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String picln) {
+		this.picla = picla;
+		this.picln = picln;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;		
+	}
+	
+	//Constructor Centro
+	public Compras(String pcent, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pcenn) {
+		this.pcent = pcent;
+		this.pcenn = pcenn;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
