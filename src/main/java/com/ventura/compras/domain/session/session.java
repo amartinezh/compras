@@ -1,6 +1,8 @@
 package com.ventura.compras.domain.session;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,18 +23,16 @@ public class session implements Serializable{
 	
 	private String usuario;
 	private List<Object> informacion;
-//	private List<Map<String,String>> permisos;
-//	private String tipo;
-//	private String nivel;
-//	private String company;
-//	private String view;
+	private Map<String, String> condiciones;
 		
 	public session() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public session(String usuario) {
-		this.usuario = usuario;		
+		this.usuario = usuario;
+		this.informacion = new LinkedList<Object>();
+		this.condiciones = new HashMap<String, String>();
 	}
 	/*
 	public session(String usuario, List<Map<String,String>> permisos, String tipo, String nivel, String company) {
@@ -58,6 +58,10 @@ public class session implements Serializable{
 		return informacion;
 	}
 	
+	public Map<String, String> getCondiciones() {
+		return condiciones;
+	}
+	
 	/*
 	public String getCompany() {
 		return company;
@@ -81,6 +85,10 @@ public class session implements Serializable{
 	
 	public void setInformacion(List<Object> informacion) {
 		this.informacion = informacion;
+	}
+	
+	public void setCondiciones(Map<String, String> condiciones) {
+		this.condiciones = condiciones;
 	}
 	
 		/*

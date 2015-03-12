@@ -122,12 +122,12 @@
 						class="fa fa-sign-out"></i></a>
 				</span>
 			</div>
-			<div id="regresar" class="btn-header transparent pull-right">										
-				<span> <a href="${devolvervendedor}" title="Atras">Atras</a> </span>
-			</div>
+		<!-- <div id="regresar" class="btn-header transparent pull-right">										
+				<span> <a href="${devolveritems}" title="Atras">Atras</a> </span>
+			</div> -->	
 			<div id="iinicio" class="btn-header transparent pull-right">										
-				<span> <a href="info" title="Inicio">Inicio</a> </span>
-			</div>		
+				<span> <a href="mostrar" title="Inicio">Inicio</a> </span>
+			</div>			
 			<!-- end logout button -->
 
 		</div>
@@ -163,33 +163,32 @@
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<th>Codigo</th>
-											<th>Cliente</th>
-									<th>Valor Facturado</th>
-									<!--			<th>Presup.</th>
-											<th data-hide="phone">Venta</th>
-											<th data-hide="phone">BackLog</th>
-											<th data-hide="phone">Pedidas Mes</th>
--->
+											<th>Comprador</th>
+											<th data-hide="phone">Unidades recibidas</th>
+											<th data-hide="phone">Unidades rechazadas</th>
+											<th data-hide="phone">Val. base recibido</th>
+											<th data-hide="phone">Saldo Proveedor</th>
+											<th data-hide="phone">Precio Compra</th>
+																						
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${flash1ist}" var="Flashh" varStatus="loopCounter">
+										<c:forEach items="${listcomp}" var="compp"
+											varStatus="loopCounter">
 											<tr>
-												<td><c:out value="${Flashh.coccus}" />
-												</td>
-												
-												<td><c:out value="${Flashh.concus}" />
-												</td>
-												<td><fmt:formatNumber type="currency"
-														value="${Flashh.clnet}" /></td>
-											<!--	<td><c:out value="${Flashh.cpqty}" /></td>
-												<td><c:out value="${Flashh.clqty}" /></td>
-												<td><c:out value="${Flashh.cpdte}" /></td>
-												<td><c:out value="${Flashh.ckqty}" /></td>
-												-->
+												<td><c:out value="${compp.pnomd}" /></td>
+												<td><c:out value="${compp.pqtyd}" /></td>
+												<td><c:out value="${compp.pqtyr}" /></td>													
+												<td><c:out value="${compp.pvalbd}" /></td>
+												<td><c:out value="${compp.pvalpo}" /></td>
+												<td><c:out value="${compp.ppreac}" /></td>
 											</tr>
 										</c:forEach>
+										<tr>
+											<td colspan="6" align="center"></td>
+											</tr><tr>
+											<td colspan="6" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -215,6 +214,17 @@
 
 	</div>
 	<!-- END MAIN CONTENT -->
+
+	<!--
+	<div class="page-footer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<span class="txt-color-white">Flash Ventas - 2014</span>
+			</div>
+		</div>
+	</div>
+	 END PAGE FOOTER -->
+
 
 	<!--================================================== -->
 
@@ -735,6 +745,8 @@
 		})(jQuery, window);
 	</script>
 
+
+
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -752,6 +764,8 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+
+
 
 </body>
 

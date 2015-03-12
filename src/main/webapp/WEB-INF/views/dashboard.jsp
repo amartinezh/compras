@@ -161,12 +161,13 @@
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<th data-hide="phone">Distrito</th>
+											<th data-hide="phone">Tipo</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
 											<th data-hide="phone">Val. base recibido</th>
 											<th data-hide="phone">Saldo Proveedor</th>
 											<th data-hide="phone">Precio Compra</th>
+											<th data-hide="phone">Comprador</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -181,14 +182,22 @@
 														<td><c:out value="${compp.pqtyr}" /></td>													
 														<td><c:out value="${compp.pvalbd}" /></td>
 														<td><c:out value="${compp.pvalpo}" /></td>
-														<td><c:out value="${compp.ppreac}" /></td>		
+														<td><c:out value="${compp.ppreac}" /></td>
+														<td align = "center">
+															<form:form method="POST" action="comp" ModelAttribute="compra" commandName="compra">
+															<form:input path="ptype" type="hidden" value="${compp.ptype}"/>
+															<button type="submit">
+																Comp
+															</button>
+															</form:form>
+														</td>		
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="2" align="center"></td>
+											<td colspan="7" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="2" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
+											<td colspan="7" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>
 								</table>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.ventura.compras.domain.compras.Compras;
 import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
 import com.ventura.compras.service.compras.ComprasService;
@@ -35,7 +36,33 @@ public class ComprasController {
 			session ses = (session)model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			model.addAttribute("listcomp", comprasService.getCompras());
+			model.addAttribute("compra", new Compras());
 			return "dashboard";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "/comprador")
+	public String comprador(Model model) {
+		if(model.containsAttribute("user_inicio") == true) {
+			session ses = (session)model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("listcomp", comprasService.getCompradores(ses.getCondiciones(), "comprador"));
+			model.addAttribute("compra", new Compras());
+			return "reports/comprador";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value="comp", method=RequestMethod.POST)
+	public String comp(@ModelAttribute("compra") Compras compra, Model model) {
+		if(model.containsAttribute("user_inicio") == true) {
+			session ses = (session)model.asMap().get("user_inicio");
+			ses.getCondiciones().put("comprador", "c.ptype = '" + compra.getPtype() + "'");
+			model.addAttribute("user_inicio", ses);
+			return "redirect:comprador";
 		} else {
 			return "redirect:/index/ingreso";
 		}

@@ -235,6 +235,16 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac;		
 	}
 
+	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd) {
+		this.pcomd = pcomd;
+		this.pnomd = pnomd;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;		
+	}
+	
 	@Override
 	public String toString() {
 		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg

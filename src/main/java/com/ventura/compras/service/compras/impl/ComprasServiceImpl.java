@@ -1,6 +1,7 @@
 package com.ventura.compras.service.compras.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,9 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getCompras();
 	}
 	
-	
+	public List<Compras> getCompradores(Map<String, String> condiciones, String cond) {
+		return comprasDao.getCompradores(condiciones, cond);
+	}
 
 	
 }
