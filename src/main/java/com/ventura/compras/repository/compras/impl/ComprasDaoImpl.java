@@ -67,13 +67,13 @@ public class ComprasDaoImpl implements ComprasDao {
 				where = where + " and " + condiciones.get(c[i]);				
 			}
 		}
-		List<Object[]> result = em.createQuery("SELECT c.pprov as pprov, c.ppnov as ppnov, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac"
+		List<Object[]> result = em.createQuery("SELECT c.pprov as pprov, c.ppnov as ppnov, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit"
 				+ " FROM Compras as c "
 				+ "WHERE " + where
-				+ "GROUP BY c.pprov, c.ppnov").getResultList();
+				+ "GROUP BY c.pprov, c.ppnov, c.pnit").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		for(Object[] obj: result) {
-			compras.add(new Compras(Integer.parseInt(obj[0].toString()), (String)obj[1],new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+			compras.add(new Compras(Integer.parseInt(obj[0].toString()), (String)obj[1],new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), (String)obj[7]));
 		}
 		return compras;
 	}

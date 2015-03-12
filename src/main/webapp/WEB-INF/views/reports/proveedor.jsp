@@ -164,6 +164,7 @@
 									<thead>
 										<tr>
 											<th>Proveedor</th>
+											<th>Nit</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
 											<th data-hide="phone">Val. base recibido</th>
@@ -176,6 +177,7 @@
 											varStatus="loopCounter">
 											<tr>
 												<td><c:out value="${compp.ppnov}" /></td>
+												<td><c:out value="${compp.pnit}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>													
 												<td><c:out value="${compp.pvalbd}" /></td>

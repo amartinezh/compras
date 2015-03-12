@@ -236,7 +236,7 @@ public class Compras implements Serializable {
 	}
 
 	//Constructor Proveedor	
-	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac) {
+	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pnit) {
 		this.pprov = pprov;
 		this.ppnov = ppnov;
 		this.pqtyd = pqtyd;
@@ -244,6 +244,7 @@ public class Compras implements Serializable {
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;		
+		this.pnit = pnit;
 	}
 	
 	//Constructor Comprador
