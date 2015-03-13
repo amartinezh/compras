@@ -122,12 +122,13 @@
 						class="fa fa-sign-out"></i></a>
 				</span>
 			</div>
-		<!-- <div id="regresar" class="btn-header transparent pull-right">										
+			<!-- <div id="regresar" class="btn-header transparent pull-right">										
 				<span> <a href="${devolveritems}" title="Atras">Atras</a> </span>
-			</div> -->	
-			<div id="iinicio" class="btn-header transparent pull-right">										
-				<span> <a href="mostrar" title="Inicio">Inicio</a> </span>
-			</div>			
+			</div> -->
+			<div id="iinicio" class="btn-header transparent pull-right">
+				<span> <a href="mostrar" title="Inicio">Inicio</a>
+				</span>
+			</div>
 			<!-- end logout button -->
 
 		</div>
@@ -169,7 +170,18 @@
 											<th data-hide="phone">Val. base recibido</th>
 											<th data-hide="phone">Saldo Proveedor</th>
 											<th data-hide="phone">Precio Compra</th>
-																						
+											<c:if test="${p == 0}">
+												<th data-hide="phone">Proveedor</th>
+											</c:if>
+											<c:if test="${i == 0}">
+												<th data-hide="phone">Items</th>
+											</c:if>
+											<c:if test="${q == 0}">
+												<th data-hide="phone">Clase</th>
+											</c:if>
+											<c:if test="${k == 0}">
+												<th data-hide="phone">Cent. Costo</th>
+											</c:if>
 										</tr>
 									</thead>
 									<tbody>
@@ -178,16 +190,60 @@
 											<tr>
 												<td><c:out value="${compp.pnomd}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
-												<td><c:out value="${compp.pqtyr}" /></td>													
+												<td><c:out value="${compp.pqtyr}" /></td>
 												<td><c:out value="${compp.pvalbd}" /></td>
 												<td><c:out value="${compp.pvalpo}" /></td>
 												<td><c:out value="${compp.ppreac}" /></td>
+												<c:if test="${p == 0}">
+													<td align="center"><form:form method="POST"
+															action="comp" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="pcomd" type="hidden"
+																value="${compp.pcomd}" />
+															<button type="submit" Value="prove" name="next">
+																Prov</button>
+														</form:form></td>
+												</c:if>
+
+												<c:if test="${i == 0}">
+													<td align="center"><form:form method="POST"
+															action="ccompra" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="pcomd" type="hidden"
+																value="${compp.pcomd}" />
+															<button type="submit" Value="ite" name="next">
+																Item</button>
+														</form:form></td>
+												</c:if>
+												<c:if test="${q == 0}">
+													<td align="center"><form:form method="POST"
+															action="ccompra" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="pcomd" type="hidden"
+																value="${compp.pcomd}" />
+															<button type="submit" Value="clas" name="next">
+																Clase</button>
+														</form:form></td>
+												</c:if>
+												<c:if test="${k == 0}">
+													<td align="center"><form:form method="POST"
+															action="ccompra" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="pcomd" type="hidden"
+																value="${compp.pcomd}" />
+															<button type="submit" Value="centr" name="next">
+																Centro</button>
+														</form:form></td>
+												</c:if>
+
 											</tr>
 										</c:forEach>
 										<tr>
 											<td colspan="6" align="center"></td>
-											</tr><tr>
-											<td colspan="6" align="center">Usuario: <c:out value="${usuarioactuall}" /></td>
+										</tr>
+										<tr>
+											<td colspan="6" align="center">Usuario: <c:out
+													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>
 								</table>

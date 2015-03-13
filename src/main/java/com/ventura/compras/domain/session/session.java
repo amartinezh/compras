@@ -24,6 +24,8 @@ public class session implements Serializable{
 	private String usuario;
 	private List<Object> informacion;
 	private Map<String, String> condiciones;
+	private String condicionActual;
+	private String historial;
 		
 	public session() {
 		// TODO Auto-generated constructor stub
@@ -33,6 +35,7 @@ public class session implements Serializable{
 		this.usuario = usuario;
 		this.informacion = new LinkedList<Object>();
 		this.condiciones = new HashMap<String, String>();
+		this.historial = "";
 	}
 	/*
 	public session(String usuario, List<Map<String,String>> permisos, String tipo, String nivel, String company) {
@@ -62,6 +65,14 @@ public class session implements Serializable{
 		return condiciones;
 	}
 	
+	public String getCondicionActual() {
+		return condicionActual;
+	}
+	
+	public String getHistorial() {
+		return historial;
+	}
+
 	/*
 	public String getCompany() {
 		return company;
@@ -89,6 +100,14 @@ public class session implements Serializable{
 	
 	public void setCondiciones(Map<String, String> condiciones) {
 		this.condiciones = condiciones;
+	}
+	
+	public void setCondicionActual(String condicionActual) {
+		this.condicionActual = condicionActual;
+	}
+	
+	public void setHistorial(String historial) {
+		this.historial = historial;
 	}
 	
 		/*
