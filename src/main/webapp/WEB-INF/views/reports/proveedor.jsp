@@ -122,9 +122,9 @@
 						class="fa fa-sign-out"></i></a>
 				</span>
 			</div>
-			<!-- <div id="regresar" class="btn-header transparent pull-right">										
-				<span> <a href="${devolveritems}" title="Atras">Atras</a> </span>
-			</div> -->
+			<div id="regresar" class="btn-header transparent pull-right">										
+				<span> <a href="retornar" title="Atras">Atras</a> </span>
+			</div>
 			<div id="iinicio" class="btn-header transparent pull-right">
 				<span> <a href="mostrar" title="Inicio">Inicio</a>
 				</span>
