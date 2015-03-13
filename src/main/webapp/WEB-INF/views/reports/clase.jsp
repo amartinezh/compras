@@ -163,6 +163,10 @@
 
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
+									<tr>
+											<td colspan="11" align="center"><c:out
+													value="${mensaje}" /></td>
+										</tr>
 										<tr>
 											<th>Clase</th>
 											<th data-hide="phone">Unidades recibidas</th>
@@ -198,6 +202,8 @@
 													<td align="center"><form:form method="POST"
 															action="class" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="picln" type="hidden"
+																value="${compp.picln}" />
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="compra" name="next">
@@ -207,8 +213,10 @@
 
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
-															action="comp" ModelAttribute="compra"
+															action="class" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="picln" type="hidden"
+																value="${compp.picln}" />
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="prove" name="next">
@@ -220,6 +228,8 @@
 													<td align="center"><form:form method="POST"
 															action="class" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="picln" type="hidden"
+																value="${compp.picln}" />
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="ite" name="next">
@@ -230,6 +240,8 @@
 													<td align="center"><form:form method="POST"
 															action="class" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="picln" type="hidden"
+																value="${compp.picln}" />
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="centr" name="next">
@@ -239,10 +251,10 @@
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="6" align="center"></td>
+											<td colspan="11" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="6" align="center">Usuario: <c:out
+											<td colspan="11" align="center">Usuario: <c:out
 													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>

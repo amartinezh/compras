@@ -163,6 +163,10 @@
 
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
+									<tr>
+											<td colspan="11" align="center"><c:out
+													value="${mensaje}" /></td>
+										</tr>
 										<tr>
 											<th>Proveedor</th>
 											<th>Nit</th>
@@ -200,6 +204,8 @@
 													<td align="center"><form:form method="POST"
 															action="prov" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="ppnov" type="hidden"
+																value="${compp.ppnov}" />
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="compra" name="next">
@@ -210,6 +216,8 @@
 													<td align="center"><form:form method="POST"
 															action="prov" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="ppnov" type="hidden"
+																value="${compp.ppnov}" />
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="ite" name="next">
@@ -220,6 +228,8 @@
 													<td align="center"><form:form method="POST"
 															action="prov" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="ppnov" type="hidden"
+																value="${compp.ppnov}" />
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="clas" name="next">
@@ -230,6 +240,8 @@
 													<td align="center"><form:form method="POST"
 															action="prov" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="ppnov" type="hidden"
+																value="${compp.ppnov}" />
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="centr" name="next">
@@ -239,10 +251,10 @@
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="6" align="center"></td>
+											<td colspan="11" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="6" align="center">Usuario: <c:out
+											<td colspan="11" align="center">Usuario: <c:out
 													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>

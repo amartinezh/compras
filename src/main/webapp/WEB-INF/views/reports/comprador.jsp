@@ -163,6 +163,10 @@
 
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
+									<tr>
+											<td colspan="11" align="center"><c:out
+													value="${mensaje}" /></td>
+										</tr>
 										<tr>
 											<th>Comprador</th>
 											<th data-hide="phone">Unidades recibidas</th>
@@ -196,8 +200,10 @@
 												<td><c:out value="${compp.ppreac}" /></td>
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
-															action="comp" ModelAttribute="compra"
+															action="ccompra" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pnomd" type="hidden"
+																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
 															<button type="submit" Value="prove" name="next">
@@ -209,6 +215,8 @@
 													<td align="center"><form:form method="POST"
 															action="ccompra" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pnomd" type="hidden"
+																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
 															<button type="submit" Value="ite" name="next">
@@ -219,6 +227,8 @@
 													<td align="center"><form:form method="POST"
 															action="ccompra" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pnomd" type="hidden"
+																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
 															<button type="submit" Value="clas" name="next">
@@ -229,6 +239,8 @@
 													<td align="center"><form:form method="POST"
 															action="ccompra" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pnomd" type="hidden"
+																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
 															<button type="submit" Value="centr" name="next">
@@ -239,10 +251,10 @@
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="6" align="center"></td>
+											<td colspan="11" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="6" align="center">Usuario: <c:out
+											<td colspan="11" align="center">Usuario: <c:out
 													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>

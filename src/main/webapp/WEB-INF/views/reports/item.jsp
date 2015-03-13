@@ -163,6 +163,10 @@
 
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
+									<tr>
+											<td colspan="11" align="center"><c:out
+													value="${mensaje}" /></td>
+										</tr>
 										<tr>
 											<th>Items</th>
 											<th data-hide="phone">Unidades recibidas</th>
@@ -199,6 +203,8 @@
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pides" type="hidden"
+																value="${compp.pides}" />
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="compra" name="next">
@@ -207,8 +213,10 @@
 												</c:if>
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
-															action="comp" ModelAttribute="compra"
+															action="itemm" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pides" type="hidden"
+																value="${compp.pides}" />
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="prove" name="next">
@@ -220,6 +228,8 @@
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pides" type="hidden"
+																value="${compp.pides}" />
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="clas" name="next">
@@ -230,6 +240,8 @@
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pides" type="hidden"
+																value="${compp.pides}" />
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="centr" name="next">
@@ -240,10 +252,10 @@
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="6" align="center"></td>
+											<td colspan="11" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="6" align="center">Usuario: <c:out
+											<td colspan="11" align="center">Usuario: <c:out
 													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>

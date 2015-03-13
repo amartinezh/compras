@@ -37,7 +37,9 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
+			ses.setCondicionActual("");
 			ses.setHistorial("");
+			model.addAttribute("mensaje", "Mes: Marzo");
 			model.addAttribute("user_inicio", ses);
 			model.addAttribute("listcomp", comprasService.getCompras());
 			model.addAttribute("compra", new Compras());
@@ -56,6 +58,12 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getCompradores(ses.getCondiciones(),
 							ses.getCondicionActual()));
+			String[] cond = ses.getCondicionActual().split(",");
+			String mens = "Mes: Marzo";
+			for(String cc : cond) {
+				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+			}
+			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -98,6 +106,12 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getProveedores(ses.getCondiciones(),
 							ses.getCondicionActual()));
+			String[] cond = ses.getCondicionActual().split(",");
+			String mens = "Mes: Marzo";
+			for(String cc : cond) {
+				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+			}
+			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -136,10 +150,13 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute(
-					"listcomp",
-					comprasService.getItems(ses.getCondiciones(),
-							ses.getCondicionActual()));
+			model.addAttribute("listcomp", comprasService.getItems(ses.getCondiciones(), ses.getCondicionActual()));
+			String[] cond = ses.getCondicionActual().split(",");
+			String mens = "Mes: Marzo";
+			for(String cc : cond) {
+				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+			}
+			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -182,6 +199,12 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getClases(ses.getCondiciones(),
 							ses.getCondicionActual()));
+			String[] cond = ses.getCondicionActual().split(",");
+			String mens = "Mes: Marzo";
+			for(String cc : cond) {
+				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+			}
+			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -224,6 +247,12 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getCentros(ses.getCondiciones(),
 							ses.getCondicionActual()));
+			String[] cond = ses.getCondicionActual().split(",");
+			String mens = "Mes: Marzo";
+			for(String cc : cond) {
+				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+			}
+			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -263,9 +292,10 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.getCondiciones().put("servicio",
-					"c.ptype = '" + compra.getPtype() + "'");
-			ses.setCondicionActual("servicio");
+			ses.getCondiciones().put("Tipo Proveedor",
+					"c.ptype = '" + compra.getPtype() + "'");			
+			ses.setCondicionActual("Tipo Proveedor");
+			ses.getValores().put("Tipo Proveedor", compra.getPtyno());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -301,11 +331,11 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.setCondicionActual("servicio");
 			model.addAttribute("user_inicio", ses);
-			ses.getCondiciones().put("clase",
+			ses.getCondiciones().put("Clase",
 					"c.picla = '" + compra.getPicla() + "'");
-			ses.setCondicionActual(ses.getCondicionActual() + ",clase");
+			ses.setCondicionActual(ses.getCondicionActual() + ",Clase");
+			ses.getValores().put("Clase", compra.getPicln());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -338,11 +368,10 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.setCondicionActual("servicio");
 			model.addAttribute("user_inicio", ses);
-			ses.getCondiciones().put("clase",
+			ses.getCondiciones().put("Centro",
 					"c.pcent = '" + compra.getPcent() + "'");
-			ses.setCondicionActual(ses.getCondicionActual() + ",centro");
+			ses.setCondicionActual(ses.getCondicionActual() + ",Centro");
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -376,9 +405,10 @@ public class ComprasController {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("user_inicio", ses);
-			ses.getCondiciones().put("proveedor",
+			ses.getCondiciones().put("Proveedor",
 					"c.pprov = " + compra.getPprov());
-			ses.setCondicionActual(ses.getCondicionActual() + ",proveedor");
+			ses.setCondicionActual(ses.getCondicionActual() + ",Proveedor");
+			ses.getValores().put("Proveedor", compra.getPpnov());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -412,9 +442,10 @@ public class ComprasController {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("user_inicio", ses);
-			ses.getCondiciones().put("item",
+			ses.getCondiciones().put("Item",
 					"c.pipro = '" + compra.getPipro() + "'");
-			ses.setCondicionActual(ses.getCondicionActual() + ",item");
+			ses.setCondicionActual(ses.getCondicionActual() + ",Item");
+			ses.getValores().put("Item", compra.getPides());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -448,9 +479,10 @@ public class ComprasController {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("user_inicio", ses);
-			ses.getCondiciones().put("comprador",
+			ses.getCondiciones().put("Comprador",
 					"c.pcomd = '" + compra.getPcomd() + "'");
-			ses.setCondicionActual(ses.getCondicionActual() + ",comprador");
+			ses.setCondicionActual(ses.getCondicionActual() + ",Comprador");
+			ses.getValores().put("Comprador", compra.getPnomd());
 			String rec = "";
 			if (request.getParameter("next").equals("prove")) {
 				ret = "redirect:proveedor";

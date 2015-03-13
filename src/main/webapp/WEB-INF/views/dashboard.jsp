@@ -161,7 +161,11 @@
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<th data-hide="phone">Tipo</th>
+											<td colspan="11" align="center"><c:out
+													value="${mensaje}" /></td>
+										</tr>
+										<tr>
+											<th data-hide="phone">Tipo Prov.</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
 											<th data-hide="phone">Val. base recibido</th>
@@ -192,12 +196,16 @@
 														<form:input path="ptype" type="hidden"
 															value="${compp.ptype}" />
 														<button type="submit" Value="compra" name="next">
+														<form:input path="ptyno" type="hidden"
+															value="${compp.ptyno}" />
 															Comp</button>
 													</form:form></td>
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
 															value="${compp.ptype}" />
+														<form:input path="ptyno" type="hidden"
+															value="${compp.ptyno}" />														
 														<button type="submit" Value="prove" name="next">
 															Prov</button>
 													</form:form></td>
@@ -205,6 +213,8 @@
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
 															value="${compp.ptype}" />
+														<form:input path="ptyno" type="hidden"
+															value="${compp.ptyno}" />														
 														<button type="submit" Value="ite" name="next">
 															Item</button>
 													</form:form></td>
@@ -212,6 +222,8 @@
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
 															value="${compp.ptype}" />
+														<form:input path="ptyno" type="hidden"
+															value="${compp.ptyno}" />
 														<button type="submit" Value="clas" name="next">
 															Clase</button>
 													</form:form></td>
@@ -219,6 +231,8 @@
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
 															value="${compp.ptype}" />
+														<form:input path="ptyno" type="hidden"
+															value="${compp.ptyno}" />														
 														<button type="submit" Value="centr" name="next">
 															Centro</button>
 
@@ -226,10 +240,10 @@
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="7" align="center"></td>
+											<td colspan="11" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="7" align="center">Usuario: <c:out
+											<td colspan="11" align="center">Usuario: <c:out
 													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>

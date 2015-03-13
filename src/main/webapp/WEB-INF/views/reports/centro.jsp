@@ -164,6 +164,10 @@
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
+											<td colspan="11" align="center"><c:out
+													value="${mensaje}" /></td>
+										</tr>
+										<tr>
 											<th>Centro</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
@@ -200,6 +204,8 @@
 															commandName="compra">
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
+															<form:input path="pcenn" type="hidden"
+																value="${compp.pcenn}" />
 															<button type="submit" Value="compra" name="next">
 																Comp</button>
 														</form:form></td>
@@ -207,10 +213,12 @@
 
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
-															action="comp" ModelAttribute="compra"
+															action="cent" ModelAttribute="compra"
 															commandName="compra">
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
+															<form:input path="pcenn" type="hidden"
+																value="${compp.pcenn}" />
 															<button type="submit" Value="prove" name="next">
 																Prov</button>
 														</form:form></td>
@@ -222,6 +230,8 @@
 															commandName="compra">
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
+															<form:input path="pcenn" type="hidden"
+																value="${compp.pcenn}" />
 															<button type="submit" Value="ite" name="next">
 																Item</button>
 														</form:form></td>
@@ -230,6 +240,8 @@
 													<td align="center"><form:form method="POST"
 															action="cent" ModelAttribute="compra"
 															commandName="compra">
+															<form:input path="pcenn" type="hidden"
+																value="${compp.pcenn}" />
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
 															<button type="submit" Value="clas" name="next">
@@ -239,10 +251,10 @@
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="6" align="center"></td>
+											<td colspan="11" align="center"></td>
 										</tr>
 										<tr>
-											<td colspan="6" align="center">Usuario: <c:out
+											<td colspan="11" align="center">Usuario: <c:out
 													value="${usuarioactuall}" /></td>
 										</tr>
 									</tbody>
