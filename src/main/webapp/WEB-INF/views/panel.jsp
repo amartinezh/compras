@@ -89,7 +89,7 @@
 						<a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Administracion</span></a>
 						<ul>
 							<li>
-								<a href="/compras/admin/listar" target="panel">Usuarios</a>
+								<a href="/admin/listar" target="panel">Usuarios</a>
 							</li>
 						</ul>
 					</li>
