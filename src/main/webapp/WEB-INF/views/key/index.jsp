@@ -75,14 +75,14 @@
 								</header>
 								<fieldset>
 									<section>
-										<label class="label">E-mail</label>
+										<label class="label">Usuario</label>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
 											<form:input path="id" />
 											<form:errors path="id" cssclass="error"/>
 											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor ingrese su identificación</b></label>
 									</section>
 									<section>
-										<label class="label">Password</label>
+										<label class="label">Clave</label>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
 											<!-- <input type="password" name="password">  --> 
 											<form:input path="pass"/>
