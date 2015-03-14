@@ -49,10 +49,10 @@ public class IndexController {
 		return "key/index";
 	}
 	
-	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public String dashboard(Map<String, Object> model) {
+	@RequestMapping(value = "/panel", method = RequestMethod.GET)
+	public String panel(Map<String, Object> model) {
 		model.put("user", new User());
-		return "dashboard";
+		return "panel";
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -72,7 +72,7 @@ public class IndexController {
 						info = new LinkedList<Object>();
 						info.add(0, typeUserService.listTypeUser());
 						info.add(1, companyService.listCompany());
-						ret = "redirect:/index/dashboard";
+						ret = "redirect:/index/panel";
 						//ret = "redirect:/admin/listar";
 					} else {
 						ret = "redirect:/compras/mostrar";
