@@ -117,8 +117,9 @@
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
 					<li>Inicio</li><li>Dashboard</li>
+					<a href="/compras/index/ingreso" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
 				</ol>
-				<a href="/compras/index/ingreso" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+				
 				<!-- end breadcrumb -->
 			</div>
 			<!-- END RIBBON -->
