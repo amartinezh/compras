@@ -16,8 +16,8 @@ public class ComprasServiceImpl implements ComprasService {
 	@Autowired
 	private ComprasDao comprasDao;
 	
-	public List<Compras> getCompras() {
-		return comprasDao.getCompras();
+	public List<Compras> getCompras(Map<String, String> condiciones, String cond) {
+		return comprasDao.getCompras(condiciones, cond);
 	}
 	
 	public List<Compras> getCompradores(Map<String, String> condiciones, String cond) {

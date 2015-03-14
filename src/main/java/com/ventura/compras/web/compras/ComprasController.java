@@ -39,9 +39,22 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			ses.setCondicionActual("");
 			ses.setHistorial("");
-			model.addAttribute("mensaje", "Mes: Marzo");
+			ses.setCondicionActual(ses.getCondicionUsuario());
+			String[] cond = ses.getCondicionActual().split(",");
+			String mens = "";
+			for (String cc : cond) {
+				if (mens.isEmpty()) {
+					mens = ses.getValores().get(cc);
+				} else {
+					mens = mens + " " + ses.getValores().get(cc);
+				}
+			}
+			model.addAttribute("mensaje", mens);
 			model.addAttribute("user_inicio", ses);
-			model.addAttribute("listcomp", comprasService.getCompras());
+			model.addAttribute(
+					"listcomp",
+					comprasService.getCompras(ses.getCondiciones(),
+							ses.getCondicionActual()));
 			model.addAttribute("compra", new Compras());
 			return "dashboard";
 		} else {
@@ -59,9 +72,13 @@ public class ComprasController {
 					comprasService.getCompradores(ses.getCondiciones(),
 							ses.getCondicionActual()));
 			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "Mes: Marzo";
+			String mens = "";
 			for (String cc : cond) {
-				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+				if (mens.isEmpty()) {
+					mens = ses.getValores().get(cc);
+				} else {
+					mens = mens + " " + ses.getValores().get(cc);
+				}
 			}
 			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
@@ -107,9 +124,13 @@ public class ComprasController {
 					comprasService.getProveedores(ses.getCondiciones(),
 							ses.getCondicionActual()));
 			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "Mes: Marzo";
+			String mens = "";
 			for (String cc : cond) {
-				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+				if (mens.isEmpty()) {
+					mens = ses.getValores().get(cc);
+				} else {
+					mens = mens + " " + ses.getValores().get(cc);
+				}
 			}
 			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
@@ -155,9 +176,13 @@ public class ComprasController {
 					comprasService.getItems(ses.getCondiciones(),
 							ses.getCondicionActual()));
 			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "Mes: Marzo";
+			String mens = "";
 			for (String cc : cond) {
-				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+				if (mens.isEmpty()) {
+					mens = ses.getValores().get(cc);
+				} else {
+					mens = mens + " " + ses.getValores().get(cc);
+				}
 			}
 			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
@@ -203,9 +228,13 @@ public class ComprasController {
 					comprasService.getClases(ses.getCondiciones(),
 							ses.getCondicionActual()));
 			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "Mes: Marzo";
+			String mens = "";
 			for (String cc : cond) {
-				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+				if (mens.isEmpty()) {
+					mens = ses.getValores().get(cc);
+				} else {
+					mens = mens + " " + ses.getValores().get(cc);
+				}
 			}
 			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
@@ -251,9 +280,13 @@ public class ComprasController {
 					comprasService.getCentros(ses.getCondiciones(),
 							ses.getCondicionActual()));
 			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "Mes: Marzo";
+			String mens = "";
 			for (String cc : cond) {
-				mens = mens + " " + cc + ": " + ses.getValores().get(cc);
+				if (mens.isEmpty()) {
+					mens = ses.getValores().get(cc);
+				} else {
+					mens = mens + " " + ses.getValores().get(cc);
+				}
 			}
 			model.addAttribute("mensaje", mens);
 			model.addAttribute("compra", new Compras());
@@ -297,8 +330,9 @@ public class ComprasController {
 			session ses = (session) model.asMap().get("user_inicio");
 			ses.getCondiciones().put("Tipo Proveedor",
 					"c.ptype = '" + compra.getPtype() + "'");
-			ses.setCondicionActual("Tipo Proveedor");
-			ses.getValores().put("Tipo Proveedor", compra.getPtyno());
+			ses.setCondicionActual(ses.getCondicionActual() + ",Tipo Proveedor");
+			ses.getValores().put("Tipo Proveedor",
+					"Tipo Proveedor: " + compra.getPtyno());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -337,7 +371,7 @@ public class ComprasController {
 			ses.getCondiciones().put("Clase",
 					"c.picla = '" + compra.getPicla() + "'");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Clase");
-			ses.getValores().put("Clase", compra.getPicln());
+			ses.getValores().put("Clase", "Clase: " + compra.getPicln());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -408,7 +442,8 @@ public class ComprasController {
 			ses.getCondiciones().put("Proveedor",
 					"c.pprov = " + compra.getPprov());
 			ses.setCondicionActual(ses.getCondicionActual() + ",Proveedor");
-			ses.getValores().put("Proveedor", compra.getPpnov());
+			ses.getValores()
+					.put("Proveedor", "Proveedor: " + compra.getPpnov());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -444,7 +479,7 @@ public class ComprasController {
 			ses.getCondiciones().put("Item",
 					"c.pipro = '" + compra.getPipro() + "'");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Item");
-			ses.getValores().put("Item", compra.getPides());
+			ses.getValores().put("Item", "Item: " + compra.getPides());
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -480,7 +515,8 @@ public class ComprasController {
 			ses.getCondiciones().put("Comprador",
 					"c.pcomd = '" + compra.getPcomd() + "'");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Comprador");
-			ses.getValores().put("Comprador", compra.getPnomd());
+			ses.getValores()
+					.put("Comprador", "Comprador: " + compra.getPnomd());
 			String rec = "";
 			if (request.getParameter("next").equals("prove")) {
 				ret = "redirect:proveedor";
@@ -517,22 +553,22 @@ public class ComprasController {
 				String ncond = "";
 				String hist = "";
 				for (int i = 0; i < cond.length - 1; i++) {
-					if(ncond.isEmpty()) {
+					if (ncond.isEmpty()) {
 						ncond = cond[0];
 					} else {
-						ncond = ncond+ ","+ cond[0];
+						ncond = ncond + "," + cond[0];
 					}
 					hist = hist + ses.getHistorial().charAt(i);
 				}
-				if(hist.charAt(hist.length()-1) == 'p') {
+				if (hist.charAt(hist.length() - 1) == 'p') {
 					ret = "redirect:proveedor";
-				} else if(hist.charAt(hist.length()-1) == 'i') {
+				} else if (hist.charAt(hist.length() - 1) == 'i') {
 					ret = "redirect:item";
-				} else if(hist.charAt(hist.length()-1) == 'c') {
+				} else if (hist.charAt(hist.length() - 1) == 'c') {
 					ret = "redirect:comprador";
-				} else if(hist.charAt(hist.length()-1) == 'q') {
-					ret = "redirect:clase";					
-				} else if(hist.charAt(hist.length()-1) == 'k') {
+				} else if (hist.charAt(hist.length() - 1) == 'q') {
+					ret = "redirect:clase";
+				} else if (hist.charAt(hist.length() - 1) == 'k') {
 					ret = "redirect:centro";
 				}
 				ses.setCondicionActual(ncond);

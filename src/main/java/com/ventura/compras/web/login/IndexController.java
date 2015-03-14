@@ -1,5 +1,8 @@
 package com.ventura.compras.web.login;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
+import com.ventura.compras.service.adm.CenterService;
 import com.ventura.compras.service.adm.CompanyService;
 import com.ventura.compras.service.adm.TypeUserService;
 import com.ventura.compras.service.login.UserManager;
@@ -39,6 +43,9 @@ public class IndexController {
 	
 	@Autowired
 	private CompanyService companyService;
+	
+	@Autowired
+	private CenterService centerService;
 	
 	/*
 	 * @Autowired private PermisoManager permisoManager;
@@ -66,9 +73,127 @@ public class IndexController {
 						info = new LinkedList<Object>();
 						info.add(0, typeUserService.listTypeUser());
 						info.add(1, companyService.listCompany());
+						info.add(2, centerService.listCenter());
 						ret = "redirect:/admin/panel";
 						//ret = "redirect:/admin/listar";
 					} else {
+						Map<String, String> rmes = new HashMap<String, String>();
+						Map<String, String> rano = new HashMap<String, String>();
+						Map<String, String> rcomp = new HashMap<String, String>();
+						Map<String, String> rcent = new HashMap<String, String>();
+						Calendar fecha = new GregorianCalendar();
+						int anoAct = fecha.get(Calendar.YEAR);
+						int mesAct = (fecha.get(Calendar.MONTH)+1)-2;
+						if(mesAct < 1) {
+							mesAct = 12 + mesAct;
+							anoAct--;
+						}
+						ses.getCondiciones().put("a"+anoAct, "c.pano = " +anoAct+"");
+						ses.getValores().put("a"+anoAct, "Año: " + anoAct);
+						for(int i = 0; i <= 2; i++) {
+							ses.getCondiciones().put("m"+mesAct, "c.pmes = " + mesAct);
+							switch (mesAct) {
+								case 1:
+									ses.getValores().put("m"+mesAct, "Mes: Enero");
+									rmes.put(mesAct+"", "ENERO");
+									break;
+								case 2:
+									ses.getValores().put("m"+mesAct, "Mes: Febrero");
+									rmes.put(mesAct+"", "FEBRERO");
+									break;
+								case 3:
+									ses.getValores().put("m"+mesAct, "Mes: Marzo");
+									rmes.put(mesAct+"", "MARZO");
+									break;
+								case 4:
+									ses.getValores().put("m"+mesAct, "Mes: Abril");
+									rmes.put(mesAct+"", "ABRIL");
+									break;
+								case 5:
+									ses.getValores().put("m"+mesAct, "Mes: Mayo");
+									rmes.put(mesAct+"", "MAYO");
+									break;
+								case 6:
+									ses.getValores().put("m"+mesAct, "Mes: Junio");
+									rmes.put(mesAct+"", "JUNIO");
+									break;
+								case 7:
+									ses.getValores().put("m"+mesAct, "Mes: Julio");
+									rmes.put(mesAct+"", "JULIO");
+									break;
+								case 8:
+									ses.getValores().put("m"+mesAct, "Mes: Agosto");
+									rmes.put(mesAct+"", "AGOSTO");
+									break;
+								case 9:
+									ses.getValores().put("m"+mesAct, "Mes: Septiembre");
+									rmes.put(mesAct+"", "SEPTIEMBRE");
+									break;
+								case 10:
+									ses.getValores().put("m"+mesAct, "Mes: Octubre");
+									rmes.put(mesAct+"", "OCTUBRE");
+									break;
+								case 11:
+									ses.getValores().put("m"+mesAct, "Mes: Noviempre");
+									rmes.put(mesAct+"", "NOVIEMBRE");
+									break;
+								case 12:
+									ses.getValores().put("m"+mesAct, "Mes: Diciembre");
+									rmes.put(mesAct+"", "DICIEMBRE");
+									break;
+							}
+							mesAct++;
+							if(mesAct == 13) {								
+								mesAct = 1;
+								anoAct++;
+								ses.getCondiciones().put("a"+anoAct, "c.pano = " +anoAct);
+								ses.getValores().put("a"+anoAct, "Año: " + anoAct);
+							}
+						}
+						mesAct=mesAct-1;
+						ses.setCondicionUsuario("a"+anoAct+",m"+mesAct);
+						ses.setAnos(rano);
+						ses.setMeses(rano);
+//						.putAll(rano);
+	//					ses.getValores().putAll(rmes);
+						if(!uss.getCent().getDescripcion().equalsIgnoreCase("n/a")) {
+							
+						}
+						if(uss.getComp().getDescripcion().equalsIgnoreCase("panasa") || uss.getComp().getDescripcion().equalsIgnoreCase("todos")) {
+							ses.getCondiciones().put("c1", "c.pcia = 1");
+							ses.getValores().put("c1", "Compañia: Panasa");
+							ses.getCpias().put("1", "Panasa");							
+				    	}
+				    	if(uss.getComp().getDescripcion().equalsIgnoreCase("iaasa") || uss.getComp().getDescripcion().equalsIgnoreCase("todos")) {
+				    		ses.getCondiciones().put("c2", "c.pcia = 2");
+							ses.getValores().put("c2", "Compañia: IASSA'");
+							ses.getCpias().put("2", "IAASA");
+							if(!ses.getCondicionUsuario().contains("c1")) {
+				    			ses.setCondicionUsuario(ses.getCondicionUsuario()+",c1");
+				    		}
+				    	}
+				    	if(uss.getComp().getDescripcion().equalsIgnoreCase("iaasa") || uss.getComp().getDescripcion().equalsIgnoreCase("todos")) {
+				    		ses.getCondiciones().put("c5", "c.pcia = 5");
+							ses.getValores().put("c5", "Compañia: Biopacol'");
+							ses.getCpias().put("5", "Biopacol");
+							if(!ses.getCondicionUsuario().contains("c1") && !ses.getCondicionUsuario().contains("c2")) {
+				    			ses.setCondicionUsuario(ses.getCondicionUsuario()+",c5");
+				    		}
+				    	}				    	
+						if(uss.getLevel().getDescripcion().equalsIgnoreCase("nacional") || uss.getLevel().getDescripcion().equalsIgnoreCase("todos")) {    		
+							ses.getCondiciones().put("l1", "c.pmond = 'COP'");
+							ses.getValores().put("l1", "Tipo: COP");
+							ses.getLevels().put("1", "Nacional");
+							ses.setCondicionUsuario(ses.getCondicionUsuario()+",l1");
+				    	}
+				    	if(uss.getLevel().getDescripcion().equalsIgnoreCase("importada") || uss.getLevel().getDescripcion().equalsIgnoreCase("todos")) {
+				    		ses.getCondiciones().put("l2", "c.pmond = 'USD'");
+				    		ses.getValores().put("l2", "Tipo: USD");
+				    		ses.getLevels().put("2", "Importada");
+				    		if(!ses.getCondicionUsuario().contains("l1")) {
+				    			ses.setCondicionUsuario(ses.getCondicionUsuario()+",l1");
+				    		}
+				    	}
 						ret = "redirect:/compras/mostrar";
 					}
 					ses.setInformacion(info);

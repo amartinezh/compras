@@ -25,8 +25,14 @@ public class session implements Serializable{
 	private List<Object> informacion;
 	private Map<String, String> condiciones;
 	private String condicionActual;
+	private String condicionUsuario;
 	private String historial;
 	private Map<String, String> valores;
+	private Map<String, String> meses;
+	private Map<String, String> anos;
+	private Map<String, String> cpias;
+	private Map<String, String> levels;
+	private Map<String, String>	centers;
 		
 	public session() {
 		// TODO Auto-generated constructor stub
@@ -38,6 +44,11 @@ public class session implements Serializable{
 		this.condiciones = new HashMap<String, String>();
 		this.historial = "";
 		this.valores = new HashMap<String, String>();
+		this.meses = new HashMap<String, String>();
+		this.anos = new HashMap<String, String>();
+		this.cpias = new HashMap<String, String>();
+		this.levels = new HashMap<String, String>();
+		this.centers = new HashMap<String, String>();
 	}
 	/*
 	public session(String usuario, List<Map<String,String>> permisos, String tipo, String nivel, String company) {
@@ -71,6 +82,10 @@ public class session implements Serializable{
 		return condicionActual;
 	}
 	
+	public String getCondicionUsuario() {
+		return condicionUsuario;
+	}
+	
 	public String getHistorial() {
 		return historial;
 	}
@@ -78,24 +93,27 @@ public class session implements Serializable{
 	public Map<String, String> getValores() {
 		return valores;
 	}
+	
+	public Map<String, String> getAnos() {
+		return anos;
+	}
+	
+	public Map<String, String> getMeses() {
+		return meses;
+	}
 
-	/*
-	public String getCompany() {
-		return company;
+	public Map<String, String> getCpias() {
+		return cpias;
 	}
 	
-	public String getNivel() {
-		return nivel;
+	public Map<String, String> getLevels() {
+		return levels;
 	}
 	
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public Map<String, String> getCenters() {
+		return centers;
 	}
 	
-	public void setPermisos(List<Map<String,String>> permisos) {
-		this.permisos = permisos;
-	}
-	*/
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
@@ -112,6 +130,10 @@ public class session implements Serializable{
 		this.condicionActual = condicionActual;
 	}
 	
+	public void setCondicionUsuario(String condicionUsuario) {
+		this.condicionUsuario = condicionUsuario;
+	}
+	
 	public void setHistorial(String historial) {
 		this.historial = historial;
 	}
@@ -120,13 +142,24 @@ public class session implements Serializable{
 		this.valores = valores;
 	}
 	
-		/*
-	public void setCompany(String company) {
-		this.company = company;
+	public void setAnos(Map<String, String> anos) {
+		this.anos = anos;
 	}
-
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
-	}*/
 	
+	public void setMeses(Map<String, String> meses) {
+		this.meses = meses;
+	}
+	
+	public void setCpias(Map<String, String> cpias) {
+		this.cpias = cpias;
+	}
+	
+	public void setLevels(Map<String, String> levels) {
+		this.levels = levels;
+	}
+	
+	public void setCenters(Map<String, String> centers) {
+		this.centers = centers;
+	}
+		
 }
