@@ -17,6 +17,8 @@ import com.ventura.compras.domain.login.User;
 @Table(name="center", schema="admin")
 public class Center implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@NotEmpty
 	@Column(name="center_id")
@@ -25,7 +27,7 @@ public class Center implements Serializable {
 	@Column(name="center_desc")
 	private String descripcion;
 	
-	@OneToMany(mappedBy="comp")
+	@OneToMany(mappedBy="cent")
 	private Set<User> users;
 
 	@Override

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.ventura.compras.domain.adm.Center;
 import com.ventura.compras.domain.adm.Company;
 import com.ventura.compras.domain.adm.Level;
 import com.ventura.compras.domain.adm.TypeUser;
@@ -42,6 +43,9 @@ public class User implements Serializable {
     @ManyToOne
     private Company comp;
     
+    @ManyToOne
+    private Center cent;
+    
     public User() {
 		// TODO Auto-generated constructor stub
 	}
@@ -69,6 +73,10 @@ public class User implements Serializable {
     	return type;
    	}
     
+    public Center getCent() {
+		return cent;
+	}
+    
     public void setType(TypeUser type) {
 		this.type = type;
 	}
@@ -87,6 +95,10 @@ public class User implements Serializable {
     
     public void setComp(Company comp) {
 		this.comp = comp;
+	}
+    
+    public void setCent(Center cent) {
+		this.cent = cent;
 	}
   
     public String toString() {
