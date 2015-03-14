@@ -66,7 +66,7 @@
 
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
-						<h1 class="txt-color-red login-header-big">Papeles Nacionales S.A.</h1>
+						<h1 class="txt-color-red login-header-big">Gestión de Compras</h1>
 						<div class="hero">
 
 							<div class="pull-left login-desc-box-l">
@@ -74,8 +74,8 @@
 								
 							</div>
 							
-						<!-- <img src="<c:url value="/resources/img/demo/iphoneview.png" />" class="pull-right display-image" alt="" style="width:210px"> 
-						 -->	
+						 <img src="<c:url value="/resources/img/adm/logo.png" />" class="pull-right display-image" alt="" style="width:210px">
+							
 						</div>
 
 					</div>

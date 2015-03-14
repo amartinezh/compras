@@ -207,7 +207,8 @@
 															<form:input path="pcenn" type="hidden"
 																value="${compp.pcenn}" />
 															<button type="submit" Value="compra" name="next">
-																Comp</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/comprador.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 
@@ -220,7 +221,8 @@
 															<form:input path="pcenn" type="hidden"
 																value="${compp.pcenn}" />
 															<button type="submit" Value="prove" name="next">
-																Prov</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 
@@ -233,7 +235,8 @@
 															<form:input path="pcenn" type="hidden"
 																value="${compp.pcenn}" />
 															<button type="submit" Value="ite" name="next">
-																Item</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/producto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 												<c:if test="${q == 0}">
@@ -245,7 +248,8 @@
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
 															<button type="submit" Value="clas" name="next">
-																Clase</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/tipoproducto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 											</tr>

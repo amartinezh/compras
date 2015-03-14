@@ -220,7 +220,8 @@
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="prove" name="next">
-																Prov</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 
@@ -233,7 +234,8 @@
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="ite" name="next">
-																Item</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/producto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 												<c:if test="${k == 0}">
@@ -245,7 +247,8 @@
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="centr" name="next">
-																Centro</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/centrocosto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 											</tr>

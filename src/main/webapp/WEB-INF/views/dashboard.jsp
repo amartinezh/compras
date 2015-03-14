@@ -194,10 +194,10 @@
 												<td align="center">
 													<form:form method="POST" action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden" value="${compp.ptype}" />
-														<button type="submit" Value="compra" name="next" ">
+														<button type="submit" Value="compra" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
 														<form:input path="ptyno" type="hidden" value="${compp.ptyno}" />
-														<img width="20" height="20" src="<c:url value="/resources/img/adm/comprador.png" />">
-															</button>
+															<img width="20" height="20" src="<c:url value="/resources/img/adm/comprador.png" />">
+														</button>
 													</form:form>
 												</td>
 												<td align="center"><form:form method="POST"
@@ -206,8 +206,9 @@
 															value="${compp.ptype}" />
 														<form:input path="ptyno" type="hidden"
 															value="${compp.ptyno}" />														
-														<button type="submit" Value="prove" name="next">
-															Prov</button>
+														<button type="submit" Value="prove" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
+															<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
+														</button>
 													</form:form></td>
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
@@ -215,8 +216,9 @@
 															value="${compp.ptype}" />
 														<form:input path="ptyno" type="hidden"
 															value="${compp.ptyno}" />														
-														<button type="submit" Value="ite" name="next">
-															Item</button>
+														<button type="submit" Value="ite" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
+															<img width="20" height="20" src="<c:url value="/resources/img/adm/producto.png" />">
+														</button>
 													</form:form></td>
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
@@ -224,8 +226,9 @@
 															value="${compp.ptype}" />
 														<form:input path="ptyno" type="hidden"
 															value="${compp.ptyno}" />
-														<button type="submit" Value="clas" name="next">
-															Clase</button>
+														<button type="submit" Value="clas" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
+															<img width="20" height="20" src="<c:url value="/resources/img/adm/tipoproducto.png" />">
+														</button>
 													</form:form></td>
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
@@ -233,8 +236,9 @@
 															value="${compp.ptype}" />
 														<form:input path="ptyno" type="hidden"
 															value="${compp.ptyno}" />														
-														<button type="submit" Value="centr" name="next">
-															Centro</button>
+														<button type="submit" Value="centr" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
+															<img width="20" height="20" src="<c:url value="/resources/img/adm/centrocosto.png" />">
+														</button>
 
 													</form:form></td>
 											</tr>

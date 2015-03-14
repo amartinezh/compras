@@ -209,7 +209,8 @@
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="compra" name="next">
-																Comp</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/comprador.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 												<c:if test="${i == 0}">
@@ -221,7 +222,8 @@
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="ite" name="next">
-																Item</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/producto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 												<c:if test="${q == 0}">
@@ -233,7 +235,8 @@
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="clas" name="next">
-																Clase</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/tipoproducto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 												<c:if test="${k == 0}">
@@ -245,7 +248,8 @@
 															<form:input path="pprov" type="hidden"
 																value="${compp.pprov}" />
 															<button type="submit" Value="centr" name="next">
-																Centro</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/centrocosto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 											</tr>

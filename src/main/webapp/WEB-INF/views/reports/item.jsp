@@ -208,7 +208,8 @@
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="compra" name="next">
-																Comp</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/comprador.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 												<c:if test="${p == 0}">
@@ -220,7 +221,8 @@
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="prove" name="next">
-																Prov</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 
@@ -233,7 +235,8 @@
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="clas" name="next">
-																Clase</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/tipoproducto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 												<c:if test="${k == 0}">
@@ -245,7 +248,8 @@
 															<form:input path="pipro" type="hidden"
 																value="${compp.pipro}" />
 															<button type="submit" Value="centr" name="next">
-																Centro</button>
+																<img width="20" height="20" src="<c:url value="/resources/img/adm/centrocosto.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 
