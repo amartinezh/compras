@@ -172,7 +172,7 @@
 											<th data-hide="phone">Saldo Proveedor</th>
 											<th data-hide="phone">Precio Compra</th>
 											<th data-hide="phone">Comprador</th>
-											<th data-hide="phone">Proveedor</th>
+											<!-- <th data-hide="phone">Proveedor</th>  -->
 											<th data-hide="phone">Item</th>
 											<th data-hide="phone">Clase</th>
 											<th data-hide="phone">Cent. Costo</th>
@@ -185,7 +185,17 @@
 												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
 												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
 												bgcolor="#EFF2EF">
-												<td><c:out value="${compp.ptyno}" /></td>
+												<td align="center"><form:form method="POST"
+														action="comp" ModelAttribute="compra" commandName="compra">
+														<form:input path="ptype" type="hidden"
+															value="${compp.ptype}" />
+														<form:input path="ptyno" type="hidden"
+															value="${compp.ptyno}" />														
+														<button type="submit" Value="prove" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
+															<strong><c:out value="${compp.ptyno}" /></strong>
+														</button>
+													</form:form></td>
+												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<td><c:out value="${compp.pvalbd}" /></td>
@@ -200,7 +210,7 @@
 														</button>
 													</form:form>
 												</td>
-												<td align="center"><form:form method="POST"
+												<!-- <td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
 															value="${compp.ptype}" />
@@ -210,6 +220,7 @@
 															<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
 														</button>
 													</form:form></td>
+													 -->
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
