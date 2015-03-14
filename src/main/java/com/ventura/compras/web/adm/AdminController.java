@@ -28,6 +28,12 @@ public class AdminController {
 	@Autowired
 	private UserManager userManager;
 
+	@RequestMapping(value = "/panel", method = RequestMethod.GET)
+	public String panel(Map<String, Object> model) {
+		model.put("user", new User());
+		return "panel";
+	}
+	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public String openPage(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {

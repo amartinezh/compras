@@ -116,7 +116,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Inicio</li><li>Dashboard ssss</li>
+					<li>Inicio</li><li>Dashboard </li><li>Usuario: ${user_inicio.usuario}</li> 
 					<a href="/compras/index/ingreso" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
 				</ol>
 				

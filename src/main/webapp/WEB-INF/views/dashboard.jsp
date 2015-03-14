@@ -191,15 +191,15 @@
 												<td><c:out value="${compp.pvalbd}" /></td>
 												<td><c:out value="${compp.pvalpo}" /></td>
 												<td><c:out value="${compp.ppreac}" /></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<button type="submit" Value="compra" name="next">
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-															Comp</button>
-													</form:form></td>
+												<td align="center">
+													<form:form method="POST" action="comp" ModelAttribute="compra" commandName="compra">
+														<form:input path="ptype" type="hidden" value="${compp.ptype}" />
+														<button type="submit" Value="compra" name="next" ">
+														<form:input path="ptyno" type="hidden" value="${compp.ptyno}" />
+														<img width="20" height="20" src="<c:url value="/resources/img/adm/comprador.png" />">
+															</button>
+													</form:form>
+												</td>
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
