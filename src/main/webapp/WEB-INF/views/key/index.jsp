@@ -65,29 +65,14 @@
 			<div id="content" class="container">
 
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
-						<h1 class="txt-color-red login-header-big">Gestión de Compras</h1>
-						<div class="hero">
-
-							<div class="pull-left login-desc-box-l">
-								<h4 class="paragraph-header">Intranet Papeles Nacionales</h4>
-								
-							</div>
-							
-						 <img src="<c:url value="/resources/img/adm/logo.png" />" class="pull-right display-image" alt="" style="width:210px">
-							
-						</div>
-
-					</div>
-					
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 						<div class="well no-padding">
 							<!--  <form action="index.html" id="login-form" class="smart-form client-form"> -->
 							<form:form method="POST" action="validar" ModelAttribute="user" commandName="user" class="smart-form client-form">
 								<header>
+								<img width="100" height="60" src="<c:url value="/resources/img/adm/logo.png" />" >
 									Ingreso al Sistema
 								</header>
-
 								<fieldset>
 									<section>
 										<label class="label">E-mail</label>
@@ -96,7 +81,6 @@
 											<form:errors path="id" cssclass="error"/>
 											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor ingrese su identificación</b></label>
 									</section>
-
 									<section>
 										<label class="label">Password</label>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
@@ -104,18 +88,18 @@
 											<form:input path="pass"/>
 											<form:errors path="pass" cssclass="error"/>  
 											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Ingrese su clave</b> </label>
-										<div class="note">
+										<!--  <div class="note">
 											<a href="forgotpassword.html">Olvido la clave?</a>
 										</div>
+										-->
 									</section>
-
-									<section>
+									<!--  <section>
 										<label class="checkbox">
 											<input type="checkbox" name="remember" checked="">
 											
 											<i></i>Stay signed in</label>
 									</section>
-									
+									-->
 								</fieldset>
 								<footer>
 									<button type="submit" class="btn btn-primary">
@@ -125,6 +109,7 @@
 							<!--  </form>  -->
 							</form:form>
 						</div>
+						
 					</div>
 				</div>
 			</div>
