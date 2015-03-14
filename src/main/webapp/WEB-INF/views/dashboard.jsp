@@ -122,10 +122,10 @@
 						class="fa fa-sign-out"></i></a>
 				</span>
 			</div>
-		<!-- <div id="actualizar" class="btn-header transparent pull-right">
+		 <div id="actualizar" class="btn-header transparent pull-right">
 				<span> <a href="actualizar" title="Actualizar">Actualizar</a>
 				</span>
-			</div> -->	
+			</div> 	
 			<!-- end logout button -->
 
 		</div>

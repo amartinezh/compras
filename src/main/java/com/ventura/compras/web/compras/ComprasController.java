@@ -549,16 +549,16 @@ public class ComprasController {
 			String ret = "";
 			session ses = (session) model.asMap().get("user_inicio");
 			String[] cond = ses.getCondicionActual().split(",");
-			if (cond.length > 1) {
+			if (ses.getHistorial().length() > 1) {
 				String ncond = "";
 				String hist = "";
-				for (int i = 0; i < cond.length - 1; i++) {
+				for (int i = 4; i < cond.length - 1; i++) {
 					if (ncond.isEmpty()) {
-						ncond = cond[0];
+						ncond = cond[i];
 					} else {
-						ncond = ncond + "," + cond[0];
+						ncond = ncond + "," + cond[i];
 					}
-					hist = hist + ses.getHistorial().charAt(i);
+					hist = hist + ses.getHistorial().charAt(i-4);
 				}
 				if (hist.charAt(hist.length() - 1) == 'p') {
 					ret = "redirect:proveedor";
@@ -571,7 +571,7 @@ public class ComprasController {
 				} else if (hist.charAt(hist.length() - 1) == 'k') {
 					ret = "redirect:centro";
 				}
-				ses.setCondicionActual(ncond);
+				ses.setCondicionActual(ses.getCondicionUsuario()+","+ncond);
 				ses.setHistorial(hist);
 			} else {
 				ses.setHistorial("");
@@ -589,6 +589,40 @@ public class ComprasController {
 	public String salir(Model model, SessionStatus status) {
 		status.setComplete();
 		return "redirect:/index/ingreso";
+	}
+	
+	@RequestMapping(value = "/actualizar", method = RequestMethod.GET)
+	public String actualizar(Model model) {
+		if(model.containsAttribute("user_inicio") == true) {
+			model.addAttribute("redireccion", "mostrar");
+			model.addAttribute("accion", "generar");
+			model.addAttribute("compra", new Compras());
+			session ses = (session)(model.asMap().get("user_inicio"));
+			if(ses.getCenters().isEmpty()) {
+				model.addAttribute("cennnn", 0);
+			} else {
+				model.addAttribute("cennnn", 1);
+			}
+			return "actualizar";
+		}else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "/generar", method = RequestMethod.POST)
+	public String generaar(@ModelAttribute("compra") Compras compra, Model model) {
+		if(model.containsAttribute("user_inicio") == true) {
+			session ses = (session)(model.asMap().get("user_inicio"));
+			if(ses.getCenters().isEmpty()) {
+				ses.setCondicionUsuario("a"+compra.getPano()+",m"+compra.getPmes()+",c"+compra.getPcia()+",l"+compra.getPmond());
+			} else {
+				ses.setCondicionUsuario("a"+compra.getPano()+",m"+compra.getPmes()+",c"+compra.getPcia()+",l"+compra.getPmond()+",k"+compra.getPcent());
+			}
+			model.addAttribute("user_inicio", ses);
+			return "redirect:mostrar";
+		}else {
+			return "redirect:/index/ingreso";
+		}
 	}
 
 }
