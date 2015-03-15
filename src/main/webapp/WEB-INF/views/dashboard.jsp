@@ -115,17 +115,18 @@
 					</ul>
 				</li>
 			</ul>
-			<div id="logout" class="btn-header transparent pull-right">
+			
+			<!-- <div id="logout" class="btn-header transparent pull-right">
 				<span> <a href="salir" title="Sign Out"
 					data-action="userLogout"
 					data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
 						class="fa fa-sign-out"></i></a>
 				</span>
 			</div>
-			<div id="actualizar" class="btn-header transparent pull-right">
-				<span> <a href="actualizar" title="Actualizar">Actualizar</a>
-				</span>
-			</div>
+			 -->
+			<a href="actualizar" class="btn btn-labeled btn-info"> <span class="btn-label"><i class="glyphicon glyphicon-refresh"></i></span>Actualizar </a>
+			<a href="salir" class="btn btn-labeled btn-danger"> <span class="btn-label"><i class="fa fa-sign-out"></i></span>Salir</a>
+			
 			<!-- end logout button -->
 
 		</div>

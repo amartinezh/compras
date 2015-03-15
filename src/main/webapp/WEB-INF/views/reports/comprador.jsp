@@ -115,20 +115,9 @@
 					</ul>
 				</li>
 			</ul>
-			<div id="logout" class="btn-header transparent pull-right">
-				<span> <a href="salir" title="Sign Out"
-					data-action="userLogout"
-					data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
-						class="fa fa-sign-out"></i></a>
-				</span>
-			</div>
-			<div id="regresar" class="btn-header transparent pull-right">										
-				<span> <a href="retornar" title="Atras">Atras</a> </span>
-			</div>
-			<div id="iinicio" class="btn-header transparent pull-right">
-				<span> <a href="mostrar" title="Inicio">Inicio</a>
-				</span>
-			</div>
+			<a href="mostrar" class="btn btn-labeled btn-warning"> <span class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio </a>
+			<a href="retornar" class="btn btn-labeled btn-default"> <span class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar </a>
+			<a href="salir" class="btn btn-labeled btn-danger"> <span class="btn-label"><i class="fa fa-sign-out"></i></span>Salir</a>
 			<!-- end logout button -->
 
 		</div>
