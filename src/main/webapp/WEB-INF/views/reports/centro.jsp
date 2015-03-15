@@ -197,7 +197,8 @@
 																value="${compp.pcent}" />
 															<form:input path="pcenn" type="hidden"
 																value="${compp.pcenn}" />
-															<button type="submit" Value="compra" name="next">
+															<button type="submit" Value="compra" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/comprador.png" />">
 															</button>
 														</form:form></td>
@@ -211,7 +212,8 @@
 																value="${compp.pcent}" />
 															<form:input path="pcenn" type="hidden"
 																value="${compp.pcenn}" />
-															<button type="submit" Value="prove" name="next">
+															<button type="submit" Value="prove" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
 															</button>
 														</form:form></td>
@@ -225,7 +227,8 @@
 																value="${compp.pcent}" />
 															<form:input path="pcenn" type="hidden"
 																value="${compp.pcenn}" />
-															<button type="submit" Value="ite" name="next">
+															<button type="submit" Value="ite" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/producto.png" />">
 															</button>
 														</form:form></td>
@@ -238,7 +241,8 @@
 																value="${compp.pcenn}" />
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
-															<button type="submit" Value="clas" name="next">
+															<button type="submit" Value="clas" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/tipoproducto.png" />">
 															</button>
 														</form:form></td>

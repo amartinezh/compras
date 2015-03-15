@@ -195,7 +195,8 @@
 																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
-															<button type="submit" Value="prove" name="next">
+															<button type="submit" Value="prove" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
 															</button>
 														</form:form></td>
@@ -209,7 +210,8 @@
 																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
-															<button type="submit" Value="ite" name="next">
+															<button type="submit" Value="ite" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/producto.png" />">
 															</button>
 														</form:form></td>
@@ -222,7 +224,8 @@
 																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
-															<button type="submit" Value="clas" name="next">
+															<button type="submit" Value="clas" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/tipoproducto.png" />">
 															</button>
 														</form:form></td>
@@ -235,7 +238,8 @@
 																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
 																value="${compp.pcomd}" />
-															<button type="submit" Value="centr" name="next">
+															<button type="submit" Value="centr" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20" src="<c:url value="/resources/img/adm/centrocosto.png" />">
 															</button>
 														</form:form></td>
