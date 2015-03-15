@@ -184,9 +184,9 @@
 												<td><c:out value="${compp.picln}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><c:out value="${compp.pvalbd}" /></td>
-												<td><c:out value="${compp.pvalpo}" /></td>
-												<td><c:out value="${compp.ppreac}" /></td>
+												<td><fmt:formatNumber value="${compp.pvalbd}" type="currency"/></td>
+												<td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
+												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>
 												<c:if test="${c == 0}">
 													<td align="center"><form:form method="POST"
 															action="class" ModelAttribute="compra"
