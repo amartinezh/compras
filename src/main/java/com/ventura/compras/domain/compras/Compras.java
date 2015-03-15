@@ -1005,4 +1005,12 @@ public class Compras implements Serializable {
 		this.fecep3 = fecep3;
 	}
 	
+	public void sumarCompras(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+	
 }
