@@ -11,286 +11,297 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity @IdClass(ComprasPK.class)
-@Table(name="compras", schema="compras")
+@Entity
+@IdClass(ComprasPK.class)
+@Table(name = "compras", schema = "compras")
 public class Compras implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-		
+
 	@Id
 	@NotEmpty
-	@Column(name = "pano")	
+	@Column(name = "pano")
 	private int pano;
-	
+
 	@Id
 	@NotEmpty
 	@Column(name = "pmes")
 	int pmes;
-	
+
 	@Id
 	@NotEmpty
 	@Column(name = "preg")
 	String preg;
-	
+
 	@Id
 	@NotEmpty
 	@Column(name = "pcia")
 	int pcia;
-	
+
 	@NotEmpty
 	@Column(name = "pnom")
 	String pnom;
-	
+
 	@Id
 	@NotEmpty
-	@Column(name = "plocal")	
+	@Column(name = "plocal")
 	String plocal;
-	
+
 	@NotEmpty
 	@Column(name = "plnon")
 	String plnon;
-	
+
 	@NotEmpty
 	@Column(name = "pcent")
 	String pcent;
-	
+
 	@NotEmpty
 	@Column(name = "pcenn")
 	String pcenn;
-	
+
 	@Id
 	@NotEmpty
 	@Column(name = "pprov")
 	int pprov;
-	
+
 	@NotEmpty
 	@Column(name = "ppnov")
 	String ppnov;
-	
+
 	@NotEmpty
 	@Column(name = "ptype")
 	String ptype;
-	
+
 	@NotEmpty
 	@Column(name = "ptyno")
 	String ptyno;
-	
+
 	@NotEmpty
 	@Column(name = "pnit")
 	String pnit;
-	
+
 	@NotEmpty
 	@Column(name = "pcomd")
 	String pcomd;
-	
+
 	@NotEmpty
 	@Column(name = "pnomd")
 	String pnomd;
-	
+
 	@NotEmpty
 	@Column(name = "ppais")
 	String ppais;
-	
+
 	@NotEmpty
 	@Column(name = "pnpas")
 	String pnpas;
-	
+
 	@NotEmpty
 	@Column(name = "tipoc")
 	String tipoc;
-	
+
 	@NotEmpty
 	@Column(name = "picla")
 	String picla;
-	
+
 	@NotEmpty
 	@Column(name = "picln")
 	String picln;
-	
+
 	@Id
 	@NotEmpty
 	@Column(name = "pipro")
 	String pipro;
-	
+
 	@NotEmpty
 	@Column(name = "pides")
 	String pides;
-	
-	//@NotEmpty
+
+	// @NotEmpty
 	@Column(name = "punid")
 	String punid;
-	
+
 	@NotEmpty
 	@Column(name = "punin")
 	String punin;
-	
+
 	@NotEmpty
 	@Column(name = "pcstp")
 	String pcstp;
-	
+
 	@Id
 	@NotEmpty
 	@Column(name = "nroor")
 	String nroor;
-	
+
 	@NotEmpty
 	@Column(name = "fecre")
 	String fecre;
-	
+
 	@NotEmpty
 	@Column(name = "pmond")
 	String pmond;
-	
+
 	@NotEmpty
 	@Column(name = "pqtyo")
 	BigDecimal pqtyo;
-	
+
 	@NotEmpty
 	@Column(name = "pqtyd")
 	BigDecimal pqtyd;
-	
+
 	@NotEmpty
 	@Column(name = "pqtyr")
 	BigDecimal pqtyr;
-	
+
 	@NotEmpty
 	@Column(name = "pqtyu")
 	BigDecimal pqtyu;
-	
+
 	@NotEmpty
 	@Column(name = "pqtyp")
 	BigDecimal pqtyp;
-	
+
 	@NotEmpty
 	@Column(name = "pvalbo")
 	BigDecimal pvalbo;
-	
+
 	@NotEmpty
 	@Column(name = "pvalto")
 	BigDecimal pvalto;
-	
+
 	@NotEmpty
 	@Column(name = "pvalbd")
 	BigDecimal pvalbd;
-	
+
 	@NotEmpty
 	@Column(name = "pvaltd")
 	BigDecimal pvaltd;
-	
+
 	@NotEmpty
 	@Column(name = "pvalbr")
 	BigDecimal pvalbr;
-	
+
 	@NotEmpty
 	@Column(name = "pvaltr")
 	BigDecimal pvaltr;
-	
+
 	@NotEmpty
 	@Column(name = "pvalpo")
 	BigDecimal pvalpo;
-	
+
 	@NotEmpty
 	@Column(name = "pvalve")
 	BigDecimal pvalve;
-	
+
 	@NotEmpty
 	@Column(name = "ppreac")
 	BigDecimal ppreac;
-	
+
 	@NotEmpty
 	@Column(name = "pprep1")
 	BigDecimal pprep1;
-	
+
 	@NotEmpty
 	@Column(name = "fecep1")
 	String fecep1;
-	
+
 	@NotEmpty
 	@Column(name = "pprep2")
 	BigDecimal pprep2;
-	
+
 	@NotEmpty
 	@Column(name = "fecep2")
 	String fecep2;
-	
+
 	@NotEmpty
 	@Column(name = "pprep3")
 	BigDecimal pprep3;
-	
+
 	@NotEmpty
 	@Column(name = "fecep3")
 	String fecep3;
-	
+
 	public Compras() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Compras(String ptype, String ptyno, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac) {
+
+	public Compras(String ptype, String ptyno, BigDecimal pqtyd,
+			BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo,
+			BigDecimal ppreac) {
 		this.ptype = ptype;
 		this.ptyno = ptyno;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;		
+		this.ppreac = ppreac;
 	}
 
-	//Constructor Proveedor	
-	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pnit) {
+	// Constructor Proveedor
+	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pnit) {
 		this.pprov = pprov;
 		this.ppnov = ppnov;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;		
+		this.ppreac = ppreac;
 		this.pnit = pnit;
 	}
-	
-	//Constructor Comprador
-	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd) {
+
+	// Constructor Comprador
+	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
+			BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd) {
 		this.pcomd = pcomd;
 		this.pnomd = pnomd;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;		
+		this.ppreac = ppreac;
 	}
-	
-	//Constructor Item
-	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, String pipro, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pides) {
+
+	// Constructor Item
+	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, String pipro,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
+			String pides) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;		
+		this.ppreac = ppreac;
 	}
-	
-	//Construtor Clase
-	public Compras(BigDecimal pqtyd, String picla, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String picln) {
+
+	// Construtor Clase
+	public Compras(BigDecimal pqtyd, String picla, BigDecimal pqtyr,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
+			String picln) {
 		this.picla = picla;
 		this.picln = picln;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;		
+		this.ppreac = ppreac;
 	}
-	
-	//Constructor Centro
-	public Compras(String pcent, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pcenn) {
+
+	// Constructor Centro
+	public Compras(String pcent, BigDecimal pqtyd, BigDecimal pqtyr,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
+			String pcenn) {
 		this.pcent = pcent;
 		this.pcenn = pcenn;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;		
+		this.ppreac = ppreac;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg
@@ -303,13 +314,14 @@ public class Compras implements Serializable {
 				+ ", pipro=" + pipro + ", pides=" + pides + ", punid=" + punid
 				+ ", punin=" + punin + ", pcstp=" + pcstp + ", nroor=" + nroor
 				+ ", fecre=" + fecre + ", pmond=" + pmond + ", pqtyo=" + pqtyo
-				+ ", pqtyd=" + pqtyd + ", pqtyr=" + pqtyr + ", pqtyu=" + pqtyu + ", pqtyp=" + pqtyp
-				+ ", pvalbo=" + pvalbo + ", pvalto=" + pvalto + ", pvalbd="
-				+ pvalbd + ", pvaltd=" + pvaltd + ", pvalbr=" + pvalbr
-				+ ", pvaltr=" + pvaltr + ", pvalpo=" + pvalpo + ", pvalve="
-				+ pvalve + ", ppreac=" + ppreac + ", pprep1=" + pprep1
-				+ ", fecep1=" + fecep1 + ", pprep2=" + pprep2 + ", fecep2="
-				+ fecep2 + ", pprep3=" + pprep3 + ", fecep3=" + fecep3 + "]";
+				+ ", pqtyd=" + pqtyd + ", pqtyr=" + pqtyr + ", pqtyu=" + pqtyu
+				+ ", pqtyp=" + pqtyp + ", pvalbo=" + pvalbo + ", pvalto="
+				+ pvalto + ", pvalbd=" + pvalbd + ", pvaltd=" + pvaltd
+				+ ", pvalbr=" + pvalbr + ", pvaltr=" + pvaltr + ", pvalpo="
+				+ pvalpo + ", pvalve=" + pvalve + ", ppreac=" + ppreac
+				+ ", pprep1=" + pprep1 + ", fecep1=" + fecep1 + ", pprep2="
+				+ pprep2 + ", fecep2=" + fecep2 + ", pprep3=" + pprep3
+				+ ", fecep3=" + fecep3 + "]";
 	}
 
 	@Override
@@ -740,7 +752,7 @@ public class Compras implements Serializable {
 	public BigDecimal getPqtyr() {
 		return pqtyr;
 	}
-	
+
 	public BigDecimal getPqtyu() {
 		return pqtyu;
 	}
@@ -936,7 +948,7 @@ public class Compras implements Serializable {
 	public void setPqtyr(BigDecimal pqtyr) {
 		this.pqtyr = pqtyr;
 	}
-	
+
 	public void setPqtyu(BigDecimal pqtyu) {
 		this.pqtyu = pqtyu;
 	}
@@ -1004,7 +1016,7 @@ public class Compras implements Serializable {
 	public void setFecep3(String fecep3) {
 		this.fecep3 = fecep3;
 	}
-	
+
 	public void sumarCompras(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
@@ -1012,5 +1024,50 @@ public class Compras implements Serializable {
 		this.pvalpo = pvalpo.add(com.getPvalpo());
 		this.ppreac = ppreac.add(com.getPpreac());
 	}
-	
+
+	// Sumar Proveedor
+	public void sumarProveedores(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+
+	// Constructor Comprador
+	public void sumarComprador(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+
+	// Constructor Item
+	public void sumarItem(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+
+	// Construtor Clase
+	public void sumarClases(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+
+	// Constructor Centro
+	public void sumarCentros(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+
 }

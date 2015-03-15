@@ -49,7 +49,7 @@ public class ComprasController {
 					mens = mens + " " + ses.getValores().get(cc);
 				}
 			}
-			model.addAttribute("mensaje", mens);
+			model.addAttribute("mensaje", mens.toUpperCase());
 			model.addAttribute("user_inicio", ses);
 			model.addAttribute(
 					"listcomp",
@@ -80,7 +80,7 @@ public class ComprasController {
 					mens = mens + " " + ses.getValores().get(cc);
 				}
 			}
-			model.addAttribute("mensaje", mens);
+			model.addAttribute("mensaje", mens.toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -132,7 +132,7 @@ public class ComprasController {
 					mens = mens + " " + ses.getValores().get(cc);
 				}
 			}
-			model.addAttribute("mensaje", mens);
+			model.addAttribute("mensaje", mens.toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -184,7 +184,7 @@ public class ComprasController {
 					mens = mens + " " + ses.getValores().get(cc);
 				}
 			}
-			model.addAttribute("mensaje", mens);
+			model.addAttribute("mensaje", mens.toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -236,7 +236,7 @@ public class ComprasController {
 					mens = mens + " " + ses.getValores().get(cc);
 				}
 			}
-			model.addAttribute("mensaje", mens);
+			model.addAttribute("mensaje", mens.toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -288,7 +288,7 @@ public class ComprasController {
 					mens = mens + " " + ses.getValores().get(cc);
 				}
 			}
-			model.addAttribute("mensaje", mens);
+			model.addAttribute("mensaje", mens.toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -328,11 +328,17 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.getCondiciones().put("Tipo Proveedor",
-					"c.ptype = '" + compra.getPtype() + "'");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Tipo Proveedor");
-			ses.getValores().put("Tipo Proveedor",
-					"Tipo Proveedor: " + compra.getPtyno());
+			if (compra.getPtype().equalsIgnoreCase("@@@@@")) {
+				ses.getValores().put("Tipo Proveedor", "Tipo Proveedor: Todos");
+				ses.getCondiciones().put("Tipo Proveedor", "");
+			} else {
+				ses.getValores().put("Tipo Proveedor",
+						"Tipo Proveedor: " + compra.getPtyno());
+				ses.getCondiciones().put("Tipo Proveedor",
+						"c.ptype = '" + compra.getPtype() + "'");
+			}
+
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -368,10 +374,17 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.getCondiciones().put("Clase",
-					"c.picla = '" + compra.getPicla() + "'");
+
 			ses.setCondicionActual(ses.getCondicionActual() + ",Clase");
-			ses.getValores().put("Clase", "Clase: " + compra.getPicln());
+
+			if (compra.getPicla().equalsIgnoreCase("@@@@@")) {
+				ses.getValores().put("Clase", "Clase: Todos");
+				ses.getCondiciones().put("Clase", "");
+			} else {
+				ses.getValores().put("Clase", "Clase: " + compra.getPicln());
+				ses.getCondiciones().put("Clase",
+						"c.picla = '" + compra.getPicla() + "'");
+			}
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -404,9 +417,15 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.getCondiciones().put("Centro",
-					"c.pcent = '" + compra.getPcent() + "'");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Centro");
+			if (compra.getPcent().equalsIgnoreCase("@@@@@")) {
+				ses.getCondiciones().put("Centro", "");
+				ses.getValores().put("Centro", "Centro: Todos");
+			} else {
+				ses.getCondiciones().put("Centro",
+						"c.pcent = '" + compra.getPcent() + "'");
+				ses.getValores().put("Centro", "Centro: " + compra.getPcenn());
+			}
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -439,11 +458,16 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.getCondiciones().put("Proveedor",
-					"c.pprov = " + compra.getPprov());
 			ses.setCondicionActual(ses.getCondicionActual() + ",Proveedor");
-			ses.getValores()
-					.put("Proveedor", "Proveedor: " + compra.getPpnov());
+			if (compra.getPprov() == -1000) {
+				ses.getCondiciones().put("Proveedor", "");
+				ses.getValores().put("Proveedor", "Proveedor: Todos");
+			} else {
+				ses.getCondiciones().put("Proveedor",
+						"c.pprov = " + compra.getPprov());
+				ses.getValores().put("Proveedor",
+						"Proveedor: " + compra.getPpnov());
+			}
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -476,10 +500,15 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.getCondiciones().put("Item",
-					"c.pipro = '" + compra.getPipro() + "'");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Item");
-			ses.getValores().put("Item", "Item: " + compra.getPides());
+			if (compra.getPipro().equalsIgnoreCase("@@@@@")) {
+				ses.getCondiciones().put("Item", "");
+				ses.getValores().put("Item", "Item: Todos");
+			} else {
+				ses.getCondiciones().put("Item",
+						"c.pipro = '" + compra.getPipro() + "'");
+				ses.getValores().put("Item", "Item: " + compra.getPides());
+			}
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {
 				ret = "redirect:comprador";
@@ -512,11 +541,16 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-			ses.getCondiciones().put("Comprador",
-					"c.pcomd = '" + compra.getPcomd() + "'");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Comprador");
-			ses.getValores()
-					.put("Comprador", "Comprador: " + compra.getPnomd());
+			if (compra.getPcomd().equalsIgnoreCase("@@@@@")) {
+				ses.getCondiciones().put("Comprador", "");
+				ses.getValores().put("Comprador", "Comprador: Todos");
+			} else {
+				ses.getCondiciones().put("Comprador",
+						"c.pcomd = '" + compra.getPcomd() + "'");
+				ses.getValores().put("Comprador",
+						"Comprador: " + compra.getPnomd());
+			}
 			String rec = "";
 			if (request.getParameter("next").equals("prove")) {
 				ret = "redirect:proveedor";
@@ -558,7 +592,7 @@ public class ComprasController {
 					} else {
 						ncond = ncond + "," + cond[i];
 					}
-					hist = hist + ses.getHistorial().charAt(i-4);
+					hist = hist + ses.getHistorial().charAt(i - 4);
 				}
 				if (hist.charAt(hist.length() - 1) == 'p') {
 					ret = "redirect:proveedor";
@@ -571,7 +605,7 @@ public class ComprasController {
 				} else if (hist.charAt(hist.length() - 1) == 'k') {
 					ret = "redirect:centro";
 				}
-				ses.setCondicionActual(ses.getCondicionUsuario()+","+ncond);
+				ses.setCondicionActual(ses.getCondicionUsuario() + "," + ncond);
 				ses.setHistorial(hist);
 			} else {
 				ses.setHistorial("");
@@ -590,37 +624,41 @@ public class ComprasController {
 		status.setComplete();
 		return "redirect:/index/ingreso";
 	}
-	
+
 	@RequestMapping(value = "/actualizar", method = RequestMethod.GET)
 	public String actualizar(Model model) {
-		if(model.containsAttribute("user_inicio") == true) {
+		if (model.containsAttribute("user_inicio") == true) {
 			model.addAttribute("redireccion", "mostrar");
 			model.addAttribute("accion", "generar");
 			model.addAttribute("compra", new Compras());
-			session ses = (session)(model.asMap().get("user_inicio"));
-			if(ses.getCenters().isEmpty()) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			if (ses.getCenters().isEmpty()) {
 				model.addAttribute("cennnn", 0);
 			} else {
 				model.addAttribute("cennnn", 1);
 			}
 			return "actualizar";
-		}else {
+		} else {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/generar", method = RequestMethod.POST)
 	public String generaar(@ModelAttribute("compra") Compras compra, Model model) {
-		if(model.containsAttribute("user_inicio") == true) {
-			session ses = (session)(model.asMap().get("user_inicio"));
-			if(ses.getCenters().isEmpty()) {
-				ses.setCondicionUsuario("a"+compra.getPano()+",m"+compra.getPmes()+",c"+compra.getPcia()+",l"+compra.getPmond());
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			if (ses.getCenters().isEmpty()) {
+				ses.setCondicionUsuario("a" + compra.getPano() + ",m"
+						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
+						+ compra.getPmond());
 			} else {
-				ses.setCondicionUsuario("a"+compra.getPano()+",m"+compra.getPmes()+",c"+compra.getPcia()+",l"+compra.getPmond()+",k"+compra.getPcent());
+				ses.setCondicionUsuario("a" + compra.getPano() + ",m"
+						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
+						+ compra.getPmond() + ",k" + compra.getPcent());
 			}
 			model.addAttribute("user_inicio", ses);
 			return "redirect:mostrar";
-		}else {
+		} else {
 			return "redirect:/index/ingreso";
 		}
 	}
