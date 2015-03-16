@@ -78,6 +78,10 @@
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
 
+<style type="text/css">
+	tr:last-child { color:#ff0000; font-weight: bold;}
+</style>
+
 </head>
 <body class="">
 
@@ -169,7 +173,7 @@
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th data-hide="phone">Tipo Prov.</th>
+											<th data-hide="phone">Tipo Proveedor</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
 											<th data-hide="phone">Val. base recibido</th>
@@ -268,16 +272,18 @@
 													</form:form></td>
 											</tr>
 										</c:forEach>
-										<tr>
+										<!-- <tr>
 											<td colspan="11" align="center"></td>
 										</tr>
-										<tr>
+										 <tr>
 											<td colspan="11" align="center">Usuario: <c:out
 													value="${usuarioactuall}" /></td>
 										</tr>
+										 -->
 									</tbody>
-								</table>
+								</table> 
 							</div>
+							<div style="float: right;"><strong>Usuario: </strong>${usuarioactuall}</div>
 							<!-- end widget content -->
 
 						</div>

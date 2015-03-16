@@ -78,6 +78,9 @@
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
 
+<style type="text/css">
+tr:last-child { background:#ff0000; }
+</style>
 </head>
 <body class="">
 
