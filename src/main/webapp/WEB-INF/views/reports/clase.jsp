@@ -77,7 +77,9 @@
 <link rel="apple-touch-startup-image"
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
-
+<style type="text/css">
+	tr:last-child { color:#ff0000; font-weight: bold;}
+</style>
 </head>
 <body class="">
 
@@ -246,16 +248,11 @@
 												</c:if>
 											</tr>
 										</c:forEach>
-										<tr>
-											<td colspan="11" align="center"></td>
-										</tr>
-										<tr>
-											<td colspan="11" align="center">Usuario: <c:out
-													value="${usuarioactuall}" /></td>
-										</tr>
+										
 									</tbody>
 								</table>
 							</div>
+							<div style="float: right;"><strong>Usuario: </strong>${usuarioactuall}</div>
 							<!-- end widget content -->
 
 						</div>
