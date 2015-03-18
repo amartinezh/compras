@@ -302,6 +302,28 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac;
 	}
 
+	// Constructor Orden
+	public Compras(String nroor, BigDecimal pqtyd, BigDecimal pqtyr,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac) {
+		this.nroor = nroor;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+	}
+	
+	// Constructor Requisicion
+		public Compras(BigDecimal pqtyd, BigDecimal pqtyr,
+				BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String tipoc) {			
+			this.pqtyd = pqtyd;
+			this.pqtyr = pqtyr;
+			this.pvalbd = pvalbd;
+			this.pvalpo = pvalpo;
+			this.ppreac = ppreac;
+			this.tipoc = tipoc;
+		}
+
 	@Override
 	public String toString() {
 		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg
@@ -1063,6 +1085,22 @@ public class Compras implements Serializable {
 
 	// Constructor Centro
 	public void sumarCentros(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+	
+	public void sumarOrdenes(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalpo = pvalpo.add(com.getPvalpo());
+		this.ppreac = ppreac.add(com.getPpreac());
+	}
+	
+	public void sumarRequesiciones(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pvalbd = pvalbd.add(com.getPvalbd());

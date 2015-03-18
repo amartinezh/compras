@@ -40,5 +40,12 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getCentros(condiciones, cond);
 	}
 	
+	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond) {
+		return comprasDao.getRequisiciones(condiciones, cond);
+	}
+	
+	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond) {
+		return comprasDao.getOrdenes(condiciones, cond);
+	}
 	
 }

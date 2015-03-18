@@ -13,5 +13,7 @@ public interface ComprasService {
 	public List<Compras> getItems(Map<String, String> condiciones, String cond);
 	public List<Compras> getClases(Map<String, String> condiciones, String cond);	
 	public List<Compras> getCentros(Map<String, String> condiciones, String cond);
+	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond);
+	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond);
 	
 }
