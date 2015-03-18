@@ -196,7 +196,7 @@ tr:last-child {
 											varStatus="loopCounter">
 											<tr>
 												<td><c:choose>
-														<c:when test="${compp.nroor} == '@@@@@'">
+														<c:when test="${compp.nroor == '@@@@@'}">
 															<c:out value="Total" />
 														</c:when>
 														<c:otherwise>
