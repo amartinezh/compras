@@ -173,17 +173,25 @@
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th data-hide="phone">Tipo Proveedor</th>
-											<th data-hide="phone">Unidades recibidas</th>
-											<th data-hide="phone">Unidades rechazadas</th>
-											<th data-hide="phone">Val. base recibido</th>
-											<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th>
-											<th data-hide="phone">Comprador</th>
+											
+											<th rowspan="2"data-hide="phone" style="text-align: center; color: blue;">Tipo Proveedor</th>
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Val. base recibido</th>
+											<th colspan="2" data-hide="phone" style="text-align: center; color: blue;">Unidades</th>
+											
+											<!--<th data-hide="phone">Saldo Proveedor</th>
+											<th data-hide="phone">Precio Compra</th> -->
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">O/C</th>
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">R/Q</th>
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Comprador</th>
 											<!-- <th data-hide="phone">Proveedor</th>  -->
-											<th data-hide="phone">Item</th>
-											<th data-hide="phone">Clase</th>
-											<th data-hide="phone">Cent. Costo</th>
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Item</th>
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Clase</th>
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Cent. Costo</th>
+											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Bodega</th>
+										</tr>
+										<tr>
+										<th data-hide="phone" style="text-align: center; color: blue;">Unidades recibidas</th>
+										<th  data-hide="phone" style="text-align: center; color: blue;">Unidades rechazadas</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -205,11 +213,36 @@
 														</button>
 													</form:form></td>
 												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
+												<td><fmt:formatNumber value="${compp.pvalbd}" type="currency"/></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><fmt:formatNumber value="${compp.pvalbd}" type="currency"/></td>
-												<td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
-												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>
+												
+												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
+												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>  -->
+												<td align="center"><form:form method="POST"
+														action="comp" ModelAttribute="compra" commandName="compra">
+														<form:input path="ptype" type="hidden"
+															value="${compp.ptype}" />
+														<button type="submit" Value="oc" name="next"
+															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+															<form:input path="ptyno" type="hidden"
+																value="${compp.ptyno}" />
+															<img width="20" height="20"
+																src="<c:url value="/resources/img/adm/ordencompra.png" />">
+														</button>
+													</form:form></td>
+												<td align="center"><form:form method="POST"
+														action="comp" ModelAttribute="compra" commandName="compra">
+														<form:input path="ptype" type="hidden"
+															value="${compp.ptype}" />
+														<button type="submit" Value="rq" name="next"
+															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+															<form:input path="ptyno" type="hidden"
+																value="${compp.ptyno}" />
+															<img width="20" height="20"
+																src="<c:url value="/resources/img/adm/requisicion.png" />">
+														</button>
+													</form:form></td>
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
@@ -267,6 +300,19 @@
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 															<img width="20" height="20"
 																src="<c:url value="/resources/img/adm/centrocosto.png" />">
+														</button>
+
+													</form:form></td>
+													<td align="center"><form:form method="POST"
+														action="comp" ModelAttribute="compra" commandName="compra">
+														<form:input path="ptype" type="hidden"
+															value="${compp.ptype}" />
+														<form:input path="ptyno" type="hidden"
+															value="${compp.ptyno}" />
+														<button type="submit" Value="bodega" name="next"
+															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+															<img width="20" height="20"
+																src="<c:url value="/resources/img/adm/ubicacion.png" />">
 														</button>
 
 													</form:form></td>
