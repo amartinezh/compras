@@ -164,7 +164,7 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<td colspan="11" align="center"><c:out
+											<td colspan="15" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
@@ -240,8 +240,8 @@ tr:last-child {
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
 															action="ord" ModelAttribute="compra" commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="prove" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
@@ -253,8 +253,8 @@ tr:last-child {
 												<c:if test="${i == 0}">
 													<td align="center"><form:form method="POST"
 															action="ord" ModelAttribute="compra" commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="ite" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"

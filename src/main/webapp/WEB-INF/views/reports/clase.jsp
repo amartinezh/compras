@@ -78,7 +78,10 @@
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
 <style type="text/css">
-	tr:last-child { color:#ff0000; font-weight: bold;}
+tr:last-child {
+	color: #ff0000;
+	font-weight: bold;
+}
 </style>
 </head>
 <body class="">
@@ -117,9 +120,13 @@
 					</ul>
 				</li>
 			</ul>
-			<a href="mostrar" class="btn btn-labeled btn-warning"> <span class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio </a>
-			<a href="retornar" class="btn btn-labeled btn-default"> <span class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar </a>
-			<a href="salir" class="btn btn-labeled btn-danger"> <span class="btn-label"><i class="fa fa-sign-out"></i></span>Salir</a>
+			<a href="mostrar" class="btn btn-labeled btn-warning"> <span
+				class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio
+			</a> <a href="retornar" class="btn btn-labeled btn-default"> <span
+				class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar
+			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
+				class="btn-label"><i class="fa fa-sign-out"></i></span>Salir
+			</a>
 			<!-- end logout button -->
 
 		</div>
@@ -154,8 +161,8 @@
 
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
-									<tr>
-											<td colspan="11" align="center"><c:out
+										<tr>
+											<td colspan="15" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
@@ -165,6 +172,12 @@
 											<th data-hide="phone">Val. base recibido</th>
 											<th data-hide="phone">Saldo Proveedor</th>
 											<th data-hide="phone">Precio Compra</th>
+											<c:if test="${o == 0}">
+												<th>O/C</th>
+											</c:if>
+											<c:if test="${r == 0}">
+												<th data-hide="phone">R/Q</th>
+											</c:if>
 											<c:if test="${c == 0}">
 												<th data-hide="phone">Comprador</th>
 											</c:if>
@@ -186,9 +199,42 @@
 												<td><c:out value="${compp.picln}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><fmt:formatNumber value="${compp.pvalbd}" type="currency"/></td>
-												<td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
-												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>
+												<td><fmt:formatNumber value="${compp.pvalbd}"
+														type="currency" /></td>
+												<td><fmt:formatNumber value="${compp.pvalpo}"
+														type="currency" /></td>
+												<td><fmt:formatNumber value="${compp.ppreac}"
+														type="currency" /></td>
+												<c:if test="${o == 0}">
+													<td align="center"><form:form method="POST"
+															action="class" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="picln" type="hidden"
+																value="${compp.picln}" />
+															<form:input path="picla" type="hidden"
+																value="${compp.picla}" />
+															<button type="submit" Value="oc" name="next"
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/ordencompra.png" />">
+															</button>
+														</form:form></td>
+												</c:if>
+												<c:if test="${r == 0}">
+													<td align="center"><form:form method="POST"
+															action="class" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="picln" type="hidden"
+																value="${compp.picln}" />
+															<form:input path="picla" type="hidden"
+																value="${compp.picla}" />
+															<button type="submit" Value="rq" name="next"
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/requisicion.png" />">
+															</button>
+														</form:form></td>
+												</c:if>
 												<c:if test="${c == 0}">
 													<td align="center"><form:form method="POST"
 															action="class" ModelAttribute="compra"
@@ -198,8 +244,10 @@
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="compra" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																Comp</button>
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/comprador.png" />">
+															</button>
 														</form:form></td>
 												</c:if>
 
@@ -212,8 +260,9 @@
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="prove" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/proveedor.png" />">
 															</button>
 														</form:form></td>
 												</c:if>
@@ -227,8 +276,9 @@
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="ite" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20" src="<c:url value="/resources/img/adm/producto.png" />">
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/producto.png" />">
 															</button>
 														</form:form></td>
 												</c:if>
@@ -241,18 +291,20 @@
 															<form:input path="picla" type="hidden"
 																value="${compp.picla}" />
 															<button type="submit" Value="centr" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20" src="<c:url value="/resources/img/adm/centrocosto.png" />">
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/centrocosto.png" />">
 															</button>
 														</form:form></td>
 												</c:if>
 											</tr>
 										</c:forEach>
-										
+
 									</tbody>
 								</table>
 							</div>
-							<div style="float: right;"><strong>Usuario: </strong>${usuarioactuall}</div>
+							<div style="float: right;">
+								<strong>Usuario: </strong>${usuarioactuall}</div>
 							<!-- end widget content -->
 
 						</div>

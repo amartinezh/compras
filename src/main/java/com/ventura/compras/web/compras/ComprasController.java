@@ -433,7 +433,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/orden")
 	public String orden(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -531,7 +531,7 @@ public class ComprasController {
 				rec = "k";
 			} else if (request.getParameter("next").equals("oc")) {
 				ret = "redirect:orden";
-				rec = "k";
+				rec = "o";
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
@@ -548,6 +548,108 @@ public class ComprasController {
 		}
 	}
 
+	@RequestMapping(value = "ord", method = RequestMethod.POST)
+	public String ord(@ModelAttribute("compra") Compras compra,
+			HttpServletRequest request, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			String ret = "redirect:mostrar";
+			session ses = (session) model.asMap().get("user_inicio");
+
+			ses.setCondicionActual(ses.getCondicionActual() + ",Ord");
+
+			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
+				ses.getValores().put("Ord", "O/C: Todos");
+				ses.getCondiciones().put("Ord", "");
+			} else {				
+				ses.getValores().put("Ord", "O/C: " + compra.getNroor());
+				ses.getCondiciones().put("Ord",
+						"c.nroor = '" + compra.getNroor() + "'");
+			}
+			String rec = "";
+			if (request.getParameter("next").equals("compra")) {
+				ret = "redirect:comprador";
+				rec = "c";
+			} else if (request.getParameter("next").equals("prove")) {
+				ret = "redirect:proveedor";
+				rec = "p";
+			} else if (request.getParameter("next").equals("ite")) {
+				ret = "redirect:item";
+				rec = "i";
+			} else if (request.getParameter("next").equals("clas")) {
+				ret = "redirect:clase";
+				rec = "q";
+			} else if (request.getParameter("next").equals("centr")) {
+				ret = "redirect:centro";
+				rec = "k";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
+			}
+			if (rec.isEmpty()) {
+				ses.setHistorial("");
+			} else {
+				ses.setHistorial(ses.getHistorial() + rec);
+			}
+			model.addAttribute("user_inicio", ses);
+			return ret;
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "req", method = RequestMethod.POST)
+	public String req(@ModelAttribute("compra") Compras compra,
+			HttpServletRequest request, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			String ret = "redirect:mostrar";
+			session ses = (session) model.asMap().get("user_inicio");
+
+			ses.setCondicionActual(ses.getCondicionActual() + ",Req");
+
+			if (compra.getTipoc().equalsIgnoreCase("@@@@@")) {
+				ses.getValores().put("Req", "R/Q: Todos");
+				ses.getCondiciones().put("Req", "");
+			} else {
+				if(compra.getTipoc().equalsIgnoreCase("o")) {
+					ses.getValores().put("Req", "R/Q: Compra");
+				} else {
+					ses.getValores().put("Req", "R/Q: Requisicion");
+				}
+				ses.getCondiciones().put("Req",
+						"c.tipoc = '" + compra.getTipoc() + "'");
+			}
+			String rec = "";
+			if (request.getParameter("next").equals("compra")) {
+				ret = "redirect:comprador";
+				rec = "c";
+			} else if (request.getParameter("next").equals("prove")) {
+				ret = "redirect:proveedor";
+				rec = "p";
+			} else if (request.getParameter("next").equals("ite")) {
+				ret = "redirect:item";
+				rec = "i";
+			} else if (request.getParameter("next").equals("clas")) {
+				ret = "redirect:clase";
+				rec = "q";
+			} else if (request.getParameter("next").equals("centr")) {
+				ret = "redirect:centro";
+				rec = "k";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
+			} 
+			if (rec.isEmpty()) {
+				ses.setHistorial("");
+			} else {
+				ses.setHistorial(ses.getHistorial() + rec);
+			}
+			model.addAttribute("user_inicio", ses);
+			return ret;
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
 	@RequestMapping(value = "class", method = RequestMethod.POST)
 	public String classs(@ModelAttribute("compra") Compras compra,
 			HttpServletRequest request, Model model) {
@@ -578,6 +680,12 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("centr")) {
 				ret = "redirect:centro";
 				rec = "k";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -619,6 +727,12 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("clas")) {
 				ret = "redirect:clase";
 				rec = "q";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -661,6 +775,12 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("centr")) {
 				ret = "redirect:centro";
 				rec = "k";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -702,6 +822,12 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("centr")) {
 				ret = "redirect:centro";
 				rec = "k";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -744,6 +870,12 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("centr")) {
 				ret = "redirect:centro";
 				rec = "k";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -760,7 +892,7 @@ public class ComprasController {
 	@RequestMapping(value = "/retornar", method = RequestMethod.GET)
 	public String retornar(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
-			String ret = "";
+			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
 			String[] cond = ses.getCondicionActual().split(",");
 			if (ses.getHistorial().length() > 1) {
@@ -784,13 +916,16 @@ public class ComprasController {
 					ret = "redirect:clase";
 				} else if (hist.charAt(hist.length() - 1) == 'k') {
 					ret = "redirect:centro";
+				}else if (hist.charAt(hist.length() - 1) == 'r') {
+					ret = "redirect:requisicion";
+				}else if (hist.charAt(hist.length() - 1) == 'o') {
+					ret = "redirect:orden";
 				}
 				ses.setCondicionActual(ses.getCondicionUsuario() + "," + ncond);
 				ses.setHistorial(hist);
 			} else {
 				ses.setHistorial("");
 				ses.setCondicionActual("");
-				ret = "redirect:mostrar";
 			}
 			model.addAttribute("user_inicio", ses);
 			return ret;

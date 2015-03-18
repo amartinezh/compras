@@ -164,7 +164,7 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<td colspan="11" align="center"><c:out
+											<td colspan="15" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
@@ -174,7 +174,7 @@ tr:last-child {
 											<th data-hide="phone">Val. base recibido</th>
 											<th data-hide="phone">Saldo Proveedor</th>
 											<th data-hide="phone">Precio Compra</th>
-											<c:if test="${r == 0}">
+											<c:if test="${o == 0}">
 												<th>O/C</th>
 											</c:if>
 											<c:if test="${c == 0}">
@@ -188,6 +188,9 @@ tr:last-child {
 											</c:if>
 											<c:if test="${q == 0}">
 												<th data-hide="phone">Clase</th>
+											</c:if>
+											<c:if test="${k == 0}">
+												<th data-hide="phone">Cent. Costo</th>
 											</c:if>
 										</tr>
 									</thead>
@@ -211,7 +214,7 @@ tr:last-child {
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
-												<c:if test="${r == 0}">
+												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
 															<form:input path="tipoc" type="hidden"
@@ -235,7 +238,6 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
@@ -248,7 +250,6 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-
 												<c:if test="${i == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
@@ -270,6 +271,19 @@ tr:last-child {
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
 																	src="<c:url value="/resources/img/adm/tipoproducto.png" />">
+															</button>
+														</form:form></td>
+												</c:if>
+												<c:if test="${k == 0}">
+													<td align="center"><form:form method="POST"
+															action="req" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="tipoc" type="hidden"
+																value="${compp.tipoc}" />															
+															<button type="submit" Value="centr" name="next"
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/centrocosto.png" />">
 															</button>
 														</form:form></td>
 												</c:if>
