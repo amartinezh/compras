@@ -322,6 +322,11 @@ public class Compras implements Serializable {
 			this.pvalpo = pvalpo;
 			this.ppreac = ppreac;
 			this.tipoc = tipoc;
+			if(tipoc.equalsIgnoreCase("r")) {
+				this.ptyno = "Requisición";
+			} else {
+				this.ptyno = "Compra";
+			}
 		}
 
 	@Override
