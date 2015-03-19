@@ -166,12 +166,19 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th>Items</th>
+											<th>Código</th>
+											<th>Item</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
 											<th data-hide="phone">Val. base recibido</th>
 											<th data-hide="phone">Saldo Proveedor</th>
 											<th data-hide="phone">Precio Compra</th>
+											<th data-hide="phone">Fecha 1</th>
+											<th data-hide="phone">Precio 1</th>
+											<th data-hide="phone">Fecha 2</th>
+											<th data-hide="phone">Precio 2</th>
+											<th data-hide="phone">Fecha 3</th>
+											<th data-hide="phone">Precio 3</th>
 											<c:if test="${o == 0}">
 												<th>O/C</th>
 											</c:if>
@@ -197,7 +204,15 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
-												<td><c:out value="${compp.pides}" /></td>
+												<c:choose>
+													<c:when test="${compp.pipro != '@@@@@'}">
+														<td><c:out value="${compp.pipro}" /></td>
+														<td><c:out value="${compp.pides}" /></td>
+													</c:when>
+													<c:otherwise>
+														<td colspan="2"><c:out value="${compp.pides}" /></td>
+													</c:otherwise>
+												</c:choose>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<td><fmt:formatNumber value="${compp.pvalbd}"
@@ -206,6 +221,15 @@ tr:last-child {
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
+												<td><c:out value="${compp.fecep1}" /></td>
+												<td><fmt:formatNumber value="${compp.pprep1}"
+														type="currency" /></td>												
+												<td><c:out value="${compp.fecep2}" /></td>
+												<td><fmt:formatNumber value="${compp.pprep2}"
+														type="currency" /></td>
+												<td><c:out value="${compp.fecep3}" /></td>
+												<td><fmt:formatNumber value="${compp.pprep3}"
+														type="currency" /></td>												
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
