@@ -169,14 +169,18 @@
 											</section>
 											<section class="col col-6">
 												<label class="label">Tipo</label>
-												<form:select path="pmond" items="${user_inicio.levels}" />
+												<form:select path="ppais" items="${user_inicio.levels}" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Moneda</label>
+												<form:select path="pmond" items="${user_inicio.currencys}" />
 											</section>
 											<c:if test="${cennnn != 0}">
 												<section class="col col-6">
 													<label class="label">Centro</label>
 													<form:select path="pcent" items="${user_inicio.centers}" />
 												</section>
-											</c:if>
+											</c:if>											
 										</div>
 									</fieldset>
 									<footer>

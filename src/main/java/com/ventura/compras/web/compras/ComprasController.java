@@ -560,7 +560,7 @@ public class ComprasController {
 			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Ord", "O/C: Todos");
 				ses.getCondiciones().put("Ord", "");
-			} else {				
+			} else {
 				ses.getValores().put("Ord", "O/C: " + compra.getNroor());
 				ses.getCondiciones().put("Ord",
 						"c.nroor = '" + compra.getNroor() + "'");
@@ -596,7 +596,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "req", method = RequestMethod.POST)
 	public String req(@ModelAttribute("compra") Compras compra,
 			HttpServletRequest request, Model model) {
@@ -610,7 +610,7 @@ public class ComprasController {
 				ses.getValores().put("Req", "R/Q: Todos");
 				ses.getCondiciones().put("Req", "");
 			} else {
-				if(compra.getTipoc().equalsIgnoreCase("o")) {
+				if (compra.getTipoc().equalsIgnoreCase("o")) {
 					ses.getValores().put("Req", "R/Q: Compra");
 				} else {
 					ses.getValores().put("Req", "R/Q: Requisicion");
@@ -637,7 +637,7 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("oc")) {
 				ret = "redirect:orden";
 				rec = "o";
-			} 
+			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
 			} else {
@@ -649,7 +649,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "class", method = RequestMethod.POST)
 	public String classs(@ModelAttribute("compra") Compras compra,
 			HttpServletRequest request, Model model) {
@@ -916,9 +916,9 @@ public class ComprasController {
 					ret = "redirect:clase";
 				} else if (hist.charAt(hist.length() - 1) == 'k') {
 					ret = "redirect:centro";
-				}else if (hist.charAt(hist.length() - 1) == 'r') {
+				} else if (hist.charAt(hist.length() - 1) == 'r') {
 					ret = "redirect:requisicion";
-				}else if (hist.charAt(hist.length() - 1) == 'o') {
+				} else if (hist.charAt(hist.length() - 1) == 'o') {
 					ret = "redirect:orden";
 				}
 				ses.setCondicionActual(ses.getCondicionUsuario() + "," + ncond);
@@ -965,11 +965,12 @@ public class ComprasController {
 			if (ses.getCenters().isEmpty()) {
 				ses.setCondicionUsuario("a" + compra.getPano() + ",m"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
-						+ compra.getPmond());
+						+ compra.getPpais() + ",m" + compra.getPmond());
 			} else {
 				ses.setCondicionUsuario("a" + compra.getPano() + ",m"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
-						+ compra.getPmond() + ",k" + compra.getPcent());
+						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
+						+ compra.getPcent());
 			}
 			model.addAttribute("user_inicio", ses);
 			return "redirect:mostrar";

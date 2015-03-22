@@ -33,6 +33,7 @@ public class session implements Serializable{
 	private Map<String, String> cpias;
 	private Map<String, String> levels;
 	private Map<String, String>	centers;
+	private Map<String, String> currencys;
 		
 	public session() {
 		// TODO Auto-generated constructor stub
@@ -49,7 +50,16 @@ public class session implements Serializable{
 		this.cpias = new HashMap<String, String>();
 		this.levels = new HashMap<String, String>();
 		this.centers = new HashMap<String, String>();
+		this.currencys = new HashMap<String, String>();
 	}
+	public Map<String, String> getCurrencys() {
+		return currencys;
+	}
+
+	public void setCurrencys(Map<String, String> currencys) {
+		this.currencys = currencys;
+	}
+
 	/*
 	public session(String usuario, List<Map<String,String>> permisos, String tipo, String nivel, String company) {
 		this.usuario = usuario;

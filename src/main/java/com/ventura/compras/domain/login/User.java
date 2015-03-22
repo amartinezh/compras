@@ -1,6 +1,9 @@
 package com.ventura.compras.domain.login;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,9 +16,11 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.util.DigestUtils;
 
 import com.ventura.compras.domain.adm.Center;
 import com.ventura.compras.domain.adm.Company;
+import com.ventura.compras.domain.adm.Currency;
 import com.ventura.compras.domain.adm.Level;
 import com.ventura.compras.domain.adm.TypeUser;
 
@@ -46,7 +51,14 @@ public class User implements Serializable {
     @ManyToOne
     private Center cent;
     
-    public User() {
+    @ManyToOne
+    private Currency curr;
+    
+	public Currency getCurr() {
+		return curr;
+	}
+
+	public User() {
 		// TODO Auto-generated constructor stub
 	}
         
@@ -65,8 +77,19 @@ public class User implements Serializable {
     }
     
     public void setPass(String pass) {
-    	// Encriptar
-        this.pass = pass;
+    	try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] messageDigest = md.digest(pass.getBytes());
+			BigInteger number = new BigInteger(1, messageDigest);
+			String hashtext = number.toString(16);
+			while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+			this.pass = hashtext;
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    	
     }
    
     public TypeUser getType() {
@@ -99,6 +122,10 @@ public class User implements Serializable {
     
     public void setCent(Center cent) {
 		this.cent = cent;
+	}
+    
+    public void setCurr(Currency curr) {
+		this.curr = curr;
 	}
   
     public String toString() {
