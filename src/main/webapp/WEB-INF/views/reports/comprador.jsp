@@ -167,41 +167,46 @@ tr:last-child {
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Cod</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
-											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Valor Compra</th>
-											<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Saldo Proveedor</th>
-											
+											<th rowspan="2" data-hide="phone"
+												style="text-align: center; color: blue;">Valor Compra</th>
+											<th rowspan="2" data-hide="phone"
+												style="text-align: center; color: blue;">Saldo
+												Proveedor</th>
+
 											<th colspan="4" data-hide="phone"
 												style="text-align: center; color: blue;">Unidades</th>
-											
+
 											<c:if test="${o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
 											<c:if test="${r == 0}">
-												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">R/Q</th>
+												<th rowspan="2" data-hide="phone"
+													style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${p == 0}">
-												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Proveedor</th>
+												<th rowspan="2" data-hide="phone"
+													style="text-align: center; color: blue;">Proveedor</th>
 											</c:if>
 											<c:if test="${i == 0}">
-												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Items</th>
+												<th rowspan="2" data-hide="phone"
+													style="text-align: center; color: blue;">Items</th>
 											</c:if>
 											<c:if test="${q == 0}">
-												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Clase</th>
+												<th rowspan="2" data-hide="phone"
+													style="text-align: center; color: blue;">Clase</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Cent. Costo</th>
+												<th rowspan="2" data-hide="phone"
+													style="text-align: center; color: blue;">Cent. Costo</th>
 											</c:if>
 										</tr>
 										<tr>
 											<th data-hide="phone"
-												style="text-align: center; color: blue;">
-												Recibidas</th>
+												style="text-align: center; color: blue;">Recibidas</th>
 											<th data-hide="phone"
-												style="text-align: center; color: blue;">
-												Ordenadas</th>
+												style="text-align: center; color: blue;">Ordenadas</th>
 											<th data-hide="phone"
-												style="text-align: center; color: blue;">
-												Rechazadas</th>
+												style="text-align: center; color: blue;">Rechazadas</th>
 											<th data-hide="phone"
 												style="text-align: center; color: blue;">
 												Presupuestadas</th>
@@ -211,7 +216,14 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
-												<td><c:out value="${compp.pcomd}" /></td>
+												<c:choose>
+													<c:when test="${ compp.pcomd == '@@@@@' }">
+														<td><c:out value="Total" /></td>
+													</c:when>
+													<c:otherwise>
+														<td><c:out value="${compp.pcomd}" /></td>
+													</c:otherwise>
+												</c:choose>
 												<td><c:out value="${compp.pnomd}" /></td>
 												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
@@ -223,11 +235,12 @@ tr:last-child {
 												<td><c:out value="${compp.pqtyp}" /></td>
 												<!--  <td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td> -->
-												
-												
+
+
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra" commandName="compra">
+															action="ccompra" ModelAttribute="compra"
+															commandName="compra">
 															<form:input path="pnomd" type="hidden"
 																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"
@@ -241,7 +254,8 @@ tr:last-child {
 												</c:if>
 												<c:if test="${r == 0}">
 													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra" commandName="compra">
+															action="ccompra" ModelAttribute="compra"
+															commandName="compra">
 															<form:input path="pnomd" type="hidden"
 																value="${compp.pnomd}" />
 															<form:input path="pcomd" type="hidden"

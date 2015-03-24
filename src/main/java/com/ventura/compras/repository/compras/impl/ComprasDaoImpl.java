@@ -132,7 +132,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ "GROUP BY c.pprov, c.ppnov, c.pnit")
 				.getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
-		Compras comp = new Compras(-1000, "Total", 
+		Compras comp = new Compras(-1000, "@@@@@", 
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
