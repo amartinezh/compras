@@ -162,42 +162,53 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<td colspan="15" align="center"><c:out
+											<td colspan="20" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th>Código</th>
-											<th>Item</th>
-											<th data-hide="phone">Unidades recibidas</th>
-											<th data-hide="phone">Unidades rechazadas</th>
-											<th data-hide="phone">Val. base recibido</th>
-											<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th>
-											<th data-hide="phone">Fecha 1</th>
-											<th data-hide="phone">Precio 1</th>
-											<th data-hide="phone">Fecha 2</th>
-											<th data-hide="phone">Precio 2</th>
-											<th data-hide="phone">Fecha 3</th>
-											<th data-hide="phone">Precio 3</th>
+											<th colspan="3" data-hide="phone" style="text-align: center; color: blue;">Items</th>
+											<th rowspan="2" data-hide="phone">Precio</th>
+											<th colspan="4" data-hide="phone" style="text-align: center; color: blue;">Cantidad</th>
+											<th colspan="3" data-hide="phone" style="text-align: center; color: blue;">Últimos Precios</th>
+											<th colspan="3" data-hide="phone" style="text-align: center; color: blue;">Últimas Fechas</th>
+
 											<c:if test="${o == 0}">
-												<th>O/C</th>
+												<th rowspan="2">O/C</th>
 											</c:if>
 											<c:if test="${r == 0}">
-												<th data-hide="phone">R/Q</th>
+												<th rowspan="2" data-hide="phone">R/Q</th>
 											</c:if>
 											<c:if test="${c == 0}">
-												<th data-hide="phone">Comprador</th>
+												<th rowspan="2" data-hide="phone">Comprador</th>
 											</c:if>
 											<c:if test="${p == 0}">
-												<th data-hide="phone">Proveedor</th>
+												<th rowspan="2" data-hide="phone">Proveedor</th>
 											</c:if>
 											<c:if test="${q == 0}">
-												<th data-hide="phone">Clase</th>
+												<th rowspan="2" data-hide="phone">Clase</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th data-hide="phone">Cent. Costo</th>
+												<th rowspan="2" data-hide="phone">Cent. Costo</th>
 											</c:if>
 
+										</tr>
+										<tr>
+											<th data-hide="phone" style="text-align: center; color: blue;">Cod</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">Descripción</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">U/M</th>
+												
+											<th data-hide="phone" style="text-align: center; color: blue;">Recibidas</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">Ordenadas</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">Rechazadas</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">Presupuestadas</th>
+											
+											<th data-hide="phone" style="text-align: center; color: blue;">P1</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">P2</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">P3</th>
+											
+											<th data-hide="phone" style="text-align: center; color: blue;">F1</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">F2</th>
+											<th data-hide="phone" style="text-align: center; color: blue;">F3</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -213,23 +224,20 @@ tr:last-child {
 														<td colspan="2"><c:out value="${compp.pides}" /></td>
 													</c:otherwise>
 												</c:choose>
+												<td><c:out value="${compp.punid}" /></td>
+												<td><fmt:formatNumber value="${compp.ppreac}" type="currency" /></td>
+												
 												<td><c:out value="${compp.pqtyd}" /></td>
+												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><fmt:formatNumber value="${compp.pvalbd}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.pvalpo}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.ppreac}"
-														type="currency" /></td>
+												<td><c:out value="${compp.pqtyp}" /></td>
+												
+												<td><fmt:formatNumber value="${compp.pprep1}" type="currency" /></td>												
+												<td><fmt:formatNumber value="${compp.pprep2}" type="currency" /></td>
+												<td><fmt:formatNumber value="${compp.pprep3}" type="currency" /></td>
 												<td><c:out value="${compp.fecep1}" /></td>
-												<td><fmt:formatNumber value="${compp.pprep1}"
-														type="currency" /></td>												
-												<td><c:out value="${compp.fecep2}" /></td>
-												<td><fmt:formatNumber value="${compp.pprep2}"
-														type="currency" /></td>
 												<td><c:out value="${compp.fecep3}" /></td>
-												<td><fmt:formatNumber value="${compp.pprep3}"
-														type="currency" /></td>												
+												<td><c:out value="${compp.fecep2}" /></td>												
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
