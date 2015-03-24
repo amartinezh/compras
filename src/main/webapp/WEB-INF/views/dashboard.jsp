@@ -176,13 +176,11 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-
 											<th rowspan="2" data-hide="phone"
 												style="text-align: center; color: blue;">Tipo Proveedor</th>
 											<th rowspan="2" data-hide="phone"
-												style="text-align: center; color: blue;">Val. base
-												recibido</th>
-											<th colspan="2" data-hide="phone"
+												style="text-align: center; color: blue;">Base Recibido</th>
+											<th colspan="3" data-hide="phone"
 												style="text-align: center; color: blue;">Unidades</th>
 
 											<!--<th data-hide="phone">Saldo Proveedor</th>
@@ -209,16 +207,20 @@ tr:last-child {
 												recibidas</th>
 											<th data-hide="phone"
 												style="text-align: center; color: blue;">Unidades
+												ordenadas</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Unidades
 												rechazadas</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
-											<tr
-												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
+											<tr onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
 												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
 												bgcolor="#EFF2EF">
+												
+												
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
@@ -234,6 +236,7 @@ tr:last-child {
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
+												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 
 												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>

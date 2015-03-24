@@ -217,7 +217,7 @@
 	<div class="page-footer">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<span class="txt-color-white">Flash Ventas - 2014</span>
+				<span class="txt-color-white">Gestión de Compras</span>
 			</div>
 		</div>
 	</div>

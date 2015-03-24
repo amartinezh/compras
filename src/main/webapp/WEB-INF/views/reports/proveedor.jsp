@@ -167,47 +167,66 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th>Proveedor</th>
-											<th>Nit</th>
-											<th data-hide="phone">Unidades recibidas</th>
-											<th data-hide="phone">Unidades rechazadas</th>
-											<th data-hide="phone">Val. base recibido</th>
-											<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Código</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Nit</th>
+											<th rowspan="2" style="text-align: center; color: blue;" data-hide="phone">Valor Compra</th>
+											<th rowspan="2" style="text-align: center; color: blue;" data-hide="phone">Saldo Proveedor</th>
+											
+											<th colspan="3" data-hide="phone"
+												style="text-align: center; color: blue;">Unidades</th>
+											
+											<!--  <th rowspan="2" data-hide="phone">Val. base recibido</th> -->
+											
+											
 											<c:if test="${o == 0}">
-												<th>O/C</th>
+												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
 											<c:if test="${r == 0}">
-												<th data-hide="phone">R/Q</th>
+												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${c == 0}">
-												<th data-hide="phone">Comprador</th>
+												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Comprador</th>
 											</c:if>
 											<c:if test="${i == 0}">
-												<th data-hide="phone">Items</th>
+												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Items</th>
 											</c:if>
 											<c:if test="${q == 0}">
-												<th data-hide="phone">Clase</th>
+												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Clase</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th data-hide="phone">Cent. Costo</th>
+												<th rowspan="2" data-hide="phone" style="text-align: center; color: blue;">Cent. Costo</th>
 											</c:if>
+										</tr>
+										<tr>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Unidades
+												recibidas</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Unidades
+												ordenadas</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Unidades
+												rechazadas</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
+												<td><c:out value="${compp.pprov}" /></td>
 												<td><c:out value="${compp.ppnov}" /></td>
 												<td><c:out value="${compp.pnit}" /></td>
-												<td><c:out value="${compp.pqtyd}" /></td>
-												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><fmt:formatNumber value="${compp.pvalbd}"
+												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"
 														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.ppreac}"
-														type="currency" /></td>
+												<td><c:out value="${compp.pqtyd}" /></td>
+												<td><c:out value="${compp.pqtyo}" /></td>
+												<td><c:out value="${compp.pqtyr}" /></td>
+												<!-- <td><fmt:formatNumber value="${compp.pvalbd}"
+														type="currency" /></td> -->
+												
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="prov" ModelAttribute="compra" commandName="compra">

@@ -93,7 +93,7 @@ public class IndexController {
 						}
 						ses.getCondiciones().put("a" + anoAct,
 								"c.pano = " + anoAct + "");
-						ses.getValores().put("a" + anoAct, "Año: " + anoAct);
+						ses.getValores().put("a" + anoAct, "<strong>Año: " + anoAct);
 						ses.getAnos().put(anoAct + "", anoAct + "");
 						for (int i = 0; i <= 2; i++) {
 							ses.getCondiciones().put("m" + mesAct,

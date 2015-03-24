@@ -227,24 +227,26 @@ public class Compras implements Serializable {
 	}
 
 	public Compras(String ptype, String ptyno, BigDecimal pqtyd,
-			BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo,
+			BigDecimal pqtyr, BigDecimal pqtyo, BigDecimal pvalbd, BigDecimal pvalpo,
 			BigDecimal ppreac) {
 		this.ptype = ptype;
 		this.ptyno = ptyno;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
+		this.pqtyo = pqtyo;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
 	}
 
 	// Constructor Proveedor
-	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr,
+	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyo, BigDecimal pqtyr,
 			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, String pnit) {
 		this.pprov = pprov;
 		this.ppnov = ppnov;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
+		this.pqtyo = pqtyo;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
@@ -1053,6 +1055,7 @@ public class Compras implements Serializable {
 
 	public void sumarCompras(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyo = pqtyo.add(com.getPqtyo());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pvalpo = pvalpo.add(com.getPvalpo());
@@ -1062,6 +1065,7 @@ public class Compras implements Serializable {
 	// Sumar Proveedor
 	public void sumarProveedores(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyo = pqtyo.add(com.getPqtyr());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pvalpo = pvalpo.add(com.getPvalpo());
