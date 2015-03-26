@@ -179,7 +179,7 @@ tr:last-child {
 											<th rowspan="2" data-hide="phone"
 												style="text-align: center; color: blue;">Tipo Proveedor</th>
 											<th rowspan="2" data-hide="phone"
-												style="text-align: center; color: blue;">Base Recibido</th>
+												style="text-align: center; color: blue;">Valor Compra</th>
 											<th colspan="3" data-hide="phone"
 												style="text-align: center; color: blue;">Unidades</th>
 

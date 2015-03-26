@@ -224,7 +224,7 @@ tr:last-child {
 														<td colspan="2"><c:out value="${compp.pides}" /></td>
 													</c:otherwise>
 												</c:choose>
-												<td><c:out value="${compp.punid}" /></td>
+												<td><c:out value="${compp.punin}" /></td>
 												<fmt:setLocale value="en_US"/>
 												<td><fmt:formatNumber value="${compp.ppreac}" type="currency" /></td>												
 												<td><c:out value="${compp.pqtyd}" /></td>
