@@ -66,6 +66,7 @@ public class ComprasDaoImpl implements ComprasDao {
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
 			com.sumarCompras(compras.get(compras.size() - 1));
+			
 		}
 		compras.add(com);
 		return compras;
