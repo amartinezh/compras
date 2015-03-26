@@ -168,136 +168,30 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th>Centro</th>
+											<th>Bodega</th>
 											<th data-hide="phone">Unidades recibidas</th>
 											<th data-hide="phone">Unidades rechazadas</th>
 											<th data-hide="phone">Val. base recibido</th>
 											<th data-hide="phone">Saldo Proveedor</th>
 											<th data-hide="phone">Precio Compra</th>
-											<c:if test="${o == 0}">
-												<th>O/C</th>
-											</c:if>
-											<c:if test="${r == 0}">
-												<th data-hide="phone">R/Q</th>
-											</c:if>
-											<c:if test="${c == 0}">
-												<th data-hide="phone">Comprador</th>
-											</c:if>
-											<c:if test="${p == 0}">
-												<th data-hide="phone">Proveedor</th>
-											</c:if>
-											<c:if test="${i == 0}">
-												<th data-hide="phone">Items</th>
-											</c:if>
-											<c:if test="${q == 0}">
-												<th data-hide="phone">Clase</th>
-											</c:if>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
-												<td><c:out value="${compp.pcenn}" /></td>
+												
+														<td><c:out value="${compp.plnon}" /></td>
+													
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<fmt:setLocale value="en_US"/>
+												<fmt:setLocale value="en_US" />
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
-												<c:if test="${o == 0}">
-													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra" commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
-															<form:input path="pcenn" type="hidden"
-																value="${compp.pcenn}" />
-															<button type="submit" Value="oc" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/ordencompra.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<c:if test="${r == 0}">
-													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra" commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
-															<form:input path="pcenn" type="hidden"
-																value="${compp.pcenn}" />
-															<button type="submit" Value="rq" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/requisicion.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<c:if test="${c == 0}">
-													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
-															<form:input path="pcenn" type="hidden"
-																value="${compp.pcenn}" />
-															<button type="submit" Value="compra" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/comprador.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-
-												<c:if test="${p == 0}">
-													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
-															<form:input path="pcenn" type="hidden"
-																value="${compp.pcenn}" />
-															<button type="submit" Value="prove" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/proveedor.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-
-												<c:if test="${i == 0}">
-													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
-															<form:input path="pcenn" type="hidden"
-																value="${compp.pcenn}" />
-															<button type="submit" Value="ite" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/producto.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<c:if test="${q == 0}">
-													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pcenn" type="hidden"
-																value="${compp.pcenn}" />
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
-															<button type="submit" Value="clas" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/tipoproducto.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
 											</tr>
 										</c:forEach>
 

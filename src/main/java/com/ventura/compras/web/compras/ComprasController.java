@@ -503,7 +503,7 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			model.addAttribute(
 					"listcomp",
-					comprasService.getOrdenes(ses.getCondiciones(),
+					comprasService.getBodegas(ses.getCondiciones(),
 							ses.getCondicionActual()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
