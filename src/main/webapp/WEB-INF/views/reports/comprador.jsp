@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -225,6 +227,7 @@ tr:last-child {
 													</c:otherwise>
 												</c:choose>
 												<td><c:out value="${compp.pnomd}" /></td>
+												<fmt:setLocale value="en_US"/>
 												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"
@@ -235,100 +238,109 @@ tr:last-child {
 												<td><c:out value="${compp.pqtyp}" /></td>
 												<!--  <td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td> -->
+												<c:choose>
+													<c:when test="${ compp.pcomd == '@@@@@' }">
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</c:when>
+													<c:otherwise>
 
-
-												<c:if test="${o == 0}">
-													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pnomd" type="hidden"
-																value="${compp.pnomd}" />
-															<form:input path="pcomd" type="hidden"
-																value="${compp.pcomd}" />
-															<button type="submit" Value="oc" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/ordencompra.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<c:if test="${r == 0}">
-													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pnomd" type="hidden"
-																value="${compp.pnomd}" />
-															<form:input path="pcomd" type="hidden"
-																value="${compp.pcomd}" />
-															<button type="submit" Value="rq" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/requisicion.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<c:if test="${p == 0}">
-													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pnomd" type="hidden"
-																value="${compp.pnomd}" />
-															<form:input path="pcomd" type="hidden"
-																value="${compp.pcomd}" />
-															<button type="submit" Value="prove" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/proveedor.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-
-												<c:if test="${i == 0}">
-													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pnomd" type="hidden"
-																value="${compp.pnomd}" />
-															<form:input path="pcomd" type="hidden"
-																value="${compp.pcomd}" />
-															<button type="submit" Value="ite" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/producto.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<c:if test="${q == 0}">
-													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pnomd" type="hidden"
-																value="${compp.pnomd}" />
-															<form:input path="pcomd" type="hidden"
-																value="${compp.pcomd}" />
-															<button type="submit" Value="clas" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/tipoproducto.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<c:if test="${k == 0}">
-													<td align="center"><form:form method="POST"
-															action="ccompra" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pnomd" type="hidden"
-																value="${compp.pnomd}" />
-															<form:input path="pcomd" type="hidden"
-																value="${compp.pcomd}" />
-															<button type="submit" Value="centr" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/centrocosto.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-
+														<c:if test="${o == 0}">
+															<td align="center"><form:form method="POST"
+																	action="ccompra" ModelAttribute="compra"
+																	commandName="compra">
+																	<form:input path="pnomd" type="hidden"
+																		value="${compp.pnomd}" />
+																	<form:input path="pcomd" type="hidden"
+																		value="${compp.pcomd}" />
+																	<button type="submit" Value="oc" name="next"
+																		style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																		<img width="20" height="20"
+																			src="<c:url value="/resources/img/adm/ordencompra.png" />">
+																	</button>
+																</form:form></td>
+														</c:if>
+														<c:if test="${r == 0}">
+															<td align="center"><form:form method="POST"
+																	action="ccompra" ModelAttribute="compra"
+																	commandName="compra">
+																	<form:input path="pnomd" type="hidden"
+																		value="${compp.pnomd}" />
+																	<form:input path="pcomd" type="hidden"
+																		value="${compp.pcomd}" />
+																	<button type="submit" Value="rq" name="next"
+																		style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																		<img width="20" height="20"
+																			src="<c:url value="/resources/img/adm/requisicion.png" />">
+																	</button>
+																</form:form></td>
+														</c:if>
+														<c:if test="${p == 0}">
+															<td align="center"><form:form method="POST"
+																	action="ccompra" ModelAttribute="compra"
+																	commandName="compra">
+																	<form:input path="pnomd" type="hidden"
+																		value="${compp.pnomd}" />
+																	<form:input path="pcomd" type="hidden"
+																		value="${compp.pcomd}" />
+																	<button type="submit" Value="prove" name="next"
+																		style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																		<img width="20" height="20"
+																			src="<c:url value="/resources/img/adm/proveedor.png" />">
+																	</button>
+																</form:form></td>
+														</c:if>
+														<c:if test="${i == 0}">
+															<td align="center"><form:form method="POST"
+																	action="ccompra" ModelAttribute="compra"
+																	commandName="compra">
+																	<form:input path="pnomd" type="hidden"
+																		value="${compp.pnomd}" />
+																	<form:input path="pcomd" type="hidden"
+																		value="${compp.pcomd}" />
+																	<button type="submit" Value="ite" name="next"
+																		style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																		<img width="20" height="20"
+																			src="<c:url value="/resources/img/adm/producto.png" />">
+																	</button>
+																</form:form></td>
+														</c:if>
+														<c:if test="${q == 0}">
+															<td align="center"><form:form method="POST"
+																	action="ccompra" ModelAttribute="compra"
+																	commandName="compra">
+																	<form:input path="pnomd" type="hidden"
+																		value="${compp.pnomd}" />
+																	<form:input path="pcomd" type="hidden"
+																		value="${compp.pcomd}" />
+																	<button type="submit" Value="clas" name="next"
+																		style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																		<img width="20" height="20"
+																			src="<c:url value="/resources/img/adm/tipoproducto.png" />">
+																	</button>
+																</form:form></td>
+														</c:if>
+														<c:if test="${k == 0}">
+															<td align="center"><form:form method="POST"
+																	action="ccompra" ModelAttribute="compra"
+																	commandName="compra">
+																	<form:input path="pnomd" type="hidden"
+																		value="${compp.pnomd}" />
+																	<form:input path="pcomd" type="hidden"
+																		value="${compp.pcomd}" />
+																	<button type="submit" Value="centr" name="next"
+																		style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																		<img width="20" height="20"
+																			src="<c:url value="/resources/img/adm/centrocosto.png" />">
+																	</button>
+																</form:form></td>
+														</c:if>
+													</c:otherwise>
+												</c:choose>
 											</tr>
 										</c:forEach>
 

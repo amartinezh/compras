@@ -199,6 +199,7 @@ tr:last-child {
 												<td><c:out value="${compp.picln}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
+												<fmt:setLocale value="en_US"/>
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"

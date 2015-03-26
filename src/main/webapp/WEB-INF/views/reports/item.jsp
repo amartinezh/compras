@@ -225,13 +225,12 @@ tr:last-child {
 													</c:otherwise>
 												</c:choose>
 												<td><c:out value="${compp.punid}" /></td>
-												<td><fmt:formatNumber value="${compp.ppreac}" type="currency" /></td>
-												
+												<fmt:setLocale value="en_US"/>
+												<td><fmt:formatNumber value="${compp.ppreac}" type="currency" /></td>												
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><c:out value="${compp.pqtyp}" /></td>
-												
+												<td><c:out value="${compp.pqtyp}" /></td>												
 												<td><fmt:formatNumber value="${compp.pprep1}" type="currency" /></td>												
 												<td><fmt:formatNumber value="${compp.pprep2}" type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pprep3}" type="currency" /></td>

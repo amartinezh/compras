@@ -230,7 +230,8 @@ tr:last-child {
 														<td><c:out value="${compp.ppnov}" /></td>
 														<td><c:out value="${compp.pnit}" /></td>
 													</c:otherwise>
-												</c:choose>												
+												</c:choose>		
+												<fmt:setLocale value="en_US"/>										
 												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"

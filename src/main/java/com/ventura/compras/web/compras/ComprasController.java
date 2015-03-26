@@ -495,6 +495,68 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
+	
+	@RequestMapping(value = "/bodega")
+	public String bodega(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute(
+					"listcomp",
+					comprasService.getOrdenes(ses.getCondiciones(),
+							ses.getCondicionActual()));
+			String[] cond = ses.getCondicionActual().split(",");
+			String mens = "";
+			for (String cc : cond) {
+				if (mens.isEmpty()) {
+					mens = ses.getValores().get(cc);
+				} else {
+					mens = mens + " " + ses.getValores().get(cc);
+				}
+			}
+			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("compra", new Compras());
+			String hist = ses.getHistorial();
+			if (hist.contains("c")) {
+				model.addAttribute("c", 1);
+			} else {
+				model.addAttribute("c", 0);
+			}
+			if (hist.contains("p")) {
+				model.addAttribute("p", 1);
+			} else {
+				model.addAttribute("p", 0);
+			}
+			if (hist.contains("i")) {
+				model.addAttribute("i", 1);
+			} else {
+				model.addAttribute("i", 0);
+			}
+			if (hist.contains("q")) {
+				model.addAttribute("q", 1);
+			} else {
+				model.addAttribute("q", 0);
+			}
+			if (hist.contains("k")) {
+				model.addAttribute("k", 1);
+			} else {
+				model.addAttribute("k", 0);
+			}
+			if (hist.contains("r")) {
+				model.addAttribute("r", 1);
+			} else {
+				model.addAttribute("r", 0);
+			}
+			if (hist.contains("o")) {
+				model.addAttribute("o", 1);
+			} else {
+				model.addAttribute("o", 0);
+			}
+			return "reports/bodega";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
 
 	@RequestMapping(value = "comp", method = RequestMethod.POST)
 	public String comp(@ModelAttribute("compra") Compras compra,
@@ -535,6 +597,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
+			} else if(request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");

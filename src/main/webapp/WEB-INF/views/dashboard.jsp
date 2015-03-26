@@ -233,6 +233,7 @@ tr:last-child {
 														</button>
 													</form:form></td>
 												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
+												<fmt:setLocale value="en_US"/>
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
@@ -333,7 +334,7 @@ tr:last-child {
 															value="${compp.ptype}" />
 														<form:input path="ptyno" type="hidden"
 															value="${compp.ptyno}" />
-														<button type="submit" Value="bodega" name="next"
+														<button type="submit" Value="bod" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 															<img width="20" height="20"
 																src="<c:url value="/resources/img/adm/ubicacion.png" />">
