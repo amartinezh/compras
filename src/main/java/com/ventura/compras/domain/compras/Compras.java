@@ -1083,7 +1083,6 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac.add(com.getPpreac());
 	}
 
-	// Sumar Proveedor
 	public void sumarProveedores(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyo = pqtyo.add(com.getPqtyr());
@@ -1093,7 +1092,6 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac.add(com.getPpreac());
 	}
 
-	// Constructor Comprador
 	public void sumarComprador(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
@@ -1104,7 +1102,6 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyo.add(com.getPqtyp());
 	}
 
-	// Constructor Item
 	public void sumarItem(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
@@ -1115,7 +1112,6 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyo.add(com.getPqtyp()); 
 	}
 
-	// Construtor Clase
 	public void sumarClases(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
@@ -1124,7 +1120,6 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac.add(com.getPpreac());
 	}
 
-	// Constructor Centro
 	public void sumarCentros(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
