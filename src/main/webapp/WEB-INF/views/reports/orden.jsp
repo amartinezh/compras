@@ -92,8 +92,8 @@ tr:last-child {
 	<header id="header">
 		<div id="logo-group">
 			<!-- PLACE YOUR LOGO HERE -->
-			<span id="logo"> <img
-				src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin">
+			<span id="logo">
+			 <!-- <img src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin"> -->
 			</span>
 			<!-- END LOGO PLACEHOLDER -->
 		</div>
@@ -161,7 +161,8 @@ tr:last-child {
 							<!-- widget content -->
 							<div class="widget-body no-padding">
 
-								<table class="table table-striped table-bordered" width="100%">
+								<!--  <table class="table table-striped table-bordered" width="100%">  -->
+								<table id="datatable_fixed_column" class="table table-striped table-bordered dataTable no-footer" width="100%" role="grid" aria-describedby="datatable_fixed_column_info" style="width: 100%;">
 									<thead>
 										<tr>
 											<td colspan="15" align="center"><c:out
