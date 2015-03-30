@@ -92,8 +92,7 @@ tr:last-child {
 	<header id="header">
 		<div id="logo-group">
 			<!-- PLACE YOUR LOGO HERE -->
-			<span id="logo">
-			 <!-- <img src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin"> -->
+			<span id="logo"> <!-- <img src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin"> -->
 			</span>
 			<!-- END LOGO PLACEHOLDER -->
 		</div>
@@ -162,7 +161,11 @@ tr:last-child {
 							<div class="widget-body no-padding">
 
 								<!--  <table class="table table-striped table-bordered" width="100%">  -->
-								<table id="datatable_fixed_column" class="table table-striped table-bordered dataTable no-footer" width="100%" role="grid" aria-describedby="datatable_fixed_column_info" style="width: 100%;">
+								<table id="datatable_fixed_column"
+									class="table table-striped table-bordered dataTable no-footer"
+									width="100%" role="grid"
+									aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
 									<thead>
 										<tr>
 											<td colspan="15" align="center"><c:out
@@ -178,8 +181,10 @@ tr:last-child {
 											<c:if test="${r == 0}">
 												<th data-hide="phone">R/Q</th>
 											</c:if>
-											<c:if test="${c == 0}">
-												<th data-hide="phone">Comprador</th>
+											<c:if test="${ user_inicio.tipoUsuario == 2 }">
+												<c:if test="${c == 0}">
+													<th data-hide="phone">Comprador</th>
+												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
 												<th data-hide="phone">Proveedor</th>
@@ -206,7 +211,7 @@ tr:last-child {
 													</c:choose></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<fmt:setLocale value="en_US"/>
+												<fmt:setLocale value="en_US" />
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"
@@ -225,20 +230,21 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-
-												<c:if test="${c == 0}">
-													<td align="center"><form:form method="POST"
-															action="ord" ModelAttribute="compra" commandName="compra">
-															<form:input path="nroor" type="hidden"
-																value="${compp.nroor}" />
-															<button type="submit" Value="compra" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/comprador.png" />">
-															</button>
-														</form:form></td>
+												<c:if test="${ user_inicio.tipoUsuario == 2 }">
+													<c:if test="${c == 0}">
+														<td align="center"><form:form method="POST"
+																action="ord" ModelAttribute="compra"
+																commandName="compra">
+																<form:input path="nroor" type="hidden"
+																	value="${compp.nroor}" />
+																<button type="submit" Value="compra" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																	<img width="20" height="20"
+																		src="<c:url value="/resources/img/adm/comprador.png" />">
+																</button>
+															</form:form></td>
+													</c:if>
 												</c:if>
-
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
 															action="ord" ModelAttribute="compra" commandName="compra">

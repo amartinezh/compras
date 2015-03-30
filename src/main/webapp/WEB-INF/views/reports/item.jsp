@@ -166,11 +166,16 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th colspan="3" data-hide="phone" style="text-align: center; color: blue;">Items</th>
+											<th colspan="3" data-hide="phone"
+												style="text-align: center; color: blue;">Items</th>
 											<th rowspan="2" data-hide="phone">Precio</th>
-											<th colspan="4" data-hide="phone" style="text-align: center; color: blue;">Cantidad</th>
-											<th colspan="3" data-hide="phone" style="text-align: center; color: blue;">Últimos Precios</th>
-											<th colspan="3" data-hide="phone" style="text-align: center; color: blue;">Últimas Fechas</th>
+											<th colspan="4" data-hide="phone"
+												style="text-align: center; color: blue;">Cantidad</th>
+											<th colspan="3" data-hide="phone"
+												style="text-align: center; color: blue;">Últimos
+												Precios</th>
+											<th colspan="3" data-hide="phone"
+												style="text-align: center; color: blue;">Últimas Fechas</th>
 
 											<c:if test="${o == 0}">
 												<th rowspan="2">O/C</th>
@@ -178,8 +183,10 @@ tr:last-child {
 											<c:if test="${r == 0}">
 												<th rowspan="2" data-hide="phone">R/Q</th>
 											</c:if>
-											<c:if test="${c == 0}">
-												<th rowspan="2" data-hide="phone">Comprador</th>
+											<c:if test="${ user_inicio.tipoUsuario == 2 }">
+												<c:if test="${c == 0}">
+													<th rowspan="2" data-hide="phone">Comprador</th>
+												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
 												<th rowspan="2" data-hide="phone">Proveedor</th>
@@ -193,22 +200,35 @@ tr:last-child {
 
 										</tr>
 										<tr>
-											<th data-hide="phone" style="text-align: center; color: blue;">Cod</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">Descripción</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">U/M</th>
-												
-											<th data-hide="phone" style="text-align: center; color: blue;">Recibidas</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">Ordenadas</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">Rechazadas</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">Presupuestadas</th>
-											
-											<th data-hide="phone" style="text-align: center; color: blue;">P1</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">P2</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">P3</th>
-											
-											<th data-hide="phone" style="text-align: center; color: blue;">F1</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">F2</th>
-											<th data-hide="phone" style="text-align: center; color: blue;">F3</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Cod</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Descripción</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">U/M</th>
+
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Recibidas</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Ordenadas</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Rechazadas</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">Presupuestadas</th>
+
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">P1</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">P2</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">P3</th>
+
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">F1</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">F2</th>
+											<th data-hide="phone"
+												style="text-align: center; color: blue;">F3</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -225,18 +245,22 @@ tr:last-child {
 													</c:otherwise>
 												</c:choose>
 												<td><c:out value="${compp.punin}" /></td>
-												<fmt:setLocale value="en_US"/>
-												<td><fmt:formatNumber value="${compp.ppreac}" type="currency" /></td>												
+												<fmt:setLocale value="en_US" />
+												<td><fmt:formatNumber value="${compp.ppreac}"
+														type="currency" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><c:out value="${compp.pqtyp}" /></td>												
-												<td><fmt:formatNumber value="${compp.pprep1}" type="currency" /></td>												
-												<td><fmt:formatNumber value="${compp.pprep2}" type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.pprep3}" type="currency" /></td>
+												<td><c:out value="${compp.pqtyp}" /></td>
+												<td><fmt:formatNumber value="${compp.pprep1}"
+														type="currency" /></td>
+												<td><fmt:formatNumber value="${compp.pprep2}"
+														type="currency" /></td>
+												<td><fmt:formatNumber value="${compp.pprep3}"
+														type="currency" /></td>
 												<td><c:out value="${compp.fecep1}" /></td>
 												<td><c:out value="${compp.fecep3}" /></td>
-												<td><c:out value="${compp.fecep2}" /></td>												
+												<td><c:out value="${compp.fecep2}" /></td>
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
@@ -267,20 +291,22 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-												<c:if test="${c == 0}">
-													<td align="center"><form:form method="POST"
-															action="itemm" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pides" type="hidden"
-																value="${compp.pides}" />
-															<form:input path="pipro" type="hidden"
-																value="${compp.pipro}" />
-															<button type="submit" Value="compra" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/comprador.png" />">
-															</button>
-														</form:form></td>
+												<c:if test="${ user_inicio.tipoUsuario == 2 }">
+													<c:if test="${c == 0}">
+														<td align="center"><form:form method="POST"
+																action="itemm" ModelAttribute="compra"
+																commandName="compra">
+																<form:input path="pides" type="hidden"
+																	value="${compp.pides}" />
+																<form:input path="pipro" type="hidden"
+																	value="${compp.pipro}" />
+																<button type="submit" Value="compra" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																	<img width="20" height="20"
+																		src="<c:url value="/resources/img/adm/comprador.png" />">
+																</button>
+															</form:form></td>
+													</c:if>
 												</c:if>
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"

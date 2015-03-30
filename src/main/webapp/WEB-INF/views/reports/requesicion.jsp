@@ -177,8 +177,10 @@ tr:last-child {
 											<c:if test="${o == 0}">
 												<th>O/C</th>
 											</c:if>
-											<c:if test="${c == 0}">
-												<th data-hide="phone">Comprador</th>
+											<c:if test="${ user_inicio.tipoUsuario == 2 }">
+												<c:if test="${c == 0}">
+													<th data-hide="phone">Comprador</th>
+												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
 												<th data-hide="phone">Proveedor</th>
@@ -208,7 +210,7 @@ tr:last-child {
 													</c:choose></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<fmt:setLocale value="en_US"/>
+												<fmt:setLocale value="en_US" />
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"
@@ -227,17 +229,20 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-												<c:if test="${c == 0}">
-													<td align="center"><form:form method="POST"
-															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />
-															<button type="submit" Value="compra" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/comprador.png" />">
-															</button>
-														</form:form></td>
+												<c:if test="${ user_inicio.tipoUsuario == 2 }">
+													<c:if test="${c == 0}">
+														<td align="center"><form:form method="POST"
+																action="req" ModelAttribute="compra"
+																commandName="compra">
+																<form:input path="tipoc" type="hidden"
+																	value="${compp.tipoc}" />
+																<button type="submit" Value="compra" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																	<img width="20" height="20"
+																		src="<c:url value="/resources/img/adm/comprador.png" />">
+																</button>
+															</form:form></td>
+													</c:if>
 												</c:if>
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
@@ -277,10 +282,9 @@ tr:last-child {
 												</c:if>
 												<c:if test="${k == 0}">
 													<td align="center"><form:form method="POST"
-															action="req" ModelAttribute="compra"
-															commandName="compra">
+															action="req" ModelAttribute="compra" commandName="compra">
 															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />															
+																value="${compp.tipoc}" />
 															<button type="submit" Value="centr" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"

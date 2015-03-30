@@ -67,7 +67,7 @@ public class IndexController {
 			User uss = userManager.val(user.getId(), user.getPass());
 			if (uss != null) {
 				if (uss.getType() != null) {
-					session ses = new session(uss.getId());
+					session ses = new session(uss.getId(), uss.getType().getId());
 					String ret = null;
 					List<Object> info = null;
 					if (uss.getType().getDescripcion()
@@ -77,13 +77,7 @@ public class IndexController {
 						info.add(1, companyService.listCompany());
 						info.add(2, centerService.listCenter());
 						ret = "redirect:/admin/panel";
-						// ret = "redirect:/admin/listar";
 					} else {
-						// Map<String, String> rmes = new HashMap<String,
-						// String>();
-						// Map<String, String> rano = new HashMap<String,
-						// String>();
-
 						Calendar fecha = new GregorianCalendar();
 						int anoAct = fecha.get(Calendar.YEAR);
 						int mesAct = (fecha.get(Calendar.MONTH) + 1) - 2;

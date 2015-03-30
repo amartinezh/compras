@@ -189,8 +189,10 @@ tr:last-child {
 												style="text-align: center; color: blue;">O/C</th>
 											<th rowspan="2" data-hide="phone"
 												style="text-align: center; color: blue;">R/Q</th>
-											<th rowspan="2" data-hide="phone"
-												style="text-align: center; color: blue;">Comprador</th>
+											<c:if test="${ user_inicio.tipoUsuario == 2 }">
+												<th rowspan="2" data-hide="phone"
+													style="text-align: center; color: blue;">Comprador</th>
+											</c:if>
 											<!-- <th data-hide="phone">Proveedor</th>  -->
 											<th rowspan="2" data-hide="phone"
 												style="text-align: center; color: blue;">Item</th>
@@ -216,11 +218,12 @@ tr:last-child {
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
-											<tr onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
+											<tr
+												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
 												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
 												bgcolor="#EFF2EF">
-												
-												
+
+
 												<td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"
@@ -233,7 +236,7 @@ tr:last-child {
 														</button>
 													</form:form></td>
 												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
-												<fmt:setLocale value="en_US"/>
+												<fmt:setLocale value="en_US" />
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
@@ -268,18 +271,21 @@ tr:last-child {
 																src="<c:url value="/resources/img/adm/requisicion.png" />">
 														</button>
 													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<button type="submit" Value="compra" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															<form:input path="ptyno" type="hidden"
-																value="${compp.ptyno}" />
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/comprador.png" />">
-														</button>
-													</form:form></td>
+												<c:if test="${ user_inicio.tipoUsuario == 2 }">
+													<td align="center"><form:form method="POST"
+															action="comp" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="ptype" type="hidden"
+																value="${compp.ptype}" />
+															<button type="submit" Value="compra" name="next"
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<form:input path="ptyno" type="hidden"
+																	value="${compp.ptyno}" />
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/comprador.png" />">
+															</button>
+														</form:form></td>
+												</c:if>
 												<!-- <td align="center"><form:form method="POST"
 														action="comp" ModelAttribute="compra" commandName="compra">
 														<form:input path="ptype" type="hidden"

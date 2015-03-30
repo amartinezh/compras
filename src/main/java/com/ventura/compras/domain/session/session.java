@@ -8,24 +8,139 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class session implements Serializable{
-	/*
+
 	@Override
-	public String toString() {
-		return "session [usuario=" + usuario + ", permisos=" + permisos.toString()
-				+ ", tipo=" + tipo + ", nivel=" + nivel + ", company="
-				+ company + ", view=" + view + "]";
-	}*/
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((anos == null) ? 0 : anos.hashCode());
+		result = prime * result + ((centers == null) ? 0 : centers.hashCode());
+		result = prime * result
+				+ ((condicionActual == null) ? 0 : condicionActual.hashCode());
+		result = prime
+				* result
+				+ ((condicionUsuario == null) ? 0 : condicionUsuario.hashCode());
+		result = prime * result
+				+ ((condiciones == null) ? 0 : condiciones.hashCode());
+		result = prime * result + ((cpias == null) ? 0 : cpias.hashCode());
+		result = prime * result
+				+ ((currencys == null) ? 0 : currencys.hashCode());
+		result = prime * result
+				+ ((historial == null) ? 0 : historial.hashCode());
+		result = prime * result
+				+ ((informacion == null) ? 0 : informacion.hashCode());
+		result = prime * result + ((levels == null) ? 0 : levels.hashCode());
+		result = prime * result + ((meses == null) ? 0 : meses.hashCode());
+		result = prime * result + tipoUsuario;
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		result = prime * result + ((valores == null) ? 0 : valores.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		session other = (session) obj;
+		if (anos == null) {
+			if (other.anos != null)
+				return false;
+		} else if (!anos.equals(other.anos))
+			return false;
+		if (centers == null) {
+			if (other.centers != null)
+				return false;
+		} else if (!centers.equals(other.centers))
+			return false;
+		if (condicionActual == null) {
+			if (other.condicionActual != null)
+				return false;
+		} else if (!condicionActual.equals(other.condicionActual))
+			return false;
+		if (condicionUsuario == null) {
+			if (other.condicionUsuario != null)
+				return false;
+		} else if (!condicionUsuario.equals(other.condicionUsuario))
+			return false;
+		if (condiciones == null) {
+			if (other.condiciones != null)
+				return false;
+		} else if (!condiciones.equals(other.condiciones))
+			return false;
+		if (cpias == null) {
+			if (other.cpias != null)
+				return false;
+		} else if (!cpias.equals(other.cpias))
+			return false;
+		if (currencys == null) {
+			if (other.currencys != null)
+				return false;
+		} else if (!currencys.equals(other.currencys))
+			return false;
+		if (historial == null) {
+			if (other.historial != null)
+				return false;
+		} else if (!historial.equals(other.historial))
+			return false;
+		if (informacion == null) {
+			if (other.informacion != null)
+				return false;
+		} else if (!informacion.equals(other.informacion))
+			return false;
+		if (levels == null) {
+			if (other.levels != null)
+				return false;
+		} else if (!levels.equals(other.levels))
+			return false;
+		if (meses == null) {
+			if (other.meses != null)
+				return false;
+		} else if (!meses.equals(other.meses))
+			return false;
+		if (tipoUsuario != other.tipoUsuario)
+			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
+			return false;
+		if (valores == null) {
+			if (other.valores != null)
+				return false;
+		} else if (!valores.equals(other.valores))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
-		return "session [usuario=" + usuario + "]";
+		return "session [usuario=" + usuario + ", tipoUsuario=" + tipoUsuario
+				+ ", informacion=" + informacion + ", condiciones="
+				+ condiciones + ", condicionActual=" + condicionActual
+				+ ", condicionUsuario=" + condicionUsuario + ", historial="
+				+ historial + ", valores=" + valores + ", meses=" + meses
+				+ ", anos=" + anos + ", cpias=" + cpias + ", levels=" + levels
+				+ ", centers=" + centers + ", currencys=" + currencys + "]";
 	}
-	
+
 	private String usuario;
+	private int tipoUsuario;
 	private List<Object> informacion;
 	private Map<String, String> condiciones;
 	private String condicionActual;
 	private String condicionUsuario;
+	public int getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(int tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
 	private String historial;
 	private Map<String, String> valores;
 	private Map<String, String> meses;
@@ -39,8 +154,9 @@ public class session implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public session(String usuario) {
+	public session(String usuario, int tipoUsuario) {
 		this.usuario = usuario;
+		this.tipoUsuario = tipoUsuario;
 		this.informacion = new LinkedList<Object>();
 		this.condiciones = new HashMap<String, String>();
 		this.historial = "";
@@ -60,22 +176,6 @@ public class session implements Serializable{
 		this.currencys = currencys;
 	}
 
-	/*
-	public session(String usuario, List<Map<String,String>> permisos, String tipo, String nivel, String company) {
-		this.usuario = usuario;
-		this.permisos = permisos;
-		this.tipo = tipo;
-		this.nivel = nivel;
-		this.company = company;		
-	}
-	public List<Map<String,String>> getPermisos() {
-		return permisos;
-	}
-	
-	public String getTipo() {
-		return tipo;
-	}
-	*/
 	public String getUsuario() {
 		return usuario;
 	}

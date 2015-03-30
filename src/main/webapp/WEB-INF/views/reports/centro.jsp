@@ -180,8 +180,10 @@ tr:last-child {
 											<c:if test="${r == 0}">
 												<th data-hide="phone">R/Q</th>
 											</c:if>
-											<c:if test="${c == 0}">
-												<th data-hide="phone">Comprador</th>
+											<c:if test="${ user_inicio.tipoUsuario == 2 }">
+												<c:if test="${c == 0}">
+													<th data-hide="phone">Comprador</th>
+												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
 												<th data-hide="phone">Proveedor</th>
@@ -201,7 +203,7 @@ tr:last-child {
 												<td><c:out value="${compp.pcenn}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-												<fmt:setLocale value="en_US"/>
+												<fmt:setLocale value="en_US" />
 												<td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td>
 												<td><fmt:formatNumber value="${compp.pvalpo}"
@@ -210,7 +212,8 @@ tr:last-child {
 														type="currency" /></td>
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra" commandName="compra">
+															action="cent" ModelAttribute="compra"
+															commandName="compra">
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
 															<form:input path="pcenn" type="hidden"
@@ -224,7 +227,8 @@ tr:last-child {
 												</c:if>
 												<c:if test="${r == 0}">
 													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra" commandName="compra">
+															action="cent" ModelAttribute="compra"
+															commandName="compra">
 															<form:input path="pcent" type="hidden"
 																value="${compp.pcent}" />
 															<form:input path="pcenn" type="hidden"
@@ -236,22 +240,23 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-												<c:if test="${c == 0}">
-													<td align="center"><form:form method="POST"
-															action="cent" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="pcent" type="hidden"
-																value="${compp.pcent}" />
-															<form:input path="pcenn" type="hidden"
-																value="${compp.pcenn}" />
-															<button type="submit" Value="compra" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/comprador.png" />">
-															</button>
-														</form:form></td>
+												<c:if test="${ user_inicio.tipoUsuario == 2 }">
+													<c:if test="${c == 0}">
+														<td align="center"><form:form method="POST"
+																action="cent" ModelAttribute="compra"
+																commandName="compra">
+																<form:input path="pcent" type="hidden"
+																	value="${compp.pcent}" />
+																<form:input path="pcenn" type="hidden"
+																	value="${compp.pcenn}" />
+																<button type="submit" Value="compra" name="next"
+																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																	<img width="20" height="20"
+																		src="<c:url value="/resources/img/adm/comprador.png" />">
+																</button>
+															</form:form></td>
+													</c:if>
 												</c:if>
-
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
 															action="cent" ModelAttribute="compra"
