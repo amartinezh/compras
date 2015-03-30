@@ -442,9 +442,8 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());			
-			char c = '"';
 			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(), ses.getCondicionActual());
-			model.addAttribute("autocompletar", ll.get(ll.size()-1).getNroor().split("-")[1].replaceAll("'", String.valueOf(c)));
+			model.addAttribute("autocompletar", ll.get(ll.size()-1).getNroor().split("-")[1].replaceAll("'", String.valueOf('"')));
 			ll.get(ll.size()-1).setNroor(ll.get(ll.size()-1).getNroor().split("-")[0]);
 			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
