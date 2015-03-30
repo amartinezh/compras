@@ -1,5 +1,8 @@
 package com.ventura.compras.web.compras;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -438,11 +441,12 @@ public class ComprasController {
 	public String orden(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
-			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute(
-					"listcomp",
-					comprasService.getOrdenes(ses.getCondiciones(),
-							ses.getCondicionActual()));
+			model.addAttribute("usuarioactuall", ses.getUsuario());			
+			char c = '"';
+			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(), ses.getCondicionActual());
+			model.addAttribute("autocompletar", ll.get(ll.size()-1).getNroor().split("-")[1].replaceAll("'", String.valueOf(c)));
+			ll.get(ll.size()-1).setNroor(ll.get(ll.size()-1).getNroor().split("-")[0]);
+			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -495,7 +499,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/bodega")
 	public String bodega(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -597,7 +601,7 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
-			} else if(request.getParameter("next").equals("bod")) {
+			} else if (request.getParameter("next").equals("bod")) {
 				ret = "redirect:bodega";
 				rec = "b";
 			}

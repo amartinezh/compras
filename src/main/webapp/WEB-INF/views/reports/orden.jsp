@@ -119,7 +119,6 @@ tr:last-child {
 					</ul>
 				</li>
 			</ul>
-
 			<a href="mostrar" class="btn btn-labeled btn-warning"> <span
 				class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio
 			</a> <a href="retornar" class="btn btn-labeled btn-default"> <span
@@ -143,7 +142,6 @@ tr:last-child {
 
 		<!-- widget grid -->
 		<section id="widget-grid">
-
 			<!-- row -->
 			<div class="row">
 
@@ -159,9 +157,24 @@ tr:last-child {
 
 							<!-- widget content -->
 							<div class="widget-body no-padding">
-
+								<div class="dt-toolbar">
+									<div class="col-xs-12 col-sm-6">
+										<div class="dataTables_filter" id="dt_basic_filter">
+											<form action="search.html" class="header-search pull-right">
+												<input id="search-fld" type="text" name="param"
+													placeholder="Filtrar Orden"
+													data-autocomplete='${ autocompletar }'>
+												<button type="submit">
+													<i class="fa fa-search"></i>
+												</button>
+												<a href="javascript:void(0);" id="cancel-search-js"
+													title="Cancel Search"><i class="fa fa-times"></i></a>
+											</form>
+										</div>
+									</div>
+								</div>
 								<!--  <table class="table table-striped table-bordered" width="100%">  -->
-								<table id="datatable_fixed_column"
+								<table
 									class="table table-striped table-bordered dataTable no-footer"
 									width="100%" role="grid"
 									aria-describedby="datatable_fixed_column_info"
@@ -172,35 +185,46 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th>orden</th>
-											<th data-hide="phone">Unidades recibidas</th>
-											<th data-hide="phone">Unidades rechazadas</th>
-											<th data-hide="phone">Val. base recibido</th>
-											<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Orden</th>
+											<th colspan="3" style="text-align: center; color: blue;">Unidades</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Val.
+												base recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Saldo
+												Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precio
+												Compra</th>
 											<c:if test="${r == 0}">
-												<th data-hide="phone">R/Q</th>
+												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
-													<th data-hide="phone">Comprador</th>
+													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
 												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
-												<th data-hide="phone">Proveedor</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
 											</c:if>
 											<c:if test="${i == 0}">
-												<th data-hide="phone">Items</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Items</th>
 											</c:if>
 											<c:if test="${q == 0}">
-												<th data-hide="phone">Clase</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
 											</c:if>
+										</tr>
+										<tr>
+											<th style="text-align: center; color: blue;">Unidades
+												Recibidas</th>
+											<th style="text-align: center; color: blue;">Unidades
+												Ordenadas</th>
+											<th style="text-align: center; color: blue;">Unidades
+												Rechazadas</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
+
 												<td><c:choose>
 														<c:when test="${compp.nroor == '@@@@@'}">
 															<c:out value="Total" />
@@ -210,6 +234,7 @@ tr:last-child {
 														</c:otherwise>
 													</c:choose></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
+												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<fmt:setLocale value="en_US" />
 												<td><fmt:formatNumber value="${compp.pvalbd}"

@@ -176,41 +176,41 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th rowspan="2" data-hide="phone"
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">Tipo Proveedor</th>
-											<th rowspan="2" data-hide="phone"
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">Valor Compra</th>
-											<th colspan="3" data-hide="phone"
+											<th colspan="3" 
 												style="text-align: center; color: blue;">Unidades</th>
 
-											<!--<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th> -->
-											<th rowspan="2" data-hide="phone"
+											<!--<th >Saldo Proveedor</th>
+											<th >Precio Compra</th> -->
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">O/C</th>
-											<th rowspan="2" data-hide="phone"
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">R/Q</th>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
-												<th rowspan="2" data-hide="phone"
+												<th rowspan="2" 
 													style="text-align: center; color: blue;">Comprador</th>
 											</c:if>
-											<!-- <th data-hide="phone">Proveedor</th>  -->
-											<th rowspan="2" data-hide="phone"
+											<!-- <th >Proveedor</th>  -->
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">Item</th>
-											<th rowspan="2" data-hide="phone"
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">Clase</th>
-											<th rowspan="2" data-hide="phone"
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">Cent. Costo</th>
-											<th rowspan="2" data-hide="phone"
+											<th rowspan="2" 
 												style="text-align: center; color: blue;">Bodega</th>
 										</tr>
 										<tr>
-											<th data-hide="phone"
+											<th 
 												style="text-align: center; color: blue;">Unidades
 												recibidas</th>
-											<th data-hide="phone"
+											<th 
 												style="text-align: center; color: blue;">Unidades
 												ordenadas</th>
-											<th data-hide="phone"
+											<th 
 												style="text-align: center; color: blue;">Unidades
 												rechazadas</th>
 										</tr>
