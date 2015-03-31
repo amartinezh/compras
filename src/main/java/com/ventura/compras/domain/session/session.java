@@ -133,14 +133,6 @@ public class session implements Serializable{
 	private Map<String, String> condiciones;
 	private String condicionActual;
 	private String condicionUsuario;
-	public int getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(int tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
-
 	private String historial;
 	private Map<String, String> valores;
 	private Map<String, String> meses;
@@ -149,7 +141,24 @@ public class session implements Serializable{
 	private Map<String, String> levels;
 	private Map<String, String>	centers;
 	private Map<String, String> currencys;
+	private String autocomplete;
+	
+	public int getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(int tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 		
+	public String getAutocomplete() {
+		return autocomplete;
+	}
+
+	public void setAutocomplete(String autocomplete) {
+		this.autocomplete = autocomplete;
+	}
+
 	public session() {
 		// TODO Auto-generated constructor stub
 	}

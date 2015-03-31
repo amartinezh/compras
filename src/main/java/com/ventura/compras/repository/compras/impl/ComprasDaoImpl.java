@@ -422,6 +422,57 @@ public class ComprasDaoImpl implements ComprasDao {
 	}
 
 	@SuppressWarnings("unchecked")
+	public List<Compras> getOrdenesFiltro(Map<String, String> condiciones, String cond, Compras compra) {
+		String[] c = cond.split(",");
+		StringBuilder where = new StringBuilder();
+		for (int i = 0; i < c.length; i++) {
+			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
+				if (where.length() == 0) {
+					where.append(condiciones.get(c[i]));
+				} else {
+					where.append(" and " + condiciones.get(c[i]));
+				}
+			}
+		}
+		if (where.length() != 0) {
+			where.append(" and ");
+		}
+		where.append("c.nroor LIKE '"+compra.getNroor().toUpperCase()+"%'");
+		List<Object[]> result = em
+				.createQuery(
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo"
+								+ " FROM Compras as c "
+								+ "WHERE "
+								+ where.toString()
+								+ "GROUP BY c.nroor").getResultList();
+		List<Compras> compras = new LinkedList<Compras>();
+		Compras comp = new Compras("@@@@@", new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN));
+		for (Object[] obj : result) {
+			compras.add(new Compras((String) obj[0], new BigDecimal(obj[1]
+					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[2].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
+							.toString())
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[4].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[5]
+							.toString())
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[6].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN)));
+			comp.sumarOrdenes(compras.get(compras.size() - 1));
+		}
+		compras.add(comp);
+		return compras;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Compras> getBodegas(Map<String, String> condiciones, String cond) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();

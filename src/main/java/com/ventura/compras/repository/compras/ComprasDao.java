@@ -15,6 +15,7 @@ public interface ComprasDao {
 	public List<Compras> getCentros(Map<String, String> condiciones, String cond);
 	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond);
 	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond);
+	public List<Compras> getOrdenesFiltro(Map<String, String> condiciones, String cond, Compras compra);
 	public List<Compras> getBodegas(Map<String, String> condiciones, String cond);
 	
 }

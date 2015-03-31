@@ -121,6 +121,8 @@ tr:last-child {
 			</ul>
 			<a href="mostrar" class="btn btn-labeled btn-warning"> <span
 				class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio
+			</a> <a href="orden" class="btn btn-labeled btn-info"> <span
+				class="btn-label"><i class="glyphicon glyphicon-refresh"></i></span>Actualizar
 			</a> <a href="retornar" class="btn btn-labeled btn-default"> <span
 				class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar
 			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
@@ -160,16 +162,16 @@ tr:last-child {
 								<div class="dt-toolbar">
 									<div class="col-xs-12 col-sm-6">
 										<div class="dataTables_filter" id="dt_basic_filter">
-											<form action="search.html" class="header-search pull-right">
-												<input id="search-fld" type="text" name="param"
+											<form:form method="POST" action="filtro"
+												ModelAttribute="compra" commandName="compra"
+												class="header-search pull-right">
+												<form:input type="text" path="nroor"
 													placeholder="Filtrar Orden"
-													data-autocomplete='${ autocompletar }'>
+													data-autocomplete='${ autocompletar }' />
 												<button type="submit">
 													<i class="fa fa-search"></i>
 												</button>
-												<a href="javascript:void(0);" id="cancel-search-js"
-													title="Cancel Search"><i class="fa fa-times"></i></a>
-											</form>
+											</form:form>
 										</div>
 									</div>
 								</div>
