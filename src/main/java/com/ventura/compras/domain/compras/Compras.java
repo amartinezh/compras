@@ -274,7 +274,7 @@ public class Compras implements Serializable {
 			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
 			String pides, BigDecimal pprep1, String fecep1, BigDecimal pprep2,
 			String fecep2, BigDecimal pprep3, String fecep3, BigDecimal pqtyo,
-			BigDecimal pqtyp, String punin) {
+			BigDecimal pqtyp, String punid) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pqtyd = pqtyd;
@@ -290,7 +290,7 @@ public class Compras implements Serializable {
 		this.fecep3 = fecep3;
 		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
-		this.punin = punin;
+		this.punid = punid;
 		
 	}
 

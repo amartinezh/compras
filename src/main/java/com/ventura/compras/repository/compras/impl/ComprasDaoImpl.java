@@ -186,11 +186,11 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, avg(c.pprep1) as pprep1, min(c.fecep1) as fecep1, avg(c.pprep2) as pprep2, min(c.fecep2) as fecep2, avg(c.pprep3) as pprep3, min(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punin as punin"
+						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, avg(c.pprep1) as pprep1, min(c.fecep1) as fecep1, avg(c.pprep2) as pprep2, min(c.fecep2) as fecep2, avg(c.pprep3) as pprep3, min(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punid as punid"
 								+ " FROM Compras as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pipro, c.pides, c.punin")
+								+ "GROUP BY c.pipro, c.pides, c.punid")
 				.getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,

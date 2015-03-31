@@ -166,69 +166,53 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th colspan="3" data-hide="phone"
-												style="text-align: center; color: blue;">Items</th>
-											<th rowspan="2" data-hide="phone">Precio</th>
-											<th colspan="4" data-hide="phone"
-												style="text-align: center; color: blue;">Cantidad</th>
-											<th colspan="3" data-hide="phone"
-												style="text-align: center; color: blue;">Últimos
+											<th colspan="3" style="text-align: center; color: blue;">Items</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precio</th>
+											<th colspan="4" style="text-align: center; color: blue;">Cantidad</th>
+											<th colspan="3" style="text-align: center; color: blue;">Últimos
 												Precios</th>
-											<th colspan="3" data-hide="phone"
-												style="text-align: center; color: blue;">Últimas Fechas</th>
+											<th colspan="3" style="text-align: center; color: blue;">Últimas
+												Fechas</th>
 
 											<c:if test="${o == 0}">
 												<th rowspan="2">O/C</th>
 											</c:if>
 											<c:if test="${r == 0}">
-												<th rowspan="2" data-hide="phone">R/Q</th>
+												<th rowspan="2">R/Q</th>
 											</c:if>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
-													<th rowspan="2" data-hide="phone">Comprador</th>
+													<th rowspan="2">Comprador</th>
 												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
-												<th rowspan="2" data-hide="phone">Proveedor</th>
+												<th rowspan="2">Proveedor</th>
 											</c:if>
 											<c:if test="${q == 0}">
-												<th rowspan="2" data-hide="phone">Clase</th>
+												<th rowspan="2">Clase</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th rowspan="2" data-hide="phone">Cent. Costo</th>
+												<th rowspan="2">Cent. Costo</th>
 											</c:if>
 
 										</tr>
 										<tr>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Cod</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Descripción</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">U/M</th>
+											<th style="text-align: center; color: blue;">Cod</th>
+											<th style="text-align: center; color: blue;">Descripción</th>
+											<th style="text-align: center; color: blue;">U/M</th>
 
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Recibidas</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Ordenadas</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Rechazadas</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Presupuestadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>
+											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Rechazadas</th>
+											<th style="text-align: center; color: blue;">Presupuestadas</th>
 
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">P1</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">P2</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">P3</th>
+											<th style="text-align: center; color: blue;">P1</th>
+											<th style="text-align: center; color: blue;">P2</th>
+											<th style="text-align: center; color: blue;">P3</th>
 
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">F1</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">F2</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">F3</th>
+											<th style="text-align: center; color: blue;">F1</th>
+											<th style="text-align: center; color: blue;">F2</th>
+											<th style="text-align: center; color: blue;">F3</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -244,7 +228,7 @@ tr:last-child {
 														<td colspan="2"><c:out value="${compp.pides}" /></td>
 													</c:otherwise>
 												</c:choose>
-												<td><c:out value="${compp.punin}" /></td>
+												<td><c:out value="${compp.punid}" /></td>
 												<fmt:setLocale value="en_US" />
 												<td><fmt:formatNumber value="${compp.ppreac}"
 														type="currency" /></td>
