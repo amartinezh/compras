@@ -77,7 +77,7 @@
 									<section>
 										<label class="label">Usuario</label>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<form:input path="id" />
+											<form:input path="id" autocomplete="off"/>
 											<form:errors path="id" cssclass="error"/>
 											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor ingrese su identificación</b></label>
 									</section>
@@ -85,21 +85,10 @@
 										<label class="label">Clave</label>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
 											<!-- <input type="password" name="password">  --> 
-											<form:input path="pass"/>
+											<form:input type="password" path="pass"/>
 											<form:errors path="pass" cssclass="error"/>  
-											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Ingrese su clave</b> </label>
-										<!--  <div class="note">
-											<a href="forgotpassword.html">Olvido la clave?</a>
-										</div>
-										-->
-									</section>
-									<!--  <section>
-										<label class="checkbox">
-											<input type="checkbox" name="remember" checked="">
-											
-											<i></i>Stay signed in</label>
-									</section>
-									-->
+											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Ingrese su clave</b> </label>										
+									</section>									
 								</fieldset>
 								<footer>
 									<button type="submit" class="btn btn-primary">
