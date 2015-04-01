@@ -168,31 +168,31 @@ tr:last-child {
 										<tr>
 											<th colspan="3" style="text-align: center; color: blue;">Items</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Precio</th>
-											<th colspan="4" style="text-align: center; color: blue;">Cantidad</th>
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimos
 												Precios</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimas
 												Fechas</th>
 
 											<c:if test="${o == 0}">
-												<th rowspan="2">O/C</th>
+												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
 											<c:if test="${r == 0}">
-												<th rowspan="2">R/Q</th>
+												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
-													<th rowspan="2">Comprador</th>
+													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
 												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
-												<th rowspan="2">Proveedor</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
 											</c:if>
 											<c:if test="${q == 0}">
-												<th rowspan="2">Clase</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th rowspan="2">Cent. Costo</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Cent. Costo</th>
 											</c:if>
 
 										</tr>

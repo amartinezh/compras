@@ -166,32 +166,38 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th>Clase</th>
-											<th data-hide="phone">Unidades recibidas</th>
-											<th data-hide="phone">Unidades rechazadas</th>
-											<th data-hide="phone">Val. base recibido</th>
-											<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th>
+										
+											<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precio Compra</th>
 											<c:if test="${o == 0}">
-												<th>O/C</th>
+												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
 											<c:if test="${r == 0}">
-												<th data-hide="phone">R/Q</th>
+												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
-													<th data-hide="phone">Comprador</th>
+													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
 												</c:if>
 											</c:if>
 											<c:if test="${p == 0}">
-												<th data-hide="phone">Proveedor</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
 											</c:if>
 											<c:if test="${i == 0}">
-												<th data-hide="phone">Items</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Items</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th data-hide="phone">Cent. Costo</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Cent. Costo</th>
 											</c:if>
+										</tr>
+										<tr>
+											<th style="text-align: center; color: blue;">Recibidas</th>
+											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Rechazadas</th>
+											<th style="text-align: center; color: blue;">Presupuestadas</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -200,7 +206,9 @@ tr:last-child {
 											<tr>
 												<td><c:out value="${compp.picln}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
+												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
+												<td><c:out value="${compp.pqtyp}" /></td>
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
 														type="number" /></td>

@@ -171,52 +171,51 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Nit</th>
 											<th rowspan="2" style="text-align: center; color: blue;"
-												data-hide="phone">Valor Compra</th>
+												>Valor Compra</th>
 											<th rowspan="2" style="text-align: center; color: blue;"
-												data-hide="phone">Saldo Proveedor</th>
+												>Saldo Proveedor</th>
 
-											<th colspan="3" data-hide="phone"
-												style="text-align: center; color: blue;">Unidades</th>
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 
-											<!--  <th rowspan="2" data-hide="phone">Val. base recibido</th> -->
+											<!--  <th rowspan="2" >Val. base recibido</th> -->
 
 
 											<c:if test="${o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
 											<c:if test="${r == 0}">
-												<th rowspan="2" data-hide="phone"
+												<th rowspan="2" 
 													style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
-													<th rowspan="2" data-hide="phone"
+													<th rowspan="2" 
 														style="text-align: center; color: blue;">Comprador</th>
 												</c:if>
 											</c:if>
 											<c:if test="${i == 0}">
-												<th rowspan="2" data-hide="phone"
+												<th rowspan="2" 
 													style="text-align: center; color: blue;">Items</th>
 											</c:if>
 											<c:if test="${q == 0}">
-												<th rowspan="2" data-hide="phone"
+												<th rowspan="2" 
 													style="text-align: center; color: blue;">Clase</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th rowspan="2" data-hide="phone"
+												<th rowspan="2" 
 													style="text-align: center; color: blue;">Cent. Costo</th>
 											</c:if>
 										</tr>
 										<tr>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Unidades
-												recibidas</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Unidades
-												ordenadas</th>
-											<th data-hide="phone"
-												style="text-align: center; color: blue;">Unidades
-												rechazadas</th>
+											<th 
+												style="text-align: center; color: blue;">Recibidas</th>
+											<th 
+												style="text-align: center; color: blue;">Ordenadas</th>
+											<th 
+												style="text-align: center; color: blue;">Rechazadas</th>
+												<th 
+												style="text-align: center; color: blue;">
+												Propuestas</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -241,6 +240,7 @@ tr:last-child {
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
+												<td><c:out value="${compp.pqtyp}" /></td>
 												<!-- <td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td> -->
 

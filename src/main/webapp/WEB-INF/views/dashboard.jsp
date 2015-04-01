@@ -122,15 +122,6 @@ tr:last-child {
 					</ul>
 				</li>
 			</ul>
-
-			<!-- <div id="logout" class="btn-header transparent pull-right">
-				<span> <a href="salir" title="Sign Out"
-					data-action="userLogout"
-					data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
-						class="fa fa-sign-out"></i></a>
-				</span>
-			</div>
-			 -->
 			<a href="actualizar" class="btn btn-labeled btn-info"> <span
 				class="btn-label"><i class="glyphicon glyphicon-refresh"></i></span>Actualizar
 			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
@@ -172,47 +163,35 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<td colspan="11" align="center"><c:out
+											<td colspan="15" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">Tipo Proveedor</th>
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">Valor Compra</th>
-											<th colspan="3" 
-												style="text-align: center; color: blue;">Unidades</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Tipo
+												Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor
+												Compra</th>
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 
 											<!--<th >Saldo Proveedor</th>
 											<th >Precio Compra</th> -->
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">O/C</th>
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">R/Q</th>
+											<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
+											<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
-												<th rowspan="2" 
-													style="text-align: center; color: blue;">Comprador</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
 											</c:if>
 											<!-- <th >Proveedor</th>  -->
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">Item</th>
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">Clase</th>
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">Cent. Costo</th>
-											<th rowspan="2" 
-												style="text-align: center; color: blue;">Bodega</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Item</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Cent.
+												Costo</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
 										</tr>
 										<tr>
-											<th 
-												style="text-align: center; color: blue;">Unidades
-												recibidas</th>
-											<th 
-												style="text-align: center; color: blue;">Unidades
-												ordenadas</th>
-											<th 
-												style="text-align: center; color: blue;">Unidades
-												rechazadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>
+											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Rechazadas</th>
+											<th style="text-align: center; color: blue;">Presupuestas</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -237,12 +216,12 @@ tr:last-child {
 													</form:form></td>
 												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
 												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
-														type="number" /></td>
-												<td><c:out value="${compp.pqtyd}" /></td>
-												<td><c:out value="${compp.pqtyo}" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbd}" type="number" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
-
+												<td><c:out value="${compp.pqtyo}" /></td>
+												<td><c:out value="${compp.pqtyd}" /></td>																								
+												<td><c:out value="${compp.pqtyp}" /></td>
 												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
 												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>  -->
 												<td align="center"><form:form method="POST"
@@ -254,7 +233,8 @@ tr:last-child {
 														<button type="submit" Value="oc" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 
-															<img width="20" height="20"	src="<c:url value="/resources/img/adm/ordencompra.png" />">
+															<img width="20" height="20"
+																src="<c:url value="/resources/img/adm/ordencompra.png" />">
 														</button>
 													</form:form></td>
 												<td align="center"><form:form method="POST"

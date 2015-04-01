@@ -168,12 +168,17 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th>Bodega</th>
-											<th data-hide="phone">Unidades recibidas</th>
-											<th data-hide="phone">Unidades rechazadas</th>
-											<th data-hide="phone">Val. base recibido</th>
-											<th data-hide="phone">Saldo Proveedor</th>
-											<th data-hide="phone">Precio Compra</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precio Compra</th>
+										</tr>
+										<tr>
+											<th style="text-align: center; color: blue;">Recibidas</th>
+											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Rechazadas</th>
+											<th style="text-align: center; color: blue;">Presupuestadas</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -184,7 +189,9 @@ tr:last-child {
 														<td><c:out value="${compp.plnon}" /></td>
 													
 												<td><c:out value="${compp.pqtyd}" /></td>
+												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
+												<td><c:out value="${compp.pqtyp}" /></td>
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
 														type="number" /></td>
