@@ -239,12 +239,12 @@ tr:last-child {
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<fmt:setLocale value="en_US" />
-												<td><fmt:formatNumber value="${compp.pvalbd}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.pvalpo}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.ppreac}"
-														type="currency" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
+														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
+														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
+														type="number" /></td>
 												<c:if test="${r == 0}">
 													<td align="center"><form:form method="POST"
 															action="ord" ModelAttribute="compra" commandName="compra">

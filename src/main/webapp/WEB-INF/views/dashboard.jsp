@@ -237,8 +237,8 @@ tr:last-child {
 													</form:form></td>
 												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
 												<fmt:setLocale value="en_US" />
-												<td><fmt:formatNumber value="${compp.pvalbd}"
-														type="currency" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
+														type="number" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
@@ -254,8 +254,7 @@ tr:last-child {
 														<button type="submit" Value="oc" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/ordencompra.png" />">
+															<img width="20" height="20"	src="<c:url value="/resources/img/adm/ordencompra.png" />">
 														</button>
 													</form:form></td>
 												<td align="center"><form:form method="POST"

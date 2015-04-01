@@ -186,12 +186,12 @@ tr:last-child {
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<fmt:setLocale value="en_US" />
-												<td><fmt:formatNumber value="${compp.pvalbd}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.pvalpo}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.ppreac}"
-														type="currency" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
+														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
+														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
+														type="number" /></td>
 											</tr>
 										</c:forEach>
 

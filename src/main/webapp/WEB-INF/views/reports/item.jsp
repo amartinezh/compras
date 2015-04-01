@@ -230,18 +230,18 @@ tr:last-child {
 												</c:choose>
 												<td><c:out value="${compp.punid}" /></td>
 												<fmt:setLocale value="en_US" />
-												<td><fmt:formatNumber value="${compp.ppreac}"
-														type="currency" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
+														type="number" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<td><c:out value="${compp.pqtyp}" /></td>
-												<td><fmt:formatNumber value="${compp.pprep1}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.pprep2}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.pprep3}"
-														type="currency" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pprep1}"
+														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pprep2}"
+														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pprep3}"
+														type="number" /></td>
 												<td><c:out value="${compp.fecep1}" /></td>
 												<td><c:out value="${compp.fecep3}" /></td>
 												<td><c:out value="${compp.fecep2}" /></td>

@@ -234,10 +234,10 @@ tr:last-child {
 													</c:otherwise>
 												</c:choose>
 												<fmt:setLocale value="en_US" />
-												<td><fmt:formatNumber value="${compp.ppreac}"
-														type="currency" /></td>
-												<td><fmt:formatNumber value="${compp.pvalpo}"
-														type="currency" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
+														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
+														type="number" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
