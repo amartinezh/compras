@@ -1124,7 +1124,7 @@ public class Compras implements Serializable {
 		this.pvalpo = pvalpo.add(com.getPvalpo());
 		this.ppreac = ppreac.add(com.getPpreac());
 		this.pqtyo = pqtyo.add(com.getPqtyo());
-		this.pqtyp = pqtyo.add(com.getPqtyp()); 
+		this.pqtyp = pqtyp.add(com.getPqtyp()); 
 	}
 
 	public void sumarClases(Compras com) {

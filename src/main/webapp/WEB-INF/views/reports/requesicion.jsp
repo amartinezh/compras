@@ -168,7 +168,7 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th rowspan="2" style="text-align: center; color: blue;">Tipo</th>											
+											<th rowspan="2" style="text-align: center; color: blue;">Req.</th>											
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>
@@ -205,14 +205,15 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
-												<td><c:choose>
+												<!-- <td><c:choose>
 														<c:when test="${compp.tipoc == '@@@@@'}">
 															<c:out value="Total" />
 														</c:when>
 														<c:otherwise>
 															<c:out value="${compp.ptyno}" />
 														</c:otherwise>
-													</c:choose></td>
+												</c:choose></td>  -->
+												<td><c:out value="${compp.nroor}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
