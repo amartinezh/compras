@@ -172,7 +172,7 @@ tr:last-child {
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Precio Compra</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Compra</th>
 										</tr>
 										<tr>
 											<th style="text-align: center; color: blue;">Recibidas</th>
@@ -193,11 +193,11 @@ tr:last-child {
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<td><c:out value="${compp.pqtyp}" /></td>
 												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
 														type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
 														type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
 														type="number" /></td>
 											</tr>
 										</c:forEach>

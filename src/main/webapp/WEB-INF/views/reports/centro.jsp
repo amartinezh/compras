@@ -174,7 +174,7 @@ tr:last-child {
 												base recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Precio
+											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Compra</th>
 											<c:if test="${o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
@@ -215,11 +215,11 @@ tr:last-child {
 												<td><c:out value="${compp.pqtyp}" /></td>
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
+														value="${compp.ppreac}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.ppreac}" type="number" /></td>
+														value="${compp.pvalbd}" type="number" /></td>
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="cent" ModelAttribute="compra"

@@ -152,7 +152,7 @@ tr:last-child {
 					<!-- Widget ID (each widget will need unique ID)-->
 					<div class="jarviswidget jarviswidget-color-darken far"
 						id="wid-id-0" data-widget-editbutton="false">
-
+						<c:out value="${user_inicio.historial }"></c:out>
 						<!-- widget div-->
 						<div>
 
@@ -230,7 +230,7 @@ tr:last-child {
 												</c:choose>
 												<td><c:out value="${compp.punid}" /></td>
 												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
 														type="number" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
