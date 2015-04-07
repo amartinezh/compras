@@ -242,10 +242,13 @@ public class IndexController {
 								|| uss.getCurr().getDescripcion()
 										.equalsIgnoreCase("todos")) {
 							ses.getCondiciones().put("m1", "c.pmond = 'COP'");
+							ses.getCondiciones().put("m3", "");
 							ses.getValores().put("m1", "Moneda: COP");
+							ses.getValores().put("m3", "Moneda: TODAS");
 							ses.getCurrencys().put("1", "COP");
+							ses.getCurrencys().put("3", "TODAS");
 							ses.setCondicionUsuario(ses.getCondicionUsuario()
-									+ ",m1");
+									+ ",m3");
 						}
 						if (uss.getCurr().getDescripcion()
 								.equalsIgnoreCase("usd")
@@ -254,9 +257,14 @@ public class IndexController {
 							ses.getCondiciones().put("m2", "c.pmond = 'USD'");
 							ses.getValores().put("m2", "Moneda: USD");
 							ses.getCurrencys().put("2", "USD");
-							if (!ses.getCondicionUsuario().contains("m1")) {
+							if(!ses.getCondiciones().containsKey("m3")) {
+								ses.getCondiciones().put("m3", "");
+								ses.getValores().put("m3", "Moneda: TODAS");
+								ses.getCurrencys().put("3", "TODAS");								
+							}							
+							if (!ses.getCondicionUsuario().contains("m3")) {
 								ses.setCondicionUsuario(ses
-										.getCondicionUsuario() + ",m2");
+										.getCondicionUsuario() + ",m3");
 							}
 						}
 						ret = "redirect:/compras/mostrar";
