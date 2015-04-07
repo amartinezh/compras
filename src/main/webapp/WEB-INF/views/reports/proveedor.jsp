@@ -233,7 +233,7 @@ tr:last-child {
 													</c:otherwise>
 												</c:choose>
 												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.ppreac}"
+												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
 														type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
 														type="number" /></td>
