@@ -1098,13 +1098,13 @@ public class Compras implements Serializable {
 	}
 
 	public void sumarProveedores(Compras com) {
-		this.pqtyd = pqtyd.add(com.getPqtyd());
-		this.pqtyo = pqtyo.add(com.getPqtyr());
+		this.pqtyd = pqtyd.add(com.getPqtyd());		
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pvalpo = pvalpo.add(com.getPvalpo());
 		this.ppreac = ppreac.add(com.getPpreac());
-		this.pqtyr = pqtyp.add(com.getPqtyp());
+		this.pqtyo = pqtyo.add(com.getPqtyo());
+		this.pqtyp = pqtyp.add(com.getPqtyp());
 	}
 
 	public void sumarComprador(Compras com) {
@@ -1114,7 +1114,7 @@ public class Compras implements Serializable {
 		this.pvalpo = pvalpo.add(com.getPvalpo());
 		this.ppreac = ppreac.add(com.getPpreac());
 		this.pqtyo = pqtyo.add(com.getPqtyo());
-		this.pqtyp = pqtyo.add(com.getPqtyp());
+		this.pqtyp = pqtyp.add(com.getPqtyp());
 	}
 
 	public void sumarItem(Compras com) {
