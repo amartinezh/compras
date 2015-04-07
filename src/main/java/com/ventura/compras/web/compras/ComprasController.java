@@ -116,6 +116,11 @@ public class ComprasController {
 			} else {
 				model.addAttribute("o", 0);
 			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
+			}
 			return "reports/comprador";
 		} else {
 			return "redirect:/index/ingreso";
@@ -177,6 +182,11 @@ public class ComprasController {
 				model.addAttribute("o", 1);
 			} else {
 				model.addAttribute("o", 0);
+			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
 			}
 			return "reports/proveedor";
 		} else {
@@ -240,6 +250,11 @@ public class ComprasController {
 			} else {
 				model.addAttribute("o", 0);
 			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
+			}
 			return "reports/item";
 		} else {
 			return "redirect:/index/ingreso";
@@ -301,6 +316,11 @@ public class ComprasController {
 				model.addAttribute("o", 1);
 			} else {
 				model.addAttribute("o", 0);
+			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
 			}
 			return "reports/clase";
 		} else {
@@ -364,6 +384,11 @@ public class ComprasController {
 			} else {
 				model.addAttribute("o", 0);
 			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
+			}
 			return "reports/centro";
 		} else {
 			return "redirect:/index/ingreso";
@@ -425,6 +450,11 @@ public class ComprasController {
 				model.addAttribute("o", 1);
 			} else {
 				model.addAttribute("o", 0);
+			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
 			}
 			return "reports/requesicion";
 		} else {
@@ -489,6 +519,11 @@ public class ComprasController {
 			} else {
 				model.addAttribute("o", 0);
 			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
+			}
 			return "reports/orden";
 		} else {
 			return "redirect:/index/ingreso";
@@ -548,6 +583,11 @@ public class ComprasController {
 				model.addAttribute("o", 1);
 			} else {
 				model.addAttribute("o", 0);
+			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
 			}
 			return "reports/orden";
 		} else {
@@ -610,6 +650,11 @@ public class ComprasController {
 				model.addAttribute("o", 1);
 			} else {
 				model.addAttribute("o", 0);
+			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
 			}
 			return "reports/bodega";
 		} else {
@@ -708,6 +753,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -761,6 +809,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("oc")) {
 				ret = "redirect:orden";
 				rec = "o";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -810,6 +861,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -857,6 +911,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -905,6 +962,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -952,6 +1012,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -1000,6 +1063,62 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("rq")) {
 				ret = "redirect:requisicion";
 				rec = "r";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
+			}
+			if (rec.isEmpty()) {
+				ses.setHistorial("");
+			} else {
+				ses.setHistorial(ses.getHistorial() + rec);
+			}
+			model.addAttribute("user_inicio", ses);
+			return ret;
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+
+	@RequestMapping(value = "bod", method = RequestMethod.POST)
+	public String bod(@ModelAttribute("compra") Compras compra,
+			HttpServletRequest request, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			String ret = "redirect:mostrar";
+			session ses = (session) model.asMap().get("user_inicio");
+
+			ses.setCondicionActual(ses.getCondicionActual() + ",Bod");
+
+			if (compra.getPlocal().equalsIgnoreCase("@@@@@")) {
+				ses.getValores().put("Bod", "Bodegas: Todos");
+				ses.getCondiciones().put("Bod", "");
+			} else {
+				ses.getValores().put("Bod", "Bodega: " + compra.getPlnon());
+				ses.getCondiciones().put("Bod",
+						"c.plocal = '" + compra.getPlocal() + "'");
+			}
+			String rec = "";
+			if (request.getParameter("next").equals("compra")) {
+				ret = "redirect:comprador";
+				rec = "c";
+			} else if (request.getParameter("next").equals("prove")) {
+				ret = "redirect:proveedor";
+				rec = "p";
+			} else if (request.getParameter("next").equals("ite")) {
+				ret = "redirect:item";
+				rec = "i";
+			} else if (request.getParameter("next").equals("clas")) {
+				ret = "redirect:clase";
+				rec = "q";
+			} else if (request.getParameter("next").equals("centr")) {
+				ret = "redirect:centro";
+				rec = "k";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -1022,13 +1141,13 @@ public class ComprasController {
 			if (ses.getHistorial().length() > 1) {
 				String ncond = "";
 				String hist = "";
-				for (int i = 4; i < cond.length - 1; i++) {
+				for (int i = ses.getCondicionUsuario().split(",").length; i < cond.length - 1; i++) {
 					if (ncond.isEmpty()) {
 						ncond = cond[i];
 					} else {
 						ncond = ncond + "," + cond[i];
 					}
-					hist = hist + ses.getHistorial().charAt(i - 4);
+					hist = hist + ses.getHistorial().charAt(i - ses.getCondicionUsuario().split(",").length);
 				}
 				if (hist.charAt(hist.length() - 1) == 'p') {
 					ret = "redirect:proveedor";
@@ -1044,6 +1163,8 @@ public class ComprasController {
 					ret = "redirect:requisicion";
 				} else if (hist.charAt(hist.length() - 1) == 'o') {
 					ret = "redirect:orden";
+				} else if (hist.charAt(hist.length() - 1) == 'b') {
+					ret = "redirect:bodega";
 				}
 				ses.setCondicionActual(ses.getCondicionUsuario() + "," + ncond);
 				ses.setHistorial(hist);

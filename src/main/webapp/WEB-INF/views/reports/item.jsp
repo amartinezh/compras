@@ -152,7 +152,6 @@ tr:last-child {
 					<!-- Widget ID (each widget will need unique ID)-->
 					<div class="jarviswidget jarviswidget-color-darken far"
 						id="wid-id-0" data-widget-editbutton="false">
-						<c:out value="${user_inicio.historial }"></c:out>
 						<!-- widget div-->
 						<div>
 
@@ -167,7 +166,9 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th colspan="3" style="text-align: center; color: blue;">Items</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Precio</th>
+											<c:if test="${p == 0 }">
+												<th rowspan="2" style="text-align: center; color: blue;">Precio</th>
+											</c:if>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimos
 												Precios</th>
@@ -192,9 +193,12 @@ tr:last-child {
 												<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
 											</c:if>
 											<c:if test="${k == 0}">
-												<th rowspan="2" style="text-align: center; color: blue;">Cent. Costo</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Cent.
+													Costo</th>
 											</c:if>
-
+											<c:if test="${b == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
+											</c:if>
 										</tr>
 										<tr>
 											<th style="text-align: center; color: blue;">Cod</th>
@@ -223,25 +227,26 @@ tr:last-child {
 													<c:when test="${compp.pipro != '@@@@@'}">
 														<td><c:out value="${compp.pipro}" /></td>
 														<td><c:out value="${compp.pides}" /></td>
+														<td><c:out value="${compp.punid}" /></td>
 													</c:when>
 													<c:otherwise>
-														<td colspan="2"><c:out value="${compp.pides}" /></td>
+														<td colspan="3"><c:out value="${compp.pides}" /></td>
 													</c:otherwise>
-												</c:choose>
-												<td><c:out value="${compp.punid}" /></td>
-												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalbd}"
-														type="number" /></td>
+												</c:choose>												
+												<c:if test="${p == 0 }">
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbd}" type="number" /></td>
+														</c:if>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>
 												<td><c:out value="${compp.pqtyp}" /></td>
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.pprep1}"
-														type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.pprep2}"
-														type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber value="${compp.pprep3}"
-														type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pprep1}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pprep2}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pprep3}" type="number" /></td>
 												<td><c:out value="${compp.fecep1}" /></td>
 												<td><c:out value="${compp.fecep3}" /></td>
 												<td><c:out value="${compp.fecep2}" /></td>
@@ -338,7 +343,22 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
+												<c:if test="${b == 0}">
+													<td align="center"><form:form method="POST"
+															action="itemm" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="pides" type="hidden"
+																value="${compp.pides}" />
+															<form:input path="pipro" type="hidden"
+																value="${compp.pipro}" />
+															<button type="submit" Value="bod" name="next"
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/ubicacion.png" />">
+															</button>
 
+														</form:form></td>
+												</c:if>
 											</tr>
 										</c:forEach>
 

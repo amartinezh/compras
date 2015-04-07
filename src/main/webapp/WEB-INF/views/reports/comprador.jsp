@@ -194,6 +194,9 @@ tr:last-child {
 												<th rowspan="2" style="text-align: center; color: blue;">Cent.
 													Costo</th>
 											</c:if>
+											<c:if test="${b == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
+											</c:if>
 										</tr>
 										<tr>
 											<th style="text-align: center; color: blue;">Recibidas</th>
@@ -316,6 +319,22 @@ tr:last-child {
 																<img width="20" height="20"
 																	src="<c:url value="/resources/img/adm/centrocosto.png" />">
 															</button>
+														</form:form></td>
+												</c:if>
+												<c:if test="${b == 0}">
+													<td align="center"><form:form method="POST"
+															action="ccompra" ModelAttribute="compra"
+															commandName="compra">
+															<form:input path="pnomd" type="hidden"
+																value="${compp.pnomd}" />
+															<form:input path="pcomd" type="hidden"
+																value="${compp.pcomd}" />
+															<button type="submit" Value="bod" name="next"
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/ubicacion.png" />">
+															</button>
+
 														</form:form></td>
 												</c:if>
 											</tr>
