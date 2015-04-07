@@ -208,16 +208,17 @@ tr:last-child {
 											<tr>
 												<c:choose>
 													<c:when test="${ compp.pcomd == '@@@@@' }">
-														<td><c:out value="Total" /></td>
+														<td colspan="2"><c:out value="Total" /></td>
 													</c:when>
 													<c:otherwise>
 														<td><c:out value="${compp.pcomd}" /></td>
+														<td><c:out value="${compp.pnomd}" /></td>
 													</c:otherwise>
 												</c:choose>
-												<td><c:out value="${compp.pnomd}" /></td>
+												
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.ppreac}" type="number" /></td>
+														value="${compp.pvalbd}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>

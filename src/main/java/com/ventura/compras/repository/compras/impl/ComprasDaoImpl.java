@@ -108,7 +108,6 @@ public class ComprasDaoImpl implements ComprasDao {
 			compras.add(new Compras(new BigDecimal(obj[2].toString()).setScale(
 					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
 					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-
 			new BigDecimal(obj[4].toString()).setScale(0,
 					BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[5]
 					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
@@ -212,24 +211,22 @@ public class ComprasDaoImpl implements ComprasDao {
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "");
 		for (Object[] obj : result) {
 			compras.add(new Compras(new BigDecimal(obj[2].toString()).setScale(
-					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
-					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[0], new BigDecimal(obj[4].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[5].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[1], new BigDecimal(obj[7].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[8], new BigDecimal(obj[9].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[10], new BigDecimal(obj[11].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[12], new BigDecimal(obj[13].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[14].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), (String) obj[15]));
+					0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[0], 
+					new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[1], 
+					new BigDecimal(obj[7].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[8], 
+					new BigDecimal(obj[9].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[10],
+					new BigDecimal(obj[11].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[12], 
+					new BigDecimal(obj[13].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[14].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[15]));
 			comp.sumarItem(compras.get(compras.size() - 1));
 		}
 		compras.add(comp);
@@ -369,18 +366,14 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ "GROUP BY c.tipoc").getResultList();
 		for (Object[] obj : result) {
 			compras.add(new Compras(new BigDecimal(obj[1].toString()).setScale(
-					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[2]
-					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[3].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[5].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), (String) obj[0],
-					new BigDecimal(obj[6].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[7]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+					0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					(String) obj[0],
+					new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[7].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
 			comp.sumarRequesiciones(compras.get(compras.size() - 1));
 		}
 		compras.add(comp);
