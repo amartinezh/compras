@@ -13,8 +13,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @IdClass(ComprasPK.class)
-@Table(name = "compras", schema = "compras")
-public class Compras implements Serializable {
+@Table(name = "compras_h", schema = "compras")
+public class Compras_h implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -222,181 +222,6 @@ public class Compras implements Serializable {
 	@Column(name = "fecep3")
 	private String fecep3;
 
-	public Compras() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Compras(BigDecimal pqtyp, String ptype, String ptyno, BigDecimal pqtyd,
-			BigDecimal pqtyr, BigDecimal pqtyo, BigDecimal pvalbd,
-			BigDecimal pvalpo, BigDecimal ppreac) {
-		this.ptype = ptype;
-		this.ptyno = ptyno;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pqtyo = pqtyo;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pqtyp = pqtyp;
-	}
-
-	// Constructor Proveedor
-	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyo,
-			BigDecimal pvalbd, BigDecimal pvalpo,
-			BigDecimal ppreac, String pnit, BigDecimal pqtyp) {
-		this.pprov = pprov;
-		this.ppnov = ppnov;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pqtyo = pqtyo;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pnit = pnit;
-		this.pqtyp = pqtyp;
-		//sum(c.pqtyo) as pqtyo, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp
-	}
-
-	// Constructor Comprador
-	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
-			BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd, BigDecimal pqtyo,
-			BigDecimal pqtyp) {
-		this.pcomd = pcomd;
-		this.pnomd = pnomd;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp;
-	}
-
-	// Constructor Item
-	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, String pipro,
-			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
-			String pides, BigDecimal pprep1, String fecep1, BigDecimal pprep2,
-			String fecep2, BigDecimal pprep3, String fecep3, BigDecimal pqtyo,
-			BigDecimal pqtyp, String punid) {
-		this.pipro = pipro;
-		this.pides = pides;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pprep1 = pprep1;
-		this.fecep1 = fecep1;
-		this.pprep2 = pprep2;
-		this.fecep2 = fecep2;
-		this.pprep3 = pprep3;
-		this.fecep3 = fecep3;
-		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp;
-		this.punid = punid;
-	}
-
-	// Construtor Clase
-	public Compras(BigDecimal pqtyd, String picla, BigDecimal pqtyr,
-			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
-			String picln, BigDecimal pqtyo, BigDecimal pqtyp) {
-		this.picla = picla;
-		this.picln = picln;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pqtyo = pqtyo; 
-		this.pqtyp = pqtyp;
-	}
-
-	// Constructor Centro
-	public Compras(String pcent, BigDecimal pqtyd, BigDecimal pqtyr,
-			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
-			String pcenn, BigDecimal pqtyo, BigDecimal pqtyp) {
-		this.pcent = pcent;
-		this.pcenn = pcenn;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pqtyo = pqtyo; 
-		this.pqtyp = pqtyp;
-	}
-	
-	// Constructor Orden
-	public Compras(BigDecimal pqtyp,String nroor, BigDecimal pqtyd, BigDecimal pqtyr,
-			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo) {
-		this.nroor = nroor;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp;
-		//c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
-		//7 0, 1, 2,3,4,5,6
-	}
-
-	// Constructor Requisicion
-	public Compras(BigDecimal pqtyd,  BigDecimal pqtyr, BigDecimal pvalbd,
-			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo, BigDecimal pqtyp, String nroor) {
-		this.nroor = nroor;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		/*this.tipoc = tipoc;
-		if (tipoc.equalsIgnoreCase("r")) {
-			this.ptyno = "Requisición";
-		} else {
-			this.ptyno = "Compra";
-		}*/
-		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp;
-	}
-
-	// Constructor Bodega
-	public Compras(String plocal, String plnon, BigDecimal pqtyd,
-			BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo,
-			BigDecimal ppreac, BigDecimal pqtyo, BigDecimal pqtyp) {
-		this.plocal = plocal;
-		this.plnon = plnon;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
-		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp; 
-	}
-
-	@Override
-	public String toString() {
-		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg
-				+ ", pcia=" + pcia + ", pnom=" + pnom + ", plocal=" + plocal
-				+ ", plnon=" + plnon + ", pcent=" + pcent + ", pcenn=" + pcenn
-				+ ", pprov=" + pprov + ", ppnov=" + ppnov + ", ptype=" + ptype
-				+ ", ptyno=" + ptyno + ", pnit=" + pnit + ", pcomd=" + pcomd
-				+ ", pnomd=" + pnomd + ", ppais=" + ppais + ", pnpas=" + pnpas
-				+ ", tipoc=" + tipoc + ", picla=" + picla + ", picln=" + picln
-				+ ", pipro=" + pipro + ", pides=" + pides + ", punid=" + punid
-				+ ", punin=" + punin + ", pcstp=" + pcstp + ", nroor=" + nroor
-				+ ", fecre=" + fecre + ", pmond=" + pmond + ", pqtyo=" + pqtyo
-				+ ", pqtyd=" + pqtyd + ", pqtyr=" + pqtyr + ", pqtyu=" + pqtyu
-				+ ", pqtyp=" + pqtyp + ", pvalbo=" + pvalbo + ", pvalto="
-				+ pvalto + ", pvalbd=" + pvalbd + ", pvaltd=" + pvaltd
-				+ ", pvalbr=" + pvalbr + ", pvaltr=" + pvaltr + ", pvalpo="
-				+ pvalpo + ", pvalve=" + pvalve + ", ppreac=" + ppreac
-				+ ", pprep1=" + pprep1 + ", fecep1=" + fecep1 + ", pprep2="
-				+ pprep2 + ", fecep2=" + fecep2 + ", pprep3=" + pprep3
-				+ ", fecep3=" + fecep3 + "]";
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -439,8 +264,8 @@ public class Compras implements Serializable {
 		result = prime * result + ((preg == null) ? 0 : preg.hashCode());
 		result = prime * result + ((ptyno == null) ? 0 : ptyno.hashCode());
 		result = prime * result + ((ptype == null) ? 0 : ptype.hashCode());
-		result = prime * result + ((punin == null) ? 0 : punin.hashCode());
 		result = prime * result + ((punid == null) ? 0 : punid.hashCode());
+		result = prime * result + ((punin == null) ? 0 : punin.hashCode());
 		result = prime * result + ((pvalbd == null) ? 0 : pvalbd.hashCode());
 		result = prime * result + ((pvalbo == null) ? 0 : pvalbo.hashCode());
 		result = prime * result + ((pvalbr == null) ? 0 : pvalbr.hashCode());
@@ -461,7 +286,7 @@ public class Compras implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Compras other = (Compras) obj;
+		Compras_h other = (Compras_h) obj;
 		if (fecep1 == null) {
 			if (other.fecep1 != null)
 				return false;
@@ -640,15 +465,15 @@ public class Compras implements Serializable {
 				return false;
 		} else if (!ptype.equals(other.ptype))
 			return false;
-		if (punin == null) {
-			if (other.punin != null)
-				return false;
-		} else if (!punin.equals(other.punin))
-			return false;
 		if (punid == null) {
 			if (other.punid != null)
 				return false;
 		} else if (!punid.equals(other.punid))
+			return false;
+		if (punin == null) {
+			if (other.punin != null)
+				return false;
+		} else if (!punin.equals(other.punin))
 			return false;
 		if (pvalbd == null) {
 			if (other.pvalbd != null)
@@ -698,6 +523,181 @@ public class Compras implements Serializable {
 		return true;
 	}
 
+	public Compras_h() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Compras_h(BigDecimal pqtyp, String ptype, String ptyno, BigDecimal pqtyd,
+			BigDecimal pqtyr, BigDecimal pqtyo, BigDecimal pvalbd,
+			BigDecimal pvalpo, BigDecimal ppreac) {
+		this.ptype = ptype;
+		this.ptyno = ptyno;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pqtyo = pqtyo;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pqtyp = pqtyp;
+	}
+
+	// Constructor Proveedor
+	public Compras_h(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyo,
+			BigDecimal pvalbd, BigDecimal pvalpo,
+			BigDecimal ppreac, String pnit, BigDecimal pqtyp) {
+		this.pprov = pprov;
+		this.ppnov = ppnov;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pqtyo = pqtyo;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pnit = pnit;
+		this.pqtyp = pqtyp;
+		//sum(c.pqtyo) as pqtyo, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp
+	}
+
+	// Constructor Comprador
+	public Compras_h(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
+			BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd, BigDecimal pqtyo,
+			BigDecimal pqtyp) {
+		this.pcomd = pcomd;
+		this.pnomd = pnomd;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pqtyo = pqtyo;
+		this.pqtyp = pqtyp;
+	}
+
+	// Constructor Item
+	public Compras_h(BigDecimal pqtyd, BigDecimal pqtyr, String pipro,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
+			String pides, BigDecimal pprep1, String fecep1, BigDecimal pprep2,
+			String fecep2, BigDecimal pprep3, String fecep3, BigDecimal pqtyo,
+			BigDecimal pqtyp, String punid) {
+		this.pipro = pipro;
+		this.pides = pides;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pprep1 = pprep1;
+		this.fecep1 = fecep1;
+		this.pprep2 = pprep2;
+		this.fecep2 = fecep2;
+		this.pprep3 = pprep3;
+		this.fecep3 = fecep3;
+		this.pqtyo = pqtyo;
+		this.pqtyp = pqtyp;
+		this.punid = punid;
+	}
+
+	// Construtor Clase
+	public Compras_h(BigDecimal pqtyd, String picla, BigDecimal pqtyr,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
+			String picln, BigDecimal pqtyo, BigDecimal pqtyp) {
+		this.picla = picla;
+		this.picln = picln;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pqtyo = pqtyo; 
+		this.pqtyp = pqtyp;
+	}
+
+	// Constructor Centro
+	public Compras_h(String pcent, BigDecimal pqtyd, BigDecimal pqtyr,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
+			String pcenn, BigDecimal pqtyo, BigDecimal pqtyp) {
+		this.pcent = pcent;
+		this.pcenn = pcenn;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pqtyo = pqtyo; 
+		this.pqtyp = pqtyp;
+	}
+	
+	// Constructor Orden
+	public Compras_h(BigDecimal pqtyp,String nroor, BigDecimal pqtyd, BigDecimal pqtyr,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo) {
+		this.nroor = nroor;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pqtyo = pqtyo;
+		this.pqtyp = pqtyp;
+		//c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
+		//7 0, 1, 2,3,4,5,6
+	}
+
+	// Constructor Requisicion
+	public Compras_h(BigDecimal pqtyd,  BigDecimal pqtyr, BigDecimal pvalbd,
+			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo, BigDecimal pqtyp, String nroor) {
+		this.nroor = nroor;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		/*this.tipoc = tipoc;
+		if (tipoc.equalsIgnoreCase("r")) {
+			this.ptyno = "Requisición";
+		} else {
+			this.ptyno = "Compra";
+		}*/
+		this.pqtyo = pqtyo;
+		this.pqtyp = pqtyp;
+	}
+
+	// Constructor Bodega
+	public Compras_h(String plocal, String plnon, BigDecimal pqtyd,
+			BigDecimal pqtyr, BigDecimal pvalbd, BigDecimal pvalpo,
+			BigDecimal ppreac, BigDecimal pqtyo, BigDecimal pqtyp) {
+		this.plocal = plocal;
+		this.plnon = plnon;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		this.pqtyo = pqtyo;
+		this.pqtyp = pqtyp; 
+	}
+
+	@Override
+	public String toString() {
+		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg
+				+ ", pcia=" + pcia + ", pnom=" + pnom + ", plocal=" + plocal
+				+ ", plnon=" + plnon + ", pcent=" + pcent + ", pcenn=" + pcenn
+				+ ", pprov=" + pprov + ", ppnov=" + ppnov + ", ptype=" + ptype
+				+ ", ptyno=" + ptyno + ", pnit=" + pnit + ", pcomd=" + pcomd
+				+ ", pnomd=" + pnomd + ", ppais=" + ppais + ", pnpas=" + pnpas
+				+ ", tipoc=" + tipoc + ", picla=" + picla + ", picln=" + picln
+				+ ", pipro=" + pipro + ", pides=" + pides + ", punid=" + punid
+				+ ", punin=" + punin + ", pcstp=" + pcstp + ", nroor=" + nroor
+				+ ", fecre=" + fecre + ", pmond=" + pmond + ", pqtyo=" + pqtyo
+				+ ", pqtyd=" + pqtyd + ", pqtyr=" + pqtyr + ", pqtyu=" + pqtyu
+				+ ", pqtyp=" + pqtyp + ", pvalbo=" + pvalbo + ", pvalto="
+				+ pvalto + ", pvalbd=" + pvalbd + ", pvaltd=" + pvaltd
+				+ ", pvalbr=" + pvalbr + ", pvaltr=" + pvaltr + ", pvalpo="
+				+ pvalpo + ", pvalve=" + pvalve + ", ppreac=" + ppreac
+				+ ", pprep1=" + pprep1 + ", fecep1=" + fecep1 + ", pprep2="
+				+ pprep2 + ", fecep2=" + fecep2 + ", pprep3=" + pprep3
+				+ ", fecep3=" + fecep3 + "]";
+	}
+	
 	public int getPano() {
 		return pano;
 	}
@@ -1180,4 +1180,6 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 	}
 
+	
+	
 }
