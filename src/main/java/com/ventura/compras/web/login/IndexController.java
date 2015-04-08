@@ -90,65 +90,65 @@ public class IndexController {
 						ses.getValores().put("a" + anoAct, "Año: " + anoAct);
 						ses.getAnos().put(anoAct + "", anoAct + "");
 						for (int i = 0; i <= 2; i++) {
-							ses.getCondiciones().put("m" + mesAct,
+							ses.getCondiciones().put("mm" + mesAct,
 									"c.pmes = " + mesAct);
 							switch (mesAct) {
 							case 1:
 								ses.getValores()
-										.put("m" + mesAct, "Mes: Enero");
+										.put("mm" + mesAct, "Mes: Enero");
 								ses.getMeses().put(mesAct + "", "ENERO");
 								break;
 							case 2:
-								ses.getValores().put("m" + mesAct,
+								ses.getValores().put("mm" + mesAct,
 										"Mes: Febrero");
 								ses.getMeses().put(mesAct + "", "FEBRERO");
 								break;
 							case 3:
 								ses.getValores()
-										.put("m" + mesAct, "Mes: Marzo");
+										.put("mm" + mesAct, "Mes: Marzo");
 								ses.getMeses().put(mesAct + "", "MARZO");
 								break;
 							case 4:
 								ses.getValores()
-										.put("m" + mesAct, "Mes: Abril");
+										.put("mm" + mesAct, "Mes: Abril");
 								ses.getMeses().put(mesAct + "", "ABRIL");
 								break;
 							case 5:
-								ses.getValores().put("m" + mesAct, "Mes: Mayo");
+								ses.getValores().put("mm" + mesAct, "Mes: Mayo");
 								ses.getMeses().put(mesAct + "", "MAYO");
 								break;
 							case 6:
 								ses.getValores()
-										.put("m" + mesAct, "Mes: Junio");
+										.put("mm" + mesAct, "Mes: Junio");
 								ses.getMeses().put(mesAct + "", "JUNIO");
 								break;
 							case 7:
 								ses.getValores()
-										.put("m" + mesAct, "Mes: Julio");
+										.put("mm" + mesAct, "Mes: Julio");
 								ses.getMeses().put(mesAct + "", "JULIO");
 								break;
 							case 8:
-								ses.getValores().put("m" + mesAct,
+								ses.getValores().put("mm" + mesAct,
 										"Mes: Agosto");
 								ses.getMeses().put(mesAct + "", "AGOSTO");
 								break;
 							case 9:
-								ses.getValores().put("m" + mesAct,
+								ses.getValores().put("mm" + mesAct,
 										"Mes: Septiembre");
 								ses.getMeses().put(mesAct + "", "SEPTIEMBRE");
 								break;
 							case 10:
-								ses.getValores().put("m" + mesAct,
+								ses.getValores().put("mm" + mesAct,
 										"Mes: Octubre");
 								ses.getMeses().put(mesAct + "", "OCTUBRE");
 								break;
 							case 11:
-								ses.getValores().put("m" + mesAct,
+								ses.getValores().put("mm" + mesAct,
 										"Mes: Noviempre");
 								ses.getMeses().put(mesAct + "", "NOVIEMBRE");
 								break;
 							case 12:
-								ses.getValores().put("m" + mesAct,
+								ses.getValores().put("mm" + mesAct,
 										"Mes: Diciembre");
 								ses.getMeses().put(mesAct + "", "DICIEMBRE");
 								break;
@@ -165,7 +165,9 @@ public class IndexController {
 							}
 						}
 						mesAct = mesAct - 1;
-						ses.setCondicionUsuario("a" + anoAct + ",m" + mesAct);
+						ses.setCondicionUsuario("a" + anoAct + ",mm" + mesAct);
+						ses.setFechaActual("a" + anoAct + ",mm" + mesAct);
+						ses.setFechaSelec("a" + anoAct + ",mm" + mesAct);
 						if (!uss.getCent().getDescripcion()
 								.equalsIgnoreCase("n/a")) {
 							ses.getCenters().put("1",

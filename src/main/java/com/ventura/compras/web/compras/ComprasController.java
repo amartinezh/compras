@@ -52,7 +52,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getCompras(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			model.addAttribute("compra", new Compras());
 			return "dashboard";
 		} else {
@@ -68,7 +68,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getCompradores(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -135,7 +135,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getProveedores(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -202,7 +202,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getItems(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -269,7 +269,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getClases(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -336,7 +336,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getCentros(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -403,7 +403,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getRequisiciones(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -467,7 +467,7 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");			
 			model.addAttribute("usuarioactuall", ses.getUsuario());			
-			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(), ses.getCondicionActual());
+			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(), ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec());
 			ses.setAutocomplete(ll.get(ll.size()-1).getNroor().split("-")[1].replaceAll("'", String.valueOf('"')));
 			model.addAttribute("autocompletar", ses.getAutocomplete());
 			ll.get(ll.size()-1).setNroor(ll.get(ll.size()-1).getNroor().split("-")[0]);
@@ -535,7 +535,7 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute("listcomp", comprasService.getOrdenesFiltro(ses.getCondiciones(), ses.getCondicionActual(), compra));
+			model.addAttribute("listcomp", comprasService.getOrdenesFiltro(ses.getCondiciones(), ses.getCondicionActual(), compra, ses.getFechaActual(), ses.getFechaSelec()));
 			model.addAttribute("autocompletar", ses.getAutocomplete());
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
@@ -603,7 +603,7 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getBodegas(ses.getCondiciones(),
-							ses.getCondicionActual()));
+							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -1205,11 +1205,13 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
 			if (ses.getCenters().isEmpty()) {
-				ses.setCondicionUsuario("a" + compra.getPano() + ",m"
+				ses.setFechaSelec("a" + compra.getPano() + ",mm"+ compra.getPmes());
+				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond());
 			} else {
-				ses.setCondicionUsuario("a" + compra.getPano() + ",m"
+				ses.setFechaSelec("a" + compra.getPano() + ",mm"+ compra.getPmes());
+				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
 						+ compra.getPcent());

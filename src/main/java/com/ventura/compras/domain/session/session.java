@@ -133,6 +133,8 @@ public class session implements Serializable{
 	private Map<String, String> condiciones;
 	private String condicionActual;
 	private String condicionUsuario;
+	private String fechaActual;
+	private String fechaSelec;		
 	private String historial;
 	private Map<String, String> valores;
 	private Map<String, String> meses;
@@ -203,6 +205,14 @@ public class session implements Serializable{
 	
 	public String getCondicionUsuario() {
 		return condicionUsuario;
+	}
+	
+	public String getFechaActual() {
+		return fechaActual;
+	}
+	
+	public String getFechaSelec() {
+		return fechaSelec;
 	}
 	
 	public String getHistorial() {
@@ -279,6 +289,14 @@ public class session implements Serializable{
 	
 	public void setCenters(Map<String, String> centers) {
 		this.centers = centers;
+	}
+	
+	public void setFechaActual(String fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+	
+	public void setFechaSelec(String fechaSelec) {
+		this.fechaSelec = fechaSelec;
 	}
 		
 }

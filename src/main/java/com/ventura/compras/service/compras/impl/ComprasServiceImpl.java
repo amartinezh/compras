@@ -16,44 +16,44 @@ public class ComprasServiceImpl implements ComprasService {
 	@Autowired
 	private ComprasDao comprasDao;
 	
-	public List<Compras> getCompras(Map<String, String> condiciones, String cond) {
-		return comprasDao.getCompras(condiciones, cond);
+	public List<Compras> getCompras(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getCompras(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getCompradores(Map<String, String> condiciones, String cond) {
-		return comprasDao.getCompradores(condiciones, cond);
+	public List<Compras> getCompradores(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getCompradores(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getProveedores(Map<String, String> condiciones, String cond) {
-		return comprasDao.getProveedores(condiciones, cond);
+	public List<Compras> getProveedores(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getProveedores(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getItems(Map<String, String> condiciones, String cond) {
-		return comprasDao.getItems(condiciones, cond);
+	public List<Compras> getItems(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getItems(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getClases(Map<String, String> condiciones, String cond) {
-		return comprasDao.getClases(condiciones, cond);
+	public List<Compras> getClases(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getClases(condiciones, cond, fechaAct, fechaSel);
 	}
 
-	public List<Compras> getCentros(Map<String, String> condiciones, String cond) {
-		return comprasDao.getCentros(condiciones, cond);
+	public List<Compras> getCentros(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getCentros(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond) {
-		return comprasDao.getRequisiciones(condiciones, cond);
+	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getRequisiciones(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond) {
-		return comprasDao.getOrdenes(condiciones, cond);
+	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getOrdenes(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getOrdenesFiltro(Map<String, String> condiciones, String cond, Compras compra) {
-		return comprasDao.getOrdenesFiltro(condiciones, cond, compra);
+	public List<Compras> getOrdenesFiltro(Map<String, String> condiciones, String cond, Compras compra, String fechaAct, String fechaSel) {
+		return comprasDao.getOrdenesFiltro(condiciones, cond, compra, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getBodegas(Map<String, String> condiciones, String cond) {
-		return comprasDao.getBodegas(condiciones, cond);
+	public List<Compras> getBodegas(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getBodegas(condiciones, cond, fechaAct, fechaSel);
 	}
 	
 }
