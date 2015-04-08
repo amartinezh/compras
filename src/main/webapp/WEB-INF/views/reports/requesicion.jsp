@@ -220,7 +220,14 @@ tr:last-child {
 															<c:out value="${compp.ptyno}" />
 														</c:otherwise>
 												</c:choose></td>  -->
-												<td><c:out value="${compp.nroor}" /></td>
+												<td><c:choose>
+														<c:when test="${compp.nroor == '@@@@@'}">
+															<c:out value="Total" />
+														</c:when>
+														<c:otherwise>
+															<c:out value="${compp.nroor}" />
+														</c:otherwise>
+													</c:choose></td>
 												<td><c:out value="${compp.pqtyd}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyr}" /></td>

@@ -342,19 +342,20 @@ public class Compras implements Serializable {
 	}
 
 	// Constructor Requisicion
-	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
-			BigDecimal pvalpo, BigDecimal ppreac, String tipoc, BigDecimal pqtyo, BigDecimal pqtyp) {
+	public Compras(BigDecimal pqtyd,  BigDecimal pqtyr, BigDecimal pvalbd,
+			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo, BigDecimal pqtyp, String nroor) {
+		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
-		this.tipoc = tipoc;
+		/*this.tipoc = tipoc;
 		if (tipoc.equalsIgnoreCase("r")) {
 			this.ptyno = "Requisición";
 		} else {
 			this.ptyno = "Compra";
-		}
+		}*/
 		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
 	}

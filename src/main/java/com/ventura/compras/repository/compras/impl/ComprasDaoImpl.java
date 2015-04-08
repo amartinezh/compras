@@ -349,31 +349,31 @@ public class ComprasDaoImpl implements ComprasDao {
 			}
 		}
 		List<Compras> compras = new LinkedList<Compras>();
-		Compras comp = new Compras(new BigDecimal(0).setScale(0,
-				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
-				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
-				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
-				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
-				BigDecimal.ROUND_HALF_EVEN), "@@@@@",
+		Compras comp = new Compras(
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN));
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "@@@@@");
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.tipoc as tipoc, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
 								+ " FROM Compras as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.tipoc").getResultList();
+								+ "GROUP BY c.nroor").getResultList();
 		for (Object[] obj : result) {
-			compras.add(new Compras(new BigDecimal(obj[1].toString()).setScale(
-					0, BigDecimal.ROUND_HALF_EVEN), 
+			compras.add(new Compras(
+					new BigDecimal(obj[1].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
 					new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
-					(String) obj[0],
 					new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
-					new BigDecimal(obj[7].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+					new BigDecimal(obj[7].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[0]));
 			comp.sumarRequesiciones(compras.get(compras.size() - 1));
 		}
 		compras.add(comp);
@@ -402,8 +402,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ where
 								+ "GROUP BY c.nroor").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
-		Compras comp = new Compras(new BigDecimal(0).setScale(0,
-				BigDecimal.ROUND_HALF_EVEN), "@@@@@",
+		Compras comp = new Compras(
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "@@@@@",
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
@@ -416,20 +416,15 @@ public class ComprasDaoImpl implements ComprasDao {
 			} else {
 				ordenes.append(", '" + (String) obj[0] + "'");
 			}
-			compras.add(new Compras(new BigDecimal(obj[7].toString()).setScale(
-					0, BigDecimal.ROUND_HALF_EVEN), (String) obj[0],
-					new BigDecimal(obj[1].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[2]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[3].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[5].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+			compras.add(new Compras(
+					new BigDecimal(obj[7].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					(String) obj[0],
+					new BigDecimal(obj[1].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
 			comp.sumarOrdenes(compras.get(compras.size() - 1));
 		}
 		ordenes.append("]");
