@@ -778,17 +778,14 @@ public class ComprasController {
 
 			ses.setCondicionActual(ses.getCondicionActual() + ",Req");
 
-			if (compra.getTipoc().equalsIgnoreCase("@@@@@")) {
+			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Req", "R/Q: Todos");
 				ses.getCondiciones().put("Req", "");
 			} else {
-				if (compra.getTipoc().equalsIgnoreCase("o")) {
-					ses.getValores().put("Req", "R/Q: Compra");
-				} else {
-					ses.getValores().put("Req", "R/Q: Requisicion");
-				}
+				ses.getValores().put("Req", "R/Q: " + compra.getNroor());
+				
 				ses.getCondiciones().put("Req",
-						"c.tipoc = '" + compra.getTipoc() + "'");
+						"c.nroor = '" + compra.getNroor() + "'");
 			}
 			String rec = "";
 			if (request.getParameter("next").equals("compra")) {

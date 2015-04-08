@@ -242,8 +242,8 @@ tr:last-child {
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="oc" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
@@ -256,8 +256,8 @@ tr:last-child {
 														<td align="center"><form:form method="POST"
 																action="req" ModelAttribute="compra"
 																commandName="compra">
-																<form:input path="tipoc" type="hidden"
-																	value="${compp.tipoc}" />
+																<form:input path="nroor" type="hidden"
+																	value="${compp.nroor}" />
 																<button type="submit" Value="compra" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
@@ -269,8 +269,8 @@ tr:last-child {
 												<c:if test="${p == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="prove" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
@@ -281,8 +281,8 @@ tr:last-child {
 												<c:if test="${i == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="ite" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
@@ -293,8 +293,8 @@ tr:last-child {
 												<c:if test="${q == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="clas" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
@@ -305,8 +305,8 @@ tr:last-child {
 												<c:if test="${k == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="centr" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
@@ -317,8 +317,8 @@ tr:last-child {
 												<c:if test="${b == 0}">
 													<td align="center"><form:form method="POST"
 															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="tipoc" type="hidden"
-																value="${compp.tipoc}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="bod" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
