@@ -222,8 +222,11 @@ public class IndexController {
 								|| uss.getLevel().getDescripcion()
 										.equalsIgnoreCase("todos")) {
 							ses.getCondiciones().put("l1", "c.ppais = 'COL'");
-							ses.getValores().put("l1", "Tipo: Nacional");
+							ses.getValores().put("l1", "Tipo: Nacional");							
 							ses.getLevels().put("1", "Nacional");
+							ses.getCondiciones().put("l3", "");
+							ses.getValores().put("l3", "Tipo: Todos");
+							ses.getLevels().put("3", "Todos");
 							ses.setCondicionUsuario(ses.getCondicionUsuario()
 									+ ",l1");
 						}
@@ -236,7 +239,12 @@ public class IndexController {
 							ses.getLevels().put("2", "Importada");
 							if (!ses.getCondicionUsuario().contains("l1")) {
 								ses.setCondicionUsuario(ses
-										.getCondicionUsuario() + ",l1");
+										.getCondicionUsuario() + ",l2");
+							}
+							if(!ses.getValores().containsKey("l3")) {
+								ses.getCondiciones().put("l3", "");
+								ses.getValores().put("l3", "Tipo: Todos");
+								ses.getLevels().put("3", "Todos");
 							}
 						}
 						if (uss.getCurr().getDescripcion()
