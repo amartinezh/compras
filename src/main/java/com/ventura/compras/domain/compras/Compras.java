@@ -341,8 +341,6 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac;
 		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
-		//c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
-		//7 0, 1, 2,3,4,5,6
 	}
 
 	// Constructor Requisicion

@@ -728,7 +728,7 @@ public class ComprasController {
 
 			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Ord", "O/C: Todos");
-				ses.getCondiciones().put("Ord", "");
+				ses.getCondiciones().put("Ord", "c.tipoc = 'O'");
 			} else {
 				ses.getValores().put("Ord", "O/C: " + compra.getNroor());
 				ses.getCondiciones().put("Ord",
@@ -780,7 +780,7 @@ public class ComprasController {
 
 			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Req", "R/Q: Todos");
-				ses.getCondiciones().put("Req", "");
+				ses.getCondiciones().put("Req", "c.tipoc = 'R'");
 			} else {
 				ses.getValores().put("Req", "R/Q: " + compra.getNroor());
 				
