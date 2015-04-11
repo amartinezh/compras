@@ -96,10 +96,18 @@ public class ComprasDaoImpl implements ComprasDao {
 				}
 			}
 		}
+		String tab = "";
+		if (fechaAct.equals(fechaSel)) {
+			tab = "Compras";
+		} else {
+			tab = "Compras_h";
+		}
 		List<Object[]> result = em
 				.createQuery(
 						"SELECT c.pcomd as pcomd, c.pnomd as pnomd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
-								+ " FROM Compras as c "
+								+ " FROM "
+								+ tab
+								+ " as c "
 								+ "WHERE "
 								+ where
 								+ "GROUP BY c.pcomd, c.pnomd").getResultList();
@@ -146,10 +154,18 @@ public class ComprasDaoImpl implements ComprasDao {
 				}
 			}
 		}
+		String tab = "";
+		if (fechaAct.equals(fechaSel)) {
+			tab = "Compras";
+		} else {
+			tab = "Compras_h";
+		}
 		List<Object[]> result = em
 				.createQuery(
 						"SELECT c.pprov as pprov, c.ppnov as ppnov, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyo) as pqtyo, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp"
-								+ " FROM Compras as c "
+								+ " FROM "
+								+ tab
+								+ " as c "
 								+ "WHERE "
 								+ where
 								+ "GROUP BY c.pprov, c.ppnov, c.pnit")
@@ -394,10 +410,16 @@ public class ComprasDaoImpl implements ComprasDao {
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@");
+		String tab = "";
+		if (fechaAct.equals(fechaSel)) {
+			tab = "Compras";
+		} else {
+			tab = "Compras_h";
+		}
 		List<Object[]> result = em
 				.createQuery(
 						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
-								+ " FROM Compras as c "
+								+ " FROM "+tab+" as c "
 								+ "WHERE "
 								+ where
 								+ "GROUP BY c.nroor").getResultList();
@@ -506,10 +528,18 @@ public class ComprasDaoImpl implements ComprasDao {
 			where.append(" and ");
 		}
 		where.append("c.nroor LIKE '" + compra.getNroor().toUpperCase() + "%'");
+		String tab = "";
+		if (fechaAct.equals(fechaSel)) {
+			tab = "Compras";
+		} else {
+			tab = "Compras_h";
+		}
 		List<Object[]> result = em
 				.createQuery(
 						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
-								+ " FROM Compras as c "
+								+ " FROM "
+								+ tab
+								+ " as c "
 								+ "WHERE "
 								+ where.toString() + "GROUP BY c.nroor")
 				.getResultList();
