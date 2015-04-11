@@ -168,7 +168,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pprov, c.ppnov, c.pnit")
+								+ "GROUP BY c.pprov, c.ppnov, c.pnit ORDER BY pvalbd desc")
 				.getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(-1000, "@@@@@", new BigDecimal(0).setScale(

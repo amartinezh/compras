@@ -218,7 +218,7 @@ tr:last-child {
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
-												<td><c:out value="${compp.pqtyr}" /></td>
+												<td style="text-align: right"><c:out value="${compp.pqtyr}" /></td>
 												<td><c:out value="${compp.pqtyo}" /></td>
 												<td><c:out value="${compp.pqtyd}" /></td>																								
 												<td><c:out value="${compp.pqtyp}" /></td>

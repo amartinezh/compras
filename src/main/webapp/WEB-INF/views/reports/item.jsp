@@ -243,8 +243,8 @@ tr:last-child {
 														<td style="text-align: right">$<fmt:formatNumber
 																value="${compp.pprep3}" type="number" /></td>
 														<td><c:out value="${compp.fecep1}" /></td>
-														<td><c:out value="${compp.fecep3}" /></td>
 														<td><c:out value="${compp.fecep2}" /></td>
+														<td><c:out value="${compp.fecep3}" /></td>
 													</c:when>
 													<c:otherwise>
 														<c:choose>
