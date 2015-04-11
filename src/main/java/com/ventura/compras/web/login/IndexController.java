@@ -226,7 +226,7 @@ public class IndexController {
 							ses.getLevels().put("1", "Nacional");
 							ses.getCondiciones().put("l3", "");
 							ses.getValores().put("l3", "Tipo: Todos");
-							ses.getLevels().put("3", "Todos");
+							ses.getLevels().put("3", "TODOS");
 							ses.setCondicionUsuario(ses.getCondicionUsuario()
 									+ ",l1");
 						}
@@ -244,7 +244,7 @@ public class IndexController {
 							if(!ses.getValores().containsKey("l3")) {
 								ses.getCondiciones().put("l3", "");
 								ses.getValores().put("l3", "Tipo: Todos");
-								ses.getLevels().put("3", "Todos");
+								ses.getLevels().put("3", "TODOS");
 							}
 						}
 						if (uss.getCurr().getDescripcion()

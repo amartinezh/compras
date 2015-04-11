@@ -295,6 +295,10 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 		this.punid = punid;
 	}
+	
+	public Compras(String pipro) {
+		this.pipro = pipro;
+	}
 
 	// Construtor Clase
 	public Compras(BigDecimal pqtyd, String picla, BigDecimal pqtyr,

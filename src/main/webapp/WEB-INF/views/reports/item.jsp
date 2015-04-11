@@ -228,28 +228,36 @@ tr:last-child {
 														<td><c:out value="${compp.pipro}" /></td>
 														<td><c:out value="${compp.pides}" /></td>
 														<td><c:out value="${compp.punid}" /></td>
+														<c:if test="${p == 0 }">
+															<td style="text-align: right">$<fmt:formatNumber
+																	value="${compp.pvalbd}" type="number" /></td>
+														</c:if>
+														<td><c:out value="${compp.pqtyd}" /></td>
+														<td><c:out value="${compp.pqtyo}" /></td>
+														<td><c:out value="${compp.pqtyr}" /></td>
+														<td><c:out value="${compp.pqtyp}" /></td>
+														<td style="text-align: right">$<fmt:formatNumber
+																value="${compp.pprep1}" type="number" /></td>
+														<td style="text-align: right">$<fmt:formatNumber
+																value="${compp.pprep2}" type="number" /></td>
+														<td style="text-align: right">$<fmt:formatNumber
+																value="${compp.pprep3}" type="number" /></td>
+														<td><c:out value="${compp.fecep1}" /></td>
+														<td><c:out value="${compp.fecep3}" /></td>
+														<td><c:out value="${compp.fecep2}" /></td>
 													</c:when>
 													<c:otherwise>
-														<td colspan="3"><c:out value="${compp.pides}" /></td>
+														<c:choose>
+															<c:when test="${p == 0 }">
+																<td colspan="14"></td>
+															</c:when>
+															<c:otherwise>
+																<td colspan="13"></td>
+															</c:otherwise>
+														</c:choose>
 													</c:otherwise>
-												</c:choose>												
-												<c:if test="${p == 0 }">
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
-														</c:if>
-												<td><c:out value="${compp.pqtyd}" /></td>
-												<td><c:out value="${compp.pqtyo}" /></td>
-												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><c:out value="${compp.pqtyp}" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pprep1}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pprep2}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pprep3}" type="number" /></td>
-												<td><c:out value="${compp.fecep1}" /></td>
-												<td><c:out value="${compp.fecep3}" /></td>
-												<td><c:out value="${compp.fecep2}" /></td>
+												</c:choose>
+
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
