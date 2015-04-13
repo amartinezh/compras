@@ -211,11 +211,16 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
-												<td><c:out value="${compp.pcenn}" /></td>
-												<td><c:out value="${compp.pqtyd}" /></td>
-												<td><c:out value="${compp.pqtyo}" /></td>
-												<td><c:out value="${compp.pqtyr}" /></td>
-												<td><c:out value="${compp.pqtyp}" /></td>
+												<td ><c:out value="${compp.pcenn}" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyd}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyo}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyr}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyp}" type="number" /></td>
+														
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.ppreac}" type="number" /></td>

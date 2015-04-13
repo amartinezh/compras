@@ -219,9 +219,9 @@ tr:last-child {
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
 												<td style="text-align: right"><c:out value="${compp.pqtyr}" /></td>
-												<td><c:out value="${compp.pqtyo}" /></td>
-												<td><c:out value="${compp.pqtyd}" /></td>																								
-												<td><c:out value="${compp.pqtyp}" /></td>
+												<td style="text-align: right"><c:out value="${compp.pqtyo}" /></td>
+												<td style="text-align: right"><c:out value="${compp.pqtyd}" /></td>																								
+												<td style="text-align: right"><c:out value="${compp.pqtyp}" /></td>
 												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
 												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>  -->
 												<td align="center"><form:form method="POST"
