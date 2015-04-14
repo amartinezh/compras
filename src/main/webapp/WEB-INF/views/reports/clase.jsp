@@ -171,7 +171,7 @@ tr:last-child {
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Precio Compra</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Recibido</th>
 											<c:if test="${o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -197,10 +197,11 @@ tr:last-child {
 											</c:if>
 										</tr>
 										<tr>
-											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>											
 											<th style="text-align: center; color: blue;">Rechazadas</th>
-											<th style="text-align: center; color: blue;">Presupuestadas</th>
+											<th style="text-align: center; color: blue;">Pendiente a
+												la Fecha</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -209,9 +210,9 @@ tr:last-child {
 											<tr>
 												<td><c:out value="${compp.picln}" /></td>
 												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyd}" type="number" /></td>												
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyr}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber

@@ -171,15 +171,11 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Nit</th>
 											<th rowspan="2" style="text-align: center; color: blue;"
-												>Valor Compra</th>
+												>Valor Recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;"
 												>Saldo Proveedor</th>
 
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
-
-											<!--  <th rowspan="2" >Val. base recibido</th> -->
-
-
 											<c:if test="${o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -211,14 +207,14 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th 
-												style="text-align: center; color: blue;">Recibidas</th>
-											<th 
 												style="text-align: center; color: blue;">Ordenadas</th>
+											<th 
+												style="text-align: center; color: blue;">Recibidas</th>											
 											<th 
 												style="text-align: center; color: blue;">Rechazadas</th>
 												<th 
 												style="text-align: center; color: blue;">
-												Propuestas</th>
+												Pendiente a la Fecha</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -240,11 +236,10 @@ tr:last-child {
 														type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
 														type="number" /></td>
-														
 												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
+														value="${compp.pqtyo}" type="number" /></td>		
 												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyo}" type="number" /></td>
+														value="${compp.pqtyd}" type="number" /></td>												
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyr}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber

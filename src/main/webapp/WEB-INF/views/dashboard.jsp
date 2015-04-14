@@ -170,7 +170,7 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Tipo
 												Proveedor</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Compra</th>
+												Recibido</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 
 											<!--<th >Saldo Proveedor</th>
@@ -188,10 +188,11 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
 										</tr>
 										<tr>
-											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
-											<th style="text-align: center; color: blue;">Presupuestas</th>
+											<th style="text-align: center; color: blue;">Pendiente a
+												la Fecha</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -218,10 +219,14 @@ tr:last-child {
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right"><c:out value="${compp.pqtyr}" /></td>
-												<td style="text-align: right"><c:out value="${compp.pqtyo}" /></td>
-												<td style="text-align: right"><c:out value="${compp.pqtyd}" /></td>																								
-												<td style="text-align: right"><c:out value="${compp.pqtyp}" /></td>
+												<td style="text-align: right"><c:out
+														value="${compp.pqtyo}" /></td>
+												<td style="text-align: right"><c:out
+														value="${compp.pqtyr}" /></td>												
+												<td style="text-align: right"><c:out
+														value="${compp.pqtyd}" /></td>
+												<td style="text-align: right"><c:out
+														value="${compp.pqtyp}" /></td>
 												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
 												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>  -->
 												<td align="center"><form:form method="POST"

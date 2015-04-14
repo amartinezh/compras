@@ -170,7 +170,7 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Cod</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Compra</th>
+												Recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
@@ -199,10 +199,11 @@ tr:last-child {
 											</c:if>
 										</tr>
 										<tr>
-											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
-											<th style="text-align: center; color: blue;">Presupuestadas</th>
+											<th style="text-align: center; color: blue;">Pendiente a
+												la Fecha</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -218,22 +219,21 @@ tr:last-child {
 														<td><c:out value="${compp.pnomd}" /></td>
 													</c:otherwise>
 												</c:choose>
-												
+
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>
-														
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyd}" type="number" /></td>												
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyr}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyp}" type="number" /></td>
-														
+
 												<!--  <td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td> -->
 

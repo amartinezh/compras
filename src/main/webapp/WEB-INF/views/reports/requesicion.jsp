@@ -175,7 +175,7 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Compra</th>
+												Recibido</th>
 											<c:if test="${o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -202,24 +202,16 @@ tr:last-child {
 											</c:if>
 										</tr>
 										<tr>
-											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>											
 											<th style="text-align: center; color: blue;">Rechazadas</th>
-											<th style="text-align: center; color: blue;">Propuestas</th>
+											<th style="text-align: center; color: blue;">Pendiente a la Fecha</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
-												<!-- <td><c:choose>
-														<c:when test="${compp.tipoc == '@@@@@'}">
-															<c:out value="Total" />
-														</c:when>
-														<c:otherwise>
-															<c:out value="${compp.ptyno}" />
-														</c:otherwise>
-												</c:choose></td>  -->
 												<td><c:choose>
 														<c:when test="${compp.nroor == '@@@@@'}">
 															<c:out value="Total" />
@@ -228,11 +220,10 @@ tr:last-child {
 															<c:out value="${compp.nroor}" />
 														</c:otherwise>
 													</c:choose></td>
-													
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyd}" type="number" /></td>												
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyr}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber

@@ -167,7 +167,8 @@ tr:last-child {
 										<tr>
 											<th colspan="3" style="text-align: center; color: blue;">Items</th>
 											<c:if test="${p == 0 }">
-												<th rowspan="2" style="text-align: center; color: blue;">Precio</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Valor
+													Recibido</th>
 											</c:if>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimos
@@ -205,10 +206,12 @@ tr:last-child {
 											<th style="text-align: center; color: blue;">Descripción</th>
 											<th style="text-align: center; color: blue;">U/M</th>
 
-											<th style="text-align: center; color: blue;">Recibidas</th>
+
 											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
-											<th style="text-align: center; color: blue;">Presupuestadas</th>
+											<th style="text-align: center; color: blue;">Pendiente a
+												la Fecha</th>
 
 											<th style="text-align: center; color: blue;">P1</th>
 											<th style="text-align: center; color: blue;">P2</th>
@@ -232,16 +235,15 @@ tr:last-child {
 															<td style="text-align: right">$<fmt:formatNumber
 																	value="${compp.pvalbd}" type="number" /></td>
 														</c:if>
-														
 														<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyo}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyr}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyp}" type="number" /></td>
-														
+																value="${compp.pqtyo}" type="number" /></td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqtyd}" type="number" /></td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqtyr}" type="number" /></td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqtyp}" type="number" /></td>
+
 														<td style="text-align: right">$<fmt:formatNumber
 																value="${compp.pprep1}" type="number" /></td>
 														<td style="text-align: right">$<fmt:formatNumber
