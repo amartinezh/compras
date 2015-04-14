@@ -226,9 +226,9 @@ public class Compras implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Compras(BigDecimal pqtyp, String ptype, String ptyno, BigDecimal pqtyd,
-			BigDecimal pqtyr, BigDecimal pqtyo, BigDecimal pvalbd,
-			BigDecimal pvalpo, BigDecimal ppreac) {
+	public Compras(BigDecimal pqtyp, String ptype, String ptyno,
+			BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyo,
+			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac) {
 		this.ptype = ptype;
 		this.ptyno = ptyno;
 		this.pqtyd = pqtyd;
@@ -241,8 +241,8 @@ public class Compras implements Serializable {
 	}
 
 	// Constructor Proveedor
-	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyo,
-			BigDecimal pvalbd, BigDecimal pvalpo,
+	public Compras(int pprov, String ppnov, BigDecimal pqtyd, BigDecimal pqtyr,
+			BigDecimal pqtyo, BigDecimal pvalbd, BigDecimal pvalpo,
 			BigDecimal ppreac, String pnit, BigDecimal pqtyp) {
 		this.pprov = pprov;
 		this.ppnov = ppnov;
@@ -254,13 +254,15 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac;
 		this.pnit = pnit;
 		this.pqtyp = pqtyp;
-		//sum(c.pqtyo) as pqtyo, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp
+		// sum(c.pqtyo) as pqtyo, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as
+		// pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as
+		// pqtyp
 	}
 
 	// Constructor Comprador
 	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
-			BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd, BigDecimal pqtyo,
-			BigDecimal pqtyp) {
+			BigDecimal pvalpo, BigDecimal ppreac, String pcomd, String pnomd,
+			BigDecimal pqtyo, BigDecimal pqtyp) {
 		this.pcomd = pcomd;
 		this.pnomd = pnomd;
 		this.pqtyd = pqtyd;
@@ -286,16 +288,31 @@ public class Compras implements Serializable {
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
 		this.pprep1 = pprep1;
-		this.fecep1 = fecep1;
+		if (fecep1.length() == 8) {
+			this.fecep1 = fecep1.substring(0, 4) + "/" + fecep1.substring(4, 6)
+					+ "/" + fecep1.substring(6, 8);
+		} else {
+			this.fecep1 = fecep1;
+		}
 		this.pprep2 = pprep2;
-		this.fecep2 = fecep2;
+		if (fecep2.length() == 8) {
+			this.fecep2 = fecep2.substring(0, 4) + "/" + fecep2.substring(4, 6)
+					+ "/" + fecep2.substring(6, 8);
+		} else {
+			this.fecep2 = fecep2;
+		}
 		this.pprep3 = pprep3;
-		this.fecep3 = fecep3;
+		if (fecep3.length() == 8) {
+			this.fecep3 = fecep3.substring(0, 4) + "/" + fecep3.substring(4, 6)
+					+ "/" + fecep3.substring(6, 8);
+		} else {
+			this.fecep3 = fecep3;
+		}
 		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
 		this.punid = punid;
 	}
-	
+
 	public Compras(String pipro) {
 		this.pipro = pipro;
 	}
@@ -311,7 +328,7 @@ public class Compras implements Serializable {
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
-		this.pqtyo = pqtyo; 
+		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
 	}
 
@@ -326,40 +343,52 @@ public class Compras implements Serializable {
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
-		this.pqtyo = pqtyo; 
-		this.pqtyp = pqtyp;
-	}
-	
-	// Constructor Orden
-	public Compras(BigDecimal pqtyp,String nroor, BigDecimal pqtyd, BigDecimal pqtyr,
-			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo) {
-		this.nroor = nroor;
-		this.pqtyd = pqtyd;
-		this.pqtyr = pqtyr;
-		this.pvalbd = pvalbd;
-		this.pvalpo = pvalpo;
-		this.ppreac = ppreac;
 		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
 	}
 
-	// Constructor Requisicion
-	public Compras(BigDecimal pqtyd,  BigDecimal pqtyr, BigDecimal pvalbd,
-			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo, BigDecimal pqtyp, String nroor) {
+	// Constructor Orden
+	public Compras(BigDecimal pqtyp, String nroor, BigDecimal pqtyd,
+			BigDecimal pqtyr, BigDecimal pvalbd, String fecre,
+			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo) {
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
-		/*this.tipoc = tipoc;
-		if (tipoc.equalsIgnoreCase("r")) {
-			this.ptyno = "Requisición";
-		} else {
-			this.ptyno = "Compra";
-		}*/
 		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
+		if (fecre.length() == 8) {
+			this.fecre = fecre.substring(0, 4) + "/" + fecre.substring(4, 6)
+					+ "/" + fecre.substring(6, 8);
+		} else {
+			this.fecre = fecre;
+		}
+	}
+
+	// Constructor Requisicion
+	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
+			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo,
+			String fecre, BigDecimal pqtyp, String nroor) {
+		this.nroor = nroor;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pvalbd = pvalbd;
+		this.pvalpo = pvalpo;
+		this.ppreac = ppreac;
+		/*
+		 * this.tipoc = tipoc; if (tipoc.equalsIgnoreCase("r")) { this.ptyno =
+		 * "Requisición"; } else { this.ptyno = "Compra"; }
+		 */
+		this.pqtyo = pqtyo;
+		this.pqtyp = pqtyp;
+		if (fecre.length() == 8) {
+			this.fecre = fecre.substring(0, 4) + "/" + fecre.substring(4, 6)
+					+ "/" + fecre.substring(6, 8);
+		} else {
+			this.fecre = fecre;
+		}
 	}
 
 	// Constructor Bodega
@@ -374,7 +403,7 @@ public class Compras implements Serializable {
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
 		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp; 
+		this.pqtyp = pqtyp;
 	}
 
 	@Override
@@ -1103,7 +1132,7 @@ public class Compras implements Serializable {
 	}
 
 	public void sumarProveedores(Compras com) {
-		this.pqtyd = pqtyd.add(com.getPqtyd());		
+		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pvalpo = pvalpo.add(com.getPvalpo());

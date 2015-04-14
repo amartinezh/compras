@@ -59,7 +59,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ " GROUP BY c.ptype, c.ptyno").getResultList();
+								+ " GROUP BY c.ptype, c.ptyno "
+								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		for (Object[] obj : result) {
 			compras.add(new Compras(new BigDecimal(obj[8].toString()).setScale(
@@ -110,7 +111,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pcomd, c.pnomd").getResultList();
+								+ "GROUP BY c.pcomd, c.pnomd "
+								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
@@ -168,7 +170,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pprov, c.ppnov, c.pnit ORDER BY pvalbd desc")
+								+ "GROUP BY c.pprov, c.ppnov, c.pnit "
+								+ "ORDER BY pvalbd desc")
 				.getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(-1000, "@@@@@", new BigDecimal(0).setScale(
@@ -229,7 +232,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pipro, c.pides, c.punid")
+								+ "GROUP BY c.pipro, c.pides, c.punid "
+								+ "ORDER BY pvalbd desc")
 				.getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras("@@@@@");
@@ -286,7 +290,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.picla, c.picln").getResultList();
+								+ "GROUP BY c.picla, c.picln "
+								+ "ORDER BY pvalbd desc").getResultList();
 		if (fechaAct.equals(fechaSel)) {
 
 		} else {
@@ -351,7 +356,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pcent, c.pcenn").getResultList();
+								+ "GROUP BY c.pcent, c.pcenn "
+								+ "ORDER BY pvalbd desc").getResultList();
 		if (fechaAct.equals(fechaSel)) {
 
 		} else {
@@ -408,7 +414,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
-				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), "", new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@");
 		String tab = "";
 		if (fechaAct.equals(fechaSel)) {
@@ -418,11 +424,12 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre"
 								+ " FROM "+tab+" as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.nroor").getResultList();
+								+ "GROUP BY c.nroor, c.fecre "
+								+ "ORDER BY pvalbd desc").getResultList();
 		for (Object[] obj : result) {
 			compras.add(new Compras(new BigDecimal(obj[1].toString()).setScale(
 					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[2]
@@ -434,7 +441,7 @@ public class ComprasDaoImpl implements ComprasDao {
 					new BigDecimal(obj[5].toString()).setScale(0,
 							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
 							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN), obj[8].toString(),
 					new BigDecimal(obj[7].toString()).setScale(0,
 							BigDecimal.ROUND_HALF_EVEN), (String) obj[0]));
 			comp.sumarRequesiciones(compras.get(compras.size() - 1));
@@ -466,19 +473,20 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.nroor").getResultList();
+								+ "GROUP BY c.nroor, c.fecre "
+								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@",
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "",
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN));
@@ -495,7 +503,7 @@ public class ComprasDaoImpl implements ComprasDao {
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[3].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4]
+							BigDecimal.ROUND_HALF_EVEN), obj[8].toString(), new BigDecimal(obj[4]
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[5].toString()).setScale(0,
@@ -536,19 +544,20 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where.toString() + "GROUP BY c.nroor")
-				.getResultList();
+								+ where.toString() 
+								+ "GROUP BY c.nroor, c.fecre "
+								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@",
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "",
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN));
@@ -560,7 +569,7 @@ public class ComprasDaoImpl implements ComprasDao {
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[3].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4]
+							BigDecimal.ROUND_HALF_EVEN), obj[8].toString(), new BigDecimal(obj[4]
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[5].toString()).setScale(0,
@@ -601,7 +610,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.plocal, c.plnon").getResultList();
+								+ "GROUP BY c.plocal, c.plnon " 
+								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras("@@@@@", "Total",
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),

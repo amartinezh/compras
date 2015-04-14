@@ -195,9 +195,11 @@ tr:last-child {
 												Proveedor</th> -->
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Fecha Requerida</th>
+												<!-- 
 											<c:if test="${r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
-											</c:if>
+											</c:if>  -->
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
@@ -253,6 +255,8 @@ tr:last-child {
 														type="number" /></td>  -->
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
+												<td><c:out value="${compp.fecre}" /></td>
+												<!-- 
 												<c:if test="${r == 0}">
 													<td align="center"><form:form method="POST"
 															action="ord" ModelAttribute="compra" commandName="compra">
@@ -265,6 +269,7 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
+												 -->
 												<c:if test="${ user_inicio.tipoUsuario == 2 }">
 													<c:if test="${c == 0}">
 														<td align="center"><form:form method="POST"
