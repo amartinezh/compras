@@ -214,6 +214,7 @@ tr:last-child {
 											varStatus="loopCounter">
 											<tr>
 												<td><c:out value="${compp.plnon}" /></td>
+												
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
@@ -223,6 +224,7 @@ tr:last-child {
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyp}" type="number" /></td>											
 												<fmt:setLocale value="en_US" />
+												
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.ppreac}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber

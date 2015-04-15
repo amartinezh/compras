@@ -219,14 +219,17 @@ tr:last-child {
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right"><c:out
-														value="${compp.pqtyo}" /></td>
-												<td style="text-align: right"><c:out
-														value="${compp.pqtyr}" /></td>												
-												<td style="text-align: right"><c:out
-														value="${compp.pqtyd}" /></td>
-												<td style="text-align: right"><c:out
-														value="${compp.pqtyp}" /></td>
+												
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyo}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyd}" type="number" /></td>												
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyr}" type="number" /></td>
+												<td style="text-align: right"><fmt:formatNumber
+														value="${compp.pqtyp}" type="number" /></td>											
+												<fmt:setLocale value="en_US" />
+														
 												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
 												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>  -->
 												<td align="center"><form:form method="POST"
