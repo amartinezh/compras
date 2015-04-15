@@ -189,14 +189,13 @@ tr:last-child {
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Orden</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Val.
-												base recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precio Compra Unitaria</th>
 											<!--   <th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th> -->
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Recibido</th>
+												Ordenado</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Compras</th>
+												Recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
 												Requerida</th>
 											<!-- 
@@ -254,12 +253,16 @@ tr:last-child {
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.ppreac}" type="number" /></td>
+														
 												<!--  <td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
 														type="number" /></td>  -->
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
+														
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbo}" type="number" /></td>
+														
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbd}" type="number" /></td>
+														
 												<td><c:out value="${compp.fecre}" /></td>
 												<!-- 
 												<c:if test="${r == 0}">

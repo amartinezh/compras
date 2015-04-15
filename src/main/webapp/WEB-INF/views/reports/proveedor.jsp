@@ -171,9 +171,9 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Nit</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Recibido</th>
+												Ordenado</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Compras</th>
+												Recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th>
 
@@ -227,9 +227,9 @@ tr:last-child {
 												</c:choose>
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbo}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbd}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
