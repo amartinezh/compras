@@ -195,8 +195,11 @@ tr:last-child {
 												Proveedor</th> -->
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Fecha Requerida</th>
-												<!-- 
+											<th rowspan="2" style="text-align: center; color: blue;">Valor
+												Compras</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Fecha
+												Requerida</th>
+											<!-- 
 											<c:if test="${r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>  -->
@@ -255,6 +258,8 @@ tr:last-child {
 														type="number" /></td>  -->
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbo}" type="number" /></td>
 												<td><c:out value="${compp.fecre}" /></td>
 												<!-- 
 												<c:if test="${r == 0}">

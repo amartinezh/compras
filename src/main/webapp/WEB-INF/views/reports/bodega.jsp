@@ -176,6 +176,8 @@ tr:last-child {
 												Proveedor</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor
+												Compras</th>
 											<c:if test="${o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -202,8 +204,8 @@ tr:last-child {
 											</c:if>
 										</tr>
 										<tr>
-										<th style="text-align: center; color: blue;">Ordenadas</th>
-											<th style="text-align: center; color: blue;">Recibidas</th>											
+											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
@@ -214,23 +216,25 @@ tr:last-child {
 											varStatus="loopCounter">
 											<tr>
 												<td><c:out value="${compp.plnon}" /></td>
-												
+
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>												
+														value="${compp.pqtyd}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyr}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyp}" type="number" /></td>											
+														value="${compp.pqtyp}" type="number" /></td>
 												<fmt:setLocale value="en_US" />
-												
+
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.ppreac}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbo}" type="number" /></td>
 												<c:if test="${o == 0}">
 													<td align="center"><form:form method="POST"
 															action="bod" ModelAttribute="compra" commandName="compra">

@@ -171,6 +171,8 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor
+												Compras</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
@@ -224,11 +226,13 @@ tr:last-child {
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbo}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>												
+														value="${compp.pqtyd}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyr}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
