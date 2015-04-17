@@ -165,7 +165,7 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th colspan="4" style="text-align: center; color: blue;">Items</th>
+											<th colspan="5" style="text-align: center; color: blue;">Items</th>
 											
 											<!-- <c:if test="${p == 0 }">
 												<th rowspan="2" style="text-align: center; color: blue;">Valor
