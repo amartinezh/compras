@@ -165,7 +165,8 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th colspan="3" style="text-align: center; color: blue;">Items</th>
+											<th colspan="4" style="text-align: center; color: blue;">Items</th>
+											
 											<!-- <c:if test="${p == 0 }">
 												<th rowspan="2" style="text-align: center; color: blue;">Valor
 													Recibido</th>
@@ -204,9 +205,9 @@ tr:last-child {
 										<tr>
 											<th style="text-align: center; color: blue;">Cod</th>
 											<th style="text-align: center; color: blue;">Descripción</th>
+											<th style="text-align: center; color: blue;">Proveedor</th>
 											<th style="text-align: center; color: blue;">U/M</th>
-
-
+											
 											<th style="text-align: center; color: blue;">Ordenadas</th>
 											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
@@ -230,7 +231,8 @@ tr:last-child {
 													<c:when test="${compp.pipro != '@@@@@'}">
 														<td><c:out value="${compp.pipro}" /></td>
 														<td><c:out value="${compp.pides}" /></td>
-														<td><c:out value="${compp.punid}" /></td>
+														<td><c:out value="${compp.ppnov}" /></td>
+														<td><c:out value="${compp.punid}" /></td>														
 											<!--	<c:if test="${p == 0 }">
 															<td style="text-align: right">$<fmt:formatNumber
 																	value="${compp.pvalbd}" type="number" /></td>
@@ -255,14 +257,14 @@ tr:last-child {
 														<td><c:out value="${compp.fecep3}" /></td>
 													</c:when>
 													<c:otherwise>
-														<c:choose>
+														<td colspan="14"/>
+														<!--<c:choose>
 															<c:when test="${p == 0 }">
 																<td colspan="14"></td>
-															</c:when>
-															<c:otherwise>
-																<td colspan="13"></td>
+															</c:when> 
+															<c:otherwise> 														
 															</c:otherwise>
-														</c:choose>
+														</c:choose>-->
 													</c:otherwise>
 												</c:choose>
 

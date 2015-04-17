@@ -234,13 +234,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punid as punid"
+						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pipro, c.pides, c.punid "
+								+ "GROUP BY c.pipro, c.pides, c.punid, c.pprov, c.ppnov "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras("@@@@@");
@@ -263,7 +263,8 @@ public class ComprasDaoImpl implements ComprasDao {
 					(String) obj[12], new BigDecimal(obj[13].toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[14].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), (String) obj[15]));
+							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
+					Integer.parseInt(obj[16].toString()), (String) obj[17]));
 		}
 		compras.add(comp);
 		return compras;
