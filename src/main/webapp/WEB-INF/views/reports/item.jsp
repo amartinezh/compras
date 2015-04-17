@@ -259,7 +259,7 @@ tr:last-child {
 														<td><c:out value="${compp.fecep3}" /></td>
 													</c:when>
 													<c:otherwise>
-														<td colspan="14"/>
+														<td colspan="15"/>
 														<!--<c:choose>
 															<c:when test="${p == 0 }">
 																<td colspan="14"></td>
