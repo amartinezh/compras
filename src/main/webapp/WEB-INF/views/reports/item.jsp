@@ -205,6 +205,7 @@ tr:last-child {
 										<tr>
 											<th style="text-align: center; color: blue;">Cod</th>
 											<th style="text-align: center; color: blue;">Descripción</th>
+											<th style="text-align: center; color: blue;">Cod. Proveedor</th>
 											<th style="text-align: center; color: blue;">Proveedor</th>
 											<th style="text-align: center; color: blue;">U/M</th>
 											
@@ -231,6 +232,7 @@ tr:last-child {
 													<c:when test="${compp.pipro != '@@@@@'}">
 														<td><c:out value="${compp.pipro}" /></td>
 														<td><c:out value="${compp.pides}" /></td>
+														<td><c:out value="${compp.pprov}" /></td>
 														<td><c:out value="${compp.ppnov}" /></td>
 														<td><c:out value="${compp.punid}" /></td>														
 											<!--	<c:if test="${p == 0 }">
