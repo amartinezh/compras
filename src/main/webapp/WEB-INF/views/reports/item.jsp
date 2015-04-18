@@ -157,16 +157,36 @@ tr:last-child {
 
 							<!-- widget content -->
 							<div class="widget-body no-padding">
-
-								<table class="table table-striped table-bordered" width="100%">
+								<div class="dt-toolbar">
+									<div class="col-xs-12 col-sm-6">
+										<div class="dataTables_filter" id="dt_basic_filter">
+											<form:form method="POST" action="filtro"
+												ModelAttribute="compra" commandName="compra"
+												class="header-search pull-right">
+												<form:input type="text" path="pipro"
+													placeholder="Filtrar Orden"
+													data-autocomplete='${ autocompletar }' />
+												<button type="submit">
+													<i class="fa fa-search"></i>
+												</button>
+											</form:form>
+										</div>
+									</div>
+								</div>
+								<!-- <table class="table table-striped table-bordered" width="100%"> -->
+								<table
+									class="table table-striped table-bordered dataTable no-footer"
+									width="100%" role="grid"
+									aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
 									<thead>
 										<tr>
-											<td colspan="20" align="center"><c:out
+											<td colspan="22" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
 											<th colspan="5" style="text-align: center; color: blue;">Items</th>
-											
+
 											<!-- <c:if test="${p == 0 }">
 												<th rowspan="2" style="text-align: center; color: blue;">Valor
 													Recibido</th>
@@ -205,10 +225,11 @@ tr:last-child {
 										<tr>
 											<th style="text-align: center; color: blue;">Cod</th>
 											<th style="text-align: center; color: blue;">Descripción</th>
-											<th style="text-align: center; color: blue;">Cod. Proveedor</th>
+											<th style="text-align: center; color: blue;">Cod.
+												Proveedor</th>
 											<th style="text-align: center; color: blue;">Proveedor</th>
 											<th style="text-align: center; color: blue;">U/M</th>
-											
+
 											<th style="text-align: center; color: blue;">Ordenadas</th>
 											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
@@ -234,8 +255,8 @@ tr:last-child {
 														<td><c:out value="${compp.pides}" /></td>
 														<td><c:out value="${compp.pprov}" /></td>
 														<td><c:out value="${compp.ppnov}" /></td>
-														<td><c:out value="${compp.punid}" /></td>														
-											<!--	<c:if test="${p == 0 }">
+														<td><c:out value="${compp.punid}" /></td>
+														<!--	<c:if test="${p == 0 }">
 															<td style="text-align: right">$<fmt:formatNumber
 																	value="${compp.pvalbd}" type="number" /></td>
 														</c:if> -->
@@ -259,7 +280,7 @@ tr:last-child {
 														<td><c:out value="${compp.fecep3}" /></td>
 													</c:when>
 													<c:otherwise>
-														<td colspan="15"/>
+														<td colspan="15" />
 														<!--<c:choose>
 															<c:when test="${p == 0 }">
 																<td colspan="14"></td>

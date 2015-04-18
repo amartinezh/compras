@@ -52,7 +52,8 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getCompras(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+							ses.getCondicionActual(), ses.getFechaActual(),
+							ses.getFechaSelec()));
 			model.addAttribute("compra", new Compras());
 			return "dashboard";
 		} else {
@@ -68,7 +69,8 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getCompradores(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+							ses.getCondicionActual(), ses.getFechaActual(),
+							ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -135,7 +137,8 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getProveedores(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+							ses.getCondicionActual(), ses.getFechaActual(),
+							ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -199,10 +202,13 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute(
-					"listcomp",
-					comprasService.getItems(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+			List<Compras> ll = comprasService.getItems(ses.getCondiciones(),
+					ses.getCondicionActual(), ses.getFechaActual(),
+					ses.getFechaSelec());
+			ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().replaceAll("'", String.valueOf('"')));
+			ll.get(ll.size() - 1).setNroor("");
+			model.addAttribute("autocompletar", ses.getAutocomplete());			
+			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -269,7 +275,8 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getClases(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+							ses.getCondicionActual(), ses.getFechaActual(),
+							ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -336,7 +343,8 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getCentros(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+							ses.getCondicionActual(), ses.getFechaActual(),
+							ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -400,10 +408,15 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute(
-					"listcomp",
-					comprasService.getRequisiciones(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+			List<Compras> ll = comprasService.getRequisiciones(
+					ses.getCondiciones(), ses.getCondicionActual(),
+					ses.getFechaActual(), ses.getFechaSelec());
+			ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
+					.replaceAll("'", String.valueOf('"')));
+			model.addAttribute("autocompletar", ses.getAutocomplete());
+			ll.get(ll.size() - 1).setNroor(
+					ll.get(ll.size() - 1).getNroor().split("-")[0]);
+			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -465,12 +478,16 @@ public class ComprasController {
 	@RequestMapping(value = "/orden")
 	public String orden(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
-			session ses = (session) model.asMap().get("user_inicio");			
-			model.addAttribute("usuarioactuall", ses.getUsuario());			
-			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(), ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec());
-			ses.setAutocomplete(ll.get(ll.size()-1).getNroor().split("-")[1].replaceAll("'", String.valueOf('"')));
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(),
+					ses.getCondicionActual(), ses.getFechaActual(),
+					ses.getFechaSelec());
+			ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
+					.replaceAll("'", String.valueOf('"')));
 			model.addAttribute("autocompletar", ses.getAutocomplete());
-			ll.get(ll.size()-1).setNroor(ll.get(ll.size()-1).getNroor().split("-")[0]);
+			ll.get(ll.size() - 1).setNroor(
+					ll.get(ll.size() - 1).getNroor().split("-")[0]);
 			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
@@ -529,13 +546,17 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/filtro", method = RequestMethod.POST)
 	public String filtro(@ModelAttribute("compra") Compras compra, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute("listcomp", comprasService.getOrdenesFiltro(ses.getCondiciones(), ses.getCondicionActual(), compra, ses.getFechaActual(), ses.getFechaSelec()));
+			model.addAttribute(
+					"listcomp",
+					comprasService.getOrdenesFiltro(ses.getCondiciones(),
+							ses.getCondicionActual(), compra,
+							ses.getFechaActual(), ses.getFechaSelec()));
 			model.addAttribute("autocompletar", ses.getAutocomplete());
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
@@ -603,7 +624,8 @@ public class ComprasController {
 			model.addAttribute(
 					"listcomp",
 					comprasService.getBodegas(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(), ses.getFechaSelec()));
+							ses.getCondicionActual(), ses.getFechaActual(),
+							ses.getFechaSelec()));
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -783,7 +805,7 @@ public class ComprasController {
 				ses.getCondiciones().put("Req", "c.tipoc = 'R'");
 			} else {
 				ses.getValores().put("Req", "R/Q: " + compra.getNroor());
-				
+
 				ses.getCondiciones().put("Req",
 						"c.nroor = '" + compra.getNroor() + "'");
 			}
@@ -1075,7 +1097,6 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
 
 	@RequestMapping(value = "bod", method = RequestMethod.POST)
 	public String bod(@ModelAttribute("compra") Compras compra,
@@ -1144,7 +1165,11 @@ public class ComprasController {
 					} else {
 						ncond = ncond + "," + cond[i];
 					}
-					hist = hist + ses.getHistorial().charAt(i - ses.getCondicionUsuario().split(",").length);
+					hist = hist
+							+ ses.getHistorial().charAt(
+									i
+											- ses.getCondicionUsuario().split(
+													",").length);
 				}
 				if (hist.charAt(hist.length() - 1) == 'p') {
 					ret = "redirect:proveedor";
@@ -1205,12 +1230,14 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
 			if (ses.getCenters().isEmpty()) {
-				ses.setFechaSelec("a" + compra.getPano() + ",mm"+ compra.getPmes());
+				ses.setFechaSelec("a" + compra.getPano() + ",mm"
+						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond());
 			} else {
-				ses.setFechaSelec("a" + compra.getPano() + ",mm"+ compra.getPmes());
+				ses.setFechaSelec("a" + compra.getPano() + ",mm"
+						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"

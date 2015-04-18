@@ -242,9 +242,17 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ where
 								+ "GROUP BY c.pipro, c.pides, c.punid, c.pprov, c.ppnov "
 								+ "ORDER BY pvalbd desc").getResultList();
+		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras("@@@@@");
 		for (Object[] obj : result) {
+			if (!ordenes.toString().contains((String) obj[0])) {
+				if (ordenes.length() == 1) {
+					ordenes.append("'" + (String) obj[0] + "'");
+				} else {
+					ordenes.append(", '" + (String) obj[0] + "'");
+				}
+			}
 			compras.add(new Compras(new BigDecimal(obj[2].toString()).setScale(
 					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
 					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
@@ -266,6 +274,8 @@ public class ComprasDaoImpl implements ComprasDao {
 							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
 					Integer.parseInt(obj[16].toString()), (String) obj[17]));
 		}
+		ordenes.append("]");
+		comp.setNroor(ordenes.toString());
 		compras.add(comp);
 		return compras;
 	}
@@ -421,6 +431,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				}
 			}
 		}
+		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
@@ -448,6 +459,11 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ "GROUP BY c.nroor, c.fecre "
 								+ "ORDER BY pvalbd desc").getResultList();
 		for (Object[] obj : result) {
+			if (ordenes.length() == 1) {
+				ordenes.append("'" + (String) obj[0] + "'");
+			} else {
+				ordenes.append(", '" + (String) obj[0] + "'");
+			}
 			compras.add(new Compras(new BigDecimal(obj[1].toString()).setScale(
 					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[2]
 					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
@@ -465,6 +481,8 @@ public class ComprasDaoImpl implements ComprasDao {
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
 			comp.sumarRequesiciones(compras.get(compras.size() - 1));
 		}
+		ordenes.append("]");
+		comp.setNroor(comp.getNroor() + "-" + ordenes.toString());
 		compras.add(comp);
 		return compras;
 	}

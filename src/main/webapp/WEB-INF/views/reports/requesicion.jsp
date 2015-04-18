@@ -160,23 +160,44 @@ tr:last-child {
 
 							<!-- widget content -->
 							<div class="widget-body no-padding">
+								<div class="dt-toolbar">
+									<div class="col-xs-12 col-sm-6">
+										<div class="dataTables_filter" id="dt_basic_filter">
+											<form:form method="POST" action="filtro"
+												ModelAttribute="compra" commandName="compra"
+												class="header-search pull-right">
+												<form:input type="text" path="nroor"
+													placeholder="Filtrar Orden"
+													data-autocomplete='${ autocompletar }' />
+												<button type="submit">
+													<i class="fa fa-search"></i>
+												</button>
+											</form:form>
+										</div>
+									</div>
+								</div>
 
-								<table class="table table-striped table-bordered" width="100%">
+								<!-- <table class="table table-striped table-bordered" width="100%"> -->
+								<table
+									class="table table-striped table-bordered dataTable no-footer"
+									width="100%" role="grid"
+									aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
 									<thead>
 										<tr>
-											<td colspan="15" align="center"><c:out
+											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Req.</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Val.
-												base recibido</th>											
+												base recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>
-												<th rowspan="2" style="text-align: center; color: blue;">Valor
+											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Compras</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
 												Requerida</th>
