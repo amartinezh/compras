@@ -166,7 +166,7 @@ tr:last-child {
 												<form:input type="text" path="pipro"
 													placeholder="Filtrar Orden"
 													data-autocomplete='${ autocompletar }' />
-												<button type="submit">
+												<button type="submit" name="busca" value="ite">
 													<i class="fa fa-search"></i>
 												</button>
 											</form:form>

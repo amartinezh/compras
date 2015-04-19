@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.ventura.compras.domain.compras.Compras;
+
 @SuppressWarnings("serial")
 public class session implements Serializable{
 
@@ -144,6 +146,7 @@ public class session implements Serializable{
 	private Map<String, String>	centers;
 	private Map<String, String> currencys;
 	private String autocomplete;
+	private Compras filtro;
 	
 	public int getTipoUsuario() {
 		return tipoUsuario;
@@ -178,7 +181,17 @@ public class session implements Serializable{
 		this.levels = new HashMap<String, String>();
 		this.centers = new HashMap<String, String>();
 		this.currencys = new HashMap<String, String>();
+		this.autocomplete = "";
+		this.filtro = null;
 	}
+	public Compras getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(Compras filtro) {
+		this.filtro = filtro;
+	}
+
 	public Map<String, String> getCurrencys() {
 		return currencys;
 	}

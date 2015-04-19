@@ -28,8 +28,8 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getProveedores(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getItems(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
-		return comprasDao.getItems(condiciones, cond, fechaAct, fechaSel);
+	public List<Compras> getItems(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, Compras compra) {
+		return comprasDao.getItems(condiciones, cond, fechaAct, fechaSel, compra);
 	}
 	
 	public List<Compras> getClases(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
@@ -40,18 +40,14 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getCentros(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
-		return comprasDao.getRequisiciones(condiciones, cond, fechaAct, fechaSel);
+	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, Compras compra) {
+		return comprasDao.getRequisiciones(condiciones, cond, fechaAct, fechaSel, compra);
 	}
 	
-	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
-		return comprasDao.getOrdenes(condiciones, cond, fechaAct, fechaSel);
+	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, Compras compra) {
+		return comprasDao.getOrdenes(condiciones, cond, fechaAct, fechaSel, compra);
 	}
-	
-	public List<Compras> getOrdenesFiltro(Map<String, String> condiciones, String cond, Compras compra, String fechaAct, String fechaSel) {
-		return comprasDao.getOrdenesFiltro(condiciones, cond, compra, fechaAct, fechaSel);
-	}
-	
+		
 	public List<Compras> getBodegas(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
 		return comprasDao.getBodegas(condiciones, cond, fechaAct, fechaSel);
 	}

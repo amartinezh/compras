@@ -169,15 +169,13 @@ tr:last-child {
 												<form:input type="text" path="nroor"
 													placeholder="Filtrar Orden"
 													data-autocomplete='${ autocompletar }' />
-												<button type="submit">
+												<button type="submit" name="busca" value="requ">
 													<i class="fa fa-search"></i>
 												</button>
 											</form:form>
 										</div>
 									</div>
 								</div>
-
-								<!-- <table class="table table-striped table-bordered" width="100%"> -->
 								<table
 									class="table table-striped table-bordered dataTable no-footer"
 									width="100%" role="grid"
@@ -201,10 +199,6 @@ tr:last-child {
 												Compras</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
 												Requerida</th>
-											<!-- 
-											<c:if test="${o == 0}">
-												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
-											</c:if> -->
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
@@ -266,20 +260,6 @@ tr:last-child {
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbo}" type="number" /></td>
 												<td><c:out value="${compp.fecre}" /></td>
-												<!-- 
-												<c:if test="${o == 0}">
-													<td align="center"><form:form method="POST"
-															action="req" ModelAttribute="compra" commandName="compra">
-															<form:input path="nroor" type="hidden"
-																value="${compp.nroor}" />
-															<button type="submit" Value="oc" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/ordencompra.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												 -->
 												<c:if test="${ user_inicio.tipoUsuario == 2 }">
 													<c:if test="${c == 0}">
 														<td align="center"><form:form method="POST"

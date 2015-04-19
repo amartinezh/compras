@@ -168,14 +168,13 @@ tr:last-child {
 												<form:input type="text" path="nroor"
 													placeholder="Filtrar Orden"
 													data-autocomplete='${ autocompletar }' />
-												<button type="submit">
+												<button type="submit" name="busca" value="orde">
 													<i class="fa fa-search"></i>
 												</button>
 											</form:form>
 										</div>
 									</div>
 								</div>
-								<!--  <table class="table table-striped table-bordered" width="100%">  -->
 								<table
 									class="table table-striped table-bordered dataTable no-footer"
 									width="100%" role="grid"

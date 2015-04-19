@@ -37,6 +37,8 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			ses.setCondicionActual("");
 			ses.setHistorial("");
+			ses.setFiltro(null);
+			ses.setAutocomplete("");
 			ses.setCondicionActual(ses.getCondicionUsuario());
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
@@ -204,10 +206,14 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getItems(ses.getCondiciones(),
 					ses.getCondicionActual(), ses.getFechaActual(),
-					ses.getFechaSelec());
-			ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().replaceAll("'", String.valueOf('"')));
-			ll.get(ll.size() - 1).setNroor("");
-			model.addAttribute("autocompletar", ses.getAutocomplete());			
+					ses.getFechaSelec(), ses.getFiltro());
+			if (ses.getFiltro() == null) {
+				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor()
+						.replaceAll("'", String.valueOf('"')));
+				ll.get(ll.size() - 1).setNroor("");
+			}
+			ses.setFiltro(null);
+			model.addAttribute("autocompletar", ses.getAutocomplete());
 			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
@@ -410,12 +416,15 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getRequisiciones(
 					ses.getCondiciones(), ses.getCondicionActual(),
-					ses.getFechaActual(), ses.getFechaSelec());
-			ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
-					.replaceAll("'", String.valueOf('"')));
+					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro());			
+			if (ses.getFiltro() == null) {
+				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
+						.replaceAll("'", String.valueOf('"')));
+				ll.get(ll.size() - 1).setNroor(
+						ll.get(ll.size() - 1).getNroor().split("-")[0]);
+			}
+			ses.setFiltro(null);
 			model.addAttribute("autocompletar", ses.getAutocomplete());
-			ll.get(ll.size() - 1).setNroor(
-					ll.get(ll.size() - 1).getNroor().split("-")[0]);
 			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
@@ -482,82 +491,16 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(),
 					ses.getCondicionActual(), ses.getFechaActual(),
-					ses.getFechaSelec());
-			ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
-					.replaceAll("'", String.valueOf('"')));
+					ses.getFechaSelec(), ses.getFiltro());
+			if (ses.getFiltro() == null) {
+				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
+						.replaceAll("'", String.valueOf('"')));
+				ll.get(ll.size() - 1).setNroor(
+						ll.get(ll.size() - 1).getNroor().split("-")[0]);
+			}
+			ses.setFiltro(null);
 			model.addAttribute("autocompletar", ses.getAutocomplete());
-			ll.get(ll.size() - 1).setNroor(
-					ll.get(ll.size() - 1).getNroor().split("-")[0]);
 			model.addAttribute("listcomp", ll);
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
-			model.addAttribute("compra", new Compras());
-			String hist = ses.getHistorial();
-			if (hist.contains("c")) {
-				model.addAttribute("c", 1);
-			} else {
-				model.addAttribute("c", 0);
-			}
-			if (hist.contains("p")) {
-				model.addAttribute("p", 1);
-			} else {
-				model.addAttribute("p", 0);
-			}
-			if (hist.contains("i")) {
-				model.addAttribute("i", 1);
-			} else {
-				model.addAttribute("i", 0);
-			}
-			if (hist.contains("q")) {
-				model.addAttribute("q", 1);
-			} else {
-				model.addAttribute("q", 0);
-			}
-			if (hist.contains("k")) {
-				model.addAttribute("k", 1);
-			} else {
-				model.addAttribute("k", 0);
-			}
-			if (hist.contains("r")) {
-				model.addAttribute("r", 1);
-			} else {
-				model.addAttribute("r", 0);
-			}
-			if (hist.contains("o")) {
-				model.addAttribute("o", 1);
-			} else {
-				model.addAttribute("o", 0);
-			}
-			if (hist.contains("b")) {
-				model.addAttribute("b", 1);
-			} else {
-				model.addAttribute("b", 0);
-			}
-			return "reports/orden";
-		} else {
-			return "redirect:/index/ingreso";
-		}
-	}
-
-	@RequestMapping(value = "/filtro", method = RequestMethod.POST)
-	public String filtro(@ModelAttribute("compra") Compras compra, Model model) {
-		if (model.containsAttribute("user_inicio") == true) {
-			session ses = (session) model.asMap().get("user_inicio");
-			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute(
-					"listcomp",
-					comprasService.getOrdenesFiltro(ses.getCondiciones(),
-							ses.getCondicionActual(), compra,
-							ses.getFechaActual(), ses.getFechaSelec()));
-			model.addAttribute("autocompletar", ses.getAutocomplete());
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -745,9 +688,9 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-
+			ses.setFiltro(null);
+			ses.setAutocomplete("");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Ord");
-
 			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Ord", "O/C: Todos");
 				ses.getCondiciones().put("Ord", "c.tipoc = 'O'");
@@ -797,9 +740,9 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-
-			ses.setCondicionActual(ses.getCondicionActual() + ",Req");
-
+			ses.setFiltro(null);
+			ses.setAutocomplete("");
+			ses.setCondicionActual(ses.getCondicionActual() + ",Req");			
 			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Req", "R/Q: Todos");
 				ses.getCondiciones().put("Req", "c.tipoc = 'R'");
@@ -1003,6 +946,8 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
+			ses.setFiltro(null);
+			ses.setAutocomplete("");
 			ses.setCondicionActual(ses.getCondicionActual() + ",Item");
 			if (compra.getPipro().equalsIgnoreCase("@@@@@")) {
 				ses.getCondiciones().put("Item", "");
@@ -1156,6 +1101,8 @@ public class ComprasController {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
 			String[] cond = ses.getCondicionActual().split(",");
+			ses.setFiltro(null);
+			ses.setAutocomplete("");
 			if (ses.getHistorial().length() > 1) {
 				String ncond = "";
 				String hist = "";
@@ -1195,6 +1142,29 @@ public class ComprasController {
 				ses.setCondicionActual("");
 			}
 			model.addAttribute("user_inicio", ses);
+			return ret;
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/filtro", method = RequestMethod.POST)
+	public String filtro(@ModelAttribute("compra") Compras compra,
+			HttpServletRequest request, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			String ret = "redirect:mostrar";
+			ses.setFiltro(compra);
+			if (request.getParameter("busca").equals("ite")) {
+				ret = "redirect:item";
+			} else if (request.getParameter("busca").equals("requ")) {
+				ret = "redirect:requisicion";
+			} else if (request.getParameter("busca").equals("orde")) {
+				ret = "redirect:orden";
+			} else {
+				ses.setFiltro(null);
+				ses.setAutocomplete("");
+			}
 			return ret;
 		} else {
 			return "redirect:/index/ingreso";
