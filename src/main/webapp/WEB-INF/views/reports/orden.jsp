@@ -227,10 +227,10 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<c:choose>
-												<c:when test="${ compp.pcstp == '0' }"><tr bgcolor="#F78585" title="Abierta"></c:when>
-												<c:when test="${ compp.pcstp == '1' }"><tr bgcolor="#F78585" title="Recibida"></c:when>
-												<c:when test="${ compp.pcstp == '2' }"><tr bgcolor="#6866EE" title="No costeada"></c:when>
-												<c:when test="${ compp.pcstp == '3' }"><tr bgcolor="#64F673" title="Cerrada"></c:when>
+												<c:when test="${ compp.pcstp == '0' }"><tr bgcolor="#FFB5B5" title="Abierta"></c:when>
+												<c:when test="${ compp.pcstp == '1' }"><tr bgcolor="#FFB5B5" title="Recibida"></c:when>
+												<c:when test="${ compp.pcstp == '2' }"><tr bgcolor="#BCB8FF" title="No costeada"></c:when>
+												<c:when test="${ compp.pcstp == '3' }"><tr bgcolor="#BCFFB8" title="Cerrada"></c:when>
 												<c:otherwise><tr></c:otherwise>
 											</c:choose>
 
@@ -265,20 +265,6 @@ tr:last-child {
 													value="${compp.pvalbd}" type="number" /></td>
 
 											<td><c:out value="${compp.fecre}" /></td>
-											<!-- 
-												<c:if test="${r == 0}">
-													<td align="center"><form:form method="POST"
-															action="ord" ModelAttribute="compra" commandName="compra">
-															<form:input path="nroor" type="hidden"
-																value="${compp.nroor}" />
-															<button type="submit" Value="rq" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/requisicion.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												 -->
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<td align="center"><form:form method="POST"
