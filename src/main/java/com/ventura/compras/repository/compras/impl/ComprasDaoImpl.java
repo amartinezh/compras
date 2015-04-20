@@ -530,13 +530,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, c.pcstp as pcstp"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.nroor, c.fecre "
+								+ "GROUP BY c.nroor, c.fecre, c.pcstp "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
@@ -547,7 +547,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN));
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "-1");
 		for (Object[] obj : result) {
 			if (compra == null) {
 				if (ordenes.length() == 1) {
@@ -569,9 +569,9 @@ public class ComprasDaoImpl implements ComprasDao {
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[6].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[9]
 							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN), obj[10].toString()));
 			comp.sumarOrdenes(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {

@@ -354,12 +354,12 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 		this.pvalbo = pvalbo;
 	}
-
-	// Constructor Orden
+	
+	// Constructor Orden	  
 	public Compras(BigDecimal pqtyp, String nroor, BigDecimal pqtyd,
 			BigDecimal pqtyr, BigDecimal pvalbd, String fecre,
 			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo,
-			BigDecimal pvalbo) {
+			BigDecimal pvalbo, String pcstp) {
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
@@ -375,6 +375,7 @@ public class Compras implements Serializable {
 			this.fecre = fecre;
 		}
 		this.pvalbo = pvalbo;
+		this.pcstp = pcstp; 
 	}
 
 	// Constructor Requisicion
