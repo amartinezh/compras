@@ -175,9 +175,10 @@ tr:last-child {
 										</div>
 									</div>
 								</div>
+								<!-- table-striped -->
 								<table
-									class="table table-striped table-bordered dataTable no-footer"
-									width="100%" role="grid"
+									class="table  table-bordered dataTable no-footer"
+									role="grid"
 									aria-describedby="datatable_fixed_column_info"
 									style="width: 100%;">
 									<thead>
@@ -189,19 +190,13 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Orden</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Precio
-												Compra Unitaria</th>
-											<!--   <th rowspan="2" style="text-align: center; color: blue;">Saldo
-												Proveedor</th> -->
+												Compra Unitaria</th>											
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Ordenado</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
-												Requerida</th>
-											<!-- 
-											<c:if test="${r == 0}">
-												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
-											</c:if>  -->
+												Requerida</th>											
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
