@@ -283,7 +283,7 @@ public class ComprasDaoImpl implements ComprasDao {
 					new BigDecimal(obj[14].toString()).setScale(0,
 							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
 					Integer.parseInt(obj[16].toString()), (String) obj[17]));
-					comp.sumarItem(compras.get(compras.size() - 1));
+			comp.sumarItem(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
 			ordenes.append("]");
@@ -435,8 +435,9 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, Compras compra) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		where.append("c.tipoc = 'R'");
 		if (compra != null) {
-			where.append("c.nroor LIKE '" + compra.getNroor().toUpperCase()
+			where.append(" and c.nroor LIKE '" + compra.getNroor().toUpperCase()
 					+ "%'");
 		}
 		for (int i = 0; i < c.length; i++) {
@@ -513,9 +514,11 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, Compras compra) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		where.append("c.tipoc = 'O'");
 		if (compra != null) {
-			where.append("c.nroor LIKE '" + compra.getNroor().toUpperCase()
-					+ "%'");
+			where.append(" and c.nroor LIKE '"
+					+ compra.getNroor().toUpperCase() + "%'");
+
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
