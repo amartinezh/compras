@@ -189,14 +189,10 @@ tr:last-child {
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Req.</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Val.
-												base recibido</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Saldo
-												Proveedor</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Recibido</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Compras</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Compras</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
 												Requerida</th>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
@@ -251,10 +247,11 @@ tr:last-child {
 														value="${compp.pqtyp}" type="number" /></td>
 
 												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.ppreac}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalpo}" type="number" /></td>
+												 <td style="text-align: right">$<fmt:formatNumber
+														value="${compp.ppreac}" type="number" /></td> 
+														
+												 <td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalpo}" type="number" /></td>  
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber

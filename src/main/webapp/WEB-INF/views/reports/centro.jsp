@@ -169,13 +169,18 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Centro</th>
+											
+											
+											<!--  <th rowspan="2" style="text-align: center; color: blue;">Val.
+												base recibido</th>  -->
+											<!--  <th rowspan="2" style="text-align: center; color: blue;">Saldo	Proveedor</th>  -->
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Ordenado</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Recibido</th>
+											
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Val.
-												base recibido</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Saldo
-												Proveedor</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Recibido</th>
+											
+												
+												
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Compras</th>
 											<c:if test="${o == 0 && r == 0}">
@@ -215,6 +220,12 @@ tr:last-child {
 											varStatus="loopCounter">
 											<tr>
 												<td><c:out value="${compp.pcenn}" /></td>
+												
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbo}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbd}" type="number" /></td>
+												
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
@@ -226,12 +237,9 @@ tr:last-child {
 												<fmt:setLocale value="en_US" />
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.ppreac}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalpo}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbo}" type="number" /></td>
+												<!-- <td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalpo}" type="number" /></td>  -->
+												
 												<c:if test="${o == 0 && r == 0}">
 													<td align="center"><form:form method="POST"
 															action="cent" ModelAttribute="compra"

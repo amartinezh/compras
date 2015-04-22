@@ -188,13 +188,14 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Orden</th>
+											
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Ordenado</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Recibido</th>
+											
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Precio
 												Compra Unitaria</th>											
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Ordenado</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Recibido</th>
+											
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
 												Requerida</th>											
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
@@ -227,8 +228,8 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<c:choose>
-												<c:when test="${ compp.pcstp == '0' }"><tr bgcolor="#FFB5B5" title="Abierta"></c:when>
-												<c:when test="${ compp.pcstp == '1' }"><tr bgcolor="#FFB5B5" title="Recibida"></c:when>
+												<c:when test="${ compp.pcstp == '0' }"><tr bgcolor="#F8E0E6" title="Abierta"></c:when>
+												<c:when test="${ compp.pcstp == '1' }"><tr bgcolor="#F8E0E6" title="Recibida"></c:when>
 												<c:when test="${ compp.pcstp == '2' }"><tr bgcolor="#BCB8FF" title="No costeada"></c:when>
 												<c:when test="${ compp.pcstp == '3' }"><tr bgcolor="#BCFFB8" title="Cerrada"></c:when>
 												<c:otherwise><tr></c:otherwise>
@@ -242,6 +243,13 @@ tr:last-child {
 														<c:out value="${compp.nroor}" />
 													</c:otherwise>
 												</c:choose></td>
+											
+											<td style="text-align: right">$<fmt:formatNumber
+													value="${compp.pvalbo}" type="number" /></td>
+
+											<td style="text-align: right">$<fmt:formatNumber
+													value="${compp.pvalbd}" type="number" /></td>
+											
 											<td style="text-align: right"><fmt:formatNumber
 													value="${compp.pqtyo}" type="number" /></td>
 											<td style="text-align: right"><fmt:formatNumber
@@ -258,11 +266,7 @@ tr:last-child {
 											<!--  <td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
 														type="number" /></td>  -->
 
-											<td style="text-align: right">$<fmt:formatNumber
-													value="${compp.pvalbo}" type="number" /></td>
-
-											<td style="text-align: right">$<fmt:formatNumber
-													value="${compp.pvalbd}" type="number" /></td>
+											
 
 											<td><c:out value="${compp.fecre}" /></td>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">

@@ -164,7 +164,7 @@ tr:last-child {
 												ModelAttribute="compra" commandName="compra"
 												class="header-search pull-right">
 												<form:input type="text" path="pipro"
-													placeholder="Filtrar Orden"
+													placeholder="Filtrar Item"
 													data-autocomplete='${ autocompletar }' />
 												<button type="submit" name="busca" value="ite">
 													<i class="fa fa-search"></i>
@@ -261,7 +261,7 @@ tr:last-child {
 																value="${compp.pqtyp}" type="number" /></td>
 
 														<td style="text-align: right">$<fmt:formatNumber
-																value="${compp.pprep1}" type="number" /></td>
+																maxFractionDigits="2" value="${compp.pprep1}" type="number" /></td>
 														<td style="text-align: right">$<fmt:formatNumber
 																value="${compp.pprep2}" type="number" /></td>
 														<td style="text-align: right">$<fmt:formatNumber
