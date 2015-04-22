@@ -197,10 +197,10 @@ tr:last-child {
 											<th colspan="3" style="text-align: center; color: blue;">Últimas
 												Fechas</th>
 
-											<c:if test="${o == 0}">
+											<c:if test="${o == 0  && r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
-											<c:if test="${r == 0}">
+											<c:if test="${r == 0 && o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
@@ -280,7 +280,16 @@ tr:last-child {
 														<td><c:out value="${compp.fecep3}" /></td>
 													</c:when>
 													<c:otherwise>
-														<td colspan="15" />
+														<td colspan="5">Total</td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqtyo}" type="number" /></td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqtyd}" type="number" /></td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqtyr}" type="number" /></td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqtyp}" type="number" /></td>
+														<td colspan="6"/>
 														<!--<c:choose>
 															<c:when test="${p == 0 }">
 																<td colspan="14"></td>
@@ -290,8 +299,7 @@ tr:last-child {
 														</c:choose>-->
 													</c:otherwise>
 												</c:choose>
-
-												<c:if test="${o == 0}">
+												<c:if test="${o == 0 && r == 0}">
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
 															commandName="compra">
@@ -306,7 +314,7 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-												<c:if test="${r == 0}">
+												<c:if test="${r == 0 && o == 0}">
 													<td align="center"><form:form method="POST"
 															action="itemm" ModelAttribute="compra"
 															commandName="compra">

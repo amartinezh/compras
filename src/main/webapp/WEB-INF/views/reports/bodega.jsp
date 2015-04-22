@@ -178,10 +178,10 @@ tr:last-child {
 												Recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Compras</th>
-											<c:if test="${o == 0}">
+											<c:if test="${o == 0 && r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
-											<c:if test="${r == 0}">
+											<c:if test="${r == 0 && o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
@@ -235,7 +235,7 @@ tr:last-child {
 														value="${compp.pvalbd}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbo}" type="number" /></td>
-												<c:if test="${o == 0}">
+												<c:if test="${o == 0 && r == 0}">
 													<td align="center"><form:form method="POST"
 															action="bod" ModelAttribute="compra" commandName="compra">
 															<form:input path="plocal" type="hidden"
@@ -249,7 +249,7 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-												<c:if test="${r == 0}">
+												<c:if test="${r == 0 && o == 0}">
 													<td align="center"><form:form method="POST"
 															action="bod" ModelAttribute="compra" commandName="compra">
 															<form:input path="plocal" type="hidden"

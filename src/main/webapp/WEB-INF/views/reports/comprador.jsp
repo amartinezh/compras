@@ -177,10 +177,10 @@ tr:last-child {
 												Proveedor</th>
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 
-											<c:if test="${o == 0}">
+											<c:if test="${o == 0 && r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
-											<c:if test="${r == 0}">
+											<c:if test="${r == 0 && o == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
 											</c:if>
 											<c:if test="${p == 0}">
@@ -241,7 +241,7 @@ tr:last-child {
 												<!--  <td><fmt:formatNumber value="${compp.pvalbd}"
 														type="currency" /></td> -->
 
-												<c:if test="${o == 0}">
+												<c:if test="${o == 0 && r == 0}">
 													<td align="center"><form:form method="POST"
 															action="ccompra" ModelAttribute="compra"
 															commandName="compra">
@@ -256,7 +256,7 @@ tr:last-child {
 															</button>
 														</form:form></td>
 												</c:if>
-												<c:if test="${r == 0}">
+												<c:if test="${r == 0 && o == 0}">
 													<td align="center"><form:form method="POST"
 															action="ccompra" ModelAttribute="compra"
 															commandName="compra">

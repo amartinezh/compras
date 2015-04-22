@@ -248,7 +248,11 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ "ORDER BY pvalbd desc").getResultList();
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
-		Compras comp = new Compras("@@@@@");
+		Compras comp = new Compras("@@@@@", new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN));
 		for (Object[] obj : result) {
 			if (compra == null) {
 				if (!ordenes.toString().contains((String) obj[0])) {
@@ -279,6 +283,7 @@ public class ComprasDaoImpl implements ComprasDao {
 					new BigDecimal(obj[14].toString()).setScale(0,
 							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
 					Integer.parseInt(obj[16].toString()), (String) obj[17]));
+					comp.sumarItem(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
 			ordenes.append("]");
@@ -571,7 +576,8 @@ public class ComprasDaoImpl implements ComprasDao {
 					new BigDecimal(obj[6].toString()).setScale(0,
 							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[9]
 							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN), obj[10].toString()));
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN), obj[10]
+							.toString()));
 			comp.sumarOrdenes(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
