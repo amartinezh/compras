@@ -186,11 +186,6 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th colspan="5" style="text-align: center; color: blue;">Items</th>
-
-											<!-- <c:if test="${p == 0 }">
-												<th rowspan="2" style="text-align: center; color: blue;">Valor
-													Recibido</th>
-											</c:if> -->
 											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimos
 												Precios</th>
@@ -256,10 +251,6 @@ tr:last-child {
 														<td><c:out value="${compp.pprov}" /></td>
 														<td><c:out value="${compp.ppnov}" /></td>
 														<td><c:out value="${compp.punid}" /></td>
-														<!--	<c:if test="${p == 0 }">
-															<td style="text-align: right">$<fmt:formatNumber
-																	value="${compp.pvalbd}" type="number" /></td>
-														</c:if> -->
 														<td style="text-align: right"><fmt:formatNumber
 																value="${compp.pqtyo}" type="number" /></td>
 														<td style="text-align: right"><fmt:formatNumber
