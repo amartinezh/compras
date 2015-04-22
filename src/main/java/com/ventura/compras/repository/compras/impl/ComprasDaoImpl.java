@@ -392,11 +392,6 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ where
 								+ "GROUP BY c.pcent, c.pcenn "
 								+ "ORDER BY pvalbd desc").getResultList();
-		if (fechaAct.equals(fechaSel)) {
-
-		} else {
-
-		}
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras("@@@@@", new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
@@ -435,11 +430,6 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, Compras compra) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		where.append("c.tipoc = 'R'");
-		if (compra != null) {
-			where.append(" and c.nroor LIKE '" + compra.getNroor().toUpperCase()
-					+ "%'");
-		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
@@ -448,6 +438,14 @@ public class ComprasDaoImpl implements ComprasDao {
 					where.append(" and " + condiciones.get(c[i]));
 				}
 			}
+		}
+		if (where.length() > 0) {
+			where.append(" and ");
+		}
+		where.append("c.tipoc = 'R'");
+		if (compra != null) {
+			where.append(" and c.nroor LIKE '" + compra.getNroor().toUpperCase()
+					+ "%'");
 		}
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
@@ -514,12 +512,6 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, Compras compra) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		where.append("c.tipoc = 'O'");
-		if (compra != null) {
-			where.append(" and c.nroor LIKE '"
-					+ compra.getNroor().toUpperCase() + "%'");
-
-		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
@@ -528,6 +520,15 @@ public class ComprasDaoImpl implements ComprasDao {
 					where.append(" and " + condiciones.get(c[i]));
 				}
 			}
+		}
+		if (where.length() > 0) {
+			where.append(" and ");
+		}
+		where.append("c.tipoc = 'O'");
+		if (compra != null) {
+			where.append(" and c.nroor LIKE '"
+					+ compra.getNroor().toUpperCase() + "%'");
+
 		}
 		String tab = "";
 		if (fechaAct.equals(fechaSel)) {
