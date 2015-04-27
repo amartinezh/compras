@@ -160,7 +160,28 @@ tr:last-child {
 							<!-- widget content -->
 							<div class="widget-body no-padding">
 
-								<table class="table table-striped table-bordered" width="100%">
+								<div class="dt-toolbar">
+									<div class="col-xs-12 col-sm-6">
+										<div class="dataTables_filter" id="dt_basic_filter">
+											<form:form method="POST" action="filtro"
+												ModelAttribute="compra" commandName="compra"
+												class="header-search pull-right">
+												<form:input type="text" path="ppnov"
+													placeholder="Filtrar Proveedor"
+													data-autocomplete='${ autocompletar }' />
+												<button type="submit" name="busca" value="prov">
+													<i class="fa fa-search"></i>
+												</button>
+											</form:form>
+										</div>
+									</div>
+								</div>
+								<!-- <table class="table table-striped table-bordered" width="100%"> -->
+								<table
+									class="table table-striped table-bordered dataTable no-footer"
+									width="100%" role="grid"
+									aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
 									<thead>
 										<tr>
 											<td colspan="15" align="center"><c:out

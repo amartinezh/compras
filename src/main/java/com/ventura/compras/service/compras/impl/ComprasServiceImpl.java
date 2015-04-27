@@ -24,8 +24,8 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getCompradores(condiciones, cond, fechaAct, fechaSel);
 	}
 	
-	public List<Compras> getProveedores(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
-		return comprasDao.getProveedores(condiciones, cond, fechaAct, fechaSel);
+	public List<Compras> getProveedores(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, Compras compra) {
+		return comprasDao.getProveedores(condiciones, cond, fechaAct, fechaSel, compra);
 	}
 	
 	public List<Compras> getItems(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, Compras compra) {

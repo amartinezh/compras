@@ -158,17 +158,21 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getProveedores(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel) {
+			String cond, String fechaAct, String fechaSel, Compras compra) {
 		String[] c = cond.split(",");
-		String where = "";
+		StringBuilder where = new StringBuilder();
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.isEmpty()) {
-					where = condiciones.get(c[i]);
-				} else {
-					where = where + " and " + condiciones.get(c[i]);
-				}
+				if (where.length() != 0) {
+					where.append(" and ");
+				} 
+				where.append(condiciones.get(c[i]));				
 			}
+		}
+		if (compra != null) {
+			where.append(" and c.ppnov LIKE '"
+					+ compra.getPpnov().toUpperCase() + "%'");
+
 		}
 		String tab = "";
 		if (fechaAct.equals(fechaSel)) {
@@ -176,6 +180,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		} else {
 			tab = "Compras_h";
 		}
+		StringBuilder ordenes = new StringBuilder();
 		List<Object[]> result = em
 				.createQuery(
 						"SELECT c.pprov as pprov, c.ppnov as ppnov, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyo) as pqtyo, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
@@ -197,6 +202,15 @@ public class ComprasDaoImpl implements ComprasDao {
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN));
 		for (Object[] obj : result) {
+			if (compra == null) {
+				if (!ordenes.toString().contains((String) obj[1])) {
+					if (ordenes.length() == 0) {
+						ordenes.append("['" + (String) obj[1] + "'");
+					} else {
+						ordenes.append(", '" + (String) obj[1] + "'");
+					}
+				}
+			}
 			compras.add(new Compras(Integer.parseInt(obj[0].toString()),
 					(String) obj[1], new BigDecimal(obj[2].toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
@@ -216,6 +230,10 @@ public class ComprasDaoImpl implements ComprasDao {
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
 			comp.sumarProveedores(compras.get(compras.size() - 1));
 		}
+		if (compra == null) {
+			ordenes.append("]");
+			comp.setNroor(ordenes.toString());
+		}
 		compras.add(comp);
 		return compras;
 	}
@@ -227,11 +245,7 @@ public class ComprasDaoImpl implements ComprasDao {
 	public List<Compras> getItems(Map<String, String> condiciones, String cond,
 			String fechaAct, String fechaSel, Compras compra) {
 		String[] c = cond.split(",");
-		StringBuilder where = new StringBuilder();
-		if (compra != null) {
-			where.append("c.pipro LIKE '" + compra.getPipro().toUpperCase()
-					+ "%'");
-		}
+		StringBuilder where = new StringBuilder();		
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
@@ -240,6 +254,10 @@ public class ComprasDaoImpl implements ComprasDao {
 					where.append(" and " + condiciones.get(c[i]));
 				}
 			}
+		}
+		if (compra != null) {
+			where.append("c.pipro LIKE '" + compra.getPipro().toUpperCase()
+					+ "%'");
 		}
 		String tab = "";
 		if (fechaAct.equals(fechaSel)) {

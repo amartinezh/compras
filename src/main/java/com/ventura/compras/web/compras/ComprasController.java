@@ -136,11 +136,17 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute(
-					"listcomp",
-					comprasService.getProveedores(ses.getCondiciones(),
-							ses.getCondicionActual(), ses.getFechaActual(),
-							ses.getFechaSelec()));
+			List<Compras> ll = comprasService.getProveedores(ses.getCondiciones(),
+					ses.getCondicionActual(), ses.getFechaActual(),
+					ses.getFechaSelec(), ses.getFiltro());			
+			if (ses.getFiltro() == null) {
+				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor()
+						.replaceAll("'", String.valueOf('"')));
+				ll.get(ll.size() - 1).setNroor("");
+			}
+			ses.setFiltro(null);
+			model.addAttribute("autocompletar", ses.getAutocomplete());
+			model.addAttribute("listcomp", ll);
 			String[] cond = ses.getCondicionActual().split(",");
 			String mens = "";
 			for (String cc : cond) {
@@ -416,7 +422,7 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getRequisiciones(
 					ses.getCondiciones(), ses.getCondicionActual(),
-					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro());			
+					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro());
 			if (ses.getFiltro() == null) {
 				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
 						.replaceAll("'", String.valueOf('"')));
@@ -742,7 +748,7 @@ public class ComprasController {
 			session ses = (session) model.asMap().get("user_inicio");
 			ses.setFiltro(null);
 			ses.setAutocomplete("");
-			ses.setCondicionActual(ses.getCondicionActual() + ",Req");			
+			ses.setCondicionActual(ses.getCondicionActual() + ",Req");
 			if (compra.getNroor().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Req", "R/Q: Todos");
 				ses.getCondiciones().put("Req", "c.tipoc = 'R'");
@@ -1161,6 +1167,8 @@ public class ComprasController {
 				ret = "redirect:requisicion";
 			} else if (request.getParameter("busca").equals("orde")) {
 				ret = "redirect:orden";
+			} else if (request.getParameter("busca").equals("prov")) {
+				ret = "redirect:proveedor";
 			} else {
 				ses.setFiltro(null);
 				ses.setAutocomplete("");
