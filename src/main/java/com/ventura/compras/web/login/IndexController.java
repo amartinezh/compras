@@ -89,10 +89,17 @@ public class IndexController {
 						}
 						String[] v = {"Proveedor", "Producto", "Centro", "Bodega", "Clase"};
 						String[] vv = {"pprov,ppnov", "pipro,pides", "pcent,pcenn", "plocal,plnon", "picla,picln"};
+						String[] vvv = {"Valor Ordenado", "Valor Recibido"};
+						String[] vvvv = {"pvalbo", "pvalbd"};
 						for(int i = 0; i < v.length; i++) {
 							ses.getCamposreporte().put("creporte"+i, v[i]);
 							ses.getCondiciones().put("creporte"+i, vv[i]);
 							ses.getValores().put("creporte"+i, v[i]);
+						}
+						for(int i=0; i<vvv.length; i++) {
+							ses.getCamposver().put("vereporte"+i, vvv[i]);
+							ses.getCondiciones().put("vereporte"+i, vvvv[i]);
+							ses.getValores().put("vereporte"+i, "Reporte: " +vvv[i]);
 						}
 						if (mesAct < 1) {
 							mesAct = 12 + mesAct;

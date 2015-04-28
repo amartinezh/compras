@@ -168,6 +168,11 @@
 												<form:select path="tipoc"
 													items="${user_inicio.camposreporte}" />
 											</section>
+											<section class="col col-6">
+												<label class="label">Reporte</label>
+												<form:select path="pnpas"
+													items="${user_inicio.camposver}" />
+											</section>
 										</div>
 									</fieldset>
 									<footer>

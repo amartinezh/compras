@@ -1257,7 +1257,7 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
 			ses.setCondicionReporte(compra.getPano() + "anor,"
-					+ compra.getTipoc());
+					+ compra.getTipoc()+","+compra.getPnpas());
 			return "redirect:reporteanual";
 		} else {
 			return "redirect:/index/ingreso";
@@ -1302,7 +1302,7 @@ public class ComprasController {
 				mens.append(" ");
 			}
 			mens.append(ses.getValores().get(ses.getCondicionReporte().split(",")[0]));
-			mens.append(" Dato: Valor Recibido");
+			mens.append(" " + ses.getValores().get(ses.getCondicionReporte().split(",")[2]));
 			model.addAttribute("mensaje", mens.toString().toUpperCase());
 			return "reports/matricial";
 		} else {

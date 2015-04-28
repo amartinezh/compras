@@ -715,7 +715,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em.createQuery(
 				"Select " + select.toString()
-						+ ", c.pmes as pmes, Sum(c.pvalbd) as pvalbd "
+						+ ", c.pmes as pmes, Sum(c."+condiciones.get(condRep.split(",")[2])+") as "+condiciones.get(condRep.split(",")[2])+" "
 						+ "From Compras_h as c " + "Where " + where.toString()
 						+ " " + "Group by c.pmes, " + group.toString() + " "
 						+ "order by 1, 3 asc").getResultList();
