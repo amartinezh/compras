@@ -762,6 +762,9 @@ public class ComprasDaoImpl implements ComprasDao {
 			t = t.add(ret.get(ret.size() - 1).getCompras()
 					.get(Integer.parseInt(obj[2].toString()) - 1).getPvalbd());
 		}
+		if(ret.size() > 0) {
+			ret.get(ret.size() - 1).getCompras().get(12).setPvalbd(t);
+		}
 		// rep.getCompras().get(12).setPvalbd(rep.getCompras().get(12).getPvalbd().subtract(t1));
 		ret.add(rep);
 		return ret;
