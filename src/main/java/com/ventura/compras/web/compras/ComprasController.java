@@ -1,5 +1,6 @@
 package com.ventura.compras.web.compras;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -136,9 +137,9 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			List<Compras> ll = comprasService.getProveedores(ses.getCondiciones(),
-					ses.getCondicionActual(), ses.getFechaActual(),
-					ses.getFechaSelec(), ses.getFiltro());			
+			List<Compras> ll = comprasService.getProveedores(
+					ses.getCondiciones(), ses.getCondicionActual(),
+					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro());
 			if (ses.getFiltro() == null) {
 				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor()
 						.replaceAll("'", String.valueOf('"')));
@@ -1055,9 +1056,7 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:mostrar";
 			session ses = (session) model.asMap().get("user_inicio");
-
 			ses.setCondicionActual(ses.getCondicionActual() + ",Bod");
-
 			if (compra.getPlocal().equalsIgnoreCase("@@@@@")) {
 				ses.getValores().put("Bod", "Bodegas: Todos");
 				ses.getCondiciones().put("Bod", "");
@@ -1190,14 +1189,38 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			model.addAttribute("redireccion", "mostrar");
 			model.addAttribute("accion", "generar");
-			model.addAttribute("compra", new Compras());
+			model.addAttribute("compra", new Compras());			
 			session ses = (session) (model.asMap().get("user_inicio"));
+			model.addAttribute("usuarioactuall", ses.getUsuario());
 			if (ses.getCenters().isEmpty()) {
 				model.addAttribute("cennnn", 0);
 			} else {
 				model.addAttribute("cennnn", 1);
 			}
 			return "actualizar";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/anual", method = RequestMethod.GET)
+	public String reporte(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			model.addAttribute("redireccion", "mostrar");
+			model.addAttribute("accion", "visualizar");
+			model.addAttribute("compra", new Compras());
+			session ses = (session) (model.asMap().get("user_inicio"));
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			StringBuilder mens = new StringBuilder();
+			for (int i = 2; i < ses.getCondicionUsuario().split(",").length; i++) {
+				if (mens.length() > 0) {
+					mens.append(" ");
+				}
+				mens.append(ses.getValores().get(
+						ses.getCondicionUsuario().split(",")[i]));
+			}
+			model.addAttribute("mensaje", mens.toString().toUpperCase());
+			return "reporte";
 		} else {
 			return "redirect:/index/ingreso";
 		}
@@ -1223,6 +1246,65 @@ public class ComprasController {
 			}
 			model.addAttribute("user_inicio", ses);
 			return "redirect:mostrar";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/visualizar", method = RequestMethod.POST)
+	public String visualizar(@ModelAttribute("compra") Compras compra,
+			Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			ses.setCondicionReporte(compra.getPano() + "anor,"
+					+ compra.getTipoc());
+			return "redirect:reporteanual";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/reporteanual", method = RequestMethod.GET)
+	public String reporteanual(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			model.addAttribute("usuarioactuall", ses.getUsuario());			
+			model.addAttribute(
+					"listcomp",
+					comprasService.getReporte(ses.getCondiciones(),
+							ses.getCondicionUsuario(),
+							ses.getCondicionReporte()));
+			List<String> mes = new LinkedList<String>();
+			mes.add(ses.getValores().get(ses.getCondicionReporte().split(",")[1]));
+			mes.add("Enero");
+			mes.add("Febrero");
+			mes.add("Marzo");
+			mes.add("Abril");
+			mes.add("Mayo");
+			mes.add("Junio");
+			mes.add("Julio");
+			mes.add("Agosto");
+			mes.add("Septiembre");
+			mes.add("Octubre");
+			mes.add("Noviembre");
+			mes.add("Diciembre");
+			mes.add("Total");
+			model.addAttribute("listmeses", mes);
+			StringBuilder mens = new StringBuilder();
+			for (int i = 2; i < ses.getCondicionUsuario().split(",").length; i++) {
+				if (mens.length() > 0) {
+					mens.append(" ");
+				}
+				mens.append(ses.getValores().get(
+						ses.getCondicionUsuario().split(",")[i]));
+			}
+			if (mens.length() > 0) {
+				mens.append(" ");
+			}
+			mens.append(ses.getValores().get(ses.getCondicionReporte().split(",")[0]));
+			mens.append(" Dato: Valor Recibido");
+			model.addAttribute("mensaje", mens.toString().toUpperCase());
+			return "reports/matricial";
 		} else {
 			return "redirect:/index/ingreso";
 		}

@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.ventura.compras.domain.compras.Compras;
+import com.ventura.compras.domain.compras.Reporte;
 import com.ventura.compras.repository.compras.ComprasDao;
 
 @Repository
@@ -22,8 +23,8 @@ public class ComprasDaoImpl implements ComprasDao {
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-	
-	////////////////////////////////////////////////////////////////////////////////////
+
+	// //////////////////////////////////////////////////////////////////////////////////
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getCompras(Map<String, String> condiciones,
@@ -87,9 +88,9 @@ public class ComprasDaoImpl implements ComprasDao {
 		compras.add(com);
 		return compras;
 	}
-	
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
+
+	// //////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getCompradores(Map<String, String> condiciones,
@@ -152,9 +153,9 @@ public class ComprasDaoImpl implements ComprasDao {
 		compras.add(comp);
 		return compras;
 	}
-	
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
+
+	// //////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getProveedores(Map<String, String> condiciones,
@@ -165,8 +166,8 @@ public class ComprasDaoImpl implements ComprasDao {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() != 0) {
 					where.append(" and ");
-				} 
-				where.append(condiciones.get(c[i]));				
+				}
+				where.append(condiciones.get(c[i]));
 			}
 		}
 		if (compra != null) {
@@ -237,15 +238,15 @@ public class ComprasDaoImpl implements ComprasDao {
 		compras.add(comp);
 		return compras;
 	}
-	
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////	
+
+	// //////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getItems(Map<String, String> condiciones, String cond,
 			String fechaAct, String fechaSel, Compras compra) {
 		String[] c = cond.split(",");
-		StringBuilder where = new StringBuilder();		
+		StringBuilder where = new StringBuilder();
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
@@ -277,11 +278,11 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ "ORDER BY pvalbd desc").getResultList();
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
-		Compras comp = new Compras("@@@@@", 
-				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_EVEN), 
-				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_EVEN), 
-				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_EVEN), 
-				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+		Compras comp = new Compras("@@@@@", new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_EVEN));
 		for (Object[] obj : result) {
 			if (compra == null) {
 				if (!ordenes.toString().contains((String) obj[0])) {
@@ -295,20 +296,22 @@ public class ComprasDaoImpl implements ComprasDao {
 			compras.add(new Compras(new BigDecimal(obj[2].toString()).setScale(
 					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
 					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[0], 
-					new BigDecimal(obj[4].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[5].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN), 
-					new BigDecimal(obj[6].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[1], 
-					new BigDecimal(obj[7].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[8], 
-					new BigDecimal(obj[9].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[10], 
-					new BigDecimal(obj[11].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[12], 
-					new BigDecimal(obj[13].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[14].toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN), 
-					(String) obj[15],
+					(String) obj[0], new BigDecimal(obj[4].toString())
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[5].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
+							.toString())
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[1], new BigDecimal(obj[7].toString())
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[8], new BigDecimal(obj[9].toString())
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[10], new BigDecimal(obj[11].toString())
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[12], new BigDecimal(obj[13].toString())
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[14].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
 					Integer.parseInt(obj[16].toString()), (String) obj[17]));
 			comp.sumarItem(compras.get(compras.size() - 1));
 		}
@@ -471,8 +474,8 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		where.append("c.tipoc = 'R'");
 		if (compra != null) {
-			where.append(" and c.nroor LIKE '" + compra.getNroor().toUpperCase()
-					+ "%'");
+			where.append(" and c.nroor LIKE '"
+					+ compra.getNroor().toUpperCase() + "%'");
 		}
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
@@ -683,4 +686,84 @@ public class ComprasDaoImpl implements ComprasDao {
 		return compras;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Reporte> getReporte(Map<String, String> condiciones,
+			String cond, String condRep) {
+		StringBuilder where = new StringBuilder();
+		for (int i = 2; i < cond.split(",").length; i++) {
+			if (!condiciones.get(cond.split(",")[i]).isEmpty()) {
+				if (where.length() > 0) {
+					where.append(" and ");
+				}
+				where.append(condiciones.get(cond.split(",")[i]));
+			}
+		}
+		if (where.length() > 0) {
+			where.append(" and ");
+		}
+		where.append(condiciones.get(condRep.split(",")[0]));
+		String valores = condiciones.get(condRep.split(",")[1]);
+		StringBuilder select = new StringBuilder();
+		StringBuilder group = new StringBuilder();
+		for (String val : valores.split(",")) {
+			if (select.length() > 0) {
+				select.append(", ");
+				group.append(", ");
+			}
+			select.append("c." + val + " as " + val);
+			group.append("c." + val);
+		}
+		List<Object[]> result = em.createQuery(
+				"Select " + select.toString()
+						+ ", c.pmes as pmes, Sum(c.pvalbd) as pvalbd "
+						+ "From Compras_h as c " + "Where " + where.toString()
+						+ " " + "Group by c.pmes, " + group.toString() + " "
+						+ "order by 1, 3 asc").getResultList();
+		List<Reporte> ret = new LinkedList<Reporte>();
+		String marcado = "";
+		BigDecimal t = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
+		// BigDecimal t1 = new BigDecimal(0).setScale(2,
+		// BigDecimal.ROUND_HALF_UP);
+		Reporte rep = new Reporte("Total");
+		for (Object[] obj : result) {
+			if (marcado.isEmpty() || !marcado.equals(obj[1].toString())) {
+				if (!marcado.isEmpty() && !marcado.equals(obj[1].toString())) {
+					ret.get(ret.size() - 1).getCompras().get(12).setPvalbd(t);
+					// t1 = t1.add(t);
+					t = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
+				}
+				ret.add(new Reporte(obj[1].toString()));
+				marcado = obj[1].toString();
+			}
+			ret.get(ret.size() - 1)
+					.getCompras()
+					.get(Integer.parseInt(obj[2].toString()) - 1)
+					.setPvalbd(
+							new BigDecimal(obj[3].toString()).setScale(2,
+									BigDecimal.ROUND_HALF_UP));
+			rep.getCompras()
+					.get(Integer.parseInt(obj[2].toString()) - 1)
+					.setPvalbd(
+							rep.getCompras()
+									.get(Integer.parseInt(obj[2].toString()) - 1)
+									.getPvalbd()
+									.add(new BigDecimal(obj[3].toString())
+											.setScale(2,
+													BigDecimal.ROUND_HALF_UP)));
+			rep.getCompras()
+					.get(12)
+					.setPvalbd(
+							rep.getCompras()
+									.get(12)
+									.getPvalbd()
+									.add(new BigDecimal(obj[3].toString())
+											.setScale(2,
+													BigDecimal.ROUND_HALF_UP)));
+			t = t.add(ret.get(ret.size() - 1).getCompras()
+					.get(Integer.parseInt(obj[2].toString()) - 1).getPvalbd());
+		}
+		// rep.getCompras().get(12).setPvalbd(rep.getCompras().get(12).getPvalbd().subtract(t1));
+		ret.add(rep);
+		return ret;
+	}
 }

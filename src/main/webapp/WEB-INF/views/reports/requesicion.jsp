@@ -186,15 +186,15 @@ tr:last-child {
 											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
-										<tr>
+										<tr>											
 											<th rowspan="2" style="text-align: center; color: blue;">Req.</th>
-											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor Ordenado</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor Recibido</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor Compras</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Val. base recibido</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Saldo Proveedor</th>									
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
-												Requerida</th>
+												Requerida</th>											
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
@@ -237,26 +237,24 @@ tr:last-child {
 															<c:out value="${compp.nroor}" />
 														</c:otherwise>
 													</c:choose></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbo}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalbd}" type="number" /></td>												
+												<fmt:setLocale value="en_US" />
+												 <td style="text-align: right">$<fmt:formatNumber
+														value="${compp.ppreac}" type="number" /></td>
+												 <td style="text-align: right">$<fmt:formatNumber
+														value="${compp.pvalpo}" type="number" /></td> 												
 												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyo}" type="number" /></td>
+														value="${compp.pqtyo}" type="number" /></td>												
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyd}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyr}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyp}" type="number" /></td>
-
-												<fmt:setLocale value="en_US" />
-												 <td style="text-align: right">$<fmt:formatNumber
-														value="${compp.ppreac}" type="number" /></td> 
-														
-												 <td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalpo}" type="number" /></td>  
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbo}" type="number" /></td>
-												<td><c:out value="${compp.fecre}" /></td>
+														<td><c:out value="${compp.fecre}" /></td>
 												<c:if test="${ user_inicio.tipoUsuario == 2 }">
 													<c:if test="${c == 0}">
 														<td align="center"><form:form method="POST"

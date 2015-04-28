@@ -56,7 +56,6 @@ public class IndexController {
 		return "key/index";
 	}
 
-	
 	@RequestMapping(value = "/validar", method = RequestMethod.POST)
 	public String addEmployee(@Valid @ModelAttribute("user") User user,
 			BindingResult result, Model model) {
@@ -67,7 +66,8 @@ public class IndexController {
 			User uss = userManager.val(user.getId(), user.getPass());
 			if (uss != null) {
 				if (uss.getType() != null) {
-					session ses = new session(uss.getId(), uss.getType().getId());
+					session ses = new session(uss.getId(), uss.getType()
+							.getId());
 					String ret = null;
 					List<Object> info = null;
 					if (uss.getType().getDescripcion()
@@ -81,6 +81,19 @@ public class IndexController {
 						Calendar fecha = new GregorianCalendar();
 						int anoAct = fecha.get(Calendar.YEAR);
 						int mesAct = (fecha.get(Calendar.MONTH) + 1) - 2;
+						for (int i = 2015; i <= anoAct; i++) {
+							ses.getAnosreporte().put(i + "", i + "");
+							ses.getCondiciones().put(i + "anor",
+									"c.pano = " + i);
+							ses.getValores().put(i + "anor", "Año: " + i);
+						}
+						String[] v = {"Proveedor", "Producto", "Centro", "Bodega", "Clase"};
+						String[] vv = {"pprov,ppnov", "pipro,pides", "pcent,pcenn", "plocal,plnon", "picla,picln"};
+						for(int i = 0; i < v.length; i++) {
+							ses.getCamposreporte().put("creporte"+i, v[i]);
+							ses.getCondiciones().put("creporte"+i, vv[i]);
+							ses.getValores().put("creporte"+i, v[i]);
+						}
 						if (mesAct < 1) {
 							mesAct = 12 + mesAct;
 							anoAct--;
@@ -94,8 +107,8 @@ public class IndexController {
 									"c.pmes = " + mesAct);
 							switch (mesAct) {
 							case 1:
-								ses.getValores()
-										.put("mm" + mesAct, "Mes: Enero");
+								ses.getValores().put("mm" + mesAct,
+										"Mes: Enero");
 								ses.getMeses().put(mesAct + "", "ENERO");
 								break;
 							case 2:
@@ -104,27 +117,28 @@ public class IndexController {
 								ses.getMeses().put(mesAct + "", "FEBRERO");
 								break;
 							case 3:
-								ses.getValores()
-										.put("mm" + mesAct, "Mes: Marzo");
+								ses.getValores().put("mm" + mesAct,
+										"Mes: Marzo");
 								ses.getMeses().put(mesAct + "", "MARZO");
 								break;
 							case 4:
-								ses.getValores()
-										.put("mm" + mesAct, "Mes: Abril");
+								ses.getValores().put("mm" + mesAct,
+										"Mes: Abril");
 								ses.getMeses().put(mesAct + "", "ABRIL");
 								break;
 							case 5:
-								ses.getValores().put("mm" + mesAct, "Mes: Mayo");
+								ses.getValores()
+										.put("mm" + mesAct, "Mes: Mayo");
 								ses.getMeses().put(mesAct + "", "MAYO");
 								break;
 							case 6:
-								ses.getValores()
-										.put("mm" + mesAct, "Mes: Junio");
+								ses.getValores().put("mm" + mesAct,
+										"Mes: Junio");
 								ses.getMeses().put(mesAct + "", "JUNIO");
 								break;
 							case 7:
-								ses.getValores()
-										.put("mm" + mesAct, "Mes: Julio");
+								ses.getValores().put("mm" + mesAct,
+										"Mes: Julio");
 								ses.getMeses().put(mesAct + "", "JULIO");
 								break;
 							case 8:
@@ -222,7 +236,7 @@ public class IndexController {
 								|| uss.getLevel().getDescripcion()
 										.equalsIgnoreCase("todos")) {
 							ses.getCondiciones().put("l1", "c.ppais = 'COL'");
-							ses.getValores().put("l1", "Tipo: Nacional");							
+							ses.getValores().put("l1", "Tipo: Nacional");
 							ses.getLevels().put("1", "Nacional");
 							ses.getCondiciones().put("l3", "");
 							ses.getValores().put("l3", "Tipo: Todos");
@@ -241,7 +255,7 @@ public class IndexController {
 								ses.setCondicionUsuario(ses
 										.getCondicionUsuario() + ",l2");
 							}
-							if(!ses.getValores().containsKey("l3")) {
+							if (!ses.getValores().containsKey("l3")) {
 								ses.getCondiciones().put("l3", "");
 								ses.getValores().put("l3", "Tipo: Todos");
 								ses.getLevels().put("3", "TODOS");
@@ -267,11 +281,11 @@ public class IndexController {
 							ses.getCondiciones().put("m2", "c.pmond = 'USD'");
 							ses.getValores().put("m2", "Moneda: USD");
 							ses.getCurrencys().put("2", "USD");
-							if(!ses.getCondiciones().containsKey("m3")) {
+							if (!ses.getCondiciones().containsKey("m3")) {
 								ses.getCondiciones().put("m3", "");
 								ses.getValores().put("m3", "Moneda: TODAS");
-								ses.getCurrencys().put("3", "TODAS");								
-							}							
+								ses.getCurrencys().put("3", "TODAS");
+							}
 							if (!ses.getCondicionUsuario().contains("m3")) {
 								ses.setCondicionUsuario(ses
 										.getCondicionUsuario() + ",m3");

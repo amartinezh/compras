@@ -147,7 +147,19 @@ public class session implements Serializable{
 	private Map<String, String> currencys;
 	private String autocomplete;
 	private Compras filtro;
+	private Map<String, String> anosreporte;
+	private Map<String, String> camposreporte;
 	
+	private String condicionReporte;
+	
+	public Map<String, String> getAnosreporte() {
+		return anosreporte;
+	}
+
+	public void setAnosreporte(Map<String, String> anosreporte) {
+		this.anosreporte = anosreporte;
+	}
+
 	public int getTipoUsuario() {
 		return tipoUsuario;
 	}
@@ -183,7 +195,27 @@ public class session implements Serializable{
 		this.currencys = new HashMap<String, String>();
 		this.autocomplete = "";
 		this.filtro = null;
+		this.anosreporte = new HashMap<String, String>();
+		this.camposreporte = new HashMap<String, String>();
+		this.condicionReporte = "";
 	}
+	
+	public String getCondicionReporte() {
+		return condicionReporte;
+	}
+
+	public void setCondicionReporte(String condicionReporte) {
+		this.condicionReporte = condicionReporte;
+	}
+
+	public Map<String, String> getCamposreporte() {
+		return camposreporte;
+	}
+
+	public void setCamposreporte(Map<String, String> camposreporte) {
+		this.camposreporte = camposreporte;
+	}
+
 	public Compras getFiltro() {
 		return filtro;
 	}

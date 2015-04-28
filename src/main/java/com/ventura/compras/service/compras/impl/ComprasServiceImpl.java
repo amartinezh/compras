@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ventura.compras.domain.compras.Compras;
+import com.ventura.compras.domain.compras.Reporte;
 import com.ventura.compras.repository.compras.ComprasDao;
 import com.ventura.compras.service.compras.ComprasService;
 
@@ -50,6 +51,10 @@ public class ComprasServiceImpl implements ComprasService {
 		
 	public List<Compras> getBodegas(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
 		return comprasDao.getBodegas(condiciones, cond, fechaAct, fechaSel);
+	}
+	
+	public List<Reporte> getReporte(Map<String, String> condiciones, String cond, String condRep) {
+		return comprasDao.getReporte(condiciones, cond, condRep);		
 	}
 	
 }

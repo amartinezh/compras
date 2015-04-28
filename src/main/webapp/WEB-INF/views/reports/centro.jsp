@@ -181,8 +181,8 @@ tr:last-child {
 											
 												
 												
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Compras</th>
+											<!-- <th rowspan="2" style="text-align: center; color: blue;">Valor
+												Compras</th>  -->
 											<c:if test="${o == 0 && r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -235,9 +235,9 @@ tr:last-child {
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyp}" type="number" /></td>
 												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.ppreac}" type="number" /></td>
 												<!-- <td style="text-align: right">$<fmt:formatNumber
+														value="${compp.ppreac}" type="number" /></td>
+												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>  -->
 												
 												<c:if test="${o == 0 && r == 0}">

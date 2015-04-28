@@ -78,16 +78,8 @@
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
 
-<style type="text/css">
-tr:last-child {
-	color: #ff0000;
-	font-weight: bold;
-}
-</style>
-
 </head>
 <body class="">
-
 	<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 
 	<!-- HEADER -->
@@ -122,14 +114,13 @@ tr:last-child {
 					</ul>
 				</li>
 			</ul>
-			<a href="anual" class="btn btn-success btn-labeled"> <span class="btn-label"><i
-					class="glyphicon glyphicon-info-sign"></i></span>Reporte Anual
-			</a> <a href="actualizar" class="btn btn-labeled btn-info"> <span
-				class="btn-label"><i class="glyphicon glyphicon-refresh"></i></span>Actualizar
+
+
+			<a href="${redireccion}" class="btn btn-labeled btn-default"> <span
+				class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar
 			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
 				class="btn-label"><i class="fa fa-sign-out"></i></span>Salir
 			</a>
-
 			<!-- end logout button -->
 
 		</div>
@@ -162,195 +153,29 @@ tr:last-child {
 							<!-- widget content -->
 							<div class="widget-body no-padding">
 
-								<table class="table table-striped table-bordered" width="100%">
-									<thead>
-										<tr>
-											<td colspan="15" align="center"><c:out
-													value="${mensaje}" /></td>
-										</tr>
-										<tr>
-											<th rowspan="2" style="text-align: center; color: blue;">Tipo
-												Proveedor</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Ordenado</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												Recibido</th>
-											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
+								<form:form id="checkout-form" class="smart-form"
+									novalidate="novalidate" method="POST" action="${accion}"
+									ModelAttribute="compra" commandName="compra">
+									<header>${ mensaje }</header>
+									<fieldset>
+										<div class="row">
+											<section class="col col-6">
+												<label class="label">Año</label>
+												<form:select path="pano" items="${user_inicio.anosreporte}" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Campo</label>
+												<form:select path="tipoc"
+													items="${user_inicio.camposreporte}" />
+											</section>
+										</div>
+									</fieldset>
+									<footer>
+										<button type="submit" class="btn btn-primary">
+											Visualizar</button>
+									</footer>
+								</form:form>
 
-											<!--<th >Saldo Proveedor</th>
-											<th >Precio Compra</th> -->
-											<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
-											<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
-											<c:if test="${ user_inicio.tipoUsuario == 2 }">
-												<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
-											</c:if>
-											<!-- <th >Proveedor</th>  -->
-											<th rowspan="2" style="text-align: center; color: blue;">Item</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Cent.
-												Costo</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
-										</tr>
-										<tr>
-											<th style="text-align: center; color: blue;">Ordenadas</th>
-											<th style="text-align: center; color: blue;">Recibidas</th>
-											<th style="text-align: center; color: blue;">Rechazadas</th>
-											<th style="text-align: center; color: blue;">Pendiente a
-												la Fecha</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${listcomp}" var="compp"
-											varStatus="loopCounter">
-											<tr
-												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
-												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
-												bgcolor="#EFF2EF">
-
-
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="prove" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															<strong><c:out value="${compp.ptyno}" /></strong>
-														</button>
-													</form:form></td>
-												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
-												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbo}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyo}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyr}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyp}" type="number" /></td>
-												<fmt:setLocale value="en_US" />
-
-												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
-												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>  -->
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="oc" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/ordencompra.png" />">
-														</button>
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="rq" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/requisicion.png" />">
-														</button>
-													</form:form></td>
-												<c:if test="${ user_inicio.tipoUsuario == 2 }">
-													<td align="center"><form:form method="POST"
-															action="comp" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="ptype" type="hidden"
-																value="${compp.ptype}" />
-															<button type="submit" Value="compra" name="next"
-																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<form:input path="ptyno" type="hidden"
-																	value="${compp.ptyno}" />
-																<img width="20" height="20"
-																	src="<c:url value="/resources/img/adm/comprador.png" />">
-															</button>
-														</form:form></td>
-												</c:if>
-												<!-- <td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />														
-														<button type="submit" Value="prove" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
-															<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
-														</button>
-													</form:form></td>
-													 -->
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="ite" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/producto.png" />">
-														</button>
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="clas" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/tipoproducto.png" />">
-														</button>
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="centr" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/centrocosto.png" />">
-														</button>
-
-													</form:form></td>
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="bod" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															<img width="20" height="20"
-																src="<c:url value="/resources/img/adm/ubicacion.png" />">
-														</button>
-
-													</form:form></td>
-											</tr>
-										</c:forEach>
-										<!-- <tr>
-											<td colspan="11" align="center"></td>
-										</tr>
-										 <tr>
-											<td colspan="11" align="center">Usuario: <c:out
-													value="${usuarioactuall}" /></td>
-										</tr>
-										 -->
-									</tbody>
-								</table>
 							</div>
 							<div style="float: right;">
 								<strong>Usuario: </strong>${usuarioactuall}</div>
@@ -376,6 +201,17 @@ tr:last-child {
 
 	</div>
 	<!-- END MAIN CONTENT -->
+
+	<!-- PAGE FOOTER -->
+	<div class="page-footer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<span class="txt-color-white">Gestión de Compras</span>
+			</div>
+		</div>
+	</div>
+	<!-- END PAGE FOOTER -->
+
 
 	<!--================================================== -->
 
@@ -679,221 +515,6 @@ tr:last-child {
 							/* END TABLETOOLS */
 
 						})
-
-		$(function() {
-			$("table").stickyTableHeaders();
-		});
-		/*! Copyright (c) 2011 by Jonas Mosbech - https://github.com/jmosbech/StickyTableHeaders
-		    MIT license info: https://github.com/jmosbech/StickyTableHeaders/blob/master/license.txt */
-
-		;
-		(function($, window, undefined) {
-			'use strict';
-
-			var name = 'stickyTableHeaders';
-			var defaults = {
-				fixedOffset : 0
-			};
-
-			function Plugin(el, options) {
-				// To avoid scope issues, use 'base' instead of 'this'
-				// to reference this class from internal events and functions.
-				var base = this;
-
-				// Access to jQuery and DOM versions of element
-				base.$el = $(el);
-				base.el = el;
-
-				// Listen for destroyed, call teardown
-				base.$el.bind('destroyed', $.proxy(base.teardown, base));
-
-				// Cache DOM refs for performance reasons
-				base.$window = $(window);
-				base.$clonedHeader = null;
-				base.$originalHeader = null;
-
-				// Keep track of state
-				base.isSticky = false;
-				base.leftOffset = null;
-				base.topOffset = null;
-
-				base.init = function() {
-					base.options = $.extend({}, defaults, options);
-
-					base.$el
-							.each(function() {
-								var $this = $(this);
-
-								// remove padding on <table> to fix issue #7
-								$this.css('padding', 0);
-
-								base.$originalHeader = $('thead:first', this);
-								base.$clonedHeader = base.$originalHeader
-										.clone();
-
-								base.$clonedHeader
-										.addClass('tableFloatingHeader');
-								base.$clonedHeader.css('display', 'none');
-
-								base.$originalHeader
-										.addClass('tableFloatingHeaderOriginal');
-
-								base.$originalHeader.after(base.$clonedHeader);
-
-								base.$printStyle = $('<style type="text/css" media="print">'
-										+ '.tableFloatingHeader{display:none !important;}'
-										+ '.tableFloatingHeaderOriginal{position:static !important;}'
-										+ '</style>');
-								$('head').append(base.$printStyle);
-							});
-
-					base.updateWidth();
-					base.toggleHeaders();
-
-					base.bind();
-				};
-
-				base.destroy = function() {
-					base.$el.unbind('destroyed', base.teardown);
-					base.teardown();
-				};
-
-				base.teardown = function() {
-					if (base.isSticky) {
-						base.$originalHeader.css('position', 'static');
-					}
-					$.removeData(base.el, 'plugin_' + name);
-					base.unbind();
-
-					base.$clonedHeader.remove();
-					base.$originalHeader
-							.removeClass('tableFloatingHeaderOriginal');
-					base.$originalHeader.css('visibility', 'visible');
-					base.$printStyle.remove();
-
-					base.el = null;
-					base.$el = null;
-				};
-
-				base.bind = function() {
-					base.$window.on('scroll.' + name, base.toggleHeaders);
-					base.$window.on('resize.' + name, base.toggleHeaders);
-					base.$window.on('resize.' + name, base.updateWidth);
-				};
-
-				base.unbind = function() {
-					// unbind window events by specifying handle so we don't remove too much
-					base.$window.off('.' + name, base.toggleHeaders);
-					base.$window.off('.' + name, base.updateWidth);
-					base.$el.off('.' + name);
-					base.$el.find('*').off('.' + name);
-				};
-
-				base.toggleHeaders = function() {
-					base.$el
-							.each(function() {
-								var $this = $(this);
-
-								var newTopOffset = isNaN(base.options.fixedOffset) ? base.options.fixedOffset
-										.height()
-										: base.options.fixedOffset;
-
-								var offset = $this.offset();
-								var scrollTop = base.$window.scrollTop()
-										+ newTopOffset;
-								var scrollLeft = base.$window.scrollLeft();
-
-								if ((scrollTop > offset.top)
-										&& (scrollTop < offset.top
-												+ $this.height()
-												- base.$clonedHeader.height())) {
-									var newLeft = offset.left - scrollLeft;
-									if (base.isSticky
-											&& (newLeft === base.leftOffset)
-											&& (newTopOffset === base.topOffset)) {
-										return;
-									}
-
-									base.$originalHeader.css({
-										'position' : 'fixed',
-										'top' : newTopOffset,
-										'margin-top' : 0,
-										'left' : newLeft,
-										'z-index' : 1
-									// #18: opacity bug
-									});
-									base.$clonedHeader.css('display', '');
-									base.isSticky = true;
-									base.leftOffset = newLeft;
-									base.topOffset = newTopOffset;
-
-									// make sure the width is correct: the user might have resized the browser while in static mode
-									base.updateWidth();
-								} else if (base.isSticky) {
-									base.$originalHeader.css('position',
-											'static');
-									base.$clonedHeader.css('display', 'none');
-									base.isSticky = false;
-								}
-							});
-				};
-
-				base.updateWidth = function() {
-					if (!base.isSticky) {
-						return;
-					}
-					// Copy cell widths from clone
-					var $origHeaders = $('th,td', base.$originalHeader);
-					$('th,td', base.$clonedHeader).each(function(index) {
-
-						var width, $this = $(this);
-
-						if ($this.css('box-sizing') === 'border-box') {
-							width = $this.outerWidth(); // #39: border-box bug
-						} else {
-							width = $this.width();
-						}
-
-						$origHeaders.eq(index).css({
-							'min-width' : width,
-							'max-width' : width
-						});
-					});
-
-					// Copy row width from whole table
-					base.$originalHeader.css('width', base.$clonedHeader
-							.width());
-				};
-
-				base.updateOptions = function(options) {
-					base.options = $.extend({}, defaults, options);
-					base.updateWidth();
-					base.toggleHeaders();
-				};
-
-				// Run initializer
-				base.init();
-			}
-
-			// A plugin wrapper around the constructor,
-			// preventing against multiple instantiations
-			$.fn[name] = function(options) {
-				return this.each(function() {
-					var instance = $.data(this, 'plugin_' + name);
-					if (instance) {
-						if (typeof options === "string") {
-							instance[options].apply(instance);
-						} else {
-							instance.updateOptions(options);
-						}
-					} else if (options !== 'destroy') {
-						$.data(this, 'plugin_' + name,
-								new Plugin(this, options));
-					}
-				});
-			};
-
-		})(jQuery, window);
 	</script>
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->

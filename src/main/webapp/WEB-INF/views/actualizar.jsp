@@ -190,6 +190,8 @@
 								</form:form>
 
 							</div>
+							<div style="float: right;">
+								<strong>Usuario: </strong>${usuarioactuall}</div>
 							<!-- end widget content -->
 
 						</div>
