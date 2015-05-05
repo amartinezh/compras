@@ -167,7 +167,7 @@ tr:last-child {
 												ModelAttribute="compra" commandName="compra"
 												class="header-search pull-right">
 												<form:input type="text" path="nroor"
-													placeholder="Filtrar Orden"
+													placeholder="Filtrar Requisicion"
 													data-autocomplete='${ autocompletar }' />
 												<button type="submit" name="busca" value="requ">
 													<i class="fa fa-search"></i>
