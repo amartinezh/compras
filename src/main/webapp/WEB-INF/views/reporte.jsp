@@ -118,6 +118,8 @@
 
 			<a href="${redireccion}" class="btn btn-labeled btn-default"> <span
 				class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar
+			</a> <a href="refrescar" class="btn btn-labeled btn-info"> <span
+				class="btn-label"><i class="glyphicon glyphicon-refresh"></i></span>Actualizar
 			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
 				class="btn-label"><i class="fa fa-sign-out"></i></span>Salir
 			</a>

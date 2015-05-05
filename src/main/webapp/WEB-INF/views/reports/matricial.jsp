@@ -163,13 +163,13 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<td colspan="16" align="center"><c:out
+											<td colspan="17" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th style="text-align: center; color: blue;"></th>
+											<th colspan="2" style="text-align: center; color: blue;"></th>
 											<th colspan="12" style="text-align: center; color: blue;">Meses</th>
-											<th style="text-align: center; color: blue;"></th>										
+											<th style="text-align: center; color: blue;"></th>
 										</tr>
 										<tr>
 											<c:forEach items="${listmeses}" var="msss"
@@ -183,7 +183,13 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<tr>
-												<td><c:out value="${compp.ppnov}" /></td>
+
+												<td
+													<c:if test="${compp.pprov == 'Total'}"> colspan="2"</c:if>><c:out
+														value="${compp.pprov}" /></td>
+												<c:if test="${compp.pprov != 'Total'}">
+													<td><c:out value="${compp.ppnov}" /></td>
+												</c:if>
 												<c:forEach items="${compp.compras}" var="vall"
 													varStatus="loopCounter">
 													<td style="text-align: right">$<fmt:formatNumber

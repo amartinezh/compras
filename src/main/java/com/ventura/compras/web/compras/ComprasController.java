@@ -1202,6 +1202,25 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
+	
+	@RequestMapping(value = "/refrescar", method = RequestMethod.GET)
+	public String refrescar(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			model.addAttribute("redireccion", "anual");
+			model.addAttribute("accion", "tomar");
+			model.addAttribute("compra", new Compras());			
+			session ses = (session) (model.asMap().get("user_inicio"));
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			if (ses.getCenters().isEmpty()) {
+				model.addAttribute("cennnn", 0);
+			} else {
+				model.addAttribute("cennnn", 1);
+			}
+			return "actualizar";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
 
 	@RequestMapping(value = "/anual", method = RequestMethod.GET)
 	public String reporte(Model model) {
@@ -1226,6 +1245,31 @@ public class ComprasController {
 		}
 	}
 
+	@RequestMapping(value = "/tomar", method = RequestMethod.POST)
+	public String tomar(@ModelAttribute("compra") Compras compra, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			if (ses.getCenters().isEmpty()) {
+				ses.setFechaSelec("a" + compra.getPano() + ",mm"
+						+ compra.getPmes());
+				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
+						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
+						+ compra.getPpais() + ",m" + compra.getPmond());
+			} else {
+				ses.setFechaSelec("a" + compra.getPano() + ",mm"
+						+ compra.getPmes());
+				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
+						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
+						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
+						+ compra.getPcent());
+			}
+			model.addAttribute("user_inicio", ses);
+			return "redirect:anual";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
 	@RequestMapping(value = "/generar", method = RequestMethod.POST)
 	public String generaar(@ModelAttribute("compra") Compras compra, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -1275,6 +1319,7 @@ public class ComprasController {
 							ses.getCondicionUsuario(),
 							ses.getCondicionReporte()));
 			List<String> mes = new LinkedList<String>();
+			mes.add("Código");
 			mes.add(ses.getValores().get(ses.getCondicionReporte().split(",")[1]));
 			mes.add("Enero");
 			mes.add("Febrero");

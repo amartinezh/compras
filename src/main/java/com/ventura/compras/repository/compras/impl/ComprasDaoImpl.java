@@ -724,7 +724,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		BigDecimal t = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
 		// BigDecimal t1 = new BigDecimal(0).setScale(2,
 		// BigDecimal.ROUND_HALF_UP);
-		Reporte rep = new Reporte("Total");
+		Reporte rep = new Reporte("Total", "Total");
 		for (Object[] obj : result) {
 			if (marcado.isEmpty() || !marcado.equals(obj[1].toString())) {
 				if (!marcado.isEmpty() && !marcado.equals(obj[1].toString())) {
@@ -732,7 +732,7 @@ public class ComprasDaoImpl implements ComprasDao {
 					// t1 = t1.add(t);
 					t = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
 				}
-				ret.add(new Reporte(obj[1].toString()));
+				ret.add(new Reporte(obj[0].toString(), obj[1].toString()));
 				marcado = obj[1].toString();
 			}
 			ret.get(ret.size() - 1)

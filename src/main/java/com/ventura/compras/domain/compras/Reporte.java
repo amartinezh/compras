@@ -9,10 +9,13 @@ public class Reporte implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private String pprov;
 	private String ppnov;
+	
 	private List<Compras> compras;
 	
-	public Reporte(String ppnov) {
+	public Reporte(String pprov, String ppnov) {
+		this.pprov = pprov;
 		this.ppnov = ppnov;
 		this.compras = new LinkedList<Compras>();
 		for(int i =0; i<13; i++) {
@@ -61,12 +64,23 @@ public class Reporte implements Serializable {
 	public String getPpnov() {
 		return ppnov;
 	}
+	
+	public String getPprov() {
+		return pprov;
+	}
+	
 	public List<Compras> getCompras() {
 		return compras;
 	}
+	
+	public void setPprov(String pprov) {
+		this.pprov = pprov;
+	}
+	
 	public void setPpnov(String ppnov) {
 		this.ppnov = ppnov;
 	}
+	
 	public void setCompras(List<Compras> compras) {
 		this.compras = compras;
 	}
