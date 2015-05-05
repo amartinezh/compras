@@ -257,7 +257,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			}
 		}
 		if (compra != null) {
-			where.append("c.pipro LIKE '" + compra.getPipro().toUpperCase()
+			where.append(" and c.pipro LIKE '" + compra.getPipro().toUpperCase()
 					+ "%'");
 		}
 		String tab = "";
