@@ -87,19 +87,22 @@ public class IndexController {
 									"c.pano = " + i);
 							ses.getValores().put(i + "anor", "Año: " + i);
 						}
-						String[] v = {"Proveedor", "Producto", "Centro", "Bodega", "Clase"};
-						String[] vv = {"pprov,ppnov", "pipro,pides", "pcent,pcenn", "plocal,plnon", "picla,picln"};
-						String[] vvv = {"Valor Ordenado", "Valor Recibido"};
-						String[] vvvv = {"pvalbo", "pvalbd"};
-						for(int i = 0; i < v.length; i++) {
-							ses.getCamposreporte().put("creporte"+i, v[i]);
-							ses.getCondiciones().put("creporte"+i, vv[i]);
-							ses.getValores().put("creporte"+i, v[i]);
+						String[] v = { "Proveedor", "Producto", "Centro",
+								"Bodega", "Clase" };
+						String[] vv = { "pprov,ppnov", "pipro,pides",
+								"pcent,pcenn", "plocal,plnon", "picla,picln" };
+						String[] vvv = { "Valor Ordenado", "Valor Recibido" };
+						String[] vvvv = { "pvalbo", "pvalbd" };
+						for (int i = 0; i < v.length; i++) {
+							ses.getCamposreporte().put("creporte" + i, v[i]);
+							ses.getCondiciones().put("creporte" + i, vv[i]);
+							ses.getValores().put("creporte" + i, v[i]);
 						}
-						for(int i=0; i<vvv.length; i++) {
-							ses.getCamposver().put("vereporte"+i, vvv[i]);
-							ses.getCondiciones().put("vereporte"+i, vvvv[i]);
-							ses.getValores().put("vereporte"+i, "Reporte: " +vvv[i]);
+						for (int i = 0; i < vvv.length; i++) {
+							ses.getCamposver().put("vereporte" + i, vvv[i]);
+							ses.getCondiciones().put("vereporte" + i, vvvv[i]);
+							ses.getValores().put("vereporte" + i,
+									"Reporte: " + vvv[i]);
 						}
 						if (mesAct < 1) {
 							mesAct = 12 + mesAct;
@@ -191,18 +194,34 @@ public class IndexController {
 						ses.setFechaSelec("a" + anoAct + ",mm" + mesAct);
 						if (!uss.getCent().getDescripcion()
 								.equalsIgnoreCase("n/a")) {
-							ses.getCenters().put("1",
-									uss.getCent().getDescripcion());
-							ses.getCondiciones()
-									.put("k1",
-											"c.pcent = +"
-													+ uss.getCent().getId()
-													+ "'");
-							ses.getValores()
-									.put("k1",
-											"Centro: "
-													+ uss.getCent()
-															.getDescripcion());
+							if (uss.getType().getDescripcion()
+									.equalsIgnoreCase("comprador")) {
+								ses.getCenters().put("1",
+										uss.getCent().getDescripcion());
+								ses.getCondiciones()
+										.put("k1",
+												"c.pcmod = +"
+														+ uss.getCent()
+																.getDescripcion()
+														+ "'");
+								ses.getValores().put(
+										"k1",
+										"COMPRADOR: "
+												+ uss.getCent()
+														.getDescripcion());
+							} else {
+								ses.getCenters().put("1",
+										uss.getCent().getDescripcion());
+								ses.getCondiciones().put(
+										"k1",
+										"c.pcent = +" + uss.getCent().getId()
+												+ "'");
+								ses.getValores().put(
+										"k1",
+										"Centro: "
+												+ uss.getCent()
+														.getDescripcion());
+							}
 						}
 						if (uss.getComp().getDescripcion()
 								.equalsIgnoreCase("panasa")
