@@ -200,10 +200,10 @@ public class IndexController {
 										uss.getCent().getDescripcion());
 								ses.getCondiciones()
 										.put("k1",
-												"c.pcmod = +"
+												"c.pcomd = "
 														+ uss.getCent()
 																.getDescripcion()
-														+ "'");
+														+ "");
 								ses.getValores().put(
 										"k1",
 										"COMPRADOR: "
@@ -222,6 +222,8 @@ public class IndexController {
 												+ uss.getCent()
 														.getDescripcion());
 							}
+							ses.setCondicionUsuario(ses
+									.getCondicionUsuario() + ",k1");
 						}
 						if (uss.getComp().getDescripcion()
 								.equalsIgnoreCase("panasa")
