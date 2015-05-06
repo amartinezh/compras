@@ -200,10 +200,10 @@ public class IndexController {
 										uss.getCent().getDescripcion());
 								ses.getCondiciones()
 										.put("k1",
-												"c.pcomd = "
+												"c.pcomd = '"
 														+ uss.getCent()
 																.getDescripcion()
-														+ "");
+														+ "'");
 								ses.getValores().put(
 										"k1",
 										"COMPRADOR: "
