@@ -30,15 +30,20 @@ public class ComprasDaoImpl implements ComprasDao {
 	public List<Compras> getCompras(Map<String, String> condiciones,
 			String cond, String fechaAct, String fechaSel) {
 		String[] c = cond.split(",");
-		String where = "";
+		StringBuilder where = new StringBuilder();
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.isEmpty()) {
-					where = condiciones.get(c[i]);
+				if (where.length() == 0) {
+					where.append(condiciones.get(c[i]).toString());
 				} else {
-					where = where + " and " + condiciones.get(c[i]);
+					where.append(" and " + condiciones.get(c[i]));
 				}
 			}
+		}
+		if (where.length() == 0) {
+			where.append("c.tipoc='O'");
+		} else {
+			where.append(" and c.tipoc='O'");
 		}
 		Compras com = new Compras(new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@", "Total",
