@@ -209,6 +209,21 @@ public class IndexController {
 										"COMPRADOR: "
 												+ uss.getCent()
 														.getDescripcion());
+							} else if(uss.getType().getDescripcion()
+									.equalsIgnoreCase("gerente regional")) {
+								ses.getCenters().put("1",
+										uss.getCent().getDescripcion());
+								ses.getCondiciones()
+										.put("k1",
+												"c.pcent = '"
+														+ uss.getCent()
+																.getDescripcion()
+														+ "'");
+								ses.getValores().put(
+										"k1",
+										"Centro costo: "
+												+ uss.getCent()
+														.getDescripcion());
 							} else {
 								ses.getCenters().put("1",
 										uss.getCent().getDescripcion());
