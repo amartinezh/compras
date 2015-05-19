@@ -91,8 +91,11 @@ public class IndexController {
 								"Bodega", "Clase" };
 						String[] vv = { "pprov,ppnov", "pipro,pides",
 								"pcent,pcenn", "plocal,plnon", "picla,picln" };
-						String[] vvv = { "Valor Ordenado", "Valor Recibido" };
-						String[] vvvv = { "pvalbo", "pvalbd" };
+						String[] vvv = { "Valor Ordenado", "Valor Recibido",
+								"Unidades Ordenadas", "Unidades Recibidas",
+								"Unidades Rechazadas", "Unidades Pendientes" };
+						String[] vvvv = { "pvalbo", "pvalbd", "pqtyo", "pqtyd",
+								"pqtyr", "pqtyp" };
 						for (int i = 0; i < v.length; i++) {
 							ses.getCamposreporte().put("creporte" + i, v[i]);
 							ses.getCondiciones().put("creporte" + i, vv[i]);
@@ -111,6 +114,8 @@ public class IndexController {
 						ses.getCondiciones().put("a" + anoAct,
 								"c.pano = " + anoAct + "");
 						ses.getValores().put("a" + anoAct, "Año: " + anoAct);
+						ses.getCondiciones().put("ordeCond", "c.tipoc='O'");
+						ses.getValores().put("ordeCond", "");
 						ses.getAnos().put(anoAct + "", anoAct + "");
 						for (int i = 0; i <= 4; i++) {
 							ses.getCondiciones().put("mm" + mesAct,
@@ -209,7 +214,7 @@ public class IndexController {
 										"COMPRADOR: "
 												+ uss.getCent()
 														.getDescripcion());
-							} else if(uss.getType().getDescripcion()
+							} else if (uss.getType().getDescripcion()
 									.equalsIgnoreCase("gerente regional")) {
 								ses.getCenters().put("1",
 										uss.getCent().getDescripcion());
@@ -229,7 +234,7 @@ public class IndexController {
 										uss.getCent().getDescripcion());
 								ses.getCondiciones().put(
 										"k1",
-										"c.pcent = +" + uss.getCent().getId()
+										"c.pcent = " + uss.getCent().getId()
 												+ "'");
 								ses.getValores().put(
 										"k1",
@@ -237,8 +242,8 @@ public class IndexController {
 												+ uss.getCent()
 														.getDescripcion());
 							}
-							ses.setCondicionUsuario(ses
-									.getCondicionUsuario() + ",k1");
+							ses.setCondicionUsuario(ses.getCondicionUsuario()
+									+ ",k1");
 						}
 						if (uss.getComp().getDescripcion()
 								.equalsIgnoreCase("panasa")
@@ -334,6 +339,8 @@ public class IndexController {
 										.getCondicionUsuario() + ",m3");
 							}
 						}
+						ses.setCondicionUsuario(ses.getCondicionUsuario()
+								+ ",ordeCond");
 						ret = "redirect:/compras/mostrar";
 					}
 					ses.setInformacion(info);

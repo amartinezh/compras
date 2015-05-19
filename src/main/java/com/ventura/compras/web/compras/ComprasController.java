@@ -1254,14 +1254,14 @@ public class ComprasController {
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
-						+ compra.getPpais() + ",m" + compra.getPmond());
+						+ compra.getPpais() + ",m" + compra.getPmond()+ ",ordeCond");
 			} else {
 				ses.setFechaSelec("a" + compra.getPano() + ",mm"
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
-						+ compra.getPcent());
+						+ compra.getPcent()+ ",ordeCond");
 			}
 			model.addAttribute("user_inicio", ses);
 			return "redirect:anual";
@@ -1279,14 +1279,14 @@ public class ComprasController {
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
-						+ compra.getPpais() + ",m" + compra.getPmond());
+						+ compra.getPpais() + ",m" + compra.getPmond()+ ",ordeCond");
 			} else {
 				ses.setFechaSelec("a" + compra.getPano() + ",mm"
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
-						+ compra.getPcent());
+						+ compra.getPcent()+ ",ordeCond");
 			}
 			model.addAttribute("user_inicio", ses);
 			return "redirect:mostrar";
@@ -1335,6 +1335,11 @@ public class ComprasController {
 			mes.add("Diciembre");
 			mes.add("Total");
 			model.addAttribute("listmeses", mes);
+			if(ses.getValores().get(ses.getCondicionReporte().split(",")[2]).contains("Valor")) {
+				model.addAttribute("mostpeso", 1);
+			} else {
+				model.addAttribute("mostpeso", 0);
+			}
 			StringBuilder mens = new StringBuilder();
 			for (int i = 2; i < ses.getCondicionUsuario().split(",").length; i++) {
 				if (mens.length() > 0) {

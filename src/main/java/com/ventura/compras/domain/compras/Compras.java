@@ -283,7 +283,7 @@ public class Compras implements Serializable {
 			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
 			String pides, BigDecimal pprep1, String fecep1, BigDecimal pprep2,
 			String fecep2, BigDecimal pprep3, String fecep3, BigDecimal pqtyo,
-			BigDecimal pqtyp, String punid, int pprov, String ppnov) {
+			BigDecimal pqtyp, String punid, int pprov, String ppnov, String pcstp) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pqtyd = pqtyd;
@@ -317,6 +317,7 @@ public class Compras implements Serializable {
 		this.punid = punid;
 		this.pprov = pprov;
 		this.ppnov = ppnov;
+		this.pcstp = pcstp;
 	}
 
 	public Compras(String pipro, BigDecimal pqtyd, BigDecimal pqtyr,
@@ -325,7 +326,7 @@ public class Compras implements Serializable {
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp;
+		this.pqtyp = pqtyp;		
 	}
 
 	// Construtor Clase
@@ -386,7 +387,7 @@ public class Compras implements Serializable {
 	// Constructor Requisicion
 	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
 			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo,
-			String fecre, BigDecimal pqtyp, String nroor, BigDecimal pvalbo) {
+			String fecre, BigDecimal pqtyp, String nroor, BigDecimal pvalbo, String pcstp) {
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
@@ -406,6 +407,7 @@ public class Compras implements Serializable {
 			this.fecre = fecre;
 		}
 		this.pvalbo = pvalbo;
+		this.pcstp =pcstp;
 	}
 
 	// Constructor Bodega

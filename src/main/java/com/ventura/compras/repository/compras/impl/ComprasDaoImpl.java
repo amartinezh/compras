@@ -40,11 +40,11 @@ public class ComprasDaoImpl implements ComprasDao {
 				}
 			}
 		}
-		if (where.length() == 0) {
-			where.append("c.tipoc='O'");
-		} else {
-			where.append(" and c.tipoc='O'");
-		}
+		// if (where.length() == 0) {
+		// where.append("c.tipoc='O'");
+		// } else {
+		// where.append(" and c.tipoc='O'");
+		// }
 		Compras com = new Compras(new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@", "Total",
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
@@ -104,10 +104,12 @@ public class ComprasDaoImpl implements ComprasDao {
 		String where = "";
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.isEmpty()) {
-					where = condiciones.get(c[i]);
-				} else {
-					where = where + " and " + condiciones.get(c[i]);
+				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
+					if (where.isEmpty()) {
+						where = condiciones.get(c[i]);
+					} else {
+						where = where + " and " + condiciones.get(c[i]);
+					}
 				}
 			}
 		}
@@ -169,10 +171,12 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder where = new StringBuilder();
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.length() != 0) {
-					where.append(" and ");
+				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
+					if (where.length() != 0) {
+						where.append(" and ");
+					}
+					where.append(condiciones.get(c[i]));
 				}
-				where.append(condiciones.get(c[i]));
 			}
 		}
 		if (compra != null) {
@@ -254,16 +258,18 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder where = new StringBuilder();
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.length() == 0) {
-					where.append(condiciones.get(c[i]));
-				} else {
-					where.append(" and " + condiciones.get(c[i]));
+				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
+					if (where.length() == 0) {
+						where.append(condiciones.get(c[i]));
+					} else {
+						where.append(" and " + condiciones.get(c[i]));
+					}
 				}
 			}
 		}
 		if (compra != null) {
-			where.append(" and c.pipro LIKE '" + compra.getPipro().toUpperCase()
-					+ "%'");
+			where.append(" and c.pipro LIKE '"
+					+ compra.getPipro().toUpperCase() + "%'");
 		}
 		String tab = "";
 		if (fechaAct.equals(fechaSel)) {
@@ -273,13 +279,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov"
+						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where.toString()
-								+ "GROUP BY c.pipro, c.pides, c.punid, c.pprov, c.ppnov "
+								+ "GROUP BY c.pipro, c.pides, c.punid, c.pprov, c.ppnov, c.pcstp "
 								+ "ORDER BY pvalbd desc").getResultList();
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
@@ -317,7 +323,8 @@ public class ComprasDaoImpl implements ComprasDao {
 							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
 					new BigDecimal(obj[14].toString()).setScale(2,
 							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
-					Integer.parseInt(obj[16].toString()), (String) obj[17]));
+					Integer.parseInt(obj[16].toString()), (String) obj[17],
+					(String) obj[18]));
 			comp.sumarItem(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
@@ -335,10 +342,12 @@ public class ComprasDaoImpl implements ComprasDao {
 		String where = "";
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.isEmpty()) {
-					where = condiciones.get(c[i]);
-				} else {
-					where = where + " and " + condiciones.get(c[i]);
+				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
+					if (where.isEmpty()) {
+						where = condiciones.get(c[i]);
+					} else {
+						where = where + " and " + condiciones.get(c[i]);
+					}
 				}
 			}
 		}
@@ -404,10 +413,12 @@ public class ComprasDaoImpl implements ComprasDao {
 		String where = "";
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.isEmpty()) {
-					where = condiciones.get(c[i]);
-				} else {
-					where = where + " and " + condiciones.get(c[i]);
+				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
+					if (where.isEmpty()) {
+						where = condiciones.get(c[i]);
+					} else {
+						where = where + " and " + condiciones.get(c[i]);
+					}
 				}
 			}
 		}
@@ -466,7 +477,8 @@ public class ComprasDaoImpl implements ComprasDao {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
 		for (int i = 0; i < c.length; i++) {
-			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
+			if (!c[i].isEmpty() && !c[i].equals("ordeCond")
+					&& !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
 					where.append(condiciones.get(c[i]));
 				} else {
@@ -492,7 +504,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "", new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@",
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN));
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "");
 		String tab = "";
 		if (fechaAct.equals(fechaSel)) {
 			tab = "Compras";
@@ -501,13 +513,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, c.pcstp as pcstp"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.nroor, c.fecre "
+								+ "GROUP BY c.nroor, c.fecre, c.pcstp "
 								+ "ORDER BY pvalbd desc").getResultList();
 		for (Object[] obj : result) {
 			if (compra == null) {
@@ -531,7 +543,8 @@ public class ComprasDaoImpl implements ComprasDao {
 							.toString(), new BigDecimal(obj[7].toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					(String) obj[0], new BigDecimal(obj[9].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN), obj[10]
+							.toString()));
 			comp.sumarRequesiciones(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
@@ -574,7 +587,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, c.pcstp as pcstp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -634,10 +647,12 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder where = new StringBuilder();
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.length() == 0) {
-					where.append(condiciones.get(c[i]));
-				} else {
-					where.append(" and " + condiciones.get(c[i]));
+				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
+					if (where.length() == 0) {
+						where.append(condiciones.get(c[i]));
+					} else {
+						where.append(" and " + condiciones.get(c[i]));
+					}
 				}
 			}
 		}
@@ -719,8 +734,9 @@ public class ComprasDaoImpl implements ComprasDao {
 			group.append("c." + val);
 		}
 		List<Object[]> result = em.createQuery(
-				"Select " + select.toString()
-						+ ", c.pmes as pmes, Sum(c."+condiciones.get(condRep.split(",")[2])+") as "+condiciones.get(condRep.split(",")[2])+" "
+				"Select " + select.toString() + ", c.pmes as pmes, Sum(c."
+						+ condiciones.get(condRep.split(",")[2]) + ") as "
+						+ condiciones.get(condRep.split(",")[2]) + " "
 						+ "From Compras_h as c " + "Where " + where.toString()
 						+ " " + "Group by c.pmes, " + group.toString() + " "
 						+ "order by 1, 3 asc").getResultList();
@@ -767,7 +783,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			t = t.add(ret.get(ret.size() - 1).getCompras()
 					.get(Integer.parseInt(obj[2].toString()) - 1).getPvalbd());
 		}
-		if(ret.size() > 0) {
+		if (ret.size() > 0) {
 			ret.get(ret.size() - 1).getCompras().get(12).setPvalbd(t);
 		}
 		// rep.getCompras().get(12).setPvalbd(rep.getCompras().get(12).getPvalbd().subtract(t1));

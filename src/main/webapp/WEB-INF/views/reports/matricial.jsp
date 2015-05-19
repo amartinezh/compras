@@ -192,7 +192,7 @@ tr:last-child {
 												</c:if>
 												<c:forEach items="${compp.compras}" var="vall"
 													varStatus="loopCounter">
-													<td style="text-align: right">$<fmt:formatNumber
+													<td style="text-align: right"><c:if test="${ mostpeso == 1}">$</c:if><fmt:formatNumber
 															value="${vall.pvalbd}" type="number" /></td>
 												</c:forEach>
 											</tr>
