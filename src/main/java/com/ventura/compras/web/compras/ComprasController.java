@@ -279,7 +279,74 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-
+	
+	@RequestMapping(value = "/estado")
+	public String estado(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute(
+					"listcomp",
+					comprasService.getEstados(ses.getCondiciones(),
+							ses.getCondicionActual(), ses.getFechaActual(),
+							ses.getFechaSelec()));
+			String[] cond = ses.getCondicionActual().split(",");
+			StringBuilder mens = new StringBuilder();
+			for (String cc : cond) {
+				if(mens.length() > 0) {
+					mens.append(" ");
+				}
+				mens.append(ses.getValores().get(cc));
+			}
+			model.addAttribute("mensaje", mens.toString().toUpperCase());
+			model.addAttribute("compra", new Compras());
+			String hist = ses.getHistorial();
+			if (hist.contains("c")) {
+				model.addAttribute("c", 1);
+			} else {
+				model.addAttribute("c", 0);
+			}
+			if (hist.contains("p")) {
+				model.addAttribute("p", 1);
+			} else {
+				model.addAttribute("p", 0);
+			}
+			if (hist.contains("i")) {
+				model.addAttribute("i", 1);
+			} else {
+				model.addAttribute("i", 0);
+			}
+			if (hist.contains("q")) {
+				model.addAttribute("q", 1);
+			} else {
+				model.addAttribute("q", 0);
+			}
+			if (hist.contains("k")) {
+				model.addAttribute("k", 1);
+			} else {
+				model.addAttribute("k", 0);
+			}
+			if (hist.contains("r")) {
+				model.addAttribute("r", 1);
+			} else {
+				model.addAttribute("r", 0);
+			}
+			if (hist.contains("o")) {
+				model.addAttribute("o", 1);
+			} else {
+				model.addAttribute("o", 0);
+			}
+			if (hist.contains("b")) {
+				model.addAttribute("b", 1);
+			} else {
+				model.addAttribute("b", 0);
+			}
+			return "reports/estado";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
 	@RequestMapping(value = "/clase")
 	public String clase(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -676,6 +743,9 @@ public class ComprasController {
 			} else if (request.getParameter("next").equals("bod")) {
 				ret = "redirect:bodega";
 				rec = "b";
+			} else if (request.getParameter("next").equals("est")) {
+				ret = "redirect:estado";
+				rec = "e";
 			}
 			if (rec.isEmpty()) {
 				ses.setHistorial("");
@@ -1099,6 +1169,61 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
+	
+	@RequestMapping(value = "est", method = RequestMethod.POST)
+	public String est(@ModelAttribute("compra") Compras compra,
+			HttpServletRequest request, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			String ret = "redirect:mostrar";
+			session ses = (session) model.asMap().get("user_inicio");
+			ses.setFiltro(null);
+			ses.setAutocomplete("");
+			ses.setCondicionActual(ses.getCondicionActual() + ",Est");
+			if (compra.getNroor().equalsIgnoreCase("total")) {
+				ses.getValores().put("Est", "Estados: Todos");
+				ses.getCondiciones().put("Est", "");
+			} else {
+				ses.getValores().put("Est", "Estado: " + compra.getNroor());
+				ses.getCondiciones().put("Est",
+						"c.pcstp = '" + compra.getPcstp() + "'");
+			}
+			String rec = "";
+			if (request.getParameter("next").equals("compra")) {
+				ret = "redirect:comprador";
+				rec = "c";
+			} else if (request.getParameter("next").equals("prove")) {
+				ret = "redirect:proveedor";
+				rec = "p";
+			} else if (request.getParameter("next").equals("ite")) {
+				ret = "redirect:item";
+				rec = "i";
+			} else if (request.getParameter("next").equals("clas")) {
+				ret = "redirect:clase";
+				rec = "q";
+			} else if (request.getParameter("next").equals("centr")) {
+				ret = "redirect:centro";
+				rec = "k";
+			} else if (request.getParameter("next").equals("rq")) {
+				ret = "redirect:requisicion";
+				rec = "r";
+			} else if (request.getParameter("next").equals("oc")) {
+				ret = "redirect:orden";
+				rec = "o";
+			} else if (request.getParameter("next").equals("bod")) {
+				ret = "redirect:bodega";
+				rec = "b";
+			}
+			if (rec.isEmpty()) {
+				ses.setHistorial("");
+			} else {
+				ses.setHistorial(ses.getHistorial() + rec);
+			}
+			model.addAttribute("user_inicio", ses);
+			return ret;
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
 
 	@RequestMapping(value = "/retornar", method = RequestMethod.GET)
 	public String retornar(Model model) {
@@ -1139,6 +1264,8 @@ public class ComprasController {
 					ret = "redirect:orden";
 				} else if (hist.charAt(hist.length() - 1) == 'b') {
 					ret = "redirect:bodega";
+				} else if (hist.charAt(hist.length() - 1) == 'e') {
+					ret = "redirect:estado";
 				}
 				ses.setCondicionActual(ses.getCondicionUsuario() + "," + ncond);
 				ses.setHistorial(hist);

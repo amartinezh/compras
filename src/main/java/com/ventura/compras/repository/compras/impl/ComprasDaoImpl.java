@@ -705,6 +705,80 @@ public class ComprasDaoImpl implements ComprasDao {
 		compras.add(comp);
 		return compras;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Compras> getEstados(Map<String, String> condiciones,
+			String cond, String fechaAct, String fechaSel) {
+		String[] c = cond.split(",");
+		StringBuilder where = new StringBuilder();
+		for (int i = 0; i < c.length; i++) {
+			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
+				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
+					if (where.length() == 0) {
+						where.append(condiciones.get(c[i]));
+					} else {
+						where.append(" and " + condiciones.get(c[i]));
+					}
+				}
+			}
+		}
+		String tab = "";
+		if (fechaAct.equals(fechaSel)) {
+			tab = "Compras";
+		} else {
+			tab = "Compras_h";
+		}
+		
+		//c.pcstp as pcstp, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, sum(c.pvalpo) as pvalbd, sum(c.pvalbo) as pvalbo 
+		List<Object[]> result = em
+				.createQuery(
+						"SELECT c.pcstp as pcstp, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalbd, sum(c.pvalbo) as pvalbo"
+								+ " FROM "
+								+ tab
+								+ " as c "
+								+ "WHERE "
+								+ where
+								+ "GROUP BY c.pcstp "
+								+ "ORDER BY c.pcstp asc").getResultList();
+		List<Compras> compras = new LinkedList<Compras>();
+		Compras comp = new Compras("10", "Total",
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN));
+		for (Object[] obj : result) {
+			String valorEst = null;
+			if(obj[0].toString().equals("0")) {
+				valorEst = "Abierta";
+			} else if(obj[0].toString().equals("1")) {
+				valorEst = "Recibida";
+			} else if(obj[0].toString().equals("2")) {
+				valorEst = "No costeada";
+			} else if(obj[0].toString().equals("3")) {
+				valorEst = "Cerrada";
+			} else {
+				valorEst = "";
+			}
+			compras.add(new Compras((String) obj[0], valorEst,
+					new BigDecimal(obj[1].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[2]
+							.toString())
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[3].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4]
+							.toString())
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[5].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
+							.toString())
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+			comp.sumarEstados(compras.get(compras.size() - 1));
+		}
+		compras.add(comp);
+		return compras;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Reporte> getReporte(Map<String, String> condiciones,

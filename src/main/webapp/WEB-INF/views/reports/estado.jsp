@@ -77,14 +77,12 @@
 <link rel="apple-touch-startup-image"
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
-
 <style type="text/css">
 tr:last-child {
 	color: #ff0000;
 	font-weight: bold;
 }
 </style>
-
 </head>
 <body class="">
 
@@ -94,8 +92,7 @@ tr:last-child {
 	<header id="header">
 		<div id="logo-group">
 			<!-- PLACE YOUR LOGO HERE -->
-			<span id="logo"> <img
-				src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin">
+			<span id="logo"> <!-- <img src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin"> -->
 			</span>
 			<!-- END LOGO PLACEHOLDER -->
 		</div>
@@ -122,10 +119,12 @@ tr:last-child {
 					</ul>
 				</li>
 			</ul>
-			<a href="anual" class="btn btn-success btn-labeled"> <span class="btn-label"><i
-					class="glyphicon glyphicon-info-sign"></i></span>Reporte Anual
-			</a> <a href="actualizar" class="btn btn-labeled btn-info"> <span
+			<a href="mostrar" class="btn btn-labeled btn-warning"> <span
+				class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio
+			</a> <a href="orden" class="btn btn-labeled btn-info"> <span
 				class="btn-label"><i class="glyphicon glyphicon-refresh"></i></span>Actualizar
+			</a> <a href="retornar" class="btn btn-labeled btn-default"> <span
+				class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar
 			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
 				class="btn-label"><i class="fa fa-sign-out"></i></span>Salir
 			</a>
@@ -145,7 +144,6 @@ tr:last-child {
 
 		<!-- widget grid -->
 		<section id="widget-grid">
-
 			<!-- row -->
 			<div class="row">
 
@@ -161,36 +159,50 @@ tr:last-child {
 
 							<!-- widget content -->
 							<div class="widget-body no-padding">
-
-								<table class="table table-striped table-bordered" width="100%">
+								<table class="table table-bordered dataTable no-footer"
+									role="grid" aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
 									<thead>
 										<tr>
 											<td colspan="15" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th rowspan="2" style="text-align: center; color: blue;">Tipo
-												Proveedor</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Estado</th>
+
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Ordenado</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>
-											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
 
-											<!--<th >Saldo Proveedor</th>
-											<th >Precio Compra</th> -->
-											<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
-											<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
-											<c:if test="${ user_inicio.tipoUsuario == 2 }">
-												<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
+											<c:if test="${o == 0 && r == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
-											<!-- <th >Proveedor</th>  -->
-											<th rowspan="2" style="text-align: center; color: blue;">Item</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Cent.
-												Costo</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Estado</th>
+											<!--  <c:if test="${r == 0 && o == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">R/Q</th>
+											</c:if> -->
+											<c:if test="${ user_inicio.tipoUsuario == 2 }">
+												<c:if test="${c == 0}">
+													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
+												</c:if>
+											</c:if>
+											<c:if test="${p == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Proveedor</th>
+											</c:if>
+											<c:if test="${i == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Items</th>
+											</c:if>
+											<c:if test="${q == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
+											</c:if>
+											<c:if test="${k == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Cent.
+													Costo</th>
+											</c:if>
+											<c:if test="${b == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
+											</c:if>
 										</tr>
 										<tr>
 											<th style="text-align: center; color: blue;">Ordenadas</th>
@@ -203,136 +215,155 @@ tr:last-child {
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
-											<tr
-												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
-												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
-												bgcolor="#EFF2EF">
+											<c:choose>
+												<c:when test="${ compp.pcstp == '0' }">
+													<tr bgcolor="#F8E0E6" title="Abierta">
+												</c:when>
+												<c:when test="${ compp.pcstp == '1' }">
+													<tr bgcolor="#F8E0E6" title="Recibida">
+												</c:when>
+												<c:when test="${ compp.pcstp == '2' }">
+													<tr bgcolor="#BCB8FF" title="No costeada">
+												</c:when>
+												<c:when test="${ compp.pcstp == '3' }">
+													<tr bgcolor="#BCFFB8" title="Cerrada">
+												</c:when>
+												<c:otherwise>
+													<tr>
+												</c:otherwise>
+											</c:choose>
 
+											<td><c:choose>
+													<c:when test="${compp.nroor == '@@@@@'}">
+														<c:out value="Total" />
+													</c:when>
+													<c:otherwise>
+														<c:out value="${compp.nroor}" />
+													</c:otherwise>
+												</c:choose></td>
 
+											<td style="text-align: right">$<fmt:formatNumber
+													value="${compp.pvalbo}" type="number" /></td>
+
+											<td style="text-align: right">$<fmt:formatNumber
+													value="${compp.pvalbd}" type="number" /></td>
+
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyo}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyd}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyr}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyp}" type="number" /></td>
+											<c:if test="${o == 0 && r == 0}">
 												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="prove" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															<strong><c:out value="${compp.ptyno}" /></strong>
-														</button>
-													</form:form></td>
-												<!--  <td><c:out value="${compp.ptyno}" /></td> -->
-												<fmt:setLocale value="en_US" />
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbo}" type="number" /></td>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyo}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyr}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyp}" type="number" /></td>
-												<fmt:setLocale value="en_US" />
-
-												<!--  <td><fmt:formatNumber value="${compp.pvalpo}" type="currency"/></td>
-												<td><fmt:formatNumber value="${compp.ppreac}" type="currency"/></td>  -->
-												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
+														action="est" ModelAttribute="compra" commandName="compra">
+														<form:input path="pcstp" type="hidden"
+															value="${compp.pcstp}" />
+														<form:input path="nroor" type="hidden"
+															value="${compp.nroor}" />
 														<button type="submit" Value="oc" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-
 															<img width="20" height="20"
 																src="<c:url value="/resources/img/adm/ordencompra.png" />">
 														</button>
 													</form:form></td>
+											</c:if><!-- 
+											<c:if test="${r == 0 && o == 0}">
 												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
+														action="est" ModelAttribute="compra" commandName="compra">
+														<form:input path="pcstp" type="hidden"
+															value="${compp.pcstp}" />
+														<form:input path="nroor" type="hidden"
+															value="${compp.nroor}" />
 														<button type="submit" Value="rq" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-
 															<img width="20" height="20"
 																src="<c:url value="/resources/img/adm/requisicion.png" />">
 														</button>
 													</form:form></td>
-												<c:if test="${ user_inicio.tipoUsuario == 2 }">
+											</c:if>  -->
+											<c:if test="${ user_inicio.tipoUsuario == 2 }">
+												<c:if test="${c == 0}">
 													<td align="center"><form:form method="POST"
-															action="comp" ModelAttribute="compra"
-															commandName="compra">
-															<form:input path="ptype" type="hidden"
-																value="${compp.ptype}" />
+															action="est" ModelAttribute="compra" commandName="compra">
+															<form:input path="pcstp" type="hidden"
+																value="${compp.pcstp}" />
+															<form:input path="nroor" type="hidden"
+																value="${compp.nroor}" />
 															<button type="submit" Value="compra" name="next"
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																<form:input path="ptyno" type="hidden"
-																	value="${compp.ptyno}" />
 																<img width="20" height="20"
 																	src="<c:url value="/resources/img/adm/comprador.png" />">
 															</button>
 														</form:form></td>
 												</c:if>
-												<!-- <td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />														
-														<button type="submit" Value="prove" name="next" style="border-style:none;background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
-															<img width="20" height="20" src="<c:url value="/resources/img/adm/proveedor.png" />">
+											</c:if>
+											<c:if test="${p == 0}">
+												<td align="center"><form:form method="POST"
+														action="est" ModelAttribute="compra" commandName="compra">
+														<form:input path="pcstp" type="hidden"
+															value="${compp.pcstp}" />
+														<form:input path="nroor" type="hidden"
+															value="${compp.nroor}" />
+														<button type="submit" Value="prove" name="next"
+															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+															<img width="20" height="20"
+																src="<c:url value="/resources/img/adm/proveedor.png" />">
 														</button>
 													</form:form></td>
-													 -->
+											</c:if>
+											<c:if test="${i == 0}">
 												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
+														action="est" ModelAttribute="compra" commandName="compra">
+														<form:input path="pcstp" type="hidden"
+															value="${compp.pcstp}" />
+														<form:input path="nroor" type="hidden"
+															value="${compp.nroor}" />
 														<button type="submit" Value="ite" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 															<img width="20" height="20"
 																src="<c:url value="/resources/img/adm/producto.png" />">
 														</button>
 													</form:form></td>
+											</c:if>
+											<c:if test="${q == 0}">
 												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
+														action="est" ModelAttribute="compra" commandName="compra">
+														<form:input path="pcstp" type="hidden"
+															value="${compp.pcstp}" />
+														<form:input path="nroor" type="hidden"
+															value="${compp.nroor}" />
 														<button type="submit" Value="clas" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 															<img width="20" height="20"
 																src="<c:url value="/resources/img/adm/tipoproducto.png" />">
 														</button>
 													</form:form></td>
+											</c:if>
+											<c:if test="${k == 0}">
 												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
+														action="est" ModelAttribute="compra"
+														commandName="compra">
+														<form:input path="pcstp" type="hidden"
+															value="${compp.pcstp}" />
+														<form:input path="nroor" type="hidden"
+															value="${compp.nroor}" />
 														<button type="submit" Value="centr" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 															<img width="20" height="20"
 																src="<c:url value="/resources/img/adm/centrocosto.png" />">
 														</button>
-
 													</form:form></td>
+											</c:if>
+											<c:if test="${b == 0}">
 												<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
+														action="est" ModelAttribute="compra" commandName="compra">
+														<form:input path="pcstp" type="hidden"
+															value="${compp.pcstp}" />
+														<form:input path="nroor" type="hidden"
+															value="${compp.nroor}" />
 														<button type="submit" Value="bod" name="next"
 															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 															<img width="20" height="20"
@@ -340,29 +371,10 @@ tr:last-child {
 														</button>
 
 													</form:form></td>
-													<td align="center"><form:form method="POST"
-														action="comp" ModelAttribute="compra" commandName="compra">
-														<form:input path="ptype" type="hidden"
-															value="${compp.ptype}" />
-														<form:input path="ptyno" type="hidden"
-															value="${compp.ptyno}" />
-														<button type="submit" Value="est" name="next"
-															style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-															 <img width="20" height="20"
-																src="<c:url value="/resources/img/adm/estado.png" />">
-														</button>
-
-													</form:form></td>
+											</c:if>
 											</tr>
 										</c:forEach>
-										<!-- <tr>
-											<td colspan="11" align="center"></td>
-										</tr>
-										 <tr>
-											<td colspan="11" align="center">Usuario: <c:out
-													value="${usuarioactuall}" /></td>
-										</tr>
-										 -->
+
 									</tbody>
 								</table>
 							</div>
@@ -390,6 +402,17 @@ tr:last-child {
 
 	</div>
 	<!-- END MAIN CONTENT -->
+
+	<!--
+	<div class="page-footer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<span class="txt-color-white">Flash Ventas - 2014</span>
+			</div>
+		</div>
+	</div>
+	 END PAGE FOOTER -->
+
 
 	<!--================================================== -->
 
@@ -910,6 +933,8 @@ tr:last-child {
 		})(jQuery, window);
 	</script>
 
+
+
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -927,6 +952,8 @@ tr:last-child {
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+
+
 
 </body>
 

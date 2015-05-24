@@ -426,7 +426,22 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 		this.pvalbo = pvalbo;
 	}
-
+	
+	//Constructor Estado
+	public Compras(String pcstp, String nroor, BigDecimal pqtyd,
+			BigDecimal pqtyr, BigDecimal pqtyo, BigDecimal pqtyp, BigDecimal pvalbd,
+			BigDecimal pvalbo) {
+		this.pcstp = pcstp;
+		this.nroor = nroor;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pqtyo = pqtyo;
+		this.pqtyp = pqtyp;
+		this.pvalbd = pvalbd;
+		this.pvalbo = pvalbo;
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg
@@ -1226,6 +1241,15 @@ public class Compras implements Serializable {
 		this.ppreac = ppreac.add(com.getPpreac());
 		this.pqtyo = pqtyo.add(com.getPqtyo());
 		this.pqtyp = pqtyp.add(com.getPqtyp());
+		this.pvalbo = pvalbo.add(com.getPvalbo());
+	}
+	
+	public void sumarEstados(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pqtyo = pqtyo.add(com.getPqtyo());
+		this.pqtyp = pqtyp.add(com.getPqtyp());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pvalbo = pvalbo.add(com.getPvalbo());
 	}
 

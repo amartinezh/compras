@@ -53,6 +53,10 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getBodegas(condiciones, cond, fechaAct, fechaSel);
 	}
 	
+	public List<Compras> getEstados(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel) {
+		return comprasDao.getEstados(condiciones, cond, fechaAct, fechaSel);
+	}
+	
 	public List<Reporte> getReporte(Map<String, String> condiciones, String cond, String condRep) {
 		return comprasDao.getReporte(condiciones, cond, condRep);		
 	}

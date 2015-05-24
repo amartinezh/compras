@@ -17,6 +17,7 @@ public interface ComprasService {
 	public List<Compras> getRequisiciones(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, Compras compra);
 	public List<Compras> getOrdenes(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, Compras compra);
 	public List<Compras> getBodegas(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel);
+	public List<Compras> getEstados(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel);
 	public List<Reporte> getReporte(Map<String, String> condiciones, String cond, String condRep);
 	
 }
