@@ -164,7 +164,7 @@ tr:last-child {
 									style="width: 100%;">
 									<thead>
 										<tr>
-											<td colspan="15" align="center"><c:out
+											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
@@ -217,16 +217,16 @@ tr:last-child {
 											varStatus="loopCounter">
 											<c:choose>
 												<c:when test="${ compp.pcstp == '0' }">
-													<tr bgcolor="#F8E0E6" title="Abierta">
+													<tr bgcolor="#F8E0E6" title="${compp.nroor}">
 												</c:when>
 												<c:when test="${ compp.pcstp == '1' }">
-													<tr bgcolor="#F8E0E6" title="Recibida">
+													<tr bgcolor="#F8E0E6" title="${compp.nroor}">
 												</c:when>
 												<c:when test="${ compp.pcstp == '2' }">
-													<tr bgcolor="#BCB8FF" title="No costeada">
+													<tr bgcolor="#BCB8FF" title="${compp.nroor}">
 												</c:when>
 												<c:when test="${ compp.pcstp == '3' }">
-													<tr bgcolor="#BCFFB8" title="Cerrada">
+													<tr bgcolor="#BCFFB8" title="${compp.nroor}">
 												</c:when>
 												<c:otherwise>
 													<tr>

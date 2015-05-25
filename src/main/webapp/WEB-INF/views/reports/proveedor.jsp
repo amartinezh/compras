@@ -184,7 +184,7 @@ tr:last-child {
 									style="width: 100%;">
 									<thead>
 										<tr>
-											<td colspan="15" align="center"><c:out
+											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>

@@ -279,7 +279,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp"
+						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp, c.tipoc as tipoc"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -304,6 +304,32 @@ public class ComprasDaoImpl implements ComprasDao {
 					}
 				}
 			}
+			String valorEst = "";
+			if (obj[19].toString().equals("O")) {
+				if (obj[18].toString().equals("0")) {
+					valorEst = "Abierta";
+				} else if (obj[18].toString().equals("1")) {
+					valorEst = "Recibida";
+				} else if (obj[18].toString().equals("2")) {
+					valorEst = "No costeada";
+				} else if (obj[18].toString().equals("3")) {
+					valorEst = "Cerrada";
+				} else {
+					valorEst = "";
+				}
+			} else {
+				if (obj[18].toString().equals("0")) {
+					valorEst = "Emitido";
+				} else if (obj[18].toString().equals("1")) {
+					valorEst = "Pendiente";
+				} else if (obj[18].toString().equals("2")) {
+					valorEst = "Tramitada";
+				} else if (obj[18].toString().equals("3")) {
+					valorEst = "Ordenada";
+				} else {
+					valorEst = "";
+				}
+			}
 			compras.add(new Compras(new BigDecimal(obj[2].toString()).setScale(
 					0, BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
 					.toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
@@ -324,7 +350,7 @@ public class ComprasDaoImpl implements ComprasDao {
 					new BigDecimal(obj[14].toString()).setScale(2,
 							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
 					Integer.parseInt(obj[16].toString()), (String) obj[17],
-					(String) obj[18]));
+					(String) obj[18], valorEst));
 			comp.sumarItem(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
@@ -730,7 +756,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pcstp as pcstp, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalbd, sum(c.pvalbo) as pvalbo, c.tipoc as tipoc"
+						"SELECT c.pcstp as pcstp, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, sum(c.pvalbd) as pvalbd, sum(c.pvalbo) as pvalbo, c.tipoc as tipoc"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -747,8 +773,8 @@ public class ComprasDaoImpl implements ComprasDao {
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN));
 		for (Object[] obj : result) {
-			String valorEst = null;
-			if (obj[0].toString().equals("O")) {
+			String valorEst = "";
+			if (obj[7].toString().equals("O")) {
 				if (obj[0].toString().equals("0")) {
 					valorEst = "Abierta";
 				} else if (obj[0].toString().equals("1")) {

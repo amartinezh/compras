@@ -163,7 +163,7 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<td colspan="15" align="center"><c:out
+											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
