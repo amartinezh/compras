@@ -285,7 +285,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ " as c "
 								+ "WHERE "
 								+ where.toString()
-								+ "GROUP BY c.pipro, c.pides, c.punid, c.pprov, c.ppnov, c.pcstp "
+								+ "GROUP BY c.pipro, c.pides, c.punid, c.pprov, c.ppnov, c.pcstp, c.tipoc "
 								+ "ORDER BY pvalbd desc").getResultList();
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
