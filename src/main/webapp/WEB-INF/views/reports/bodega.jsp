@@ -169,7 +169,7 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Bodega</th>
-											
+
 											<th rowspan="2" style="text-align: center; color: blue;">Val.
 												Ordenado</th>
 											<!-- <th rowspan="2" style="text-align: center; color: blue;">Saldo
@@ -178,9 +178,9 @@ tr:last-child {
 												Recibido</th>
 											<!-- <th rowspan="2" style="text-align: center; color: blue;">Valor
 												Recibido</th>  -->
-												
-										    <th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
-										    
+
+											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
+
 											<c:if test="${o == 0 && r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -205,6 +205,9 @@ tr:last-child {
 												<th rowspan="2" style="text-align: center; color: blue;">Cent.
 													Costo</th>
 											</c:if>
+											<c:if test="${e == 0}">
+												<th rowspan="2" style="text-align: center; color: blue;">Estado</th>
+											</c:if>
 										</tr>
 										<tr>
 											<th style="text-align: center; color: blue;">Ordenadas</th>
@@ -224,7 +227,7 @@ tr:last-child {
 														value="${compp.pvalbo}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
-														
+
 												<td style="text-align: right"><fmt:formatNumber
 														value="${compp.pqtyo}" type="number" /></td>
 												<td style="text-align: right"><fmt:formatNumber
@@ -237,11 +240,11 @@ tr:last-child {
 
 												<!-- <td style="text-align: right">$<fmt:formatNumber
 														value="${compp.ppreac}" type="number" /></td>  -->
-												
+
 												<!-- <td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalpo}" type="number" /></td>  -->
-														
-												
+
+
 												<c:if test="${o == 0 && r == 0}">
 													<td align="center"><form:form method="POST"
 															action="bod" ModelAttribute="compra" commandName="compra">
@@ -340,6 +343,20 @@ tr:last-child {
 																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																<img width="20" height="20"
 																	src="<c:url value="/resources/img/adm/centrocosto.png" />">
+															</button>
+														</form:form></td>
+												</c:if>
+												<c:if test="${e == 0}">
+													<td align="center"><form:form method="POST"
+															action="bod" ModelAttribute="compra" commandName="compra">
+															<form:input path="plocal" type="hidden"
+																value="${compp.plocal}" />
+															<form:input path="plnon" type="hidden"
+																value="${compp.plnon}" />
+															<button type="submit" Value="est" name="next"
+																style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
+																<img width="20" height="20"
+																	src="<c:url value="/resources/img/adm/estado.png" />">
 															</button>
 														</form:form></td>
 												</c:if>

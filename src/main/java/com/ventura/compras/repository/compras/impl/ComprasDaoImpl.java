@@ -705,7 +705,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		compras.add(comp);
 		return compras;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Compras> getEstados(Map<String, String> condiciones,
 			String cond, String fechaAct, String fechaSel) {
@@ -728,52 +728,63 @@ public class ComprasDaoImpl implements ComprasDao {
 		} else {
 			tab = "Compras_h";
 		}
-		
-		//c.pcstp as pcstp, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, sum(c.pvalpo) as pvalbd, sum(c.pvalbo) as pvalbo 
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pcstp as pcstp, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalbd, sum(c.pvalbo) as pvalbo"
+						"SELECT c.pcstp as pcstp, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyo) as pqtyo, sum(c.pqtyp) as pqtyp, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalbd, sum(c.pvalbo) as pvalbo, c.tipoc as tipoc"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.pcstp "
+								+ "GROUP BY c.pcstp, c.tipoc "
 								+ "ORDER BY c.pcstp asc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
-		Compras comp = new Compras("10", "Total",
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN));
+		Compras comp = new Compras("10", "Total", new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
+				BigDecimal.ROUND_HALF_EVEN));
 		for (Object[] obj : result) {
 			String valorEst = null;
-			if(obj[0].toString().equals("0")) {
-				valorEst = "Abierta";
-			} else if(obj[0].toString().equals("1")) {
-				valorEst = "Recibida";
-			} else if(obj[0].toString().equals("2")) {
-				valorEst = "No costeada";
-			} else if(obj[0].toString().equals("3")) {
-				valorEst = "Cerrada";
+			if (obj[0].toString().equals("O")) {
+				if (obj[0].toString().equals("0")) {
+					valorEst = "Abierta";
+				} else if (obj[0].toString().equals("1")) {
+					valorEst = "Recibida";
+				} else if (obj[0].toString().equals("2")) {
+					valorEst = "No costeada";
+				} else if (obj[0].toString().equals("3")) {
+					valorEst = "Cerrada";
+				} else {
+					valorEst = "";
+				}
 			} else {
-				valorEst = "";
+				if (obj[0].toString().equals("0")) {
+					valorEst = "Emitido";
+				} else if (obj[0].toString().equals("1")) {
+					valorEst = "Pendiente";
+				} else if (obj[0].toString().equals("2")) {
+					valorEst = "Tramitada";
+				} else if (obj[0].toString().equals("3")) {
+					valorEst = "Ordenada";
+				} else {
+					valorEst = "";
+				}
 			}
-			compras.add(new Compras((String) obj[0], valorEst,
-					new BigDecimal(obj[1].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[2]
+			compras.add(new Compras((String) obj[0], valorEst, new BigDecimal(
+					obj[1].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[2].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[3].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4]
+					new BigDecimal(obj[4].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[5]
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[5].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+					new BigDecimal(obj[6].toString()).setScale(0,
+							BigDecimal.ROUND_HALF_EVEN)));
 			comp.sumarEstados(compras.get(compras.size() - 1));
 		}
 		compras.add(comp);
