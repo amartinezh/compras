@@ -221,6 +221,50 @@ public class Compras_h implements Serializable {
 	@NotEmpty
 	@Column(name = "fecep3")
 	private String fecep3;
+	
+	@Column(name = "fecen")
+	private String fecen;
+	
+	@Column(name="diave")
+	private int diave;
+	
+	@Column(name = "solic")
+	private String solic;
+	
+	@Column(name = "pqori")
+	private BigDecimal pqori;
+
+	public String getFecen() {
+		return fecen;
+	}
+
+	public int getDiave() {
+		return diave;
+	}
+
+	public String getSolic() {
+		return solic;
+	}
+
+	public BigDecimal getPqori() {
+		return pqori;
+	}
+
+	public void setFecen(String fecen) {
+		this.fecen = fecen;
+	}
+
+	public void setDiave(int diave) {
+		this.diave = diave;
+	}
+
+	public void setSolic(String solic) {
+		this.solic = solic;
+	}
+
+	public void setPqori(BigDecimal pqori) {
+		this.pqori = pqori;
+	}
 
 	@Override
 	public int hashCode() {

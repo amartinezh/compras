@@ -174,8 +174,7 @@ tr:last-child {
 									</div>
 								</div>
 								<!-- <table class="table table-striped table-bordered" width="100%"> -->
-								<table
-									class="table table-bordered dataTable no-footer"
+								<table class="table table-bordered dataTable no-footer"
 									width="100%" role="grid"
 									aria-describedby="datatable_fixed_column_info"
 									style="width: 100%;">
@@ -191,7 +190,14 @@ tr:last-child {
 												Precios</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimas
 												Fechas</th>
-
+											<c:if test="${o == 1}">
+												<th rowspan="2" style="text-align: center; color: blue;">Fecha
+													Entrega</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Días
+													Vencimiento</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Usuario
+													Solicitante</th>
+											</c:if>
 											<c:if test="${o == 0  && r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -289,6 +295,12 @@ tr:last-child {
 													<td><c:out value="${compp.fecep1}" /></td>
 													<td><c:out value="${compp.fecep2}" /></td>
 													<td><c:out value="${compp.fecep3}" /></td>
+													<c:if test="${o == 1}">
+														<td><c:out value="${compp.fecen}" /></td>
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.diave}" type="number" /></td>
+														<td><c:out value="${compp.solic}" /></td>
+													</c:if>
 												</c:when>
 												<c:otherwise>
 													<td colspan="5">Total</td>
@@ -300,14 +312,14 @@ tr:last-child {
 															value="${compp.pqtyr}" type="number" /></td>
 													<td style="text-align: right"><fmt:formatNumber
 															value="${compp.pqtyp}" type="number" /></td>
-													<td colspan="6" />
-													<!--<c:choose>
-															<c:when test="${p == 0 }">
-																<td colspan="14"></td>
-															</c:when> 
-															<c:otherwise> 														
-															</c:otherwise>
-														</c:choose>-->
+													<c:choose>
+														<c:when test="${o == 1}">
+															<td colspan="9"></td>
+														</c:when>
+														<c:otherwise>
+															<td colspan="6"></td>
+														</c:otherwise>
+													</c:choose>
 												</c:otherwise>
 											</c:choose>
 											<c:if test="${o == 0 && r == 0}">

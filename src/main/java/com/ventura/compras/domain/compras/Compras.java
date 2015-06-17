@@ -222,6 +222,50 @@ public class Compras implements Serializable {
 	@Column(name = "fecep3")
 	private String fecep3;
 
+	@Column(name = "fecen")
+	private String fecen;
+
+	@Column(name = "diave")
+	private int diave;
+
+	@Column(name = "solic")
+	private String solic;
+
+	@Column(name = "pqori")
+	private BigDecimal pqori;
+
+	public String getFecen() {
+		return fecen;
+	}
+
+	public int getDiave() {
+		return diave;
+	}
+
+	public String getSolic() {
+		return solic;
+	}
+
+	public BigDecimal getPqori() {
+		return pqori;
+	}
+
+	public void setFecen(String fecen) {
+		this.fecen = fecen;
+	}
+
+	public void setDiave(int diave) {
+		this.diave = diave;
+	}
+
+	public void setSolic(String solic) {
+		this.solic = solic;
+	}
+
+	public void setPqori(BigDecimal pqori) {
+		this.pqori = pqori;
+	}
+
 	public Compras() {
 		// TODO Auto-generated constructor stub
 	}
@@ -283,7 +327,8 @@ public class Compras implements Serializable {
 			BigDecimal pvalbd, BigDecimal pvalpo, BigDecimal ppreac,
 			String pides, BigDecimal pprep1, String fecep1, BigDecimal pprep2,
 			String fecep2, BigDecimal pprep3, String fecep3, BigDecimal pqtyo,
-			BigDecimal pqtyp, String punid, int pprov, String ppnov, String pcstp, String tipoc) {
+			BigDecimal pqtyp, String punid, int pprov, String ppnov,
+			String pcstp, String tipoc, String fecen, int diave, String solic) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pqtyd = pqtyd;
@@ -312,6 +357,12 @@ public class Compras implements Serializable {
 		} else {
 			this.fecep3 = fecep3;
 		}
+		if (fecen.length() == 8) {
+			this.fecen = fecen.substring(0, 4) + "/" + fecen.substring(4, 6)
+					+ "/" + fecen.substring(6, 8);
+		} else {
+			this.fecen = fecen;
+		}
 		this.pqtyo = pqtyo;
 		this.pqtyp = pqtyp;
 		this.punid = punid;
@@ -319,6 +370,8 @@ public class Compras implements Serializable {
 		this.ppnov = ppnov;
 		this.pcstp = pcstp;
 		this.tipoc = tipoc;
+		this.diave = diave;
+		this.solic = solic;
 	}
 
 	public Compras(String pipro, BigDecimal pqtyd, BigDecimal pqtyr,
@@ -327,7 +380,7 @@ public class Compras implements Serializable {
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pqtyo = pqtyo;
-		this.pqtyp = pqtyp;		
+		this.pqtyp = pqtyp;
 	}
 
 	// Construtor Clase
@@ -388,7 +441,8 @@ public class Compras implements Serializable {
 	// Constructor Requisicion
 	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
 			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqtyo,
-			String fecre, BigDecimal pqtyp, String nroor, BigDecimal pvalbo, String pcstp) {
+			String fecre, BigDecimal pqtyp, String nroor, BigDecimal pvalbo,
+			String pcstp) {
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
@@ -408,7 +462,7 @@ public class Compras implements Serializable {
 			this.fecre = fecre;
 		}
 		this.pvalbo = pvalbo;
-		this.pcstp =pcstp;
+		this.pcstp = pcstp;
 	}
 
 	// Constructor Bodega
@@ -427,11 +481,11 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 		this.pvalbo = pvalbo;
 	}
-	
-	//Constructor Estado
+
+	// Constructor Estado
 	public Compras(String pcstp, String nroor, BigDecimal pqtyd,
-			BigDecimal pqtyr, BigDecimal pqtyo, BigDecimal pqtyp, BigDecimal pvalbd,
-			BigDecimal pvalbo) {
+			BigDecimal pqtyr, BigDecimal pqtyo, BigDecimal pqtyp,
+			BigDecimal pvalbd, BigDecimal pvalbo) {
 		this.pcstp = pcstp;
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
@@ -440,9 +494,9 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 		this.pvalbd = pvalbd;
 		this.pvalbo = pvalbo;
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg
@@ -1196,9 +1250,11 @@ public class Compras implements Serializable {
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pqtyo = pqtyo.add(com.getPqtyo());
 		this.pqtyp = pqtyp.add(com.getPqtyp());
-		/*this.pvalbd = pvalbd.add(com.getPvalbd());
-		this.pvalpo = pvalpo.add(com.getPvalpo());
-		this.ppreac = ppreac.add(com.getPpreac());*/		
+		/*
+		 * this.pvalbd = pvalbd.add(com.getPvalbd()); this.pvalpo =
+		 * pvalpo.add(com.getPvalpo()); this.ppreac =
+		 * ppreac.add(com.getPpreac());
+		 */
 	}
 
 	public void sumarClases(Compras com) {
@@ -1244,7 +1300,7 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 		this.pvalbo = pvalbo.add(com.getPvalbo());
 	}
-	
+
 	public void sumarEstados(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());

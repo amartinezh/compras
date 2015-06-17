@@ -242,8 +242,8 @@ public class ComprasController {
 				}
 			}
 			model.addAttribute("mensaje", mens.toUpperCase());
-			model.addAttribute("compra", new Compras());
-			String hist = ses.getHistorial();
+			model.addAttribute("compra", new Compras());			
+			String hist = ses.getHistorial();			
 			if (hist.contains("c")) {
 				model.addAttribute("c", 1);
 			} else {
