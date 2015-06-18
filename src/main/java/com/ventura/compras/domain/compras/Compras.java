@@ -226,7 +226,7 @@ public class Compras implements Serializable {
 	private String fecen;
 
 	@Column(name = "diave")
-	private int diave;
+	private String diave;
 
 	@Column(name = "solic")
 	private String solic;
@@ -238,7 +238,7 @@ public class Compras implements Serializable {
 		return fecen;
 	}
 
-	public int getDiave() {
+	public String getDiave() {
 		return diave;
 	}
 
@@ -254,7 +254,7 @@ public class Compras implements Serializable {
 		this.fecen = fecen;
 	}
 
-	public void setDiave(int diave) {
+	public void setDiave(String diave) {
 		this.diave = diave;
 	}
 
@@ -328,7 +328,7 @@ public class Compras implements Serializable {
 			String pides, BigDecimal pprep1, String fecep1, BigDecimal pprep2,
 			String fecep2, BigDecimal pprep3, String fecep3, BigDecimal pqtyo,
 			BigDecimal pqtyp, String punid, int pprov, String ppnov,
-			String pcstp, String tipoc, String fecen, int diave, String solic) {
+			String pcstp, String tipoc, String fecen, String diave, String solic) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pqtyd = pqtyd;

@@ -226,7 +226,7 @@ public class Compras_h implements Serializable {
 	private String fecen;
 	
 	@Column(name="diave")
-	private int diave;
+	private String diave;
 	
 	@Column(name = "solic")
 	private String solic;
@@ -238,7 +238,7 @@ public class Compras_h implements Serializable {
 		return fecen;
 	}
 
-	public int getDiave() {
+	public String getDiave() {
 		return diave;
 	}
 
@@ -254,7 +254,7 @@ public class Compras_h implements Serializable {
 		this.fecen = fecen;
 	}
 
-	public void setDiave(int diave) {
+	public void setDiave(String diave) {
 		this.diave = diave;
 	}
 

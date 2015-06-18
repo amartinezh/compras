@@ -351,7 +351,7 @@ public class ComprasDaoImpl implements ComprasDao {
 							BigDecimal.ROUND_HALF_EVEN), (String) obj[15],
 					Integer.parseInt(obj[16].toString()), (String) obj[17],
 					(String) obj[18], valorEst, (String) obj[20],
-					0, (String) obj[22]));
+					(String) obj[21], (String) obj[22]));
 			comp.sumarItem(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {

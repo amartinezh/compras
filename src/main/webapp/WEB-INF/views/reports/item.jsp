@@ -173,7 +173,6 @@ tr:last-child {
 										</div>
 									</div>
 								</div>
-								<!-- <table class="table table-striped table-bordered" width="100%"> -->
 								<table class="table table-bordered dataTable no-footer"
 									width="100%" role="grid"
 									aria-describedby="datatable_fixed_column_info"
@@ -297,8 +296,8 @@ tr:last-child {
 													<td><c:out value="${compp.fecep3}" /></td>
 													<c:if test="${o == 1}">
 														<td><c:out value="${compp.fecen}" /></td>
-														<td style="text-align: right"><fmt:formatNumber
-																value="${compp.diave}" type="number" /></td>
+														<td style="text-align: right"><c:out
+																value="${compp.diave}" /></td>
 														<td><c:out value="${compp.solic}" /></td>
 													</c:if>
 												</c:when>
