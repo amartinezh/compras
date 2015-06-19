@@ -175,6 +175,10 @@
 												<label class="label">Moneda</label>
 												<form:select path="pmond" items="${user_inicio.currencys}" />
 											</section>
+											<section class="col col-6">
+												<label class="label">Unidades</label>
+												<form:select path="punin" items="${user_inicio.camposvista}" />
+											</section>
 											<c:if test="${cennnn != 0}">
 												<section class="col col-6">
 													<label class="label">Centro</label>

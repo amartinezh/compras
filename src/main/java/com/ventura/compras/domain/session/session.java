@@ -151,6 +151,24 @@ public class session implements Serializable{
 	private Map<String, String> camposreporte;
 	private Map<String, String> camposver;	
 	private String condicionReporte;
+	private Map<String, String> camposvista;
+	private String campover;
+	
+	public String getCampover() {
+		return campover;
+	}
+	
+	public void setCampover(String campover) {
+		this.campover = campover;
+	}
+	
+	public Map<String, String> getCamposvista() {
+		return camposvista;
+	}
+	
+	public void setCamposvista(Map<String, String> camposvista) {
+		this.camposvista = camposvista;
+	}
 		
 	public Map<String, String> getCamposver() {
 		return camposver;
@@ -207,6 +225,8 @@ public class session implements Serializable{
 		this.camposreporte = new HashMap<String, String>();
 		this.camposver = new HashMap<String, String>();
 		this.condicionReporte = "";
+		this.camposvista = new HashMap<String, String>();
+		this.campover = "ord";
 	}
 	
 	public String getCondicionReporte() {

@@ -1449,6 +1449,7 @@ public class ComprasController {
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
 						+ compra.getPcent()+ ",ordeCond");
 			}
+			ses.setCampover(compra.getPunin());
 			model.addAttribute("user_inicio", ses);
 			return "redirect:anual";
 		} else {
@@ -1474,6 +1475,7 @@ public class ComprasController {
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
 						+ compra.getPcent()+ ",ordeCond");
 			}
+			ses.setCampover(compra.getPunin());
 			model.addAttribute("user_inicio", ses);
 			return "redirect:mostrar";
 		} else {

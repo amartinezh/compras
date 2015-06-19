@@ -344,6 +344,8 @@ public class IndexController {
 						ret = "redirect:/compras/mostrar";
 					}
 					ses.setInformacion(info);
+					ses.getCamposvista().put("ord", "O");
+					ses.getCamposvista().put("rec", "R");
 					model.addAttribute("user_inicio", ses);
 					return ret;
 				} else {
