@@ -80,7 +80,7 @@ public class IndexController {
 					} else {
 						Calendar fecha = new GregorianCalendar();
 						int anoAct = fecha.get(Calendar.YEAR);
-						int mesAct = (fecha.get(Calendar.MONTH) + 1) - 4;
+						int mesAct = (fecha.get(Calendar.MONTH) + 1) - 5;
 						for (int i = 2015; i <= anoAct; i++) {
 							ses.getAnosreporte().put(i + "", i + "");
 							ses.getCondiciones().put(i + "anor",
@@ -117,7 +117,7 @@ public class IndexController {
 						ses.getCondiciones().put("ordeCond", "c.tipoc='O'");
 						ses.getValores().put("ordeCond", "");
 						ses.getAnos().put(anoAct + "", anoAct + "");
-						for (int i = 0; i <= 4; i++) {
+						for (int i = 0; i <= 5; i++) {
 							ses.getCondiciones().put("mm" + mesAct,
 									"c.pmes = " + mesAct);
 							switch (mesAct) {
