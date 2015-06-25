@@ -283,7 +283,7 @@ tr:last-child {
 													<c:choose>
 														<c:when test="${ user_inicio.campover == 'ord'}">
 															<td style="text-align: right"><fmt:formatNumber
-																	value="${compp.pqtyo}" type="number" /></td>
+																	value="${compp.pqori}" type="number" /></td>
 														</c:when>
 														<c:otherwise>
 															<td style="text-align: right"><fmt:formatNumber
@@ -317,7 +317,7 @@ tr:last-child {
 													<c:choose>
 														<c:when test="${ user_inicio.campover == 'ord'}">
 															<td style="text-align: right"><fmt:formatNumber
-																	value="${compp.pqtyo}" type="number" /></td>
+																	value="${compp.pqori}" type="number" /></td>
 														</c:when>
 														<c:otherwise>
 															<td style="text-align: right"><fmt:formatNumber
