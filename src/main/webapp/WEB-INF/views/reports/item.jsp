@@ -184,7 +184,7 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th colspan="5" style="text-align: center; color: blue;">Items</th>
-											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
+											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimos
 												Precios</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimas
@@ -232,9 +232,14 @@ tr:last-child {
 												Proveedor</th>
 											<th style="text-align: center; color: blue;">Proveedor</th>
 											<th style="text-align: center; color: blue;">U/M</th>
-
-											<th style="text-align: center; color: blue;">Ordenadas</th>
-											<th style="text-align: center; color: blue;">Recibidas</th>
+											<c:choose>
+												<c:when test="${ user_inicio.campover == 'ord'}">
+													<th style="text-align: center; color: blue;">Ordenadas</th>
+												</c:when>
+												<c:otherwise>
+													<th style="text-align: center; color: blue;">Recibidas</th>
+												</c:otherwise>
+											</c:choose>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
@@ -275,10 +280,16 @@ tr:last-child {
 													<td><c:out value="${compp.pprov}" /></td>
 													<td><c:out value="${compp.ppnov}" /></td>
 													<td><c:out value="${compp.punid}" /></td>
-													<td style="text-align: right"><fmt:formatNumber
-															value="${compp.pqtyo}" type="number" /></td>
-													<td style="text-align: right"><fmt:formatNumber
-															value="${compp.pqtyd}" type="number" /></td>
+													<c:choose>
+														<c:when test="${ user_inicio.campover == 'ord'}">
+															<td style="text-align: right"><fmt:formatNumber
+																	value="${compp.pqtyo}" type="number" /></td>
+														</c:when>
+														<c:otherwise>
+															<td style="text-align: right"><fmt:formatNumber
+																	value="${compp.pqtyd}" type="number" /></td>
+														</c:otherwise>
+													</c:choose>
 													<td style="text-align: right"><fmt:formatNumber
 															value="${compp.pqtyr}" type="number" /></td>
 													<td style="text-align: right"><fmt:formatNumber
@@ -303,10 +314,16 @@ tr:last-child {
 												</c:when>
 												<c:otherwise>
 													<td colspan="5">Total</td>
-													<td style="text-align: right"><fmt:formatNumber
-															value="${compp.pqtyo}" type="number" /></td>
-													<td style="text-align: right"><fmt:formatNumber
-															value="${compp.pqtyd}" type="number" /></td>
+													<c:choose>
+														<c:when test="${ user_inicio.campover == 'ord'}">
+															<td style="text-align: right"><fmt:formatNumber
+																	value="${compp.pqtyo}" type="number" /></td>
+														</c:when>
+														<c:otherwise>
+															<td style="text-align: right"><fmt:formatNumber
+																	value="${compp.pqtyd}" type="number" /></td>
+														</c:otherwise>
+													</c:choose>
 													<td style="text-align: right"><fmt:formatNumber
 															value="${compp.pqtyr}" type="number" /></td>
 													<td style="text-align: right"><fmt:formatNumber

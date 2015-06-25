@@ -176,10 +176,8 @@ tr:last-child {
 									</div>
 								</div>
 								<!-- table-striped -->
-								<table
-									class="table table-bordered dataTable no-footer"
-									role="grid"
-									aria-describedby="datatable_fixed_column_info"
+								<table class="table table-bordered dataTable no-footer"
+									role="grid" aria-describedby="datatable_fixed_column_info"
 									style="width: 100%;">
 									<thead>
 										<tr>
@@ -188,16 +186,22 @@ tr:last-child {
 										</tr>
 										<tr>
 											<th rowspan="2" style="text-align: center; color: blue;">Orden</th>
-											
-											<th rowspan="2" style="text-align: center; color: blue;">Valor Ordenado</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Valor Recibido</th>
-											
-											<th colspan="4" style="text-align: center; color: blue;">Cantidades</th>
+											<c:choose>
+												<c:when test="${ user_inicio.campover == 'ord'}">
+													<th rowspan="2" style="text-align: center; color: blue;">Valor
+														Ordenado</th>
+												</c:when>
+												<c:otherwise>
+													<th rowspan="2" style="text-align: center; color: blue;">Valor
+														Recibido</th>
+												</c:otherwise>
+											</c:choose>
+											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Precio
-												Compra Unitaria</th>											
-											
+												Compra Unitaria</th>
+
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
-												Requerida</th>											
+												Requerida</th>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
@@ -217,8 +221,14 @@ tr:last-child {
 											</c:if>
 										</tr>
 										<tr>
-											<th style="text-align: center; color: blue;">Ordenadas</th>
-											<th style="text-align: center; color: blue;">Recibidas</th>
+											<c:choose>
+												<c:when test="${ user_inicio.campover == 'ord'}">
+													<th style="text-align: center; color: blue;">Ordenadas</th>
+												</c:when>
+												<c:otherwise>
+													<th style="text-align: center; color: blue;">Recibidas</th>
+												</c:otherwise>
+											</c:choose>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
@@ -228,11 +238,21 @@ tr:last-child {
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
 											<c:choose>
-												<c:when test="${ compp.pcstp == '0' }"><tr bgcolor="#F8E0E6" title="Abierta"></c:when>
-												<c:when test="${ compp.pcstp == '1' }"><tr bgcolor="#F8E0E6" title="Recibida"></c:when>
-												<c:when test="${ compp.pcstp == '2' }"><tr bgcolor="#BCB8FF" title="No costeada"></c:when>
-												<c:when test="${ compp.pcstp == '3' }"><tr bgcolor="#BCFFB8" title="Cerrada"></c:when>
-												<c:otherwise><tr></c:otherwise>
+												<c:when test="${ compp.pcstp == '0' }">
+													<tr bgcolor="#F8E0E6" title="Abierta">
+												</c:when>
+												<c:when test="${ compp.pcstp == '1' }">
+													<tr bgcolor="#F8E0E6" title="Recibida">
+												</c:when>
+												<c:when test="${ compp.pcstp == '2' }">
+													<tr bgcolor="#BCB8FF" title="No costeada">
+												</c:when>
+												<c:when test="${ compp.pcstp == '3' }">
+													<tr bgcolor="#BCFFB8" title="Cerrada">
+												</c:when>
+												<c:otherwise>
+													<tr>
+												</c:otherwise>
 											</c:choose>
 
 											<td><c:choose>
@@ -243,17 +263,26 @@ tr:last-child {
 														<c:out value="${compp.nroor}" />
 													</c:otherwise>
 												</c:choose></td>
-											
-											<td style="text-align: right">$<fmt:formatNumber
-													value="${compp.pvalbo}" type="number" /></td>
-
-											<td style="text-align: right">$<fmt:formatNumber
-													value="${compp.pvalbd}" type="number" /></td>
-											
-											<td style="text-align: right"><fmt:formatNumber
-													value="${compp.pqtyo}" type="number" /></td>
-											<td style="text-align: right"><fmt:formatNumber
-													value="${compp.pqtyd}" type="number" /></td>
+											<c:choose>
+												<c:when test="${ user_inicio.campover == 'ord'}">
+													<td style="text-align: right">$<fmt:formatNumber
+															value="${compp.pvalbo}" type="number" /></td>
+												</c:when>
+												<c:otherwise>
+													<td style="text-align: right">$<fmt:formatNumber
+															value="${compp.pvalbd}" type="number" /></td>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${ user_inicio.campover == 'ord'}">
+													<td style="text-align: right"><fmt:formatNumber
+															value="${compp.pqtyo}" type="number" /></td>
+												</c:when>
+												<c:otherwise>
+													<td style="text-align: right"><fmt:formatNumber
+															value="${compp.pqtyd}" type="number" /></td>
+												</c:otherwise>
+											</c:choose>
 											<td style="text-align: right"><fmt:formatNumber
 													value="${compp.pqtyr}" type="number" /></td>
 											<td style="text-align: right"><fmt:formatNumber
@@ -266,7 +295,7 @@ tr:last-child {
 											<!--  <td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
 														type="number" /></td>  -->
 
-											
+
 
 											<td><c:out value="${compp.fecre}" /></td>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
