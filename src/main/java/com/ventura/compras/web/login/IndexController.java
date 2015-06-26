@@ -252,6 +252,8 @@ public class IndexController {
 							ses.getCondiciones().put("c1", "c.pcia = 1");
 							ses.getValores().put("c1", "Compañia: Panasa");
 							ses.getCpias().put("1", "Panasa");
+							ses.setCondicionUsuario(ses.getCondicionUsuario()
+									+ ",c1");
 						}
 						if (uss.getComp().getDescripcion()
 								.equalsIgnoreCase("iaasa")
@@ -262,7 +264,7 @@ public class IndexController {
 							ses.getCpias().put("2", "IAASA");
 							if (!ses.getCondicionUsuario().contains("c1")) {
 								ses.setCondicionUsuario(ses
-										.getCondicionUsuario() + ",c1");
+										.getCondicionUsuario() + ",c2");
 							}
 						}
 						if (uss.getComp().getDescripcion()
@@ -344,8 +346,8 @@ public class IndexController {
 						ret = "redirect:/compras/mostrar";
 					}
 					ses.setInformacion(info);
-					ses.getCamposvista().put("ord", "O");
-					ses.getCamposvista().put("rec", "R");
+					ses.getCamposvista().put("ord", "Ordenadas");
+					ses.getCamposvista().put("rec", "Recibidas");
 					model.addAttribute("user_inicio", ses);
 					return ret;
 				} else {

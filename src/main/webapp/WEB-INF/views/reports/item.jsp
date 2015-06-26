@@ -195,8 +195,9 @@ tr:last-child {
 											<th colspan="3" style="text-align: center; color: blue;">Últimas
 												Fechas</th>
 											<c:if test="${o == 1}">
-												<th rowspan="2" style="text-align: center; color: blue;">Fecha
-													Entrega</th>
+												<th rowspan="2" style="text-align: center; color: blue;">Cantidad
+													Original</th>
+												<th colspan="2" style="text-align: center; color: blue;">Fecha</th>
 												<th rowspan="2" style="text-align: center; color: blue;">Días
 													Vencimiento</th>
 												<th rowspan="2" style="text-align: center; color: blue;">Usuario
@@ -239,7 +240,7 @@ tr:last-child {
 											<th style="text-align: center; color: blue;">U/M</th>
 											<c:choose>
 												<c:when test="${ user_inicio.campover == 'ord'}">
-													<th style="text-align: center; color: blue;">Ordenadas</th>
+													<th style="text-align: center; color: blue;">Total Ordenadas Mes</th>
 												</c:when>
 												<c:otherwise>
 													<th style="text-align: center; color: blue;">Recibidas</th>
@@ -256,6 +257,10 @@ tr:last-child {
 											<th style="text-align: center; color: blue;">F1</th>
 											<th style="text-align: center; color: blue;">F2</th>
 											<th style="text-align: center; color: blue;">F3</th>
+											<c:if test="${o == 1}">
+												<th style="text-align: center; color: blue;">Emision</th>
+												<th style="text-align: center; color: blue;">Entrega</th>
+											</c:if>
 										</tr>
 									</thead>
 									<tbody>
@@ -288,7 +293,7 @@ tr:last-child {
 													<c:choose>
 														<c:when test="${ user_inicio.campover == 'ord'}">
 															<td style="text-align: right"><fmt:formatNumber
-																	value="${compp.pqori}" type="number" /></td>
+																	value="${compp.pqtyo}" type="number" /></td>
 														</c:when>
 														<c:otherwise>
 															<td style="text-align: right"><fmt:formatNumber
@@ -312,9 +317,20 @@ tr:last-child {
 													<td><c:out value="${compp.fecep2}" /></td>
 													<td><c:out value="${compp.fecep3}" /></td>
 													<c:if test="${o == 1}">
+														<td style="text-align: right"><fmt:formatNumber
+																value="${compp.pqori}" type="number" /></td>
+														<td><c:out value="${compp.fecre}" /></td>
 														<td><c:out value="${compp.fecen}" /></td>
-														<td style="text-align: right"><c:out
-																value="${compp.diave}" /></td>
+														<c:choose>
+															<c:when test="${compp.diave > 0}">
+																<td style="text-align: right; color: #FF0000;"><Strong><c:out
+																			value="${compp.diave}" /></Strong></td>
+															</c:when>
+															<c:otherwise>
+																<td style="text-align: right;"><c:out
+																		value="${compp.diave}" /></td>
+															</c:otherwise>
+														</c:choose>
 														<td><c:out value="${compp.solic}" /></td>
 													</c:if>
 												</c:when>
@@ -323,7 +339,7 @@ tr:last-child {
 													<c:choose>
 														<c:when test="${ user_inicio.campover == 'ord'}">
 															<td style="text-align: right"><fmt:formatNumber
-																	value="${compp.pqori}" type="number" /></td>
+																	value="${compp.pqtyo}" type="number" /></td>
 														</c:when>
 														<c:otherwise>
 															<td style="text-align: right"><fmt:formatNumber
@@ -334,13 +350,13 @@ tr:last-child {
 															value="${compp.pqtyr}" type="number" /></td>
 													<td style="text-align: right"><fmt:formatNumber
 															value="${compp.pqtyp}" type="number" /></td>
+													<td colspan="7"></td>
 													<c:choose>
 														<c:when test="${o == 1}">
-															<td colspan="10"></td>
-														</c:when>
-														<c:otherwise>
-															<td colspan="7"></td>
-														</c:otherwise>
+														<td style="text-align: right"><fmt:formatNumber
+																	value="${compp.pqori}" type="number" /></td>
+															<td colspan="4"></td>
+														</c:when>														
 													</c:choose>
 												</c:otherwise>
 											</c:choose>
@@ -406,7 +422,6 @@ tr:last-child {
 														</button>
 													</form:form></td>
 											</c:if>
-
 											<c:if test="${q == 0}">
 												<td align="center"><form:form method="POST"
 														action="itemm" ModelAttribute="compra"
