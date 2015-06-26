@@ -166,6 +166,10 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
+											<td colspan="15" align="left"><strong><c:out
+													value="${navegacion}" /></strong></td>
+										</tr>
+										<tr>
 											<td colspan="15" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>

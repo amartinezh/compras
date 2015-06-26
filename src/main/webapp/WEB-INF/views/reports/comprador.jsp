@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Papeles Nacionales</title>
+<title>Papeles Nacionales - Compradores</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -162,6 +162,10 @@ tr:last-child {
 							<div class="widget-body no-padding">
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
+										<tr>
+											<td colspan="16" align="left"><strong><c:out
+														value="${navegacion}" /></strong></td>
+										</tr>
 										<tr>
 											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>

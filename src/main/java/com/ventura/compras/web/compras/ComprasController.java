@@ -2,7 +2,9 @@ package com.ventura.compras.web.compras;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.criteria.CriteriaBuilder.Case;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -31,6 +33,61 @@ public class ComprasController {
 	@Autowired
 	private ComprasService comprasService;
 
+	private String obtNav(String hist) {
+		StringBuilder nav = new StringBuilder();
+		nav.append("> Inicio");
+		for (int i = 0; i < hist.length(); i++) {
+			switch (hist.charAt(i)) {
+			case 'p':
+				nav.append(" > Proveedores");
+				break;
+			case 'i':
+				nav.append(" > Items");
+				break;
+			case 'q':
+				nav.append(" > Clases");
+				break;
+			case 'k':
+				nav.append(" > Centros");
+				break;
+			case 'r':
+				nav.append(" > Requisiciones");
+				break;
+			case 'o':
+				nav.append(" > Ordenes");
+				break;
+			case 'b':
+				nav.append(" > Bodegas");
+				break;
+			case 'e':
+				nav.append(" > Estados");
+				break;
+			default:
+				nav.append(" > Compradores");
+				break;
+			}
+		}
+		return nav.toString();
+	}
+
+	private String obtMen(String[] cond, Map<String, String> valores,
+			String campover) {
+		StringBuilder mens = new StringBuilder();
+		if (campover.equals("ord")) {
+			mens.append("Filtro: Ordenado");
+		} else {
+			mens.append("Filtro: Recibido");
+		}
+		for (String cc : cond) {
+			if (mens.length() == 0) {
+				mens.append(valores.get(cc));
+			} else {
+				mens.append(" " + valores.get(cc));
+			}
+		}
+		return mens.toString();
+	}
+
 	@RequestMapping(value = "/mostrar")
 	public String inicio(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -41,16 +98,11 @@ public class ComprasController {
 			ses.setFiltro(null);
 			ses.setAutocomplete("");
 			ses.setCondicionActual(ses.getCondicionUsuario());
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("user_inicio", ses);
 			model.addAttribute(
 					"listcomp",
@@ -74,16 +126,11 @@ public class ComprasController {
 					comprasService.getCompradores(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
 							ses.getFechaSelec()));
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -153,16 +200,11 @@ public class ComprasController {
 			ses.setFiltro(null);
 			model.addAttribute("autocompletar", ses.getAutocomplete());
 			model.addAttribute("listcomp", ll);
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -232,18 +274,13 @@ public class ComprasController {
 			ses.setFiltro(null);
 			model.addAttribute("autocompletar", ses.getAutocomplete());
 			model.addAttribute("listcomp", ll);
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
-			model.addAttribute("compra", new Compras());			
-			String hist = ses.getHistorial();			
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
+			model.addAttribute("compra", new Compras());
+			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
 				model.addAttribute("c", 1);
 			} else {
@@ -294,7 +331,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/estado")
 	public String estado(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -305,15 +342,11 @@ public class ComprasController {
 					comprasService.getEstados(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
 							ses.getFechaSelec()));
-			String[] cond = ses.getCondicionActual().split(",");
-			StringBuilder mens = new StringBuilder();
-			for (String cc : cond) {
-				if(mens.length() > 0) {
-					mens.append(" ");
-				}
-				mens.append(ses.getValores().get(cc));
-			}
-			model.addAttribute("mensaje", mens.toString().toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -361,7 +394,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/clase")
 	public String clase(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -372,16 +405,11 @@ public class ComprasController {
 					comprasService.getClases(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
 							ses.getFechaSelec()));
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -445,16 +473,11 @@ public class ComprasController {
 					comprasService.getCentros(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
 							ses.getFechaSelec()));
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -525,16 +548,11 @@ public class ComprasController {
 			ses.setFiltro(null);
 			model.addAttribute("autocompletar", ses.getAutocomplete());
 			model.addAttribute("listcomp", ll);
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -600,16 +618,11 @@ public class ComprasController {
 			ses.setFiltro(null);
 			model.addAttribute("autocompletar", ses.getAutocomplete());
 			model.addAttribute("listcomp", ll);
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -652,11 +665,10 @@ public class ComprasController {
 			} else {
 				model.addAttribute("b", 0);
 			}
-			/*if (hist.contains("e")) {
-				model.addAttribute("e", 1);
-			} else {
-				model.addAttribute("e", 0);
-			}*/
+			/*
+			 * if (hist.contains("e")) { model.addAttribute("e", 1); } else {
+			 * model.addAttribute("e", 0); }
+			 */
 			return "reports/orden";
 		} else {
 			return "redirect:/index/ingreso";
@@ -673,16 +685,11 @@ public class ComprasController {
 					comprasService.getBodegas(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
 							ses.getFechaSelec()));
-			String[] cond = ses.getCondicionActual().split(",");
-			String mens = "";
-			for (String cc : cond) {
-				if (mens.isEmpty()) {
-					mens = ses.getValores().get(cc);
-				} else {
-					mens = mens + " " + ses.getValores().get(cc);
-				}
-			}
-			model.addAttribute("mensaje", mens.toUpperCase());
+			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
+			model.addAttribute(
+					"mensaje",
+					obtMen(ses.getCondicionActual().split(","),
+							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("compra", new Compras());
 			String hist = ses.getHistorial();
 			if (hist.contains("c")) {
@@ -1228,7 +1235,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "est", method = RequestMethod.POST)
 	public String est(@ModelAttribute("compra") Compras compra,
 			HttpServletRequest request, Model model) {
@@ -1375,7 +1382,7 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			model.addAttribute("redireccion", "mostrar");
 			model.addAttribute("accion", "generar");
-			model.addAttribute("compra", new Compras());			
+			model.addAttribute("compra", new Compras());
 			session ses = (session) (model.asMap().get("user_inicio"));
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			if (ses.getCenters().isEmpty()) {
@@ -1388,13 +1395,13 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/refrescar", method = RequestMethod.GET)
 	public String refrescar(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			model.addAttribute("redireccion", "anual");
 			model.addAttribute("accion", "tomar");
-			model.addAttribute("compra", new Compras());			
+			model.addAttribute("compra", new Compras());
 			session ses = (session) (model.asMap().get("user_inicio"));
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			if (ses.getCenters().isEmpty()) {
@@ -1440,14 +1447,15 @@ public class ComprasController {
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
-						+ compra.getPpais() + ",m" + compra.getPmond()+ ",ordeCond");
+						+ compra.getPpais() + ",m" + compra.getPmond()
+						+ ",ordeCond");
 			} else {
 				ses.setFechaSelec("a" + compra.getPano() + ",mm"
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
-						+ compra.getPcent()+ ",ordeCond");
+						+ compra.getPcent() + ",ordeCond");
 			}
 			ses.setCampover(compra.getPunin());
 			model.addAttribute("user_inicio", ses);
@@ -1456,7 +1464,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "/generar", method = RequestMethod.POST)
 	public String generaar(@ModelAttribute("compra") Compras compra, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -1466,14 +1474,15 @@ public class ComprasController {
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
-						+ compra.getPpais() + ",m" + compra.getPmond()+ ",ordeCond");
+						+ compra.getPpais() + ",m" + compra.getPmond()
+						+ ",ordeCond");
 			} else {
 				ses.setFechaSelec("a" + compra.getPano() + ",mm"
 						+ compra.getPmes());
 				ses.setCondicionUsuario("a" + compra.getPano() + ",mm"
 						+ compra.getPmes() + ",c" + compra.getPcia() + ",l"
 						+ compra.getPpais() + ",m" + compra.getPmond() + ",k"
-						+ compra.getPcent()+ ",ordeCond");
+						+ compra.getPcent() + ",ordeCond");
 			}
 			ses.setCampover(compra.getPunin());
 			model.addAttribute("user_inicio", ses);
@@ -1489,7 +1498,7 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
 			ses.setCondicionReporte(compra.getPano() + "anor,"
-					+ compra.getTipoc()+","+compra.getPnpas());
+					+ compra.getTipoc() + "," + compra.getPnpas());
 			return "redirect:reporteanual";
 		} else {
 			return "redirect:/index/ingreso";
@@ -1500,7 +1509,7 @@ public class ComprasController {
 	public String reporteanual(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
-			model.addAttribute("usuarioactuall", ses.getUsuario());			
+			model.addAttribute("usuarioactuall", ses.getUsuario());
 			model.addAttribute(
 					"listcomp",
 					comprasService.getReporte(ses.getCondiciones(),
@@ -1508,7 +1517,8 @@ public class ComprasController {
 							ses.getCondicionReporte()));
 			List<String> mes = new LinkedList<String>();
 			mes.add("Código");
-			mes.add(ses.getValores().get(ses.getCondicionReporte().split(",")[1]));
+			mes.add(ses.getValores().get(
+					ses.getCondicionReporte().split(",")[1]));
 			mes.add("Enero");
 			mes.add("Febrero");
 			mes.add("Marzo");
@@ -1523,7 +1533,8 @@ public class ComprasController {
 			mes.add("Diciembre");
 			mes.add("Total");
 			model.addAttribute("listmeses", mes);
-			if(ses.getValores().get(ses.getCondicionReporte().split(",")[2]).contains("Valor")) {
+			if (ses.getValores().get(ses.getCondicionReporte().split(",")[2])
+					.contains("Valor")) {
 				model.addAttribute("mostpeso", 1);
 			} else {
 				model.addAttribute("mostpeso", 0);
@@ -1539,8 +1550,11 @@ public class ComprasController {
 			if (mens.length() > 0) {
 				mens.append(" ");
 			}
-			mens.append(ses.getValores().get(ses.getCondicionReporte().split(",")[0]));
-			mens.append(" " + ses.getValores().get(ses.getCondicionReporte().split(",")[2]));
+			mens.append(ses.getValores().get(
+					ses.getCondicionReporte().split(",")[0]));
+			mens.append(" "
+					+ ses.getValores().get(
+							ses.getCondicionReporte().split(",")[2]));
 			model.addAttribute("mensaje", mens.toString().toUpperCase());
 			return "reports/matricial";
 		} else {

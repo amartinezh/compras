@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Papeles Nacionales</title>
+<title>Papeles Nacionales - Estados</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -163,6 +163,10 @@ tr:last-child {
 									role="grid" aria-describedby="datatable_fixed_column_info"
 									style="width: 100%;">
 									<thead>
+										<tr>
+											<td colspan="16" align="left"><strong><c:out
+														value="${navegacion}" /></strong></td>
+										</tr>
 										<tr>
 											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>

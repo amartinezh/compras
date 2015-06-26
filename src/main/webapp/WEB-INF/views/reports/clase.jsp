@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Papeles Nacionales</title>
+<title>Papeles Nacionales - Clases</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -162,11 +162,14 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
+											<td colspan="16" align="left"><strong><c:out
+														value="${navegacion}" /></strong></td>
+										</tr>
+										<tr>
 											<td colspan="16" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-
 											<th rowspan="2" style="text-align: center; color: blue;">Clase</th>
 											<c:choose>
 												<c:when test="${ user_inicio.campover == 'ord'}">

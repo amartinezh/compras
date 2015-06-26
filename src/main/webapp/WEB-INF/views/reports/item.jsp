@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Papeles Nacionales</title>
+<title>Papeles Nacionales - Items</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -179,12 +179,17 @@ tr:last-child {
 									style="width: 100%;">
 									<thead>
 										<tr>
+											<td colspan="25" align="left"><strong><c:out
+														value="${navegacion}" /></strong></td>
+										</tr>
+										<tr>
 											<td colspan="25" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
 											<th colspan="5" style="text-align: center; color: blue;">Items</th>
 											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precios</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimos
 												Precios</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimas
@@ -294,7 +299,8 @@ tr:last-child {
 															value="${compp.pqtyr}" type="number" /></td>
 													<td style="text-align: right"><fmt:formatNumber
 															value="${compp.pqtyp}" type="number" /></td>
-
+													<td style="text-align: right">$<fmt:formatNumber
+															value="${compp.ppreac}" type="number" /></td>
 													<td style="text-align: right">$<fmt:formatNumber
 															maxFractionDigits="2" value="${compp.pprep1}"
 															type="number" /></td>
@@ -330,10 +336,10 @@ tr:last-child {
 															value="${compp.pqtyp}" type="number" /></td>
 													<c:choose>
 														<c:when test="${o == 1}">
-															<td colspan="9"></td>
+															<td colspan="10"></td>
 														</c:when>
 														<c:otherwise>
-															<td colspan="6"></td>
+															<td colspan="7"></td>
 														</c:otherwise>
 													</c:choose>
 												</c:otherwise>
