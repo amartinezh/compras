@@ -180,7 +180,7 @@ tr:last-child {
 									role="grid" aria-describedby="datatable_fixed_column_info"
 									style="width: 100%;">
 									<thead>
-									<tr>
+										<tr>
 											<td colspan="16" align="left"><strong><c:out
 														value="${navegacion}" /></strong></td>
 										</tr>
@@ -204,8 +204,16 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Precio
 												Compra Unitaria</th>
 
-											<th rowspan="2" style="text-align: center; color: blue;">Fecha
+											<!-- 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
 												Requerida</th>
+												 -->
+											<th rowspan="2" style="text-align: center; color: blue;">Cantidad
+												Original</th>
+											<th colspan="2" style="text-align: center; color: blue;">Fecha</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Días
+												Vencimiento</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Usuario
+												Solicitante</th>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
@@ -227,7 +235,8 @@ tr:last-child {
 										<tr>
 											<c:choose>
 												<c:when test="${ user_inicio.campover == 'ord'}">
-													<th style="text-align: center; color: blue;">Ordenadas</th>
+													<th style="text-align: center; color: blue;">Total
+														Ordenadas Mes</th>
 												</c:when>
 												<c:otherwise>
 													<th style="text-align: center; color: blue;">Recibidas</th>
@@ -236,6 +245,8 @@ tr:last-child {
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
+											<th style="text-align: center; color: blue;">Emision</th>
+											<th style="text-align: center; color: blue;">Entrega</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -297,11 +308,30 @@ tr:last-child {
 													value="${compp.ppreac}" type="number" /></td>
 
 											<!--  <td style="text-align: right">$<fmt:formatNumber value="${compp.pvalpo}"
-														type="number" /></td>  -->
-
-
-
-											<td><c:out value="${compp.fecre}" /></td>
+														type="number" /></td>
+											<td><c:out value="${compp.fecre}" /></td>  -->
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqori}" type="number" /></td>
+											<c:choose>
+												<c:when test="${compp.nroor == '@@@@@'}">
+													<td colspan="4" />
+												</c:when>
+												<c:otherwise>
+													<td><c:out value="${compp.fecre}" /></td>
+													<td><c:out value="${compp.fecen}" /></td>
+													<c:choose>
+														<c:when test="${compp.diave > 0}">
+															<td style="text-align: right; color: #FF0000;"><Strong><c:out
+																		value="${compp.diave}" /></Strong></td>
+														</c:when>
+														<c:otherwise>
+															<td style="text-align: right;"><c:out
+																	value="${compp.diave}" /></td>
+														</c:otherwise>
+													</c:choose>
+													<td><c:out value="${compp.solic}" /></td>
+												</c:otherwise>
+											</c:choose>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">
 													<td align="center"><form:form method="POST"

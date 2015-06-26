@@ -189,7 +189,7 @@ tr:last-child {
 										<tr>
 											<th colspan="5" style="text-align: center; color: blue;">Items</th>
 											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Precios</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precio</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimos
 												Precios</th>
 											<th colspan="3" style="text-align: center; color: blue;">Últimas

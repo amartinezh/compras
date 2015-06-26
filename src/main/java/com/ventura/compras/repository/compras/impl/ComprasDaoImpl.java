@@ -618,13 +618,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp, sum(c.pqtyo) as pqtyo, c.fecen as fecen, c.diave as diave, c.solic as solic"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where
-								+ "GROUP BY c.nroor, c.fecre, c.pcstp "
+								+ "GROUP BY c.nroor, c.fecre, c.pcstp, c.fecen, c.diave, c.solic "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
@@ -635,7 +635,10 @@ public class ComprasDaoImpl implements ComprasDao {
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
 				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "-1");
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+				"-1",
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "",
+				"", "");
 		for (Object[] obj : result) {
 			if (compra == null) {
 				if (ordenes.length() == 1) {
@@ -660,7 +663,9 @@ public class ComprasDaoImpl implements ComprasDao {
 							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[9]
 							.toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN), obj[10]
-							.toString()));
+							.toString(), new BigDecimal(obj[11].toString())
+							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					(String) obj[12], (String) obj[13], (String) obj[14]));
 			comp.sumarOrdenes(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {

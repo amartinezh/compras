@@ -427,7 +427,7 @@ public class Compras implements Serializable {
 	public Compras(BigDecimal pqtyp, String nroor, BigDecimal pqtyd,
 			BigDecimal pqtyr, BigDecimal pvalbd, String fecre,
 			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqori,
-			BigDecimal pvalbo, String pcstp) {
+			BigDecimal pvalbo, String pcstp, BigDecimal pqtyo, String fecen, String diave, String solic) {
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
@@ -444,6 +444,15 @@ public class Compras implements Serializable {
 		}
 		this.pvalbo = pvalbo;
 		this.pcstp = pcstp;
+		this.pqtyo = pqtyo;
+		if (fecen.length() == 8) {
+			this.fecen = fecen.substring(0, 4) + "/" + fecen.substring(4, 6)
+					+ "/" + fecen.substring(6, 8);
+		} else {
+			this.fecen = fecen;
+		}
+		this.diave = diave;
+		this.solic = solic;
 	}
 
 	// Constructor Requisicion
@@ -1297,6 +1306,7 @@ public class Compras implements Serializable {
 		this.pqori = pqori.add(com.getPqori());
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 		this.pvalbo = pvalbo.add(com.getPvalbo());
+		this.pqtyo = pqtyo.add(com.getPqtyo());
 	}
 
 	public void sumarBodegas(Compras com) {
