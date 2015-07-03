@@ -209,7 +209,7 @@ tr:last-child {
 												 -->
 											<th rowspan="2" style="text-align: center; color: blue;">Cantidad
 												Original</th>
-											<th colspan="2" style="text-align: center; color: blue;">Fecha</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Fecha Emision</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Días
 												Vencimiento</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Usuario
@@ -245,8 +245,6 @@ tr:last-child {
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
-											<th style="text-align: center; color: blue;">Emision</th>
-											<th style="text-align: center; color: blue;">Entrega</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -314,11 +312,10 @@ tr:last-child {
 													value="${compp.pqori}" type="number" /></td>
 											<c:choose>
 												<c:when test="${compp.nroor == '@@@@@'}">
-													<td colspan="4" />
+													<td colspan="3" />
 												</c:when>
 												<c:otherwise>
 													<td><c:out value="${compp.fecre}" /></td>
-													<td><c:out value="${compp.fecen}" /></td>
 													<c:choose>
 														<c:when test="${compp.diave > 0}">
 															<td style="text-align: right; color: #FF0000;"><Strong><c:out

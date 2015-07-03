@@ -28,9 +28,14 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getCompras(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel) {
+			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
@@ -67,7 +72,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
+								+ where.toString()
 								+ " GROUP BY c.ptype, c.ptyno "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
@@ -99,16 +104,21 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getCompradores(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel) {
+			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
-		String where = "";
+		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
-					if (where.isEmpty()) {
-						where = condiciones.get(c[i]);
+					if (where.length() == 0) {
+						where.append(condiciones.get(c[i]));
 					} else {
-						where = where + " and " + condiciones.get(c[i]);
+						where.append(" and " + condiciones.get(c[i]));
 					}
 				}
 			}
@@ -126,7 +136,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
+								+ where.toString()
 								+ "GROUP BY c.pcomd, c.pnomd "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
@@ -166,9 +176,14 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getProveedores(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel, Compras compra) {
+			String cond, String fechaAct, String fechaSel, Compras compra, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
@@ -198,7 +213,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
+								+ where.toString()
 								+ "GROUP BY c.pprov, c.ppnov, c.pnit "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
@@ -253,9 +268,14 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getItems(Map<String, String> condiciones, String cond,
-			String fechaAct, String fechaSel, Compras compra) {
+			String fechaAct, String fechaSel, Compras compra, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
@@ -368,16 +388,21 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getClases(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel) {
+			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
-		String where = "";
+		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
-					if (where.isEmpty()) {
-						where = condiciones.get(c[i]);
+					if (where.length() == 0) {
+						where.append(condiciones.get(c[i]));
 					} else {
-						where = where + " and " + condiciones.get(c[i]);
+						where.append(" and " + condiciones.get(c[i]));
 					}
 				}
 			}
@@ -395,7 +420,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
+								+ where.toString()
 								+ "GROUP BY c.picla, c.picln "
 								+ "ORDER BY pvalbd desc").getResultList();
 		if (fechaAct.equals(fechaSel)) {
@@ -439,16 +464,21 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getCentros(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel) {
+			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
-		String where = "";
+		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
-					if (where.isEmpty()) {
-						where = condiciones.get(c[i]);
+					if (where.length() == 0) {
+						where.append(condiciones.get(c[i]));
 					} else {
-						where = where + " and " + condiciones.get(c[i]);
+						where.append(" and " + condiciones.get(c[i]));
 					}
 				}
 			}
@@ -466,7 +496,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
+								+ where.toString()
 								+ "GROUP BY c.pcent, c.pcenn "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
@@ -504,9 +534,14 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getRequisiciones(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel, Compras compra) {
+			String cond, String fechaAct, String fechaSel, Compras compra, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !c[i].equals("ordeCond")
 					&& !condiciones.get(c[i]).isEmpty()) {
@@ -549,8 +584,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
-								+ "GROUP BY c.nroor, c.fecre, c.pcstp "
+								+ where.toString()
+								+ "GROUP BY c.nroor, c.fecre "
 								+ "ORDER BY pvalbd desc").getResultList();
 		for (Object[] obj : result) {
 			if (compra == null) {
@@ -588,9 +623,14 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getOrdenes(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel, Compras compra) {
+			String cond, String fechaAct, String fechaSel, Compras compra, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
@@ -623,8 +663,8 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
-								+ "GROUP BY c.nroor, c.fecre, c.pcstp, c.fecen, c.diave, c.solic "
+								+ where.toString()
+								+ "GROUP BY c.nroor, c.fecre, c.fecen, c.diave, c.solic "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
@@ -678,9 +718,14 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getBodegas(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel) {
+			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
@@ -705,7 +750,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
+								+ where.toString()
 								+ "GROUP BY c.plocal, c.plnon "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
@@ -744,9 +789,14 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getEstados(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel) {
+			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
+		if(campo.toUpperCase().equals("ORD")) {
+			where.append("c.pqtyo <> 0");
+		} else {
+			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (!cond.contains("Req") || !c[i].equals("ordeCond")) {
@@ -771,7 +821,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ tab
 								+ " as c "
 								+ "WHERE "
-								+ where
+								+ where.toString()
 								+ "GROUP BY c.pcstp, c.tipoc "
 								+ "ORDER BY c.pcstp asc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();

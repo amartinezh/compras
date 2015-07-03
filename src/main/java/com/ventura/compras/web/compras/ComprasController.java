@@ -108,7 +108,7 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getCompras(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
-							ses.getFechaSelec()));
+							ses.getFechaSelec(), ses.getCampover()));
 			model.addAttribute("compra", new Compras());
 			return "dashboard";
 		} else {
@@ -125,7 +125,7 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getCompradores(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
-							ses.getFechaSelec()));
+							ses.getFechaSelec(), ses.getCampover()));
 			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
 			model.addAttribute(
 					"mensaje",
@@ -191,7 +191,8 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getProveedores(
 					ses.getCondiciones(), ses.getCondicionActual(),
-					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro());
+					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro(),
+					ses.getCampover());
 			if (ses.getFiltro() == null) {
 				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor()
 						.replaceAll("'", String.valueOf('"')));
@@ -265,7 +266,7 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getItems(ses.getCondiciones(),
 					ses.getCondicionActual(), ses.getFechaActual(),
-					ses.getFechaSelec(), ses.getFiltro());
+					ses.getFechaSelec(), ses.getFiltro(), ses.getCampover());
 			if (ses.getFiltro() == null) {
 				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor()
 						.replaceAll("'", String.valueOf('"')));
@@ -341,7 +342,7 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getEstados(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
-							ses.getFechaSelec()));
+							ses.getFechaSelec(), ses.getCampover()));
 			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
 			model.addAttribute(
 					"mensaje",
@@ -404,7 +405,7 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getClases(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
-							ses.getFechaSelec()));
+							ses.getFechaSelec(), ses.getCampover()));
 			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
 			model.addAttribute(
 					"mensaje",
@@ -472,7 +473,7 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getCentros(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
-							ses.getFechaSelec()));
+							ses.getFechaSelec(), ses.getCampover()));
 			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
 			model.addAttribute(
 					"mensaje",
@@ -538,7 +539,7 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getRequisiciones(
 					ses.getCondiciones(), ses.getCondicionActual(),
-					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro());
+					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro(), ses.getCampover());
 			if (ses.getFiltro() == null) {
 				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
 						.replaceAll("'", String.valueOf('"')));
@@ -608,7 +609,7 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getOrdenes(ses.getCondiciones(),
 					ses.getCondicionActual(), ses.getFechaActual(),
-					ses.getFechaSelec(), ses.getFiltro());
+					ses.getFechaSelec(), ses.getFiltro(), ses.getCampover());
 			if (ses.getFiltro() == null) {
 				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
 						.replaceAll("'", String.valueOf('"')));
@@ -684,7 +685,7 @@ public class ComprasController {
 					"listcomp",
 					comprasService.getBodegas(ses.getCondiciones(),
 							ses.getCondicionActual(), ses.getFechaActual(),
-							ses.getFechaSelec()));
+							ses.getFechaSelec(), ses.getCampover()));
 			model.addAttribute("navegacion", obtNav(ses.getHistorial()));
 			model.addAttribute(
 					"mensaje",
