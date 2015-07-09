@@ -34,7 +34,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -110,7 +110,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -182,7 +182,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -274,7 +274,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -394,7 +394,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -470,7 +470,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -540,7 +540,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !c[i].equals("ordeCond")
@@ -579,7 +579,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, c.pcstp as pcstp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -629,7 +629,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -724,7 +724,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
@@ -795,7 +795,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		if(campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
-			where.append("c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0");
+			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
 		for (int i = 0; i < c.length; i++) {
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
