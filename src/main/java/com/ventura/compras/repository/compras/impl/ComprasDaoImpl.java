@@ -31,7 +31,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -107,7 +107,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -176,10 +176,11 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getProveedores(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel, Compras compra, String campo) {
+			String cond, String fechaAct, String fechaSel, Compras compra,
+			String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -195,7 +196,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			}
 		}
 		if (compra != null) {
-			where.append(" and c.ppnov LIKE '"
+			where.append(" and c.ppnov LIKE '%"
 					+ compra.getPpnov().toUpperCase() + "%'");
 
 		}
@@ -271,7 +272,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			String fechaAct, String fechaSel, Compras compra, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -288,7 +289,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			}
 		}
 		if (compra != null) {
-			where.append(" and c.pipro LIKE '"
+			where.append(" and c.pipro LIKE '%"
 					+ compra.getPipro().toUpperCase() + "%'");
 		}
 		String tab = "";
@@ -314,6 +315,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
 				BigDecimal.ROUND_HALF_EVEN));
 		for (Object[] obj : result) {
 			if (compra == null) {
@@ -332,7 +334,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				} else if (obj[18].toString().equals("1")) {
 					valorEst = "Recibida";
 				} else if (obj[18].toString().equals("2")) {
-					valorEst = "No costeada";
+					valorEst = "Parcialmente costeada";
 				} else if (obj[18].toString().equals("3")) {
 					valorEst = "Cerrada";
 				} else {
@@ -391,7 +393,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -467,7 +469,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -534,10 +536,11 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getRequisiciones(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel, Compras compra, String campo) {
+			String cond, String fechaAct, String fechaSel, Compras compra,
+			String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -557,7 +560,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		where.append("c.tipoc = 'R'");
 		if (compra != null) {
-			where.append(" and c.nroor LIKE '"
+			where.append(" and c.nroor LIKE '%"
 					+ compra.getNroor().toUpperCase() + "%'");
 		}
 		StringBuilder ordenes = new StringBuilder("[");
@@ -623,10 +626,11 @@ public class ComprasDaoImpl implements ComprasDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compras> getOrdenes(Map<String, String> condiciones,
-			String cond, String fechaAct, String fechaSel, Compras compra, String campo) {
+			String cond, String fechaAct, String fechaSel, Compras compra,
+			String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -645,7 +649,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		where.append("c.tipoc = 'O'");
 		if (compra != null) {
-			where.append(" and c.nroor LIKE '"
+			where.append(" and c.nroor LIKE '%"
 					+ compra.getNroor().toUpperCase() + "%'");
 
 		}
@@ -721,7 +725,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -792,7 +796,7 @@ public class ComprasDaoImpl implements ComprasDao {
 			String cond, String fechaAct, String fechaSel, String campo) {
 		String[] c = cond.split(",");
 		StringBuilder where = new StringBuilder();
-		if(campo.toUpperCase().equals("ORD")) {
+		if (campo.toUpperCase().equals("ORD")) {
 			where.append("c.pqtyo <> 0");
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
@@ -840,7 +844,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				} else if (obj[0].toString().equals("1")) {
 					valorEst = "Recibida";
 				} else if (obj[0].toString().equals("2")) {
-					valorEst = "No costeada";
+					valorEst = "Parcialmente costeada";
 				} else if (obj[0].toString().equals("3")) {
 					valorEst = "Cerrada";
 				} else {

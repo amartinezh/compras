@@ -382,13 +382,14 @@ public class Compras implements Serializable {
 	}
 
 	public Compras(String pipro, BigDecimal pqtyd, BigDecimal pqtyr,
-			BigDecimal pqori, BigDecimal pqtyp, BigDecimal pqtyo) {
+			BigDecimal pqori, BigDecimal pqtyp, BigDecimal pqtyo, BigDecimal ppreac) {
 		this.pipro = pipro;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pqori = pqori;
 		this.pqtyp = pqtyp;
 		this.pqtyo = pqtyo;
+		this.ppreac = ppreac;
 	}
 
 	// Construtor Clase
@@ -1268,6 +1269,7 @@ public class Compras implements Serializable {
 		this.pqori = pqori.add(com.getPqori());
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 		this.pqtyo = pqtyo.add(com.getPqtyo());
+		this.ppreac = ppreac.add(com.getPpreac());
 		/*
 		 * this.pvalbd = pvalbd.add(com.getPvalbd()); this.pvalpo =
 		 * pvalpo.add(com.getPvalpo()); this.ppreac =

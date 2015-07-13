@@ -86,10 +86,10 @@
 
 				<ul>
 					<li class="active">
-						<a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Administracion</span></a>
+						<a><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Administracion</span></a>
 						<ul>
 							<li>
-								<a href="/admin/listar" target="panel">Usuarios</a>
+								<a href="listar" target="panel">Usuarios</a>
 							</li>
 						</ul>
 					</li>
@@ -117,7 +117,7 @@
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
 					<li>Inicio</li><li>Dashboard </li><li>Usuario: ${user_inicio.usuario}</li> 
-					<a href="/compras/index/ingreso" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+					<a href="salir" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
 				</ol>
 				
 				<!-- end breadcrumb -->

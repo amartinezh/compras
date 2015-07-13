@@ -350,7 +350,9 @@ tr:last-child {
 															value="${compp.pqtyr}" type="number" /></td>
 													<td style="text-align: right"><fmt:formatNumber
 															value="${compp.pqtyp}" type="number" /></td>
-													<td colspan="7"></td>
+													<td style="text-align: right">$<fmt:formatNumber
+															value="${compp.ppreac}" type="number" /></td>
+													<td colspan="6"></td>
 													<c:choose>
 														<c:when test="${o == 1}">
 														<td style="text-align: right"><fmt:formatNumber
