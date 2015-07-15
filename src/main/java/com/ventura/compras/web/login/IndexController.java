@@ -24,6 +24,8 @@ import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
 import com.ventura.compras.service.adm.CenterService;
 import com.ventura.compras.service.adm.CompanyService;
+import com.ventura.compras.service.adm.CurrencyService;
+import com.ventura.compras.service.adm.LevelService;
 import com.ventura.compras.service.adm.TypeUserService;
 import com.ventura.compras.service.login.UserManager;
 
@@ -46,6 +48,12 @@ public class IndexController {
 
 	@Autowired
 	private CenterService centerService;
+	
+	@Autowired
+	private CurrencyService currencyService;
+	
+	@Autowired
+	private LevelService levelService;
 
 	/*
 	 * @Autowired private PermisoManager permisoManager;
@@ -76,6 +84,8 @@ public class IndexController {
 						info.add(0, typeUserService.listTypeUser());
 						info.add(1, companyService.listCompany());
 						info.add(2, centerService.listCenter());
+						info.add(3, currencyService.listCurrency());
+						info.add(4, levelService.listLevel());
 						ret = "redirect:/admin/panel";
 					} else {
 						Calendar fecha = new GregorianCalendar();

@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.ventura.compras.domain.adm.Center;
 import com.ventura.compras.domain.adm.Company;
+import com.ventura.compras.domain.adm.Currency;
+import com.ventura.compras.domain.adm.Level;
 import com.ventura.compras.domain.adm.TypeUser;
 import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
@@ -57,16 +60,34 @@ public class AdminController {
 			model.addAttribute("accion", "insertar");
 			Map<Integer, String> comp = new HashMap<Integer, String>();
 			Map<Integer, String> typ = new HashMap<Integer, String>();
+			Map<Integer, String> cent = new HashMap<Integer, String>();
+			Map<Integer, String> curr = new HashMap<Integer, String>();
+			Map<Integer, String> lev = new HashMap<Integer, String>();
 			List<TypeUser> types = (List<TypeUser>)(ses.getInformacion().get(0));
 			List<Company> companys = (List<Company>)(ses.getInformacion().get(1));
+			List<Center> centers = (List<Center>)(ses.getInformacion().get(2));
+			List<Currency> currencys = (List<Currency>)(ses.getInformacion().get(3));
+			List<Level> levels = (List<Level>)(ses.getInformacion().get(4));
 			for(TypeUser t: types) {
 				typ.put(t.getId(), t.getDescripcion());
 			}
 			for(Company com: companys) {
 				comp.put(com.getId(), com.getDescripcion());
 			}
+			for(Center cen : centers) {
+				cent.put(cen.getId(), cen.getDescripcion());
+			}
+			for(Currency cur: currencys) {
+				curr.put(cur.getId(), cur.getDescripcion());
+			}
+			for(Level levv: levels) {
+				lev.put(levv.getId(), levv.getDescripcion());
+			}
 			model.addAttribute("listype", typ);
 			model.addAttribute("listcomp", comp);
+			model.addAttribute("listcent", cent);
+			model.addAttribute("listcur", curr);
+			model.addAttribute("listlev", lev);
 			return "admin/events/addUser";
 		} else {
 			return "redirect:/index/ingreso";

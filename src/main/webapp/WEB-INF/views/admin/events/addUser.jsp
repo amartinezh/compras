@@ -122,8 +122,20 @@
 												<form:select path="type.id" items="${ listype }" />
 											</section>
 											<section class="col col-6">
-												<label class="label">Codigo</label>
+												<label class="label">Compañia</label>
 												<form:select path="comp.id" items="${ listcomp }" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Moneda</label>
+												<form:select path="curr.id" items="${listcur}" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Nivel</label>
+												<form:select path="level.id" items="${listlev}" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Centro</label>
+												<form:select path="cent.id" items="${ listcent }" />
 											</section>
 										</div>
 									</fieldset>
