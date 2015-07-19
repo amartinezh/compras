@@ -79,7 +79,7 @@
 	media="screen and (max-device-width: 320px)">
 
 </head>
-<body class="">
+<body oncontextmenu="return false">
 	<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 
 	<!-- MAIN CONTENT -->
@@ -111,25 +111,33 @@
 										<div class="row">
 											<section class="col col-6">
 												<label class="label">Usuario</label>
-												<form:input path="id" />
-											</section>
-											<section class="col col-6">
-												<label class="label">Contraseña</label>
-												<form:input path="pass" />
+												<form:input path="id" readonly="true"/>
 											</section>
 											<section class="col col-6">
 												<label class="label">Tipo Usuario</label>
 												<form:select path="type.id" items="${ listype }" />
 											</section>
 											<section class="col col-6">
-												<label class="label">Codigo</label>
+												<label class="label">Compañia</label>
 												<form:select path="comp.id" items="${ listcomp }" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Moneda</label>
+												<form:select path="curr.id" items="${listcur}" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Nivel</label>
+												<form:select path="level.id" items="${listlev}" />
+											</section>
+											<section class="col col-6">
+												<label class="label">Centro</label>
+												<form:select path="cent.id" items="${ listcent }" />
 											</section>
 										</div>
 									</fieldset>
 									<footer>
 										<button type="submit" class="btn btn-primary">
-											<i class="fa fa-save"> Agregar Usuario </i>
+											<i class="fa fa-edit"> Editar Usuario </i>
 										</button>
 										<button type="button" onclick="location.href ='listar'"
 											class="btn btn-default">

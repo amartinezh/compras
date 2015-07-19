@@ -35,4 +35,12 @@ public class SimpleUserManager implements UserManager {
 	public void deleteUser(String id) {
 		userDao.deleteUser(id);
 	}
+
+	public User getUser(User user) {
+		return userDao.getUser(user);
+	}
+	
+	public boolean editUser(User user) {
+		return userDao.editUser(user);
+	}
 }

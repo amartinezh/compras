@@ -54,7 +54,7 @@
 		<link rel="apple-touch-startup-image" href="<c:url value="/resources/img/splash/iphone.png" />" media="screen and (max-device-width: 320px)">
 
 	</head>
-	<body class="">
+	<body oncontextmenu="return false">
 		<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 
 		
@@ -126,7 +126,7 @@
 
 			<!-- MAIN CONTENT -->
 			
-		<iframe name="panel" width="100%" height="450" frameborder="0"></iframe>
+		<iframe src="listar" name="panel" width="100%" height="450" frameborder="0"></iframe>
 		</div>
 		<!-- END MAIN PANEL -->
 

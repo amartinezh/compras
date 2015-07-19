@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ventura.compras.domain.adm.TypeUser;
 import com.ventura.compras.domain.login.User;
 
 @Repository
@@ -53,12 +54,27 @@ public class JPAUserDao implements UserDao {
 			return false;
 		}
 	}
-	
-	@Transactional(propagation = Propagation.REQUIRED)	
+
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteUser(String id) {
 		User user = em.find(User.class, id);
-		if(user != null) {
+		if (user != null) {
 			em.remove(user);
+		}
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	public User getUser(User user) {
+		return (User) (em.find(User.class, user.getId()));
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	public boolean editUser(User user) {
+		try {
+			em.merge(user);
+			return true;
+		} catch (Exception ex) {
+			return false;
 		}
 	}
 

@@ -123,15 +123,135 @@ public class AdminController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String editUser(@ModelAttribute("user") User user, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("useredit", user);
 			model.addAttribute("redireccion", "listar");
 			model.addAttribute("accion", "editar");
-			return "redirect:/admin/listar";
+			Map<Integer, String> comp = new HashMap<Integer, String>();
+			Map<Integer, String> typ = new HashMap<Integer, String>();
+			Map<Integer, String> cent = new HashMap<Integer, String>();
+			Map<Integer, String> curr = new HashMap<Integer, String>();
+			Map<Integer, String> lev = new HashMap<Integer, String>();
+			List<TypeUser> types = (List<TypeUser>)(ses.getInformacion().get(0));
+			List<Company> companys = (List<Company>)(ses.getInformacion().get(1));
+			List<Center> centers = (List<Center>)(ses.getInformacion().get(2));
+			List<Currency> currencys = (List<Currency>)(ses.getInformacion().get(3));
+			List<Level> levels = (List<Level>)(ses.getInformacion().get(4));
+			for(TypeUser t: types) {
+				typ.put(t.getId(), t.getDescripcion());
+			}
+			for(Company com: companys) {
+				comp.put(com.getId(), com.getDescripcion());
+			}
+			for(Center cen : centers) {
+				cent.put(cen.getId(), cen.getDescripcion());
+			}
+			for(Currency cur: currencys) {
+				curr.put(cur.getId(), cur.getDescripcion());
+			}
+			for(Level levv: levels) {
+				lev.put(levv.getId(), levv.getDescripcion());
+			}
+			model.addAttribute("listype", typ);
+			model.addAttribute("listcomp", comp);
+			model.addAttribute("listcent", cent);
+			model.addAttribute("listcur", curr);
+			model.addAttribute("listlev", lev);
+			return "admin/events/editUser";
 		}else {
 			return "redirect:/index/ingreso";
 		}
 	}
+	
+	@RequestMapping(value = "/editar", method = RequestMethod.POST)
+	public String editarUser(@ModelAttribute("user") User user, Model model) {		
+		if (model.containsAttribute("user_inicio") == true) {
+			User u = userManager.getUser(user);
+			u.setCent(user.getCent());
+			u.setComp(user.getComp());
+			u.setCurr(user.getCurr());
+			u.setLevel(user.getLevel());
+			u.setType(user.getType());
+			if (userManager.editUser(u)) {
+				return "redirect:listar";
+			} else {
+				session ses = (session) model.asMap().get("user_inicio");
+				model.addAttribute("user", user);
+				model.addAttribute("redireccion", "listar");
+				model.addAttribute("accion", "editar");
+				Map<Integer, String> comp = new HashMap<Integer, String>();
+				Map<Integer, String> typ = new HashMap<Integer, String>();
+				Map<Integer, String> cent = new HashMap<Integer, String>();
+				Map<Integer, String> curr = new HashMap<Integer, String>();
+				Map<Integer, String> lev = new HashMap<Integer, String>();
+				List<TypeUser> types = (List<TypeUser>)(ses.getInformacion().get(0));
+				List<Company> companys = (List<Company>)(ses.getInformacion().get(1));
+				List<Center> centers = (List<Center>)(ses.getInformacion().get(2));
+				List<Currency> currencys = (List<Currency>)(ses.getInformacion().get(3));
+				List<Level> levels = (List<Level>)(ses.getInformacion().get(4));
+				for(TypeUser t: types) {
+					typ.put(t.getId(), t.getDescripcion());
+				}
+				for(Company com: companys) {
+					comp.put(com.getId(), com.getDescripcion());
+				}
+				for(Center cen : centers) {
+					cent.put(cen.getId(), cen.getDescripcion());
+				}
+				for(Currency cur: currencys) {
+					curr.put(cur.getId(), cur.getDescripcion());
+				}
+				for(Level levv: levels) {
+					lev.put(levv.getId(), levv.getDescripcion());
+				}
+				model.addAttribute("listype", typ);
+				model.addAttribute("listcomp", comp);
+				model.addAttribute("listcent", cent);
+				model.addAttribute("listcur", curr);
+				model.addAttribute("listlev", lev);
+				return "admin/events/addUser";
+			}
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
 
+	@RequestMapping(value = "/pass", method = RequestMethod.POST)
+	public String passUser(@ModelAttribute("user") User user, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("useredit", user);
+			model.addAttribute("redireccion", "listar");
+			model.addAttribute("accion", "editpass");			
+			return "admin/events/passUser";
+		}else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "/editpass", method = RequestMethod.POST)
+	public String editPass(@ModelAttribute("user") User user, Model model) {		
+		if (model.containsAttribute("user_inicio") == true) {
+			User u = userManager.getUser(user);
+			user.setCent(u.getCent());
+			user.setComp(u.getComp());
+			user.setCurr(u.getCurr());
+			user.setLevel(u.getLevel());
+			user.setType(u.getType());
+			if (userManager.editUser(user)) {
+				return "redirect:listar";
+			} else {
+				session ses = (session) model.asMap().get("user_inicio");
+				model.addAttribute("user", user);
+				model.addAttribute("redireccion", "listar");
+				model.addAttribute("accion", "editpass");
+				return "admin/events/passUser";
+			}
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
 	@RequestMapping(value = "/salir", method = RequestMethod.GET)
 	public String salir(Model model, SessionStatus status) {
 		status.setComplete();

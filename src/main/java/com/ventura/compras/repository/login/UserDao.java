@@ -10,5 +10,7 @@ public interface UserDao {
     public User val(String k, String p);
     public boolean addUser(User user);
     public void deleteUser(String id);
+    public User getUser(User user);
+    public boolean editUser(User user);
 
 }

@@ -79,7 +79,7 @@
 	media="screen and (max-device-width: 320px)">
 
 </head>
-<body class="">
+<body oncontextmenu="return false">
 	<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 
 	<!-- HEADER -->

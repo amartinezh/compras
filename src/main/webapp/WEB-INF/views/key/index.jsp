@@ -58,7 +58,7 @@
 			}
 		</style>
 	</head>
-	<body class="animated fadeInDown">
+	<body class="animated fadeInDown" oncontextmenu="return false">
 		<div id="main" role="main">
 
 			<!-- MAIN CONTENT -->

@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Papeles Nacionales - Administrar Usuarios</title>
+<title>Papeles Nacionales</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -80,7 +80,6 @@
 
 </head>
 <body oncontextmenu="return false">
-
 	<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 
 	<!-- MAIN CONTENT -->
@@ -105,90 +104,32 @@
 							<!-- widget content -->
 							<div class="widget-body no-padding">
 
-								<table class="table table-bordered dataTable no-footer"
-									role="grid" aria-describedby="datatable_fixed_column_info"
-									style="width: 100%;">
-									<thead>
-										<tr>
-											<th colspan="9" style="text-align: center; color: blue;">LISTADO
-												DE USUARIOS</th>
-										</tr>
-										<tr>
-											<th data-hide="Usuario" style="text-align: center;">Usuario</th>
-											<th data-hide="Tipo" style="text-align: center;">Tipo de
-												usuario</th>
-											<th data-hide="Compañia" style="text-align: center;">Compañia</th>
-											<th data-hide="Nivel" style="text-align: center;">Nivel</th>
-											<th data-hide="Moneda" style="text-align: center;">Moneda</th>
-											<th data-hide="Centro" style="text-align: center;">Centro</th>
-											<th data-hide="Editar" style="text-align: center;">Editar</th>
-											<th data-hide="Clave" style="text-align: center;">Clave</th>
-											<th data-hide="Borrar" style="text-align: center;">Borrar</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${listuser}" var="userr"
-											varStatus="loopCounter">
-											<tr
-												onMouseOver="this.style.background = '#FFFFFF';this.style.color='#15B700'"
-												onMouseOut="this.style.background='#EFF2EF';this.style.color=''"
-												bgcolor="#EFF2EF">
-												<td><c:out value="${userr.id}" /></td>
-												<td><c:out value="${userr.type.descripcion}" /></td>
-												<td><c:out value="${userr.comp.descripcion}" /></td>
-												<td><c:out value="${userr.level.descripcion}" /></td>
-												<td><c:out value="${userr.curr.descripcion}" /></td>
-												<td><c:out value="${userr.cent.descripcion}" /></td>
-												<td align="center" title="Editar usuario ${userr.id}"><form:form
-														method="POST" action="edit" ModelAttribute="user"
-														commandName="user">
-														<form:input path="id" type="hidden" value="${userr.id}" />
-														<form:input path="type.id" type="hidden"
-															value="${userr.type.id}" />
-														<form:input path="level.id" type="hidden"
-															value="${userr.level.id}" />
-														<form:input path="comp.id" type="hidden"
-															value="${userr.comp.id}" />
-														<form:input path="cent.id" type="hidden"
-															value="${userr.cent.id}" />
-														<form:input path="curr.id" type="hidden"
-															value="${userr.curr.id}" />
-														<button type="submit">
-															<i class="fa fa-pencil"></i>
-														</button>
-													</form:form></td>
-												<td align="center" title="Editar Clave usuario ${userr.id}">
-													<form:form method="POST" action="pass"
-														ModelAttribute="user" commandName="user">
-														<form:input path="id" type="hidden" value="${userr.id}" />
-														<button type="submit">
-															<i class="fa fa-pencil"></i>
-														</button>
-													</form:form>
-												</td>
-												<td align="center" title="Eliminar usuario ${userr.id}">
-													<c:if test="${userr.type.id != 1}">
-														<form:form method="POST" action="delete"
-															ModelAttribute="user" commandName="user">
-															<form:input path="id" type="hidden" value="${userr.id}" />
-															<button type="submit">
-																<i class="fa fa-trash-o"></i>
-															</button>
-														</form:form>
-													</c:if>
-												</td>
-											</tr>
-										</c:forEach>
-										<tr>
-											<td colspan="9" align="center"><a href="agregar"
-												title="Adicionar Nuevo Usuario"><i class="fa fa-plus"></i></a></td>
-										</tr>
-										<tr>
-											<td colspan="9" align="center">Usuario: <c:out
-													value="${usuarioactuall}" /></td>
-										</tr>
-									</tbody>
-								</table>
+								<form:form id="checkout-form" class="smart-form"
+									novalidate="novalidate" method="POST" action="${accion}"
+									ModelAttribute="useredit" commandName="useredit">
+									<fieldset>
+										<div class="row">
+											<section class="col col-6">
+												<label class="label">Usuario</label>
+												<form:input path="id" readonly="true"/>
+											</section>
+											<section class="col col-6">
+												<label class="label">Contraseña</label>
+												<form:input path="pass" autocomplete="off"/>
+											</section>
+										</div>
+									</fieldset>
+									<footer>
+										<button type="submit" class="btn btn-primary">
+											<i class="fa fa-edit"> Editar Usuario </i>
+										</button>
+										<button type="button" onclick="location.href ='listar'"
+											class="btn btn-default">
+											<i class="fa fa-times"> Cancelar </i>
+										</button>
+									</footer>
+								</form:form>
+
 							</div>
 							<!-- end widget content -->
 
@@ -515,221 +456,6 @@
 							/* END TABLETOOLS */
 
 						})
-
-		$(function() {
-			$("table").stickyTableHeaders();
-		});
-		/*! Copyright (c) 2011 by Jonas Mosbech - https://github.com/jmosbech/StickyTableHeaders
-		    MIT license info: https://github.com/jmosbech/StickyTableHeaders/blob/master/license.txt */
-
-		;
-		(function($, window, undefined) {
-			'use strict';
-
-			var name = 'stickyTableHeaders';
-			var defaults = {
-				fixedOffset : 0
-			};
-
-			function Plugin(el, options) {
-				// To avoid scope issues, use 'base' instead of 'this'
-				// to reference this class from internal events and functions.
-				var base = this;
-
-				// Access to jQuery and DOM versions of element
-				base.$el = $(el);
-				base.el = el;
-
-				// Listen for destroyed, call teardown
-				base.$el.bind('destroyed', $.proxy(base.teardown, base));
-
-				// Cache DOM refs for performance reasons
-				base.$window = $(window);
-				base.$clonedHeader = null;
-				base.$originalHeader = null;
-
-				// Keep track of state
-				base.isSticky = false;
-				base.leftOffset = null;
-				base.topOffset = null;
-
-				base.init = function() {
-					base.options = $.extend({}, defaults, options);
-
-					base.$el
-							.each(function() {
-								var $this = $(this);
-
-								// remove padding on <table> to fix issue #7
-								$this.css('padding', 0);
-
-								base.$originalHeader = $('thead:first', this);
-								base.$clonedHeader = base.$originalHeader
-										.clone();
-
-								base.$clonedHeader
-										.addClass('tableFloatingHeader');
-								base.$clonedHeader.css('display', 'none');
-
-								base.$originalHeader
-										.addClass('tableFloatingHeaderOriginal');
-
-								base.$originalHeader.after(base.$clonedHeader);
-
-								base.$printStyle = $('<style type="text/css" media="print">'
-										+ '.tableFloatingHeader{display:none !important;}'
-										+ '.tableFloatingHeaderOriginal{position:static !important;}'
-										+ '</style>');
-								$('head').append(base.$printStyle);
-							});
-
-					base.updateWidth();
-					base.toggleHeaders();
-
-					base.bind();
-				};
-
-				base.destroy = function() {
-					base.$el.unbind('destroyed', base.teardown);
-					base.teardown();
-				};
-
-				base.teardown = function() {
-					if (base.isSticky) {
-						base.$originalHeader.css('position', 'static');
-					}
-					$.removeData(base.el, 'plugin_' + name);
-					base.unbind();
-
-					base.$clonedHeader.remove();
-					base.$originalHeader
-							.removeClass('tableFloatingHeaderOriginal');
-					base.$originalHeader.css('visibility', 'visible');
-					base.$printStyle.remove();
-
-					base.el = null;
-					base.$el = null;
-				};
-
-				base.bind = function() {
-					base.$window.on('scroll.' + name, base.toggleHeaders);
-					base.$window.on('resize.' + name, base.toggleHeaders);
-					base.$window.on('resize.' + name, base.updateWidth);
-				};
-
-				base.unbind = function() {
-					// unbind window events by specifying handle so we don't remove too much
-					base.$window.off('.' + name, base.toggleHeaders);
-					base.$window.off('.' + name, base.updateWidth);
-					base.$el.off('.' + name);
-					base.$el.find('*').off('.' + name);
-				};
-
-				base.toggleHeaders = function() {
-					base.$el
-							.each(function() {
-								var $this = $(this);
-
-								var newTopOffset = isNaN(base.options.fixedOffset) ? base.options.fixedOffset
-										.height()
-										: base.options.fixedOffset;
-
-								var offset = $this.offset();
-								var scrollTop = base.$window.scrollTop()
-										+ newTopOffset;
-								var scrollLeft = base.$window.scrollLeft();
-
-								if ((scrollTop > offset.top)
-										&& (scrollTop < offset.top
-												+ $this.height()
-												- base.$clonedHeader.height())) {
-									var newLeft = offset.left - scrollLeft;
-									if (base.isSticky
-											&& (newLeft === base.leftOffset)
-											&& (newTopOffset === base.topOffset)) {
-										return;
-									}
-
-									base.$originalHeader.css({
-										'position' : 'fixed',
-										'top' : newTopOffset,
-										'margin-top' : 0,
-										'left' : newLeft,
-										'z-index' : 1
-									// #18: opacity bug
-									});
-									base.$clonedHeader.css('display', '');
-									base.isSticky = true;
-									base.leftOffset = newLeft;
-									base.topOffset = newTopOffset;
-
-									// make sure the width is correct: the user might have resized the browser while in static mode
-									base.updateWidth();
-								} else if (base.isSticky) {
-									base.$originalHeader.css('position',
-											'static');
-									base.$clonedHeader.css('display', 'none');
-									base.isSticky = false;
-								}
-							});
-				};
-
-				base.updateWidth = function() {
-					if (!base.isSticky) {
-						return;
-					}
-					// Copy cell widths from clone
-					var $origHeaders = $('th,td', base.$originalHeader);
-					$('th,td', base.$clonedHeader).each(function(index) {
-
-						var width, $this = $(this);
-
-						if ($this.css('box-sizing') === 'border-box') {
-							width = $this.outerWidth(); // #39: border-box bug
-						} else {
-							width = $this.width();
-						}
-
-						$origHeaders.eq(index).css({
-							'min-width' : width,
-							'max-width' : width
-						});
-					});
-
-					// Copy row width from whole table
-					base.$originalHeader.css('width', base.$clonedHeader
-							.width());
-				};
-
-				base.updateOptions = function(options) {
-					base.options = $.extend({}, defaults, options);
-					base.updateWidth();
-					base.toggleHeaders();
-				};
-
-				// Run initializer
-				base.init();
-			}
-
-			// A plugin wrapper around the constructor,
-			// preventing against multiple instantiations
-			$.fn[name] = function(options) {
-				return this.each(function() {
-					var instance = $.data(this, 'plugin_' + name);
-					if (instance) {
-						if (typeof options === "string") {
-							instance[options].apply(instance);
-						} else {
-							instance.updateOptions(options);
-						}
-					} else if (options !== 'destroy') {
-						$.data(this, 'plugin_' + name,
-								new Plugin(this, options));
-					}
-				});
-			};
-
-		})(jQuery, window);
 	</script>
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->

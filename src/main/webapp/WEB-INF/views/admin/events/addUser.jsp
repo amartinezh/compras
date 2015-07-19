@@ -79,7 +79,7 @@
 	media="screen and (max-device-width: 320px)">
 
 </head>
-<body class="">
+<body oncontextmenu="return false">
 	<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 
 	<!-- MAIN CONTENT -->
@@ -115,7 +115,7 @@
 											</section>
 											<section class="col col-6">
 												<label class="label">Contraseña</label>
-												<form:input path="pass" />
+												<form:input path="pass" autocomplete="off"/>
 											</section>
 											<section class="col col-6">
 												<label class="label">Tipo Usuario</label>
