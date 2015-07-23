@@ -300,7 +300,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp, c.tipoc as tipoc, c.fecen as fecen, Min(c.diave) as diave, c.solic as solic, sum(c.pqtyo) as pqtyo, c.fecre as fecre "
+						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp, c.tipoc as tipoc, c.fecen as fecen, Min(c.diave) as diave, c.solic as solic, sum(c.pqtyo) as pqtyo, c.fecre as fecre, sum(c.pvalbo) as pvalbo "
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -311,6 +311,8 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras("@@@@@", new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(2,
@@ -377,7 +379,8 @@ public class ComprasDaoImpl implements ComprasDao {
 					(String) obj[21], (String) obj[22], new BigDecimal(obj[23]
 							.toString())
 							.setScale(2, BigDecimal.ROUND_HALF_EVEN),
-					(String) obj[24]));
+					(String) obj[24], new BigDecimal(obj[25].toString())
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN)));
 			comp.sumarItem(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
@@ -573,7 +576,8 @@ public class ComprasDaoImpl implements ComprasDao {
 				BigDecimal.ROUND_HALF_EVEN), new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "", new BigDecimal(0).setScale(0,
 				BigDecimal.ROUND_HALF_EVEN), "@@@@@",
-				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "");
+				new BigDecimal(0).setScale(0, BigDecimal.ROUND_HALF_EVEN), "",
+				"");
 		String tab = "";
 		if (fechaAct.equals(fechaSel)) {
 			tab = "Compras";
@@ -582,13 +586,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp, solic as solic"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where.toString()
-								+ "GROUP BY c.nroor, c.fecre "
+								+ "GROUP BY c.nroor, c.fecre, c.solic "
 								+ "ORDER BY pvalbd desc").getResultList();
 		for (Object[] obj : result) {
 			if (compra == null) {
@@ -613,7 +617,7 @@ public class ComprasDaoImpl implements ComprasDao {
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
 					(String) obj[0], new BigDecimal(obj[9].toString())
 							.setScale(0, BigDecimal.ROUND_HALF_EVEN), obj[10]
-							.toString()));
+							.toString(), obj[11].toString()));
 			comp.sumarRequesiciones(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {

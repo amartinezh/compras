@@ -206,6 +206,7 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Saldo
 												Proveedor</th>
 											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Usuario Solicitante</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Fecha
 												Requerida</th>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
@@ -301,6 +302,7 @@ tr:last-child {
 													value="${compp.pqtyr}" type="number" /></td>
 											<td style="text-align: right"><fmt:formatNumber
 													value="${compp.pqtyp}" type="number" /></td>
+											<td><c:out value="${compp.solic}" /></td>
 											<td><c:out value="${compp.fecre}" /></td>
 											<c:if test="${ user_inicio.tipoUsuario == 2 }">
 												<c:if test="${c == 0}">

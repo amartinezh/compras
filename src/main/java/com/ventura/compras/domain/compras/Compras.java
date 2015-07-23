@@ -328,12 +328,14 @@ public class Compras implements Serializable {
 			String pides, BigDecimal pprep1, String fecep1, BigDecimal pprep2,
 			String fecep2, BigDecimal pprep3, String fecep3, BigDecimal pqori,
 			BigDecimal pqtyp, String punid, int pprov, String ppnov,
-			String pcstp, String tipoc, String fecen, String diave, String solic, BigDecimal pqtyo, String fecre) {
+			String pcstp, String tipoc, String fecen, String diave,
+			String solic, BigDecimal pqtyo, String fecre, BigDecimal pvalbo) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pvalbd = pvalbd;
+		this.pvalbo = pvalbo;
 		this.pvalpo = pvalpo;
 		this.ppreac = ppreac;
 		this.pprep1 = pprep1;
@@ -382,7 +384,8 @@ public class Compras implements Serializable {
 	}
 
 	public Compras(String pipro, BigDecimal pqtyd, BigDecimal pqtyr,
-			BigDecimal pqori, BigDecimal pqtyp, BigDecimal pqtyo, BigDecimal ppreac) {
+			BigDecimal pqori, BigDecimal pqtyp, BigDecimal pqtyo,
+			BigDecimal ppreac, BigDecimal pvalbo, BigDecimal pvalbd) {
 		this.pipro = pipro;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
@@ -390,6 +393,8 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 		this.pqtyo = pqtyo;
 		this.ppreac = ppreac;
+		this.pvalbo = pvalbo;
+		this.pvalbd = pvalbd;
 	}
 
 	// Construtor Clase
@@ -428,7 +433,8 @@ public class Compras implements Serializable {
 	public Compras(BigDecimal pqtyp, String nroor, BigDecimal pqtyd,
 			BigDecimal pqtyr, BigDecimal pvalbd, String fecre,
 			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqori,
-			BigDecimal pvalbo, String pcstp, BigDecimal pqtyo, String fecen, String diave, String solic) {
+			BigDecimal pvalbo, String pcstp, BigDecimal pqtyo, String fecen,
+			String diave, String solic) {
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
@@ -460,7 +466,7 @@ public class Compras implements Serializable {
 	public Compras(BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pvalbd,
 			BigDecimal pvalpo, BigDecimal ppreac, BigDecimal pqori,
 			String fecre, BigDecimal pqtyp, String nroor, BigDecimal pvalbo,
-			String pcstp) {
+			String pcstp, String solic) {
 		this.nroor = nroor;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
@@ -481,6 +487,7 @@ public class Compras implements Serializable {
 		}
 		this.pvalbo = pvalbo;
 		this.pcstp = pcstp;
+		this.solic = solic;
 	}
 
 	// Constructor Bodega
@@ -1270,9 +1277,10 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 		this.pqtyo = pqtyo.add(com.getPqtyo());
 		this.ppreac = ppreac.add(com.getPpreac());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pvalbo = pvalbo.add(com.getPvalbo());
 		/*
-		 * this.pvalbd = pvalbd.add(com.getPvalbd()); this.pvalpo =
-		 * pvalpo.add(com.getPvalpo()); this.ppreac =
+		 * this.pvalpo = pvalpo.add(com.getPvalpo()); this.ppreac =
 		 * ppreac.add(com.getPpreac());
 		 */
 	}

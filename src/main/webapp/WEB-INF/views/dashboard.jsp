@@ -122,7 +122,9 @@ tr:last-child {
 					</ul>
 				</li>
 			</ul>
-			<a href="anual" class="btn btn-success btn-labeled"> <span
+			<a class="btn btn-labeled btn-primary bg-color-yellow">
+				<span class="btn-label"><i class="glyphicon glyphicon-camera"></i></span>Histórico
+			</a> <a href="anual" class="btn btn-success btn-labeled"> <span
 				class="btn-label"><i class="glyphicon glyphicon-info-sign"></i></span>Reporte
 				Anual
 			</a> <a href="actualizar" class="btn btn-labeled btn-info"> <span
@@ -167,7 +169,7 @@ tr:last-child {
 									<thead>
 										<tr>
 											<td colspan="15" align="left"><strong><c:out
-													value="${navegacion}" /></strong></td>
+														value="${navegacion}" /></strong></td>
 										</tr>
 										<tr>
 											<td colspan="15" align="center"><c:out
