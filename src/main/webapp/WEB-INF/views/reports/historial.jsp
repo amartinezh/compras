@@ -182,6 +182,7 @@ tr:last-child {
 												Recibido</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												Compras</th> -->
+												<!-- 
 											<c:if test="${o == 0 && r == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											</c:if>
@@ -209,6 +210,7 @@ tr:last-child {
 											<c:if test="${e == 0}">
 												<th rowspan="2" style="text-align: center; color: blue;">Estado</th>
 											</c:if>
+											 -->
 										</tr>
 										<tr>
 											<c:choose>
@@ -253,6 +255,7 @@ tr:last-child {
 														value="${compp.pvalpo}" type="number" /></td>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.ppreac}" type="number" /></td>  -->
+														<!-- 
 												<c:if test="${o == 0 && r == 0}">
 													<td align="center"><form:form method="POST"
 															action="class" ModelAttribute="compra"
@@ -378,6 +381,7 @@ tr:last-child {
 
 														</form:form></td>
 												</c:if>
+												 -->
 											</tr>
 										</c:forEach>
 
