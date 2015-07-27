@@ -539,7 +539,8 @@ public class ComprasController {
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			List<Compras> ll = comprasService.getRequisiciones(
 					ses.getCondiciones(), ses.getCondicionActual(),
-					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro(), ses.getCampover());
+					ses.getFechaActual(), ses.getFechaSelec(), ses.getFiltro(),
+					ses.getCampover());
 			if (ses.getFiltro() == null) {
 				ses.setAutocomplete(ll.get(ll.size() - 1).getNroor().split("-")[1]
 						.replaceAll("'", String.valueOf('"')));
@@ -1438,6 +1439,168 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
+
+	@RequestMapping(value = "/historico", method = RequestMethod.GET)
+	public String historico(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			model.addAttribute("accion", "histcodprod");
+			model.addAttribute("redireccion", "mostrar");
+			model.addAttribute("compra", new Compras());
+			session ses = (session) (model.asMap().get("user_inicio"));
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("mensaje1", "CONSULTA POR CODIGO DE PRODUCTO");
+			model.addAttribute("mensaje2", "CONSULTA POR NOMBRE DE PRODUCTO");
+			model.addAttribute("mensaje3", "CONSULTA POR CODIGO DE PROVEEDOR");
+			model.addAttribute("mensaje4", "CONSULTA POR NOMBRE DE PROVEEDOR");
+			model.addAttribute("accion1", "cprod");
+			model.addAttribute("accion2", "dprod");
+			model.addAttribute("accion3", "cprov");
+			model.addAttribute("accion4", "dprov");
+			model.addAttribute("codproducto", ses.getDatos().get("codProd"));
+			model.addAttribute("nombproducto", ses.getDatos().get("desProd"));
+			model.addAttribute("codproveedor", ses.getDatos().get("codProv"));
+			model.addAttribute("nombproveedor", ses.getDatos().get("desProv"));
+			return "historico";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/cprod", method = RequestMethod.POST)
+	public String cprod(@ModelAttribute("compra") Compras compra, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			ses.setCondicionesHistorico(new LinkedList<String>());
+			ses.getCondicionesHistorico().add(0,
+					"c.pipro LIKE '%" + compra.getPipro().toUpperCase() + "%'");
+			ses.getCondicionesHistorico().add(1,
+					"c.pipro as pipro, c.pides as pides");
+			ses.getCondicionesHistorico().add(2, "c.pipro, c.pides");
+			ses.getCondicionesHistorico().add(
+					3,
+					"CODIGO DE PRODUCTO QUE CONTENGA ["
+							+ compra.getPipro().toUpperCase() + "]");
+			ses.getCondicionesHistorico().add(4, "Codigo de producto");
+			ses.getCondicionesHistorico().add(5, "Nombre de producto");
+			ses.getCondicionesHistorico().add(6, "Historico de producto");
+			ses.getCondicionesHistorico().add(7, " > Producto");
+			model.addAttribute("user_inicio", ses);
+			return "redirect:ver";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/dprod", method = RequestMethod.POST)
+	public String dprod(@ModelAttribute("compra") Compras compra, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			ses.setCondicionesHistorico(new LinkedList<String>());
+			ses.getCondicionesHistorico().add(
+					0,
+					"c.pides LIKE '%"
+							+ compra.getPides().toUpperCase()
+									.replaceAll("'", "\"") + "%'");
+			ses.getCondicionesHistorico().add(1,
+					"c.pipro as pipro, c.pides as pides");
+			ses.getCondicionesHistorico().add(2, "c.pipro, c.pides");
+			ses.getCondicionesHistorico().add(
+					3,
+					"NOMBRE DE PRODUCTO QUE CONTENGA ["
+							+ compra.getPides().toUpperCase()
+									.replaceAll("'", "\"") + "]");
+			ses.getCondicionesHistorico().add(4, "Codigo de producto");
+			ses.getCondicionesHistorico().add(5, "Nombre de producto");
+			ses.getCondicionesHistorico().add(6, "Historico de producto");
+			ses.getCondicionesHistorico().add(7, " > Producto");
+			model.addAttribute("user_inicio", ses);
+			return "redirect:ver";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/cprov", method = RequestMethod.POST)
+	public String cprov(@ModelAttribute("compra") Compras compra, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			try {
+				Integer.parseInt(String.valueOf(compra.getPprov()));
+				session ses = (session) (model.asMap().get("user_inicio"));
+				ses.setCondicionesHistorico(new LinkedList<String>());
+				ses.getCondicionesHistorico().add(0,
+						"c.pprov =" + compra.getPprov());
+				ses.getCondicionesHistorico().add(1,
+						"c.pprov as pprov, c.ppnov as ppnov");
+				ses.getCondicionesHistorico().add(2, "c.pprov, c.ppnov");
+				ses.getCondicionesHistorico().add(
+						3,
+						"CODIGO DE PROVEEDOR QUE CONTENGA ["
+								+ compra.getPprov() + "]");
+				ses.getCondicionesHistorico().add(4, "Codigo de proovedor");
+				ses.getCondicionesHistorico().add(5, "Nombre de proveedor");
+				ses.getCondicionesHistorico().add(6, "Historico de proveedor");
+				ses.getCondicionesHistorico().add(7, " > Proveedor");
+				model.addAttribute("user_inicio", ses);
+				return "redirect:ver";
+			} catch (Exception e) {
+				return "redirect:historico";
+			}
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/dprov", method = RequestMethod.POST)
+	public String dprov(@ModelAttribute("compra") Compras compra, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) (model.asMap().get("user_inicio"));
+			ses.setCondicionesHistorico(new LinkedList<String>());
+			ses.getCondicionesHistorico().add(
+					0,
+					"c.ppnov LIKE '%"
+							+ compra.getPpnov().toUpperCase()
+									.replaceAll("'", "\"") + "%'");
+			ses.getCondicionesHistorico().add(1,
+					"c.pprov as pprov, c.ppnov as ppnov");
+			ses.getCondicionesHistorico().add(2, "c.pprov, c.ppnov");
+			ses.getCondicionesHistorico().add(
+					3,
+					"NOMBRE DE PROVEEDOR QUE CONTENGA ["
+							+ compra.getPpnov().toUpperCase()
+									.replaceAll("'", "\"") + "]");
+			ses.getCondicionesHistorico().add(4, "Codigo de producto");
+			ses.getCondicionesHistorico().add(5, "Nombre de producto");
+			ses.getCondicionesHistorico().add(6, "Historico de proveedor");
+			ses.getCondicionesHistorico().add(7, " > Proveedor");
+			model.addAttribute("user_inicio", ses);
+			return "redirect:ver";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "/ver")
+	public String ver(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("listcomp",
+					comprasService.getHistorico(ses.getCondicionesHistorico()));
+			model.addAttribute("navegacion", "> Historico"
+					+ ses.getCondicionesHistorico().get(7));
+			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(3));
+			model.addAttribute("regresar", "historico");
+			model.addAttribute("codigo", ses.getCondicionesHistorico().get(4));
+			model.addAttribute("nombre", ses.getCondicionesHistorico().get(5));
+			model.addAttribute("titulo", ses.getCondicionesHistorico().get(6));
+			model.addAttribute("compra", new Compras());
+			return "reports/historial";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	// reports/
 
 	@RequestMapping(value = "/tomar", method = RequestMethod.POST)
 	public String tomar(@ModelAttribute("compra") Compras compra, Model model) {

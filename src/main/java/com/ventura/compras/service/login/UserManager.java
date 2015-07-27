@@ -2,6 +2,7 @@
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.ventura.compras.domain.adm.TypeUser;
 import com.ventura.compras.domain.login.User;
@@ -14,5 +15,6 @@ public interface UserManager extends Serializable {
     public User getUser(User user);
     public void deleteUser(String id);
     public boolean editUser(User user);
+    public Map<String, String> obtenerDatos();
 
 }

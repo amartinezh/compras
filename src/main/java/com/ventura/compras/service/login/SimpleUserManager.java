@@ -1,6 +1,7 @@
 package com.ventura.compras.service.login;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,5 +43,9 @@ public class SimpleUserManager implements UserManager {
 	
 	public boolean editUser(User user) {
 		return userDao.editUser(user);
+	}
+	
+	public Map<String, String> obtenerDatos() {
+		return userDao.obtenerDatos();
 	}
 }

@@ -153,6 +153,8 @@ public class session implements Serializable{
 	private String condicionReporte;
 	private Map<String, String> camposvista;
 	private String campover;
+	private Map<String, String> datos;
+	private List<String> condicionesHistorico;
 	
 	public String getCampover() {
 		return campover;
@@ -227,7 +229,9 @@ public class session implements Serializable{
 		this.condicionReporte = "";
 		this.camposvista = new HashMap<String, String>();
 		this.campover = "ord";
+		this.condicionesHistorico = new LinkedList<String>();
 	}
+	
 	
 	public String getCondicionReporte() {
 		return condicionReporte;
@@ -372,5 +376,21 @@ public class session implements Serializable{
 	public void setFechaSelec(String fechaSelec) {
 		this.fechaSelec = fechaSelec;
 	}
+	
+	public Map<String, String> getDatos() {
+		return datos;
+	}
 		
+	public void setDatos(Map<String, String> datos) {
+		this.datos = datos;
+	}
+	
+	public List<String> getCondicionesHistorico() {
+		return condicionesHistorico;
+	}
+	
+	public void setCondicionesHistorico(List<String> condicionesHistorico) {
+		this.condicionesHistorico = condicionesHistorico;
+	}
+	
 }

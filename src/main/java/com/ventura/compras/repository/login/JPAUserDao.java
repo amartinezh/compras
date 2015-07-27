@@ -1,6 +1,9 @@
 package com.ventura.compras.repository.login;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -76,6 +79,67 @@ public class JPAUserDao implements UserDao {
 		} catch (Exception ex) {
 			return false;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public Map<String, String> obtenerDatos() {
+		Map<String, String> datos = new HashMap();
+		StringBuilder cProd = new StringBuilder();
+		StringBuilder dProd = new StringBuilder();
+		StringBuilder cProv = new StringBuilder();
+		StringBuilder dProv = new StringBuilder();
+		List<Object[]> result1 = em.createQuery(
+				"SELECT c.pipro as pipro, c.pides as pides"
+						+ " FROM Compras_h as c"
+						+ " GROUP BY c.pipro, c.pides " + "ORDER BY pipro asc")
+				.getResultList();
+		List<Object[]> result2 = em.createQuery(
+				"SELECT c.pprov as pprov, c.ppnov as ppnov"
+						+ " FROM Compras_h as c"
+						+ " GROUP BY c.pprov, c.ppnov " + "ORDER BY pprov asc")
+				.getResultList();
+		int cant;
+		if (result1.size() > result2.size()) {
+			cant = result1.size();
+		} else {
+			cant = result2.size();
+		}
+		cProd.append("[");
+		dProd.append("[");
+		cProv.append("[");
+		dProv.append("[");
+		for (int i = 0; i < cant; i++) {
+			if (i < result1.size()) {
+				if(cProd.length() > 1) {
+					cProd.append(", ");
+					dProd.append(", ");
+				}
+				cProd.append("\""+result1.get(i)[0]+"\"");
+				if(result1.get(i)[1].toString().contains("\"")) {
+					dProd.append("\""+result1.get(i)[1].toString().replaceAll("\"", "'")+"\"");
+				} else {
+					dProd.append("\""+result1.get(i)[1]+"\"");
+				}
+			}
+			if (i < result2.size()) {
+				if(cProv.length() > 1) {
+					cProv.append(", ");
+					dProv.append(", ");
+				}
+				cProv.append("\""+result2.get(i)[0]+"\"");
+				dProv.append("\""+result2.get(i)[1]+"\"");
+			}
+		}
+		cProd.append("]");
+		dProd.append("]");
+		cProv.append("]");
+		dProv.append("]");
+		datos.put("codProd", cProd.toString());
+		datos.put("desProd", dProd.toString());
+		datos.put("codProv", cProv.toString());
+		datos.put("desProv", dProv.toString());
+		return datos;
 	}
 
 }

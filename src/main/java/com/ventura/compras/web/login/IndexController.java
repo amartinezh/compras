@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ventura.compras.domain.login.User;
 import com.ventura.compras.domain.session.session;
+import com.ventura.compras.repository.compras.ComprasDao;
 import com.ventura.compras.service.adm.CenterService;
 import com.ventura.compras.service.adm.CompanyService;
 import com.ventura.compras.service.adm.CurrencyService;
@@ -207,6 +208,7 @@ public class IndexController {
 						ses.setCondicionUsuario("a" + anoAct + ",mm" + mesAct);
 						ses.setFechaActual("a" + anoAct + ",mm" + mesAct);
 						ses.setFechaSelec("a" + anoAct + ",mm" + mesAct);
+						ses.setDatos(userManager.obtenerDatos());
 						if (!uss.getCent().getDescripcion()
 								.equalsIgnoreCase("n/a")) {
 							if (uss.getType().getDescripcion()

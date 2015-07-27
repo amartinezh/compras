@@ -586,13 +586,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp, solic as solic"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp, solic as solic"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where.toString()
-								+ "GROUP BY c.nroor, c.fecre, c.solic "
+								+ "GROUP BY c.nroor, c.solic "
 								+ "ORDER BY pvalbd desc").getResultList();
 		for (Object[] obj : result) {
 			if (compra == null) {
@@ -648,10 +648,6 @@ public class ComprasDaoImpl implements ComprasDao {
 				}
 			}
 		}
-		if (where.length() > 0) {
-			where.append(" and ");
-		}
-		where.append("c.tipoc = 'O'");
 		if (compra != null) {
 			where.append(" and c.nroor LIKE '%"
 					+ compra.getNroor().toUpperCase() + "%'");
@@ -666,13 +662,13 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.fecre as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp, sum(c.pqtyo) as pqtyo, c.fecen as fecen, c.diave as diave, c.solic as solic"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp, sum(c.pqtyo) as pqtyo, max(c.fecen) as fecen, max(c.diave) as diave, c.solic as solic"
 								+ " FROM "
 								+ tab
 								+ " as c "
 								+ "WHERE "
 								+ where.toString()
-								+ "GROUP BY c.nroor, c.fecre, c.fecen, c.diave, c.solic "
+								+ "GROUP BY c.nroor, c.solic "
 								+ "ORDER BY pvalbd desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		Compras comp = new Compras(new BigDecimal(0).setScale(0,
@@ -968,5 +964,34 @@ public class ComprasDaoImpl implements ComprasDao {
 		// rep.getCompras().get(12).setPvalbd(rep.getCompras().get(12).getPvalbd().subtract(t1));
 		ret.add(rep);
 		return ret;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Compras> getHistorico(List<String> condiciones) {
+		List<Compras> compras = new LinkedList<Compras>();
+		List<Object[]> result = em
+				.createQuery(
+						"Select "
+								+ condiciones.get(1)
+								+ ", sum(c.pvalbd) as pvalbd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp"
+								+ " From Compras_h as c Where "
+								+ condiciones.get(0) + " Group by "
+								+ condiciones.get(2) + " Order by 1 asc")
+				.getResultList();		
+		Compras comp = new Compras("@@@@@", "Total",
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP));
+		for (Object[] obj : result) {
+			compras.add(new Compras(obj[0].toString(), obj[1].toString(),
+				new BigDecimal(obj[2].toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(obj[3].toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(obj[4].toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(obj[5].toString()).setScale(2, BigDecimal.ROUND_HALF_UP)));
+			comp.sumarHistorico(compras.get(compras.size()-1));
+		}
+		compras.add(comp);
+		return compras;
 	}
 }

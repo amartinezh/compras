@@ -519,7 +519,17 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 		this.pvalbd = pvalbd;
 		this.pvalbo = pvalbo;
+	}
 
+	// Historico
+	public Compras(String pipro, String pides, BigDecimal pvalbd,
+			BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyp) {
+		this.pipro = pipro;
+		this.pides = pides;
+		this.pvalbd = pvalbd;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pqtyp = pqtyp;
 	}
 
 	@Override
@@ -1337,6 +1347,13 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pvalbo = pvalbo.add(com.getPvalbo());
+	}
+	
+	public void sumarHistorico(Compras com) {
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());
+		this.pqtyp = pqtyp.add(com.getPqtyp());
+		this.pvalbd = pvalbd.add(com.getPvalbd());
 	}
 
 	public void sumarRequesiciones(Compras com) {

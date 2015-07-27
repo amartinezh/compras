@@ -61,4 +61,8 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getReporte(condiciones, cond, condRep);		
 	}
 	
+	public List<Compras> getHistorico(List<String> condiciones) {
+		return comprasDao.getHistorico(condiciones);
+	}
+	
 }
