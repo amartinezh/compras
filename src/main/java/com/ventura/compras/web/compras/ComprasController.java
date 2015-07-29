@@ -1535,7 +1535,7 @@ public class ComprasController {
 				ses.getCondicionesHistorico().add(
 						3,
 						"CODIGO DE PROVEEDOR QUE CONTENGA ["
-								+ compra.getPprov() + "]");
+								+ compra.getPpnov() + "]");
 				ses.getCondicionesHistorico().add(4, "Codigo de proovedor");
 				ses.getCondicionesHistorico().add(5, "Nombre de proveedor");
 				ses.getCondicionesHistorico().add(6, "Historico de proveedor");
