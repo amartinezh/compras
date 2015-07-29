@@ -1524,11 +1524,11 @@ public class ComprasController {
 	public String cprov(@ModelAttribute("compra") Compras compra, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			try {
-				Integer.parseInt(String.valueOf(compra.getPprov()));
+				Integer.parseInt(String.valueOf(compra.getPpnov()));
 				session ses = (session) (model.asMap().get("user_inicio"));
 				ses.setCondicionesHistorico(new LinkedList<String>());
 				ses.getCondicionesHistorico().add(0,
-						"c.pprov =" + compra.getPprov());
+						"c.pprov =" + compra.getPpnov());
 				ses.getCondicionesHistorico().add(1,
 						"c.pprov as pprov, c.ppnov as ppnov");
 				ses.getCondicionesHistorico().add(2, "c.pprov, c.ppnov");
@@ -1595,6 +1595,84 @@ public class ComprasController {
 			model.addAttribute("titulo", ses.getCondicionesHistorico().get(6));
 			model.addAttribute("compra", new Compras());
 			return "reports/historial";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "retroceder")
+	public String retroceder(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			ses.getCondicionesHistorico().remove(10);
+			ses.getCondicionesHistorico().remove(9);
+			ses.getCondicionesHistorico().remove(8);
+			model.addAttribute("compra", new Compras());
+			return "redirect:ver";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "observar")
+	public String observar(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			ses.getCondicionesHistorico().remove(10);
+			ses.getCondicionesHistorico().remove(9);
+			ses.getCondicionesHistorico().remove(8);
+			return "redirect:ver";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "ordenado")
+	public String ordenado(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("listcomp", comprasService
+					.getOrdenesHistoricos(ses.getCondicionesHistorico().get(8)));
+			model.addAttribute("navegacion", "> Historico"
+					+ ses.getCondicionesHistorico().get(7)
+					+ ses.getCondicionesHistorico().get(9));
+			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(10));
+			model.addAttribute("compra", new Compras());
+			return "reports/ordenHistorial";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+
+	@RequestMapping(value = "ordenh", method = RequestMethod.POST)
+	public String ordenh(@ModelAttribute("compra") Compras compra,
+			HttpServletRequest request, Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			String ret = "redirect:ver";
+			session ses = (session) model.asMap().get("user_inicio");
+			if (request.getParameter("next").equals("ordenado")) {
+				if (!ses.getCondicionesHistorico().contains(" > Proveedor")) {
+					ses.getCondicionesHistorico().add(8,
+							"c.pipro = '" + compra.getPipro() + "'");
+					ses.getCondicionesHistorico().add(9, " > Ordenes");
+					ses.getCondicionesHistorico()
+							.add(10,
+									"Código producto: "
+											+ compra.getPipro()
+											+ " Descripción del producto: "
+											+ compra.getPides());
+					ret = "redirect:ordenado";
+				}
+			} else if (request.getParameter("next").equals("prove")) {
+				ret = "redirect:proveedor";
+			} else if (request.getParameter("next").equals("ite")) {
+				ret = "redirect:item";
+			} else if (request.getParameter("next").equals("clas")) {
+				ret = "redirect:clase";
+			}
+			model.addAttribute("user_inicio", ses);
+			return ret;
 		} else {
 			return "redirect:/index/ingreso";
 		}

@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Papeles Nacionales - Historico</title>
+<title>Papeles Nacionales - Ordenes</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -77,18 +77,22 @@
 <link rel="apple-touch-startup-image"
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
-
+<style type="text/css">
+tr:last-child {
+	color: #ff0000;
+	font-weight: bold;
+}
+</style>
 </head>
-<body>
-	<!-- oncontextmenu="return false"  -->
+<body oncontextmenu="return false">
+
 	<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 
 	<!-- HEADER -->
 	<header id="header">
 		<div id="logo-group">
 			<!-- PLACE YOUR LOGO HERE -->
-			<span id="logo"> <img
-				src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin">
+			<span id="logo"> <!-- <img src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin"> -->
 			</span>
 			<!-- END LOGO PLACEHOLDER -->
 		</div>
@@ -115,13 +119,14 @@
 					</ul>
 				</li>
 			</ul>
-
-
-			<a href="${redireccion}" class="btn btn-labeled btn-default"> <span
+			<a href="mostrar" class="btn btn-labeled btn-warning"> <span
+				class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio
+			</a> <a href="retroceder" class="btn btn-labeled btn-default"> <span
 				class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar
 			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
 				class="btn-label"><i class="fa fa-sign-out"></i></span>Salir
 			</a>
+
 			<!-- end logout button -->
 
 		</div>
@@ -137,7 +142,6 @@
 
 		<!-- widget grid -->
 		<section id="widget-grid">
-
 			<!-- row -->
 			<div class="row">
 
@@ -147,116 +151,162 @@
 					<!-- Widget ID (each widget will need unique ID)-->
 					<div class="jarviswidget jarviswidget-color-darken far"
 						id="wid-id-0" data-widget-editbutton="false">
-						<div class="row">
-							<div>
-								<header role="heading">
-									<h2>
-										<strong>Historico de productos</strong>
-									</h2>
-								</header>
+
+						<!-- widget div-->
+						<div>
+
+							<!-- widget content -->
+							<div class="widget-body no-padding">
+								<!-- table-striped -->
+								<table class="table table-bordered dataTable no-footer"
+									role="grid" aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
+									<thead>
+										<tr>
+											<td colspan="18" align="left"><strong><c:out
+														value="${navegacion}" /></strong></td>
+										</tr>
+										<tr>
+											<td colspan="18" align="center"><c:out
+													value="${mensaje}" /></td>
+										</tr>
+										<tr>
+											<th rowspan="2" style="text-align: center; color: blue;">Orden</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Valor
+												Recibido</th>
+											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Precio</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Cantidad
+												Original</th>
+											<th colspan="2" style="text-align: center; color: blue;">Fecha</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Días
+												Vencimiento</th>
+											<th rowspan="2" style="text-align: center; color: blue;">Solicitante</th>
+											<th colspan="3" style="text-align: center; color: blue;">Ultimos
+												precios</th>
+											<th colspan="3" style="text-align: center; color: blue;">Ultimas
+												fechas</th>
+										</tr>
+										<tr>
+											<th style="text-align: center; color: blue;">Recibidas</th>
+											<th style="text-align: center; color: blue;">Rechazadas</th>
+											<th style="text-align: center; color: blue;">Pendiente a
+												la Fecha</th>
+											<th style="text-align: center; color: blue;">Emisión</th>
+											<th style="text-align: center; color: blue;">Entrega</th>
+											<th style="text-align: center; color: blue;">P1</th>
+											<th style="text-align: center; color: blue;">P2</th>
+											<th style="text-align: center; color: blue;">P3</th>
+											<th style="text-align: center; color: blue;">F1</th>
+											<th style="text-align: center; color: blue;">F2</th>
+											<th style="text-align: center; color: blue;">F3
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${listcomp}" var="compp"
+											varStatus="loopCounter">
+
+											<c:choose>
+												<c:when test="${ compp.pcstp == '0' }">
+													<tr bgcolor="#F8E0E6" title="Abierta">
+												</c:when>
+												<c:when test="${ compp.pcstp == '1' }">
+													<tr bgcolor="#F8E0E6" title="Recibida">
+												</c:when>
+												<c:when test="${ compp.pcstp == '2' }">
+													<tr bgcolor="#BCB8FF" title="No costeada">
+												</c:when>
+												<c:when test="${ compp.pcstp == '3' }">
+													<tr bgcolor="#BCFFB8" title="Cerrada">
+												</c:when>
+												<c:otherwise>
+													<tr>
+												</c:otherwise>
+											</c:choose>
+											<td><c:choose>
+													<c:when test="${compp.nroor == '@@@@@'}">
+														<c:out value="Total" />
+													</c:when>
+													<c:otherwise>
+														<c:out value="${compp.nroor}" />
+													</c:otherwise>
+												</c:choose></td>
+											<td style="text-align: right">$<fmt:formatNumber
+													value="${compp.pvalbd}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyd}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyr}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyp}" type="number" /></td>
+											<fmt:setLocale value="en_US" />
+											<td style="text-align: right">$<fmt:formatNumber
+													value="${compp.ppreac}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqori}" type="number" /></td>
+											<c:choose>
+												<c:when test="${compp.nroor == '@@@@@'}">
+													<td colspan="2"></td>
+												</c:when>
+												<c:otherwise>
+													<td><c:out value="${compp.fecre}" /></td>
+													<td><c:out value="${compp.fecen}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${compp.diave > 0}">
+													<td style="text-align: right; color: #FF0000;"><Strong><c:out
+																value="${compp.diave}" /></Strong></td>
+												</c:when>
+												<c:otherwise>
+													<td style="text-align: right;"><c:out
+															value="${compp.diave}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<td><c:out value="${compp.solic}" /></td>
+											<c:choose>
+												<c:when test="${compp.nroor == '@@@@@'}">
+													<td colspan="3"></td>
+												</c:when>
+												<c:otherwise>
+													<td style="text-align: right">$<fmt:formatNumber
+															maxFractionDigits="2" value="${compp.pprep1}"
+															type="number" /></td>
+													<td style="text-align: right">$<fmt:formatNumber
+															value="${compp.pprep2}" type="number" /></td>
+													<td style="text-align: right">$<fmt:formatNumber
+															value="${compp.pprep3}" type="number" /></td>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${compp.nroor == '@@@@@'}">
+													<td colspan="3"></td>
+												</c:when>
+												<c:otherwise>
+													<td><c:out value="${compp.fecep1}" /></td>
+													<td><c:out value="${compp.fecep2}" /></td>
+													<td><c:out value="${compp.fecep3}" /></td>
+												</c:otherwise>
+											</c:choose>
+											</tr>
+										</c:forEach>
+
+									</tbody>
+								</table>
 							</div>
-							<div>
-								<form class="smart-form">
-									<header>${ mensaje1 }</header>
-								</form>
-								<form:form id="formprodcod" action="${accion1}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
-									<fieldset>
-										<div class="well">
-											<div class="input-group">
-												<form:input class="form-control" placeholder="Codigo Producto"
-													type="text" path="pipro" data-autocomplete='${ codproducto }' required="required"/>
-												<div class="input-group-btn">
-													<button class="btn btn-default btn-primary" type="submit">
-														<i class="fa fa-search"></i> Consultar
-													</button>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-								</form:form>
-							</div>
-							<div>
-								<form class="smart-form">
-									<header>${ mensaje2 }</header>								
-								</form>
-								<form:form id="formprodnom" action="${accion2}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
-									<fieldset>
-										<div class="well">
-											<div class="input-group">
-												<form:input class="form-control" placeholder="Nombre Producto"
-													type="text" path="pides" data-autocomplete='${ nombproducto }' required="required"/>
-												<div class="input-group-btn">
-													<button class="btn btn-default btn-primary" type="submit">
-														<i class="fa fa-search"></i> Consultar
-													</button>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-								</form:form>
-							</div>
-						</div>
-						<div class="row">
-							<div>
-								<header role="heading">
-									<h2>
-										<strong>Historico de proveedores</strong>
-									</h2>
-								</header>
-							</div>
-							<div>
-								<form class="smart-form">
-									<header>${ mensaje3 }</header>
-								</form>
-								<form:form id="formprovcod" action="${accion3}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
-									<fieldset>
-										<div class="well">
-											<div class="input-group">
-												<form:input class="form-control" placeholder="Codigo Producto"
-													type="text" path="ppnov" data-autocomplete='${ codproveedor }' required="required"/>
-												<div class="input-group-btn">
-													<button class="btn btn-default btn-primary" type="submit">
-														<i class="fa fa-search"></i> Consultar
-													</button>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-								</form:form>
-							</div>
-							<div>
-								<form class="smart-form">
-									<header>${ mensaje4 }</header>
-								</form>
-								<form:form id="formprovnom" action="${accion4}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
-									<fieldset>
-										<div class="well">
-											<div class="input-group">
-												<form:input class="form-control"
-													placeholder="Nombre proveedor" type="text" path="ppnov"
-													data-autocomplete='${ nombproveedor }' required="required"/>
-												<div class="input-group-btn">
-													<button class="btn btn-default btn-primary" type="submit">
-														<i class="fa fa-search"></i> Consultar
-													</button>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-								</form:form>
-							</div>
-						</div>
-						<div class="row">
 							<div style="float: right;">
 								<strong>Usuario: </strong>${usuarioactuall}</div>
+							<!-- end widget content -->
+
 						</div>
+						<!-- end widget div -->
+
 					</div>
+					<!-- end widget -->
+
 				</article>
 				<!-- WIDGET END -->
+
 			</div>
 
 			<!-- end row -->
@@ -267,19 +317,17 @@
 		<!-- end widget grid -->
 
 	</div>
-
-	<br>
 	<!-- END MAIN CONTENT -->
 
-	<!-- PAGE FOOTER -->
+	<!--
 	<div class="page-footer">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<span class="txt-color-white">Gestión de Compras</span>
+				<span class="txt-color-white">Flash Ventas - 2014</span>
 			</div>
 		</div>
 	</div>
-	<!-- END PAGE FOOTER -->
+	 END PAGE FOOTER -->
 
 
 	<!--================================================== -->
@@ -584,7 +632,224 @@
 							/* END TABLETOOLS */
 
 						})
+
+		$(function() {
+			$("table").stickyTableHeaders();
+		});
+		/*! Copyright (c) 2011 by Jonas Mosbech - https://github.com/jmosbech/StickyTableHeaders
+		    MIT license info: https://github.com/jmosbech/StickyTableHeaders/blob/master/license.txt */
+
+		;
+		(function($, window, undefined) {
+			'use strict';
+
+			var name = 'stickyTableHeaders';
+			var defaults = {
+				fixedOffset : 0
+			};
+
+			function Plugin(el, options) {
+				// To avoid scope issues, use 'base' instead of 'this'
+				// to reference this class from internal events and functions.
+				var base = this;
+
+				// Access to jQuery and DOM versions of element
+				base.$el = $(el);
+				base.el = el;
+
+				// Listen for destroyed, call teardown
+				base.$el.bind('destroyed', $.proxy(base.teardown, base));
+
+				// Cache DOM refs for performance reasons
+				base.$window = $(window);
+				base.$clonedHeader = null;
+				base.$originalHeader = null;
+
+				// Keep track of state
+				base.isSticky = false;
+				base.leftOffset = null;
+				base.topOffset = null;
+
+				base.init = function() {
+					base.options = $.extend({}, defaults, options);
+
+					base.$el
+							.each(function() {
+								var $this = $(this);
+
+								// remove padding on <table> to fix issue #7
+								$this.css('padding', 0);
+
+								base.$originalHeader = $('thead:first', this);
+								base.$clonedHeader = base.$originalHeader
+										.clone();
+
+								base.$clonedHeader
+										.addClass('tableFloatingHeader');
+								base.$clonedHeader.css('display', 'none');
+
+								base.$originalHeader
+										.addClass('tableFloatingHeaderOriginal');
+
+								base.$originalHeader.after(base.$clonedHeader);
+
+								base.$printStyle = $('<style type="text/css" media="print">'
+										+ '.tableFloatingHeader{display:none !important;}'
+										+ '.tableFloatingHeaderOriginal{position:static !important;}'
+										+ '</style>');
+								$('head').append(base.$printStyle);
+							});
+
+					base.updateWidth();
+					base.toggleHeaders();
+
+					base.bind();
+				};
+
+				base.destroy = function() {
+					base.$el.unbind('destroyed', base.teardown);
+					base.teardown();
+				};
+
+				base.teardown = function() {
+					if (base.isSticky) {
+						base.$originalHeader.css('position', 'static');
+					}
+					$.removeData(base.el, 'plugin_' + name);
+					base.unbind();
+
+					base.$clonedHeader.remove();
+					base.$originalHeader
+							.removeClass('tableFloatingHeaderOriginal');
+					base.$originalHeader.css('visibility', 'visible');
+					base.$printStyle.remove();
+
+					base.el = null;
+					base.$el = null;
+				};
+
+				base.bind = function() {
+					base.$window.on('scroll.' + name, base.toggleHeaders);
+					base.$window.on('resize.' + name, base.toggleHeaders);
+					base.$window.on('resize.' + name, base.updateWidth);
+				};
+
+				base.unbind = function() {
+					// unbind window events by specifying handle so we don't remove too much
+					base.$window.off('.' + name, base.toggleHeaders);
+					base.$window.off('.' + name, base.updateWidth);
+					base.$el.off('.' + name);
+					base.$el.find('*').off('.' + name);
+				};
+
+				base.toggleHeaders = function() {
+					base.$el
+							.each(function() {
+								var $this = $(this);
+
+								var newTopOffset = isNaN(base.options.fixedOffset) ? base.options.fixedOffset
+										.height()
+										: base.options.fixedOffset;
+
+								var offset = $this.offset();
+								var scrollTop = base.$window.scrollTop()
+										+ newTopOffset;
+								var scrollLeft = base.$window.scrollLeft();
+
+								if ((scrollTop > offset.top)
+										&& (scrollTop < offset.top
+												+ $this.height()
+												- base.$clonedHeader.height())) {
+									var newLeft = offset.left - scrollLeft;
+									if (base.isSticky
+											&& (newLeft === base.leftOffset)
+											&& (newTopOffset === base.topOffset)) {
+										return;
+									}
+
+									base.$originalHeader.css({
+										'position' : 'fixed',
+										'top' : newTopOffset,
+										'margin-top' : 0,
+										'left' : newLeft,
+										'z-index' : 1
+									// #18: opacity bug
+									});
+									base.$clonedHeader.css('display', '');
+									base.isSticky = true;
+									base.leftOffset = newLeft;
+									base.topOffset = newTopOffset;
+
+									// make sure the width is correct: the user might have resized the browser while in static mode
+									base.updateWidth();
+								} else if (base.isSticky) {
+									base.$originalHeader.css('position',
+											'static');
+									base.$clonedHeader.css('display', 'none');
+									base.isSticky = false;
+								}
+							});
+				};
+
+				base.updateWidth = function() {
+					if (!base.isSticky) {
+						return;
+					}
+					// Copy cell widths from clone
+					var $origHeaders = $('th,td', base.$originalHeader);
+					$('th,td', base.$clonedHeader).each(function(index) {
+
+						var width, $this = $(this);
+
+						if ($this.css('box-sizing') === 'border-box') {
+							width = $this.outerWidth(); // #39: border-box bug
+						} else {
+							width = $this.width();
+						}
+
+						$origHeaders.eq(index).css({
+							'min-width' : width,
+							'max-width' : width
+						});
+					});
+
+					// Copy row width from whole table
+					base.$originalHeader.css('width', base.$clonedHeader
+							.width());
+				};
+
+				base.updateOptions = function(options) {
+					base.options = $.extend({}, defaults, options);
+					base.updateWidth();
+					base.toggleHeaders();
+				};
+
+				// Run initializer
+				base.init();
+			}
+
+			// A plugin wrapper around the constructor,
+			// preventing against multiple instantiations
+			$.fn[name] = function(options) {
+				return this.each(function() {
+					var instance = $.data(this, 'plugin_' + name);
+					if (instance) {
+						if (typeof options === "string") {
+							instance[options].apply(instance);
+						} else {
+							instance.updateOptions(options);
+						}
+					} else if (options !== 'destroy') {
+						$.data(this, 'plugin_' + name,
+								new Plugin(this, options));
+					}
+				});
+			};
+
+		})(jQuery, window);
 	</script>
+
+
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
@@ -603,6 +868,8 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+
+
 
 </body>
 

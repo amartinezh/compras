@@ -532,6 +532,42 @@ public class Compras implements Serializable {
 		this.pqtyp = pqtyp;
 	}
 
+	// Constructor OrdenHistorico
+	public Compras(String nroor, BigDecimal pvalbd, BigDecimal pqtyd,
+			BigDecimal pqtyr, BigDecimal pqtyp, BigDecimal ppreac, BigDecimal pqori, String fecen,
+			String fecre, String diave, String solic,
+			BigDecimal pprep1, BigDecimal pprep2, BigDecimal pprep3,
+			String fecep1, String fecep2, String fecep3, String pcstp) {
+		this.nroor = nroor;
+		this.pvalbd = pvalbd;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pqtyp = pqtyp;		
+		this.ppreac = ppreac;
+		this.pqori = pqori;
+		if (fecen.length() == 8) {
+			this.fecen = fecen.substring(0, 4) + "/" + fecen.substring(4, 6)
+					+ "/" + fecen.substring(6, 8);
+		} else {
+			this.fecen = fecen;
+		}
+		if (fecre.length() == 8) {
+			this.fecre = fecre.substring(0, 4) + "/" + fecre.substring(4, 6)
+					+ "/" + fecre.substring(6, 8);
+		} else {
+			this.fecre = fecre;
+		}
+		this.diave = diave;
+		this.solic = solic;
+		this.pprep1 = pprep1;
+		this.pprep2 = pprep2;
+		this.pprep3 = pprep3;
+		this.fecep1 = fecep1;
+		this.fecep2 = fecep2;
+		this.fecep3 = fecep3;
+		this.pcstp = pcstp;	
+	}
+
 	@Override
 	public String toString() {
 		return "Compras [pano=" + pano + ", pmes=" + pmes + ", preg=" + preg
@@ -1348,7 +1384,7 @@ public class Compras implements Serializable {
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pvalbo = pvalbo.add(com.getPvalbo());
 	}
-	
+
 	public void sumarHistorico(Compras com) {
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
@@ -1365,6 +1401,15 @@ public class Compras implements Serializable {
 		this.pqori = pqori.add(com.getPqori());
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 		this.pvalbo = pvalbo.add(com.getPvalbo());
+	}
+	
+	public void sumarOrdenesHistorico(Compras com) {
+		this.pvalbd = pvalbd.add(com.getPvalbd());
+		this.pqtyd = pqtyd.add(com.getPqtyd());
+		this.pqtyr = pqtyr.add(com.getPqtyr());		
+		this.pqtyp = pqtyp.add(com.getPqtyp());
+		this.ppreac = ppreac.add(com.getPpreac());
+		this.pqori = pqori.add(com.getPqori());
 	}
 
 }

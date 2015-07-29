@@ -65,4 +65,7 @@ public class ComprasServiceImpl implements ComprasService {
 		return comprasDao.getHistorico(condiciones);
 	}
 	
+	public List<Compras> getOrdenesHistoricos(String condicion) {
+		return comprasDao.getOrdenesHistoricos(condicion);
+	}
 }
