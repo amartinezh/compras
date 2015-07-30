@@ -976,7 +976,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ "From Compras_h as c "
 								+ "Where "
 								+ condicion
-								+ " Group by c.nroor, c.solic order by 1 asc")
+								+ " Group by c.nroor, c.solic order by 9 desc")
 				.getResultList();
 		Compras comp = new Compras("Total", new BigDecimal(0).setScale(2,
 				BigDecimal.ROUND_HALF_UP), new BigDecimal(0).setScale(2,

@@ -1480,9 +1480,9 @@ public class ComprasController {
 					3,
 					"CODIGO DE PRODUCTO QUE CONTENGA ["
 							+ compra.getPipro().toUpperCase() + "]");
-			ses.getCondicionesHistorico().add(4, "Codigo de producto");
-			ses.getCondicionesHistorico().add(5, "Nombre de producto");
-			ses.getCondicionesHistorico().add(6, "Historico de producto");
+			ses.getCondicionesHistorico().add(4, "Codigo producto");
+			ses.getCondicionesHistorico().add(5, "Nombre producto");
+			ses.getCondicionesHistorico().add(6, "Historico producto");
 			ses.getCondicionesHistorico().add(7, " > Producto");
 			model.addAttribute("user_inicio", ses);
 			return "redirect:ver";
@@ -1509,9 +1509,9 @@ public class ComprasController {
 					"NOMBRE DE PRODUCTO QUE CONTENGA ["
 							+ compra.getPides().toUpperCase()
 									.replaceAll("'", "\"") + "]");
-			ses.getCondicionesHistorico().add(4, "Codigo de producto");
-			ses.getCondicionesHistorico().add(5, "Nombre de producto");
-			ses.getCondicionesHistorico().add(6, "Historico de producto");
+			ses.getCondicionesHistorico().add(4, "Codigo producto");
+			ses.getCondicionesHistorico().add(5, "Nombre producto");
+			ses.getCondicionesHistorico().add(6, "Historico producto");
 			ses.getCondicionesHistorico().add(7, " > Producto");
 			model.addAttribute("user_inicio", ses);
 			return "redirect:ver";
@@ -1536,9 +1536,9 @@ public class ComprasController {
 						3,
 						"CODIGO DE PROVEEDOR QUE CONTENGA ["
 								+ compra.getPpnov() + "]");
-				ses.getCondicionesHistorico().add(4, "Codigo de proovedor");
-				ses.getCondicionesHistorico().add(5, "Nombre de proveedor");
-				ses.getCondicionesHistorico().add(6, "Historico de proveedor");
+				ses.getCondicionesHistorico().add(4, "Codigo proveedor");
+				ses.getCondicionesHistorico().add(5, "Nombre proveedor");
+				ses.getCondicionesHistorico().add(6, "Historico proveedor");
 				ses.getCondicionesHistorico().add(7, " > Proveedor");
 				model.addAttribute("user_inicio", ses);
 				return "redirect:ver";
@@ -1568,9 +1568,9 @@ public class ComprasController {
 					"NOMBRE DE PROVEEDOR QUE CONTENGA ["
 							+ compra.getPpnov().toUpperCase()
 									.replaceAll("'", "\"") + "]");
-			ses.getCondicionesHistorico().add(4, "Codigo de producto");
-			ses.getCondicionesHistorico().add(5, "Nombre de producto");
-			ses.getCondicionesHistorico().add(6, "Historico de proveedor");
+			ses.getCondicionesHistorico().add(4, "Codigo proveedor");
+			ses.getCondicionesHistorico().add(5, "Nombre proveedor");
+			ses.getCondicionesHistorico().add(6, "Historico proveedor");
 			ses.getCondicionesHistorico().add(7, " > Proveedor");
 			model.addAttribute("user_inicio", ses);
 			return "redirect:ver";
