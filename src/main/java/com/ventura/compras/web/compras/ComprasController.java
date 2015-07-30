@@ -1613,7 +1613,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "observar")
 	public String observar(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -1644,34 +1644,94 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
+	
+	@RequestMapping(value = "compradores")
+	public String compradores(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("listcomp", comprasService
+					.getCompradoresHistoricos(ses.getCondicionesHistorico().get(8)));
+			model.addAttribute("navegacion", "> Historico"
+					+ ses.getCondicionesHistorico().get(7)
+					+ ses.getCondicionesHistorico().get(9));
+			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(10));
+			model.addAttribute("compra", new Compras());
+			return "reports/compradorHistorial";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
+	@RequestMapping(value = "centroscostos")
+	public String centroscostos(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("listcomp", comprasService
+					.getCentrosHistoricos(ses.getCondicionesHistorico().get(8)));
+			model.addAttribute("navegacion", "> Historico"
+					+ ses.getCondicionesHistorico().get(7)
+					+ ses.getCondicionesHistorico().get(9));
+			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(10));
+			model.addAttribute("compra", new Compras());
+			return "reports/centroHistorial";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
 
+	@RequestMapping(value = "estados")
+	public String estados(Model model) {
+		if (model.containsAttribute("user_inicio") == true) {
+			session ses = (session) model.asMap().get("user_inicio");
+			model.addAttribute("usuarioactuall", ses.getUsuario());
+			model.addAttribute("listcomp", comprasService
+					.getEstadosHistoricos(ses.getCondicionesHistorico().get(8)));
+			model.addAttribute("navegacion", "> Historico"
+					+ ses.getCondicionesHistorico().get(7)
+					+ ses.getCondicionesHistorico().get(9));
+			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(10));
+			model.addAttribute("compra", new Compras());
+			return "reports/estadoHistorial";
+		} else {
+			return "redirect:/index/ingreso";
+		}
+	}
+	
 	@RequestMapping(value = "ordenh", method = RequestMethod.POST)
 	public String ordenh(@ModelAttribute("compra") Compras compra,
 			HttpServletRequest request, Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			String ret = "redirect:ver";
 			session ses = (session) model.asMap().get("user_inicio");
+			String enc = "";
+			if (!ses.getCondicionesHistorico().contains(" > Proveedor")) {
+				ses.getCondicionesHistorico().add(8,
+						"c.pipro = '" + compra.getPipro() + "'");
+				enc = "Código producto: " + compra.getPipro()
+						+ " Descripción del producto: " + compra.getPides();
+			} else {
+				ses.getCondicionesHistorico().add(8,
+						"c.pprov = '" + compra.getPipro() + "'");
+				enc = "Código proveedor: " + compra.getPipro()
+						+ " Descripción del proveedor: " + compra.getPides();
+			}
 			if (request.getParameter("next").equals("ordenado")) {
-				if (!ses.getCondicionesHistorico().contains(" > Proveedor")) {
-					ses.getCondicionesHistorico().add(8,
-							"c.pipro = '" + compra.getPipro() + "'");
-					ses.getCondicionesHistorico().add(9, " > Ordenes");
-					ses.getCondicionesHistorico()
-							.add(10,
-									"Código producto: "
-											+ compra.getPipro()
-											+ " Descripción del producto: "
-											+ compra.getPides());
-					ret = "redirect:ordenado";
-				}
-			} else if (request.getParameter("next").equals("prove")) {
-				ret = "redirect:proveedor";
-			} else if (request.getParameter("next").equals("ite")) {
-				ret = "redirect:item";
-			} else if (request.getParameter("next").equals("clas")) {
-				ret = "redirect:clase";
+				ses.getCondicionesHistorico().add(9, " > Ordenes");
+				ret = "redirect:ordenado";
+			} else if (request.getParameter("next").equals("compradores")) {
+				ses.getCondicionesHistorico().add(9, " > Compradores");				
+				ret = "redirect:compradores";
+			} else if (request.getParameter("next").equals("centrocosto")) {
+				ses.getCondicionesHistorico().add(9, " > Centros costos");				
+				ret = "redirect:centroscostos";
+			} else if (request.getParameter("next").equals("estados")) {
+				ses.getCondicionesHistorico().add(9, " > Estados");
+				ret = "redirect:estados";
 			}
 			model.addAttribute("user_inicio", ses);
+			ses.getCondicionesHistorico().add(10, enc);
 			return ret;
 		} else {
 			return "redirect:/index/ingreso";

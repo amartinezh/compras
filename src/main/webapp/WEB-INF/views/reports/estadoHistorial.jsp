@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Papeles Nacionales - <c:out value="${titulo }"></c:out></title>
+<title>Papeles Nacionales - Estados</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -92,8 +92,7 @@ tr:last-child {
 	<header id="header">
 		<div id="logo-group">
 			<!-- PLACE YOUR LOGO HERE -->
-			<span id="logo"> <img
-				src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin">
+			<span id="logo"> <!-- <img src="<c:url value="/resources/img/logo.png"/>" alt="SmartAdmin"> -->
 			</span>
 			<!-- END LOGO PLACEHOLDER -->
 		</div>
@@ -122,11 +121,12 @@ tr:last-child {
 			</ul>
 			<a href="mostrar" class="btn btn-labeled btn-warning"> <span
 				class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span>Inicio
-			</a> <a href="historico" class="btn btn-labeled btn-default"> <span
+			</a> <a href="observar" class="btn btn-labeled btn-default"> <span
 				class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span>Regresar
 			</a> <a href="salir" class="btn btn-labeled btn-danger"> <span
 				class="btn-label"><i class="fa fa-sign-out"></i></span>Salir
 			</a>
+
 			<!-- end logout button -->
 
 		</div>
@@ -142,7 +142,6 @@ tr:last-child {
 
 		<!-- widget grid -->
 		<section id="widget-grid">
-
 			<!-- row -->
 			<div class="row">
 
@@ -158,8 +157,9 @@ tr:last-child {
 
 							<!-- widget content -->
 							<div class="widget-body no-padding">
-
-								<table class="table table-striped table-bordered" width="100%">
+								<table class="table table-bordered dataTable no-footer"
+									role="grid" aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
 									<thead>
 										<tr>
 											<td colspan="16" align="left"><strong><c:out
@@ -170,28 +170,15 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th rowspan="2" style="text-align: center; color: blue;"><c:out
-													value="${ codigo }"></c:out></th>
-											<th rowspan="2" style="text-align: center; color: blue;"><c:out
-													value="${ nombre }"></c:out></th>
+											<th rowspan="2" style="text-align: center; color: blue;">Estado</th>
+
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
-												recibido</th>
+												Recibido</th>
+
 											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
-											<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Cent.
-												Costo</th>
-											<th rowspan="2" style="text-align: center; color: blue;">Estados</th>
 										</tr>
 										<tr>
-											<c:choose>
-												<c:when test="${ user_inicio.campover == 'ord'}">
-													<th style="text-align: center; color: blue;">Ordenadas</th>
-												</c:when>
-												<c:otherwise>
-													<th style="text-align: center; color: blue;">Recibidas</th>
-												</c:otherwise>
-											</c:choose>
+											<th style="text-align: center; color: blue;">Ordenadas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
@@ -200,86 +187,42 @@ tr:last-child {
 									<tbody>
 										<c:forEach items="${listcomp}" var="compp"
 											varStatus="loopCounter">
-											<tr>
-												<c:choose>
-													<c:when test="${compp.pides == 'Total'}">
-														<td colspan="2"><c:out value="${compp.pides}" /></td>
+											<c:choose>
+												<c:when test="${ compp.pcstp == '0' }">
+													<tr bgcolor="#F8E0E6" title="${compp.nroor}">
+												</c:when>
+												<c:when test="${ compp.pcstp == '1' }">
+													<tr bgcolor="#F8E0E6" title="${compp.nroor}">
+												</c:when>
+												<c:when test="${ compp.pcstp == '2' }">
+													<tr bgcolor="#BCB8FF" title="${compp.nroor}">
+												</c:when>
+												<c:when test="${ compp.pcstp == '3' }">
+													<tr bgcolor="#BCFFB8" title="${compp.nroor}">
+												</c:when>
+												<c:otherwise>
+													<tr>
+												</c:otherwise>
+											</c:choose>
+
+											<td><c:choose>
+													<c:when test="${compp.nroor == '@@@@@'}">
+														<c:out value="Total" />
 													</c:when>
 													<c:otherwise>
-														<td><c:out value="${compp.pipro}" /></td>
-														<td><c:out value="${compp.pides}" /></td>
+														<c:out value="${compp.nroor}" />
 													</c:otherwise>
-												</c:choose>
-												<td style="text-align: right">$<fmt:formatNumber
-														value="${compp.pvalbd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyd}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyr}" type="number" /></td>
-												<td style="text-align: right"><fmt:formatNumber
-														value="${compp.pqtyp}" type="number" /></td>
-												<fmt:setLocale value="en_US" />
-												<c:choose>
-													<c:when test="${compp.pides == 'Total'}">
-														<td colspan="4"></td>
-													</c:when>
-													<c:otherwise>
-														<td align="center"><form:form method="POST"
-																action="ordenh" ModelAttribute="compra"
-																commandName="compra">
-																<form:input path="pipro" type="hidden"
-																	value="${compp.pipro}" />
-																<form:input path="pides" type="hidden"
-																	value="${compp.pides}" />
-																<button type="submit" Value="ordenado" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																	<img width="20" height="20"
-																		src="<c:url value="/resources/img/adm/ordencompra.png" />">
-																</button>
-															</form:form></td>
-														<td align="center"><form:form method="POST"
-																action="ordenh" ModelAttribute="compra"
-																commandName="compra">
-																<form:input path="pipro" type="hidden"
-																	value="${compp.pipro}" />
-																<form:input path="pides" type="hidden"
-																	value="${compp.pides}" />
-																<button type="submit" Value="compradores" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																	<img width="20" height="20"
-																		src="<c:url value="/resources/img/adm/comprador.png" />">
-																</button>
-															</form:form></td>
-														<td align="center"><form:form method="POST"
-																action="ordenh" ModelAttribute="compra"
-																commandName="compra">
-																<form:input path="pipro" type="hidden"
-																	value="${compp.pipro}" />
-																<form:input path="pides" type="hidden"
-																	value="${compp.pides}" />
-																<button type="submit" Value="centrocosto" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																	<img width="20" height="20"
-																		src="<c:url value="/resources/img/adm/centrocosto.png" />">
-																</button>
-															</form:form></td>
-														<td align="center"><form:form method="POST"
-																action="ordenh" ModelAttribute="compra"
-																commandName="compra">
-																<form:input path="pipro" type="hidden"
-																	value="${compp.pipro}" />
-																<form:input path="pides" type="hidden"
-																	value="${compp.pides}" />
-																<button type="submit" Value="estados" name="next"
-																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
-																	<img width="20" height="20"
-																		src="<c:url value="/resources/img/adm/estado.png" />">
-																</button>
+												</c:choose></td>
 
-															</form:form></td>
+											<td style="text-align: right">$<fmt:formatNumber
+													value="${compp.pvalbd}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyd}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyr}" type="number" /></td>
+											<td style="text-align: right"><fmt:formatNumber
+													value="${compp.pqtyp}" type="number" /></td>
 
-													</c:otherwise>
-												</c:choose>
 											</tr>
 										</c:forEach>
 

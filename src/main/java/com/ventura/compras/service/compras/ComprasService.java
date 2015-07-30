@@ -21,5 +21,8 @@ public interface ComprasService {
 	public List<Reporte> getReporte(Map<String, String> condiciones, String cond, String condRep);
 	public List<Compras> getHistorico(List<String> condiciones);
 	public List<Compras> getOrdenesHistoricos(String condicion);
+	public List<Compras> getCompradoresHistoricos(String condicion);
+	public List<Compras> getCentrosHistoricos(String condicion);
+	public List<Compras> getEstadosHistoricos(String condicion);
 	
 }

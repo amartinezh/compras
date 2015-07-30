@@ -67,7 +67,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.ptype as ptype, c.ptyno as ptyno, sum(c.pqtyd) as pqtyd, sum(c.pqori) as pqori, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+						"SELECT c.ptype as ptype, c.ptyno as ptyno, sum(c.pqtyd) as pqtyd, sum(c.pqori) as pqori, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, max(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -131,7 +131,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pcomd as pcomd, c.pnomd as pnomd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+						"SELECT c.pcomd as pcomd, c.pnomd as pnomd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -209,7 +209,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder();
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pprov as pprov, c.ppnov as ppnov, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqori) as pqori, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+						"SELECT c.pprov as pprov, c.ppnov as ppnov, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqori) as pqori, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -300,7 +300,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp, c.tipoc as tipoc, c.fecen as fecen, Min(c.diave) as diave, c.solic as solic, sum(c.pqtyo) as pqtyo, c.fecre as fecre, sum(c.pvalbo) as pvalbo "
+						"SELECT c.pipro as pipro, c.pides as pides, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp, c.tipoc as tipoc, c.fecen as fecen, Min(c.diave) as diave, c.solic as solic, sum(c.pqtyo) as pqtyo, c.fecre as fecre, sum(c.pvalbo) as pvalbo "
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -420,7 +420,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.picla as picla, c.picln as picln, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+						"SELECT c.picla as picla, c.picln as picln, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -496,7 +496,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.pcent as pcent, c.pcenn as pcenn, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+						"SELECT c.pcent as pcent, c.pcenn as pcenn, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -586,7 +586,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp, solic as solic"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp, solic as solic"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -662,7 +662,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		StringBuilder ordenes = new StringBuilder("[");
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp, sum(c.pqtyo) as pqtyo, max(c.fecen) as fecen, max(c.diave) as diave, c.solic as solic"
+						"SELECT c.nroor as nroor, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp, sum(c.pqtyo) as pqtyo, max(c.fecen) as fecen, max(c.diave) as diave, c.solic as solic"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -749,7 +749,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		List<Object[]> result = em
 				.createQuery(
-						"SELECT c.plocal as plocal, c.plnon as plnon, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+						"SELECT c.plocal as plocal, c.plnon as plnon, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -1007,7 +1007,114 @@ public class ComprasDaoImpl implements ComprasDao {
 					new BigDecimal(obj[13].toString()).setScale(2,
 							BigDecimal.ROUND_HALF_UP), obj[14].toString(),
 					obj[15].toString(), obj[16].toString(), obj[17].toString()));
-			comp.sumarOrdenesHistorico(ret.get(ret.size()-1));;
+			comp.sumarOrdenesHistorico(ret.get(ret.size() - 1));
+		}
+		ret.add(comp);
+		return ret;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Compras> getCompradoresHistoricos(String condicion) {
+		List<Compras> ret = new LinkedList<Compras>();
+		List<Object[]> result = em
+				.createQuery(
+						"Select c.pcomd as pcomd, c.pnomd as pnomd, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp "
+								+ "From Compras_h as c "
+								+ "Where "
+								+ condicion
+								+ " Group by c.pcomd, c.pnomd order by 1 asc")
+				.getResultList();
+		Compras comp = new Compras("@@@@@", "Total",
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP));
+		for (Object[] obj : result) {
+			ret.add(new Compras(obj[0].toString(), obj[1].toString(),
+					new BigDecimal(obj[2].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_UP), new BigDecimal(obj[3]
+							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+					new BigDecimal(obj[4].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_UP), new BigDecimal(obj[5]
+							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+					new BigDecimal(obj[6].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_UP)));
+			comp.sumarCompradoresHistorico(ret.get(ret.size() - 1));
+		}
+		ret.add(comp);
+		return ret;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Compras> getCentrosHistoricos(String condicion) {
+		List<Compras> ret = new LinkedList<Compras>();
+		List<Object[]> result = em
+				.createQuery(
+						"Select c.pcent as pcent, c.pcenn as pcenn, sum(c.pvalbd) as pvalbd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp "
+								+ "From Compras_h as c "
+								+ "Where "
+								+ condicion
+								+ " Group by c.pcent, c.pcenn order by 1 asc")
+				.getResultList();
+		Compras comp = new Compras(new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), "@@@@@", "Total");
+		for (Object[] obj : result) {
+			ret.add(new Compras(new BigDecimal(obj[2].toString()).setScale(2,
+					BigDecimal.ROUND_HALF_UP),
+					new BigDecimal(obj[3].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_UP), new BigDecimal(obj[4]
+							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+					new BigDecimal(obj[5].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_UP), obj[0].toString(),
+					obj[1].toString()));
+			comp.sumarCentrosHistorico(ret.get(ret.size() - 1));
+		}
+		ret.add(comp);
+		return ret;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Compras> getEstadosHistoricos(String condicion) {
+		List<Compras> ret = new LinkedList<Compras>();
+		List<Object[]> result = em
+				.createQuery(
+						"Select c.pcstp as pcstp, sum(c.pvalbd) as pvalbd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp "
+								+ "From Compras_h as c "
+								+ "Where "
+								+ condicion
+								+ " Group by c.pcstp order by 1 asc")
+				.getResultList();
+		Compras comp = new Compras("-1", new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), new BigDecimal(0).setScale(2,
+				BigDecimal.ROUND_HALF_UP), "Total");
+		for (Object[] obj : result) {
+			String valorEst;
+			if (obj[0].toString().equals("0")) {
+				valorEst = "Abierta";
+			} else if (obj[0].toString().equals("1")) {
+				valorEst = "Recibida";
+			} else if (obj[0].toString().equals("2")) {
+				valorEst = "Parcialmente costeada";
+			} else if (obj[0].toString().equals("3")) {
+				valorEst = "Cerrada";
+			} else {
+				valorEst = "";
+			}
+			ret.add(new Compras(obj[0].toString(), new BigDecimal(obj[1].toString()).setScale(2,
+					BigDecimal.ROUND_HALF_UP),
+					new BigDecimal(obj[2].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_UP), new BigDecimal(obj[3]
+							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+					new BigDecimal(obj[4].toString()).setScale(2,
+							BigDecimal.ROUND_HALF_UP),
+					valorEst));
+			comp.sumarEstadosHistorico(ret.get(ret.size() - 1));
 		}
 		ret.add(comp);
 		return ret;

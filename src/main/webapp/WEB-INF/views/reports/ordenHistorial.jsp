@@ -245,7 +245,7 @@ tr:last-child {
 											<td style="text-align: right"><fmt:formatNumber
 													value="${compp.pqori}" type="number" /></td>
 											<c:choose>
-												<c:when test="${compp.nroor == '@@@@@'}">
+												<c:when test="${compp.nroor == 'Total'}">
 													<td colspan="2"></td>
 												</c:when>
 												<c:otherwise>
@@ -265,7 +265,7 @@ tr:last-child {
 											</c:choose>
 											<td><c:out value="${compp.solic}" /></td>
 											<c:choose>
-												<c:when test="${compp.nroor == '@@@@@'}">
+												<c:when test="${compp.nroor == 'Total'}">
 													<td colspan="3"></td>
 												</c:when>
 												<c:otherwise>
@@ -279,7 +279,7 @@ tr:last-child {
 												</c:otherwise>
 											</c:choose>
 											<c:choose>
-												<c:when test="${compp.nroor == '@@@@@'}">
+												<c:when test="${compp.nroor == 'Total'}">
 													<td colspan="3"></td>
 												</c:when>
 												<c:otherwise>
