@@ -340,8 +340,8 @@ tr:last-child {
 													<c:if test="${o == 1}">
 														<td style="text-align: right"><fmt:formatNumber
 																value="${compp.pqori}" type="number" /></td>
-														<td><c:out value="${compp.fecre}" /></td>
 														<td><c:out value="${compp.fecen}" /></td>
+														<td><c:out value="${compp.fecre}" /></td>
 														<c:choose>
 															<c:when test="${compp.diave > 0}">
 																<td style="text-align: right; color: #FF0000;"><Strong><c:out

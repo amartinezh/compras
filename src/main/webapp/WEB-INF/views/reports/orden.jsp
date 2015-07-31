@@ -315,7 +315,7 @@ tr:last-child {
 													<td colspan="3" />
 												</c:when>
 												<c:otherwise>
-													<td><c:out value="${compp.fecre}" /></td>
+													<td><c:out value="${compp.fecen}" /></td>
 													<c:choose>
 														<c:when test="${compp.diave > 0}">
 															<td style="text-align: right; color: #FF0000;"><Strong><c:out

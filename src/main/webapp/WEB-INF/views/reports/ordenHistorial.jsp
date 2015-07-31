@@ -249,8 +249,8 @@ tr:last-child {
 													<td colspan="2"></td>
 												</c:when>
 												<c:otherwise>
-													<td><c:out value="${compp.fecre}" /></td>
 													<td><c:out value="${compp.fecen}" /></td>
+													<td><c:out value="${compp.fecre}" /></td>
 												</c:otherwise>
 											</c:choose>
 											<c:choose>
