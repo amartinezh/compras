@@ -157,7 +157,7 @@ tr:last-child {
 
 							<!-- widget content -->
 							<div class="widget-body no-padding">
-								<!-- table-striped -->
+
 								<table class="table table-bordered dataTable no-footer"
 									role="grid" aria-describedby="datatable_fixed_column_info"
 									style="width: 100%;">

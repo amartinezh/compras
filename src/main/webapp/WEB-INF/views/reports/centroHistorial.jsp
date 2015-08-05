@@ -161,7 +161,9 @@ tr:last-child {
 							<!-- widget content -->
 							<div class="widget-body no-padding">
 
-								<table class="table table-striped table-bordered" width="100%">
+								<table class="table table-bordered dataTable no-footer"
+									role="grid" aria-describedby="datatable_fixed_column_info"
+									style="width: 100%;">
 									<thead>
 										<tr>
 											<td colspan="16" align="left"><strong><c:out
