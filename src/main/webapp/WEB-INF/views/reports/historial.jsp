@@ -248,6 +248,14 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
+																<c:choose>
+																	<c:when test="${ mostrar == 1 }">
+																		<form:input path="pprov" type="hidden"
+																			value="${compp.pprov}" />
+																		<form:input path="ppnov" type="hidden"
+																			value="${compp.ppnov}" />
+																	</c:when>
+																</c:choose>
 																<button type="submit" Value="ordenado" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
@@ -261,6 +269,14 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
+																<c:choose>
+																	<c:when test="${ mostrar == 1 }">
+																		<form:input path="pprov" type="hidden"
+																			value="${compp.pprov}" />
+																		<form:input path="ppnov" type="hidden"
+																			value="${compp.ppnov}" />
+																	</c:when>
+																</c:choose>
 																<button type="submit" Value="compradores" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
@@ -274,6 +290,14 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
+																<c:choose>
+																	<c:when test="${ mostrar == 1 }">
+																		<form:input path="pprov" type="hidden"
+																			value="${compp.pprov}" />
+																		<form:input path="ppnov" type="hidden"
+																			value="${compp.ppnov}" />
+																	</c:when>
+																</c:choose>
 																<button type="submit" Value="centrocosto" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
@@ -287,6 +311,14 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
+																<c:choose>
+																	<c:when test="${ mostrar == 1 }">
+																		<form:input path="pprov" type="hidden"
+																			value="${compp.pprov}" />
+																		<form:input path="ppnov" type="hidden"
+																			value="${compp.ppnov}" />
+																	</c:when>
+																</c:choose>
 																<button type="submit" Value="estados" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"

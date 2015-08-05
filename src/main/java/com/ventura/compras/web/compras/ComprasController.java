@@ -1584,20 +1584,22 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			boolean ind = false;
-			if(ses.getCondicionesHistorico().get(7).contains("Producto")) {
+			if (ses.getCondicionesHistorico().get(7).contains("Producto")) {
 				ind = true;
 			}
 			model.addAttribute("usuarioactuall", ses.getUsuario());
-			model.addAttribute("listcomp",
-					comprasService.getHistorico(ses.getCondicionesHistorico(), ind));
+			model.addAttribute("listcomp", comprasService.getHistorico(
+					ses.getCondicionesHistorico(), ind));
 			model.addAttribute("navegacion", "> Historico"
 					+ ses.getCondicionesHistorico().get(7));
 			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(3));
-			model.addAttribute("regresar", "historico");			
-			//model.addAttribute("codigo", ses.getCondicionesHistorico().get(4));
-			//model.addAttribute("nombre", ses.getCondicionesHistorico().get(5));
+			model.addAttribute("regresar", "historico");
+			// model.addAttribute("codigo",
+			// ses.getCondicionesHistorico().get(4));
+			// model.addAttribute("nombre",
+			// ses.getCondicionesHistorico().get(5));
 			model.addAttribute("titulo", ses.getCondicionesHistorico().get(6));
-			if(ind) {
+			if (ind) {
 				model.addAttribute("mostrar", 1);
 				model.addAttribute("fila", "Producto");
 			} else {
@@ -1655,14 +1657,15 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "compradores")
 	public String compradores(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			model.addAttribute("listcomp", comprasService
-					.getCompradoresHistoricos(ses.getCondicionesHistorico().get(8)));
+					.getCompradoresHistoricos(ses.getCondicionesHistorico()
+							.get(8)));
 			model.addAttribute("navegacion", "> Historico"
 					+ ses.getCondicionesHistorico().get(7)
 					+ ses.getCondicionesHistorico().get(9));
@@ -1673,7 +1676,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "centroscostos")
 	public String centroscostos(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
@@ -1709,7 +1712,7 @@ public class ComprasController {
 			return "redirect:/index/ingreso";
 		}
 	}
-	
+
 	@RequestMapping(value = "ordenh", method = RequestMethod.POST)
 	public String ordenh(@ModelAttribute("compra") Compras compra,
 			HttpServletRequest request, Model model) {
@@ -1718,24 +1721,28 @@ public class ComprasController {
 			session ses = (session) model.asMap().get("user_inicio");
 			String enc = "";
 			if (!ses.getCondicionesHistorico().contains(" > Proveedor")) {
-				ses.getCondicionesHistorico().add(8,
-						"c.pipro = '" + compra.getPipro() + "'");
+				ses.getCondicionesHistorico().add(
+						8,
+						"c.pipro = '" + compra.getPipro() + "' and c.pprov ="
+								+ compra.getPprov());
 				enc = "Código producto: " + compra.getPipro()
-						+ " Descripción del producto: " + compra.getPides();
+						+ " Descripción del producto: " + compra.getPides()
+						+ " Código Proveedor: " + compra.getPprov()
+						+ " Nombre del producto: " + compra.getPpnov();
 			} else {
 				ses.getCondicionesHistorico().add(8,
 						"c.pprov = '" + compra.getPipro() + "'");
 				enc = "Código proveedor: " + compra.getPipro()
-						+ " Descripción del proveedor: " + compra.getPides();
+						+ " Nombre del proveedor: " + compra.getPides();
 			}
 			if (request.getParameter("next").equals("ordenado")) {
 				ses.getCondicionesHistorico().add(9, " > Ordenes");
 				ret = "redirect:ordenado";
 			} else if (request.getParameter("next").equals("compradores")) {
-				ses.getCondicionesHistorico().add(9, " > Compradores");				
+				ses.getCondicionesHistorico().add(9, " > Compradores");
 				ret = "redirect:compradores";
 			} else if (request.getParameter("next").equals("centrocosto")) {
-				ses.getCondicionesHistorico().add(9, " > Centros costos");				
+				ses.getCondicionesHistorico().add(9, " > Centros costos");
 				ret = "redirect:centroscostos";
 			} else if (request.getParameter("next").equals("estados")) {
 				ses.getCondicionesHistorico().add(9, " > Estados");
