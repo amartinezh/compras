@@ -915,6 +915,13 @@ public class ComprasDaoImpl implements ComprasDao {
 						+ "From Compras_h as c " + "Where " + where.toString()
 						+ " " + "Group by c.pmes, " + group.toString() + " "
 						+ "order by 1, 3 asc").getResultList();
+		result.addAll(em.createQuery(
+				"Select " + select.toString() + ", c.pmes as pmes, Sum(c."
+						+ condiciones.get(condRep.split(",")[2]) + ") as "
+						+ condiciones.get(condRep.split(",")[2]) + " "
+						+ "From Compras as c " + "Where " + where.toString()
+						+ " " + "Group by c.pmes, " + group.toString() + " "
+						+ "order by 1, 3 asc").getResultList());
 		List<Reporte> ret = new LinkedList<Reporte>();
 		String marcado = "";
 		BigDecimal t = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
