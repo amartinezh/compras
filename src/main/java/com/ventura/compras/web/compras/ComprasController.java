@@ -1593,14 +1593,16 @@ public class ComprasController {
 			model.addAttribute("navegacion", "> Historico"
 					+ ses.getCondicionesHistorico().get(7));
 			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(3));
-			model.addAttribute("regresar", "historico");
-			model.addAttribute("codigo", ses.getCondicionesHistorico().get(4));
-			model.addAttribute("nombre", ses.getCondicionesHistorico().get(5));
+			model.addAttribute("regresar", "historico");			
+			//model.addAttribute("codigo", ses.getCondicionesHistorico().get(4));
+			//model.addAttribute("nombre", ses.getCondicionesHistorico().get(5));
 			model.addAttribute("titulo", ses.getCondicionesHistorico().get(6));
 			if(ind) {
 				model.addAttribute("mostrar", 1);
+				model.addAttribute("fila", "Producto");
 			} else {
 				model.addAttribute("mostrar", 0);
+				model.addAttribute("fila", "Proveedor");
 			}
 			model.addAttribute("compra", new Compras());
 			return "reports/historial";

@@ -170,10 +170,8 @@ tr:last-child {
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
-											<th rowspan="2" style="text-align: center; color: blue;"><c:out
-													value="${ codigo }"></c:out></th>
-											<th rowspan="2" style="text-align: center; color: blue;"><c:out
-													value="${ nombre }"></c:out></th>
+											<th colspan="2" style="text-align: center; color: blue;"><c:out
+													value="${ fila }"></c:out></th>
 											<c:choose>
 												<c:when test="${ mostrar == 1 }">
 													<th colspan="2" style="text-align: center; color: blue;">Proveedor</th>
@@ -189,6 +187,8 @@ tr:last-child {
 											<th rowspan="2" style="text-align: center; color: blue;">Estados</th>
 										</tr>
 										<tr>
+											<th style="text-align: center; color: blue;">Codigo</th>
+											<th style="text-align: center; color: blue;">Nombre</th>
 											<c:choose>
 												<c:when test="${ mostrar == 1 }">
 													<th style="text-align: center; color: blue;">Codigo</th>
