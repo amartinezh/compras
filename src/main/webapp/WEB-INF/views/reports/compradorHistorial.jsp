@@ -180,7 +180,7 @@ tr:last-child {
 											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
 										</tr>
 										<tr>
-											<th style="text-align: center; color: blue;">Ordenadas</th>
+											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>

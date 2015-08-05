@@ -191,10 +191,8 @@ tr:last-child {
 										<tr>
 											<c:choose>
 												<c:when test="${ mostrar == 1 }">
-													<th style="text-align: center; color: blue;">
-														Codigo</th>
-													<th style="text-align: center; color: blue;">
-														Nombre</th>
+													<th style="text-align: center; color: blue;">Codigo</th>
+													<th style="text-align: center; color: blue;">Nombre</th>
 												</c:when>
 											</c:choose>
 											<th style="text-align: center; color: blue;">Recibidas</th>
@@ -209,18 +207,25 @@ tr:last-child {
 											<tr>
 												<c:choose>
 													<c:when test="${compp.pides == 'Total'}">
-														<td colspan="2"><c:out value="${compp.pides}" /></td>
+														<c:choose>
+															<c:when test="${ mostrar == 1 }">
+																<td colspan="4"><c:out value="${compp.pides}" /></td>
+															</c:when>
+															<c:otherwise>
+																<td colspan="2"><c:out value="${compp.pides}" /></td>
+															</c:otherwise>
+														</c:choose>
 													</c:when>
 													<c:otherwise>
 														<td><c:out value="${compp.pipro}" /></td>
 														<td><c:out value="${compp.pides}" /></td>
+														<c:choose>
+															<c:when test="${ mostrar == 1 }">
+																<td><c:out value="${compp.pprov}" /></td>
+																<td><c:out value="${compp.ppnov}" /></td>
+															</c:when>
+														</c:choose>
 													</c:otherwise>
-												</c:choose>
-												<c:choose>
-													<c:when test="${ mostrar == 1 }">
-														<td><c:out value="${compp.pprov}" /></td>
-														<td><c:out value="${compp.ppnov}" /></td>
-													</c:when>
 												</c:choose>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
