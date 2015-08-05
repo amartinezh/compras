@@ -1583,9 +1583,13 @@ public class ComprasController {
 	public String ver(Model model) {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) model.asMap().get("user_inicio");
+			boolean ind = false;
+			if(ses.getCondicionesHistorico().get(7).contains("Producto")) {
+				ind = true;
+			}
 			model.addAttribute("usuarioactuall", ses.getUsuario());
 			model.addAttribute("listcomp",
-					comprasService.getHistorico(ses.getCondicionesHistorico()));
+					comprasService.getHistorico(ses.getCondicionesHistorico(), ind));
 			model.addAttribute("navegacion", "> Historico"
 					+ ses.getCondicionesHistorico().get(7));
 			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(3));
@@ -1593,6 +1597,11 @@ public class ComprasController {
 			model.addAttribute("codigo", ses.getCondicionesHistorico().get(4));
 			model.addAttribute("nombre", ses.getCondicionesHistorico().get(5));
 			model.addAttribute("titulo", ses.getCondicionesHistorico().get(6));
+			if(ind) {
+				model.addAttribute("mostrar", 1);
+			} else {
+				model.addAttribute("mostrar", 0);
+			}
 			model.addAttribute("compra", new Compras());
 			return "reports/historial";
 		} else {

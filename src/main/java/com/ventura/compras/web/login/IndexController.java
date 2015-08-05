@@ -49,10 +49,10 @@ public class IndexController {
 
 	@Autowired
 	private CenterService centerService;
-	
+
 	@Autowired
 	private CurrencyService currencyService;
-	
+
 	@Autowired
 	private LevelService levelService;
 
@@ -122,12 +122,15 @@ public class IndexController {
 							mesAct = 12 + mesAct;
 							anoAct--;
 						}
-						ses.getCondiciones().put("a" + anoAct,
-								"c.pano = " + anoAct + "");
-						ses.getValores().put("a" + anoAct, "Año: " + anoAct);
+						if (anoAct > 2014) {
+							ses.getCondiciones().put("a" + anoAct,
+									"c.pano = " + anoAct + "");
+							ses.getValores()
+									.put("a" + anoAct, "Año: " + anoAct);
+							ses.getAnos().put(anoAct + "", anoAct + "");
+						}
 						ses.getCondiciones().put("ordeCond", "c.tipoc='O'");
 						ses.getValores().put("ordeCond", "");
-						ses.getAnos().put(anoAct + "", anoAct + "");
 						for (int i = 0; i <= 12; i++) {
 							ses.getCondiciones().put("mm" + mesAct,
 									"c.pmes = " + mesAct);

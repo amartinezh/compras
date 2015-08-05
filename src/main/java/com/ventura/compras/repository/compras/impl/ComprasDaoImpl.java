@@ -974,7 +974,7 @@ public class ComprasDaoImpl implements ComprasDao {
 						"Select c.nroor as nroor, sum(c.pvalbd) as pvalbd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, max(c.fecen) as fecen, max(c.fecre) as fecre, max(c.diave) as diave, c.solic as solic, "
 								+ "max(c.pprep1) as pprep1, max(c.pprep2) as pprep2, max(c.pprep3) as pprep3, max(c.fecep1) as fecep1, max(c.fecep2) as fecep2, max(c.fecep3) as fecep3, min(c.pcstp) as pcstp "
 								+ "From Compras_h as c "
-								+ "Where "
+								+ "Where c.tipoc = 'O' and c.pqtyd <> 0 and "
 								+ condicion
 								+ " Group by c.nroor, c.solic order by 9 desc")
 				.getResultList();
@@ -1020,7 +1020,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				.createQuery(
 						"Select c.pcomd as pcomd, c.pnomd as pnomd, sum(c.pvalbd) as pvalbd, max(c.pvalpo) as pvalpo, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp "
 								+ "From Compras_h as c "
-								+ "Where "
+								+ "Where c.tipoc = 'O' and c.pqtyd <> 0 and "
 								+ condicion
 								+ " Group by c.pcomd, c.pnomd order by 1 asc")
 				.getResultList();
@@ -1053,7 +1053,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				.createQuery(
 						"Select c.pcent as pcent, c.pcenn as pcenn, sum(c.pvalbd) as pvalbd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp "
 								+ "From Compras_h as c "
-								+ "Where "
+								+ "Where c.tipoc = 'O' and c.pqtyd <> 0 and "
 								+ condicion
 								+ " Group by c.pcent, c.pcenn order by 1 asc")
 				.getResultList();
@@ -1084,7 +1084,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				.createQuery(
 						"Select c.pcstp as pcstp, sum(c.pvalbd) as pvalbd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp "
 								+ "From Compras_h as c "
-								+ "Where "
+								+ "Where c.tipoc = 'O' and c.pqtyd <> 0 and "
 								+ condicion
 								+ " Group by c.pcstp order by 1 asc")
 				.getResultList();
@@ -1106,14 +1106,13 @@ public class ComprasDaoImpl implements ComprasDao {
 			} else {
 				valorEst = "";
 			}
-			ret.add(new Compras(obj[0].toString(), new BigDecimal(obj[1].toString()).setScale(2,
-					BigDecimal.ROUND_HALF_UP),
+			ret.add(new Compras(obj[0].toString(), new BigDecimal(obj[1]
+					.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
 					new BigDecimal(obj[2].toString()).setScale(2,
 							BigDecimal.ROUND_HALF_UP), new BigDecimal(obj[3]
 							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
 					new BigDecimal(obj[4].toString()).setScale(2,
-							BigDecimal.ROUND_HALF_UP),
-					valorEst));
+							BigDecimal.ROUND_HALF_UP), valorEst));
 			comp.sumarEstadosHistorico(ret.get(ret.size() - 1));
 		}
 		ret.add(comp);
@@ -1121,30 +1120,44 @@ public class ComprasDaoImpl implements ComprasDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Compras> getHistorico(List<String> condiciones) {
+	public List<Compras> getHistorico(List<String> condiciones, boolean ind) {
 		List<Compras> compras = new LinkedList<Compras>();
+		String g = "";
+		String s = "";
+		if (ind) {
+			g = "c.pprov, c.ppnov, ";
+			s = ", c.pprov as pprov, c.ppnov as ppnov";
+		}
 		List<Object[]> result = em
 				.createQuery(
 						"Select "
 								+ condiciones.get(1)
 								+ ", sum(c.pvalbd) as pvalbd, sum(c.pqtyd) as pqtyd, sum(c.pqtyr) as pqtyr, sum(c.pqtyp) as pqtyp"
-								+ " From Compras_h as c Where "
-								+ condiciones.get(0) + " Group by "
+								+ s
+								+ " From Compras_h as c Where c.tipoc = 'O' and c.pqtyd <> 0 and "
+								+ condiciones.get(0) + " Group by " + g
 								+ condiciones.get(2) + " Order by 1 asc")
 				.getResultList();
 		Compras comp = new Compras("@@@@@", "Total",
 				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
 				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
 				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP),
-				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP));
+				new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP), -1, "");
 		for (Object[] obj : result) {
+			int cod = -1;
+			String nom = "";
+			if (ind) {
+				cod = Integer.parseInt(obj[6].toString());
+				nom = obj[7].toString();
+			}
 			compras.add(new Compras(obj[0].toString(), obj[1].toString(),
 					new BigDecimal(obj[2].toString()).setScale(2,
 							BigDecimal.ROUND_HALF_UP), new BigDecimal(obj[3]
 							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
 					new BigDecimal(obj[4].toString()).setScale(2,
 							BigDecimal.ROUND_HALF_UP), new BigDecimal(obj[5]
-							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP)));
+							.toString()).setScale(2, BigDecimal.ROUND_HALF_UP),
+					cod, nom));
 			comp.sumarHistorico(compras.get(compras.size() - 1));
 		}
 		compras.add(comp);

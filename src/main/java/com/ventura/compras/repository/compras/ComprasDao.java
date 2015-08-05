@@ -19,7 +19,7 @@ public interface ComprasDao {
 	public List<Compras> getBodegas(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, String campo);
 	public List<Compras> getEstados(Map<String, String> condiciones, String cond, String fechaAct, String fechaSel, String campo);
 	public List<Reporte> getReporte(Map<String, String> condiciones, String cond, String condRep);
-	public List<Compras> getHistorico(List<String> condiciones);
+	public List<Compras> getHistorico(List<String> condiciones, boolean ind);
 	public List<Compras> getOrdenesHistoricos(String condicion);
 	public List<Compras> getCompradoresHistoricos(String condicion);
 	public List<Compras> getCentrosHistoricos(String condicion);

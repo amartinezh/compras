@@ -523,13 +523,16 @@ public class Compras implements Serializable {
 
 	// Historico
 	public Compras(String pipro, String pides, BigDecimal pvalbd,
-			BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyp) {
+			BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyp, int pprov,
+			String ppnov) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pvalbd = pvalbd;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pqtyp = pqtyp;
+		this.pprov = pprov;
+		this.ppnov = ppnov;
 	}
 
 	// Constructor OrdenHistorico
@@ -583,8 +586,8 @@ public class Compras implements Serializable {
 	}
 
 	// Constructor CentroHistorico
-	public Compras(BigDecimal pvalbd,
-			BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyp, String pcent, String pcenn) {
+	public Compras(BigDecimal pvalbd, BigDecimal pqtyd, BigDecimal pqtyr,
+			BigDecimal pqtyp, String pcent, String pcenn) {
 		this.pcent = pcent;
 		this.pcenn = pcenn;
 		this.pvalbd = pvalbd;
@@ -592,17 +595,17 @@ public class Compras implements Serializable {
 		this.pqtyr = pqtyr;
 		this.pqtyp = pqtyp;
 	}
-	
+
 	// Constructor CentroHistorico
-		public Compras(String pcstp, BigDecimal pvalbd,
-				BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyp, String nroor) {
-			this.pcstp = pcstp;
-			this.nroor = nroor;
-			this.pvalbd = pvalbd;
-			this.pqtyd = pqtyd;
-			this.pqtyr = pqtyr;
-			this.pqtyp = pqtyp;
-		}
+	public Compras(String pcstp, BigDecimal pvalbd, BigDecimal pqtyd,
+			BigDecimal pqtyr, BigDecimal pqtyp, String nroor) {
+		this.pcstp = pcstp;
+		this.nroor = nroor;
+		this.pvalbd = pvalbd;
+		this.pqtyd = pqtyd;
+		this.pqtyr = pqtyr;
+		this.pqtyp = pqtyp;
+	}
 
 	@Override
 	public String toString() {
@@ -1455,14 +1458,14 @@ public class Compras implements Serializable {
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 	}
-	
+
 	public void sumarCentrosHistorico(Compras com) {
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pqtyd = pqtyd.add(com.getPqtyd());
 		this.pqtyr = pqtyr.add(com.getPqtyr());
 		this.pqtyp = pqtyp.add(com.getPqtyp());
 	}
-	
+
 	public void sumarEstadosHistorico(Compras com) {
 		this.pvalbd = pvalbd.add(com.getPvalbd());
 		this.pqtyd = pqtyd.add(com.getPqtyd());

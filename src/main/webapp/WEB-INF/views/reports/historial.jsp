@@ -174,6 +174,11 @@ tr:last-child {
 													value="${ codigo }"></c:out></th>
 											<th rowspan="2" style="text-align: center; color: blue;"><c:out
 													value="${ nombre }"></c:out></th>
+											<c:choose>
+												<c:when test="${ mostrar == 1 }">
+													<th colspan="2" style="text-align: center; color: blue;">Proveedor</th>
+												</c:when>
+											</c:choose>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												recibido</th>
 											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
@@ -185,13 +190,14 @@ tr:last-child {
 										</tr>
 										<tr>
 											<c:choose>
-												<c:when test="${ user_inicio.campover == 'ord'}">
-													<th style="text-align: center; color: blue;">Ordenadas</th>
+												<c:when test="${ mostrar == 1 }">
+													<th style="text-align: center; color: blue;">
+														Codigo</th>
+													<th style="text-align: center; color: blue;">
+														Nombre</th>
 												</c:when>
-												<c:otherwise>
-													<th style="text-align: center; color: blue;">Recibidas</th>
-												</c:otherwise>
 											</c:choose>
+											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
@@ -209,6 +215,12 @@ tr:last-child {
 														<td><c:out value="${compp.pipro}" /></td>
 														<td><c:out value="${compp.pides}" /></td>
 													</c:otherwise>
+												</c:choose>
+												<c:choose>
+													<c:when test="${ mostrar == 1 }">
+														<td><c:out value="${compp.pprov}" /></td>
+														<td><c:out value="${compp.ppnov}" /></td>
+													</c:when>
 												</c:choose>
 												<td style="text-align: right">$<fmt:formatNumber
 														value="${compp.pvalbd}" type="number" /></td>
