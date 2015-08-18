@@ -199,7 +199,7 @@ tr:last-child {
 											<th style="text-align: center; color: blue;">P3</th>
 											<th style="text-align: center; color: blue;">F1</th>
 											<th style="text-align: center; color: blue;">F2</th>
-											<th style="text-align: center; color: blue;">F3
+											<th style="text-align: center; color: blue;">F3</th>
 										</tr>
 									</thead>
 									<tbody>

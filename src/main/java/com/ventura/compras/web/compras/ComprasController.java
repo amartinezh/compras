@@ -1602,9 +1602,11 @@ public class ComprasController {
 			if (ind) {
 				model.addAttribute("mostrar", 1);
 				model.addAttribute("fila", "Producto");
+				model.addAttribute("fila1", "Proveedor");
 			} else {
 				model.addAttribute("mostrar", 0);
 				model.addAttribute("fila", "Proveedor");
+				model.addAttribute("fila1", "Producto");
 			}
 			model.addAttribute("compra", new Compras());
 			return "reports/historial";

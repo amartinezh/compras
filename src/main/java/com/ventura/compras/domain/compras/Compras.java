@@ -523,16 +523,38 @@ public class Compras implements Serializable {
 
 	// Historico
 	public Compras(String pipro, String pides, BigDecimal pvalbd,
-			BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyp, int pprov,
-			String ppnov) {
+			BigDecimal pqtyd, BigDecimal pqtyr, BigDecimal pqtyp, String pprov,
+			String ppnov, BigDecimal pprep1, BigDecimal pprep2,
+			BigDecimal pprep3, String fecep1, String fecep2, String fecep3, double dat) {
 		this.pipro = pipro;
 		this.pides = pides;
 		this.pvalbd = pvalbd;
 		this.pqtyd = pqtyd;
 		this.pqtyr = pqtyr;
 		this.pqtyp = pqtyp;
-		this.pprov = pprov;
+		this.pcomd = pprov;
 		this.ppnov = ppnov;
+		this.pprep1 = pprep1;
+		this.pprep2 = pprep2;
+		this.pprep3 = pprep3;
+		if (fecep1.length() == 8) {
+			this.fecep1 = fecep1.substring(0, 4) + "/" + fecep1.substring(4, 6)
+					+ "/" + fecep1.substring(6, 8);
+		} else {
+			this.fecep1 = fecep1;
+		}
+		if (fecep2.length() == 8) {
+			this.fecep2 = fecep1.substring(0, 4) + "/" + fecep2.substring(4, 6)
+					+ "/" + fecep2.substring(6, 8);
+		} else {
+			this.fecep2 = fecep2;
+		}
+		if (fecep3.length() == 8) {
+			this.fecep3 = fecep3.substring(0, 4) + "/" + fecep3.substring(4, 6)
+					+ "/" + fecep3.substring(6, 8);
+		} else {
+			this.fecep3 = fecep3;
+		}
 	}
 
 	// Constructor OrdenHistorico

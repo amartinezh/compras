@@ -162,24 +162,29 @@ tr:last-child {
 								<table class="table table-striped table-bordered" width="100%">
 									<thead>
 										<tr>
-											<td colspan="16" align="left"><strong><c:out
+											<td colspan="20" align="left"><strong><c:out
 														value="${navegacion}" /></strong></td>
 										</tr>
 										<tr>
-											<td colspan="16" align="center"><c:out
+											<td colspan="20" align="center"><c:out
 													value="${mensaje}" /></td>
 										</tr>
 										<tr>
 											<th colspan="2" style="text-align: center; color: blue;"><c:out
 													value="${ fila }"></c:out></th>
-											<c:choose>
-												<c:when test="${ mostrar == 1 }">
-													<th colspan="2" style="text-align: center; color: blue;">Proveedor</th>
-												</c:when>
-											</c:choose>
+											<th colspan="2" style="text-align: center; color: blue;"><c:out
+													value="${ fila1 }"></c:out></th>
 											<th rowspan="2" style="text-align: center; color: blue;">Valor
 												recibido</th>
 											<th colspan="3" style="text-align: center; color: blue;">Cantidades</th>
+											<c:choose>
+												<c:when test="${mostrar == 0 }">
+													<th colspan="3" style="text-align: center; color: blue;">Ultimos
+														precios</th>
+													<th colspan="3" style="text-align: center; color: blue;">Ultimas
+														fechas</th>
+												</c:when>
+											</c:choose>
 											<th rowspan="2" style="text-align: center; color: blue;">O/C</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Comprador</th>
 											<th rowspan="2" style="text-align: center; color: blue;">Cent.
@@ -189,16 +194,22 @@ tr:last-child {
 										<tr>
 											<th style="text-align: center; color: blue;">Codigo</th>
 											<th style="text-align: center; color: blue;">Nombre</th>
-											<c:choose>
-												<c:when test="${ mostrar == 1 }">
-													<th style="text-align: center; color: blue;">Codigo</th>
-													<th style="text-align: center; color: blue;">Nombre</th>
-												</c:when>
-											</c:choose>
+											<th style="text-align: center; color: blue;">Codigo</th>
+											<th style="text-align: center; color: blue;">Nombre</th>
 											<th style="text-align: center; color: blue;">Recibidas</th>
 											<th style="text-align: center; color: blue;">Rechazadas</th>
 											<th style="text-align: center; color: blue;">Pendiente a
 												la Fecha</th>
+											<c:choose>
+												<c:when test="${mostrar == 0 }">
+													<th style="text-align: center; color: blue;">P1</th>
+													<th style="text-align: center; color: blue;">P2</th>
+													<th style="text-align: center; color: blue;">P3</th>
+													<th style="text-align: center; color: blue;">F1</th>
+													<th style="text-align: center; color: blue;">F2</th>
+													<th style="text-align: center; color: blue;">F3</th>
+												</c:when>
+											</c:choose>
 										</tr>
 									</thead>
 									<tbody>
@@ -207,24 +218,13 @@ tr:last-child {
 											<tr>
 												<c:choose>
 													<c:when test="${compp.pides == 'Total'}">
-														<c:choose>
-															<c:when test="${ mostrar == 1 }">
-																<td colspan="4"><c:out value="${compp.pides}" /></td>
-															</c:when>
-															<c:otherwise>
-																<td colspan="2"><c:out value="${compp.pides}" /></td>
-															</c:otherwise>
-														</c:choose>
+														<td colspan="4"><c:out value="${compp.pides}" /></td>
 													</c:when>
 													<c:otherwise>
 														<td><c:out value="${compp.pipro}" /></td>
 														<td><c:out value="${compp.pides}" /></td>
-														<c:choose>
-															<c:when test="${ mostrar == 1 }">
-																<td><c:out value="${compp.pprov}" /></td>
-																<td><c:out value="${compp.ppnov}" /></td>
-															</c:when>
-														</c:choose>
+														<td><c:out value="${compp.pcomd}" /></td>
+														<td><c:out value="${compp.ppnov}" /></td>
 													</c:otherwise>
 												</c:choose>
 												<td style="text-align: right">$<fmt:formatNumber
@@ -237,6 +237,34 @@ tr:last-child {
 														value="${compp.pqtyp}" type="number" /></td>
 												<fmt:setLocale value="en_US" />
 												<c:choose>
+													<c:when test="${mostrar == 0 }">
+														<c:choose>
+															<c:when test="${compp.pides == 'Total'}">
+																<td colspan="3"></td>
+															</c:when>
+															<c:otherwise>
+																<td style="text-align: right">$<fmt:formatNumber
+																		maxFractionDigits="2" value="${compp.pprep1}"
+																		type="number" /></td>
+																<td style="text-align: right">$<fmt:formatNumber
+																		value="${compp.pprep2}" type="number" /></td>
+																<td style="text-align: right">$<fmt:formatNumber
+																		value="${compp.pprep3}" type="number" /></td>
+															</c:otherwise>
+														</c:choose>
+														<c:choose>
+															<c:when test="${compp.pides == 'Total'}">
+																<td colspan="3"></td>
+															</c:when>
+															<c:otherwise>
+																<td><c:out value="${compp.fecep1}" /></td>
+																<td><c:out value="${compp.fecep2}" /></td>
+																<td><c:out value="${compp.fecep3}" /></td>
+															</c:otherwise>
+														</c:choose>
+													</c:when>
+												</c:choose>
+												<c:choose>
 													<c:when test="${compp.pides == 'Total'}">
 														<td colspan="4"></td>
 													</c:when>
@@ -248,14 +276,10 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
-																<c:choose>
-																	<c:when test="${ mostrar == 1 }">
-																		<form:input path="pprov" type="hidden"
-																			value="${compp.pprov}" />
-																		<form:input path="ppnov" type="hidden"
-																			value="${compp.ppnov}" />
-																	</c:when>
-																</c:choose>
+																<form:input path="pprov" type="hidden"
+																	value="${compp.pcomd}" />
+																<form:input path="ppnov" type="hidden"
+																	value="${compp.ppnov}" />
 																<button type="submit" Value="ordenado" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
@@ -269,14 +293,10 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
-																<c:choose>
-																	<c:when test="${ mostrar == 1 }">
-																		<form:input path="pprov" type="hidden"
-																			value="${compp.pprov}" />
-																		<form:input path="ppnov" type="hidden"
-																			value="${compp.ppnov}" />
-																	</c:when>
-																</c:choose>
+																<form:input path="pprov" type="hidden"
+																	value="${compp.pcomd}" />
+																<form:input path="ppnov" type="hidden"
+																	value="${compp.ppnov}" />
 																<button type="submit" Value="compradores" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
@@ -290,14 +310,12 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
-																<c:choose>
-																	<c:when test="${ mostrar == 1 }">
-																		<form:input path="pprov" type="hidden"
-																			value="${compp.pprov}" />
-																		<form:input path="ppnov" type="hidden"
-																			value="${compp.ppnov}" />
-																	</c:when>
-																</c:choose>
+
+																<form:input path="pprov" type="hidden"
+																	value="${compp.pcomd}" />
+																<form:input path="ppnov" type="hidden"
+																	value="${compp.ppnov}" />
+
 																<button type="submit" Value="centrocosto" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
@@ -311,22 +329,16 @@ tr:last-child {
 																	value="${compp.pipro}" />
 																<form:input path="pides" type="hidden"
 																	value="${compp.pides}" />
-																<c:choose>
-																	<c:when test="${ mostrar == 1 }">
-																		<form:input path="pprov" type="hidden"
-																			value="${compp.pprov}" />
-																		<form:input path="ppnov" type="hidden"
-																			value="${compp.ppnov}" />
-																	</c:when>
-																</c:choose>
+																<form:input path="pprov" type="hidden"
+																	value="${compp.pcomd}" />
+																<form:input path="ppnov" type="hidden"
+																	value="${compp.ppnov}" />
 																<button type="submit" Value="estados" name="next"
 																	style="border-style: none; background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;">
 																	<img width="20" height="20"
 																		src="<c:url value="/resources/img/adm/estado.png" />">
 																</button>
-
 															</form:form></td>
-
 													</c:otherwise>
 												</c:choose>
 											</tr>
