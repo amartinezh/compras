@@ -215,7 +215,7 @@
 									<fieldset>
 										<div class="well">
 											<div class="input-group">
-												<form:input class="form-control" placeholder="Codigo Producto"
+												<form:input class="form-control" placeholder="Codigo Proveedor"
 													type="text" path="ppnov" data-autocomplete='${ codproveedor }' required="required"/>
 												<div class="input-group-btn">
 													<button class="btn btn-default btn-primary" type="submit">
