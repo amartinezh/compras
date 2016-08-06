@@ -77,6 +77,11 @@
 <link rel="apple-touch-startup-image"
 	href="<c:url value="/resources/img/splash/iphone.png" />"
 	media="screen and (max-device-width: 320px)">
+<style type="text/css">
+	.ui-datepicker-calendar {
+		display: none;
+	}
+</style>
 
 </head>
 <body oncontextmenu="return false">
@@ -148,6 +153,36 @@
 					<div class="jarviswidget jarviswidget-color-darken far"
 						id="wid-id-0" data-widget-editbutton="false">
 						<div class="row">
+							<div class="col-sm-12">
+								<label>Seleccioné rango de fecha</label>
+							</div>
+							<fieldset>
+								<div class="col-sm-6">
+
+									<div class="form-group">
+										<div class="input-group">
+											<input class="form-control" id="from" type="text"
+												placeholder="Desde">
+											<span class="input-group-addon"><i
+												class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-sm-6">
+
+									<div class="form-group">
+										<div class="input-group">
+											<input class="form-control" id="to" type="text"
+												placeholder="Hasta">
+											<span class="input-group-addon"><i
+												class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="row">
 							<div>
 								<header role="heading">
 									<h2>
@@ -159,13 +194,16 @@
 								<form class="smart-form">
 									<header>${ mensaje1 }</header>
 								</form>
-								<form:form id="formprodcod" action="${accion1}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
+								<form:form id="formprodcod" action="${accion1}" method="POST"
+									ModelAttribute="compra" commandName="compra">
 									<fieldset>
 										<div class="well">
 											<div class="input-group">
-												<form:input class="form-control" placeholder="Codigo Producto"
-													type="text" path="pipro" data-autocomplete='${ codproducto }' required="required"/>
+												<form:input class="form-control"
+													placeholder="Codigo Producto" type="text" path="pipro"
+													data-autocomplete='${ codproducto }' required="required" />
+												<form:input class="desde" path="fecep1" type="hidden" />
+												<form:input class="hasta" path="fecep2" type="hidden" />
 												<div class="input-group-btn">
 													<button class="btn btn-default btn-primary" type="submit">
 														<i class="fa fa-search"></i> Consultar
@@ -178,15 +216,18 @@
 							</div>
 							<div>
 								<form class="smart-form">
-									<header>${ mensaje2 }</header>								
+									<header>${ mensaje2 }</header>
 								</form>
-								<form:form id="formprodnom" action="${accion2}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
+								<form:form id="formprodnom" action="${accion2}" method="POST"
+									ModelAttribute="compra" commandName="compra">
 									<fieldset>
 										<div class="well">
 											<div class="input-group">
-												<form:input class="form-control" placeholder="Nombre Producto"
-													type="text" path="pides" data-autocomplete='${ nombproducto }' required="required"/>
+												<form:input class="form-control"
+													placeholder="Nombre Producto" type="text" path="pides"
+													data-autocomplete='${ nombproducto }' required="required" />
+												<form:input class="desde" path="fecep1" type="hidden" />
+												<form:input class="hasta" path="fecep2" type="hidden" />
 												<div class="input-group-btn">
 													<button class="btn btn-default btn-primary" type="submit">
 														<i class="fa fa-search"></i> Consultar
@@ -210,13 +251,16 @@
 								<form class="smart-form">
 									<header>${ mensaje3 }</header>
 								</form>
-								<form:form id="formprovcod" action="${accion3}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
+								<form:form id="formprovcod" action="${accion3}" method="POST"
+									ModelAttribute="compra" commandName="compra">
 									<fieldset>
 										<div class="well">
 											<div class="input-group">
-												<form:input class="form-control" placeholder="Codigo Proveedor"
-													type="text" path="ppnov" data-autocomplete='${ codproveedor }' required="required"/>
+												<form:input class="form-control"
+													placeholder="Codigo Proveedor" type="text" path="ppnov"
+													data-autocomplete='${ codproveedor }' required="required" />
+												<form:input class="desde" path="fecep1" type="hidden" />
+												<form:input class="hasta" path="fecep2" type="hidden" />
 												<div class="input-group-btn">
 													<button class="btn btn-default btn-primary" type="submit">
 														<i class="fa fa-search"></i> Consultar
@@ -231,14 +275,16 @@
 								<form class="smart-form">
 									<header>${ mensaje4 }</header>
 								</form>
-								<form:form id="formprovnom" action="${accion4}" method="POST" ModelAttribute="compra"
-									commandName="compra" >
+								<form:form id="formprovnom" action="${accion4}" method="POST"
+									ModelAttribute="compra" commandName="compra">
 									<fieldset>
 										<div class="well">
 											<div class="input-group">
 												<form:input class="form-control"
 													placeholder="Nombre proveedor" type="text" path="ppnov"
-													data-autocomplete='${ nombproveedor }' required="required"/>
+													data-autocomplete='${ nombproveedor }' required="required" />
+												<form:input class="desde" path="fecep1" type="hidden" />
+												<form:input class="hasta" path="fecep2" type="hidden" />
 												<div class="input-group-btn">
 													<button class="btn btn-default btn-primary" type="submit">
 														<i class="fa fa-search"></i> Consultar
@@ -409,6 +455,42 @@
 							
 							Also see: http://legacy.datatables.net/usage/features
 							 */
+
+							// Date Range Picker
+							$("#from")
+									.datepicker(
+											{
+												defaultDate : "+1w",
+												changeMonth : true,
+												changeYear : true,
+												dateFormat: "mm/yy",
+												showButtonPanel: true,
+												prevText : '<i class="fa fa-chevron-left"></i>',
+												nextText : '<i class="fa fa-chevron-right"></i>',
+												onClose : function(selectedDate, inst) {
+													$(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+													$("#to").datepicker(
+															"option",
+															"minDate",
+															new Date(inst.selectedYear, inst.selectedMonth, 1));
+													$('.desde').val($('#from').val());
+												}
+											});
+							$("#to")
+									.datepicker(
+											{
+												defaultDate : "+1w",
+												changeMonth : true,
+												changeYear : true,
+												dateFormat: "mm/yy",
+												showButtonPanel: true,
+												prevText : '<i class="fa fa-chevron-left"></i>',
+												nextText : '<i class="fa fa-chevron-right"></i>',
+												onClose : function(selectedDate, inst) {
+													$(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+													$('.hasta').val($('#to').val());
+												}
+											});
 
 							/* BASIC ;*/
 							var responsiveHelper_dt_basic = undefined;
@@ -586,23 +668,16 @@
 						})
 	</script>
 
-	<!-- Your GOOGLE ANALYTICS CODE Below -->
+	<!-- Your GOOGLE ANALYTICS CODE Below 
 	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push([ '_setAccount', 'UA-XXXXXXXX-X' ]);
-		_gaq.push([ '_trackPageview' ]);
-
-		(function() {
-			var ga = document.createElement('script');
-			ga.type = 'text/javascript';
-			ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-					: 'http://www')
-					+ '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+		function cambioFechaDesde() {
+			alert("hola");
+			$('.desde').val($('#from').val());
+		}
+		function cambioFechaHasta() {
+			$('.hasta').val($('#to').val());
+		}>
+	</script>-->
 
 </body>
 

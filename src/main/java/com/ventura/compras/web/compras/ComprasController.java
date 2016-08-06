@@ -1471,15 +1471,40 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
 			ses.setCondicionesHistorico(new LinkedList<String>());
-			ses.getCondicionesHistorico().add(0,
-					"c.pipro LIKE '%" + compra.getPipro().toUpperCase() + "%'");
+			String mensaje = "";
+			if (!compra.getFecep1().isEmpty()
+					&& compra.getFecep1().split("/").length == 2
+					&& !compra.getFecep2().isEmpty()
+					&& compra.getFecep2().split("/").length == 2) {
+				ses.getCondicionesHistorico().add(
+						0,
+						"c.pipro LIKE '%"
+								+ compra.getPipro().toUpperCase()
+								+ "%' and c.pano >= "
+								+ compra.getFecep1().split("/")[1]
+								+ " and c.pmes >= "
+								+ Integer.parseInt(compra.getFecep1()
+										.split("/")[0])
+								+ " and c.pano <= "
+								+ compra.getFecep2().split("/")[1]
+								+ " and c.pmes <= "
+								+ Integer.parseInt(compra.getFecep2()
+										.split("/")[0]));
+				mensaje = " ENTRE [" + compra.getFecep1() + " - "
+						+ compra.getFecep2() + "]";
+			} else {
+				ses.getCondicionesHistorico().add(
+						0,
+						"c.pipro LIKE '%" + compra.getPipro().toUpperCase()
+								+ "%'");
+			}
 			ses.getCondicionesHistorico().add(1,
 					"c.pipro as pipro, c.pides as pides");
 			ses.getCondicionesHistorico().add(2, "c.pipro, c.pides");
 			ses.getCondicionesHistorico().add(
 					3,
 					"CODIGO DE PRODUCTO QUE CONTENGA ["
-							+ compra.getPipro().toUpperCase() + "]");
+							+ compra.getPipro().toUpperCase() + "]" + mensaje);
 			ses.getCondicionesHistorico().add(4, "Codigo producto");
 			ses.getCondicionesHistorico().add(5, "Nombre producto");
 			ses.getCondicionesHistorico().add(6, "Historico producto");
@@ -1496,11 +1521,36 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
 			ses.setCondicionesHistorico(new LinkedList<String>());
-			ses.getCondicionesHistorico().add(
-					0,
-					"c.pides LIKE '%"
-							+ compra.getPides().toUpperCase()
-									.replaceAll("'", "\"") + "%'");
+			String mensaje = "";
+			if (!compra.getFecep1().isEmpty()
+					&& compra.getFecep1().split("/").length == 2
+					&& !compra.getFecep2().isEmpty()
+					&& compra.getFecep2().split("/").length == 2) {
+				ses.getCondicionesHistorico().add(
+						0,
+						"c.pides LIKE '%"
+								+ compra.getPides().toUpperCase()
+										.replaceAll("'", "\"")
+								+ "%' and c.pano >= "
+								+ compra.getFecep1().split("/")[1]
+								+ " and c.pmes >= "
+								+ Integer.parseInt(compra.getFecep1()
+										.split("/")[0])
+								+ " and c.pano <= "
+								+ compra.getFecep2().split("/")[1]
+								+ " and c.pmes <= "
+								+ Integer.parseInt(compra.getFecep2()
+										.split("/")[0]));
+				mensaje = " ENTRE [" + compra.getFecep1() + " - "
+						+ compra.getFecep2() + "]";
+			} else {
+				ses.getCondicionesHistorico().add(
+						0,
+						"c.pides LIKE '%"
+								+ compra.getPides().toUpperCase()
+										.replaceAll("'", "\"") + "%'");
+			}
+
 			ses.getCondicionesHistorico().add(1,
 					"c.pipro as pipro, c.pides as pides");
 			ses.getCondicionesHistorico().add(2, "c.pipro, c.pides");
@@ -1508,7 +1558,7 @@ public class ComprasController {
 					3,
 					"NOMBRE DE PRODUCTO QUE CONTENGA ["
 							+ compra.getPides().toUpperCase()
-									.replaceAll("'", "\"") + "]");
+									.replaceAll("'", "\"") + "]" + mensaje);
 			ses.getCondicionesHistorico().add(4, "Codigo producto");
 			ses.getCondicionesHistorico().add(5, "Nombre producto");
 			ses.getCondicionesHistorico().add(6, "Historico producto");
@@ -1527,15 +1577,38 @@ public class ComprasController {
 				Integer.parseInt(String.valueOf(compra.getPpnov()));
 				session ses = (session) (model.asMap().get("user_inicio"));
 				ses.setCondicionesHistorico(new LinkedList<String>());
-				ses.getCondicionesHistorico().add(0,
-						"c.pprov =" + compra.getPpnov());
+				String mensaje = "";
+				if (!compra.getFecep1().isEmpty()
+						&& compra.getFecep1().split("/").length == 2
+						&& !compra.getFecep2().isEmpty()
+						&& compra.getFecep2().split("/").length == 2) {
+					ses.getCondicionesHistorico().add(
+							0,
+							"c.pprov ="
+									+ compra.getPpnov()
+									+ " and c.pano >= "
+									+ compra.getFecep1().split("/")[1]
+									+ " and c.pmes >= "
+									+ Integer.parseInt(compra.getFecep1()
+											.split("/")[0])
+									+ " and c.pano <= "
+									+ compra.getFecep2().split("/")[1]
+									+ " and c.pmes <= "
+									+ Integer.parseInt(compra.getFecep2()
+											.split("/")[0]));
+					mensaje = " ENTRE [" + compra.getFecep1() + " - "
+							+ compra.getFecep2() + "]";
+				} else {
+					ses.getCondicionesHistorico().add(0,
+							"c.pprov =" + compra.getPpnov());
+				}
 				ses.getCondicionesHistorico().add(1,
 						"c.pprov as pprov, c.ppnov as ppnov");
 				ses.getCondicionesHistorico().add(2, "c.pprov, c.ppnov");
 				ses.getCondicionesHistorico().add(
 						3,
 						"CODIGO DE PROVEEDOR QUE CONTENGA ["
-								+ compra.getPpnov() + "]");
+								+ compra.getPpnov() + "]" + mensaje);
 				ses.getCondicionesHistorico().add(4, "Codigo proveedor");
 				ses.getCondicionesHistorico().add(5, "Nombre proveedor");
 				ses.getCondicionesHistorico().add(6, "Historico proveedor");
@@ -1555,11 +1628,34 @@ public class ComprasController {
 		if (model.containsAttribute("user_inicio") == true) {
 			session ses = (session) (model.asMap().get("user_inicio"));
 			ses.setCondicionesHistorico(new LinkedList<String>());
+			String mensaje = "";
+			if (!compra.getFecep1().isEmpty()
+					&& compra.getFecep1().split("/").length == 2
+					&& !compra.getFecep2().isEmpty()
+					&& compra.getFecep2().split("/").length == 2) {
+				ses.getCondicionesHistorico().add(
+						0,
+						"c.ppnov LIKE '%"
+								+ compra.getPpnov().toUpperCase()
+										.replaceAll("'", "\"") + "%' and c.pano >= "
+									+ compra.getFecep1().split("/")[1]
+									+ " and c.pmes >= "
+									+ Integer.parseInt(compra.getFecep1()
+											.split("/")[0])
+									+ " and c.pano <= "
+									+ compra.getFecep2().split("/")[1]
+									+ " and c.pmes <= "
+									+ Integer.parseInt(compra.getFecep2()
+											.split("/")[0]));
+					mensaje = " ENTRE [" + compra.getFecep1() + " - "
+							+ compra.getFecep2() + "]";
+			} else {
 			ses.getCondicionesHistorico().add(
 					0,
 					"c.ppnov LIKE '%"
 							+ compra.getPpnov().toUpperCase()
 									.replaceAll("'", "\"") + "%'");
+			}
 			ses.getCondicionesHistorico().add(1,
 					"c.pprov as pprov, c.ppnov as ppnov");
 			ses.getCondicionesHistorico().add(2, "c.pprov, c.ppnov");
@@ -1567,7 +1663,7 @@ public class ComprasController {
 					3,
 					"NOMBRE DE PROVEEDOR QUE CONTENGA ["
 							+ compra.getPpnov().toUpperCase()
-									.replaceAll("'", "\"") + "]");
+									.replaceAll("'", "\"") + "]" + mensaje);
 			ses.getCondicionesHistorico().add(4, "Codigo proveedor");
 			ses.getCondicionesHistorico().add(5, "Nombre proveedor");
 			ses.getCondicionesHistorico().add(6, "Historico proveedor");
@@ -1594,10 +1690,6 @@ public class ComprasController {
 					+ ses.getCondicionesHistorico().get(7));
 			model.addAttribute("mensaje", ses.getCondicionesHistorico().get(3));
 			model.addAttribute("regresar", "historico");
-			// model.addAttribute("codigo",
-			// ses.getCondicionesHistorico().get(4));
-			// model.addAttribute("nombre",
-			// ses.getCondicionesHistorico().get(5));
 			model.addAttribute("titulo", ses.getCondicionesHistorico().get(6));
 			if (ind) {
 				model.addAttribute("mostrar", 1);
@@ -1722,20 +1814,26 @@ public class ComprasController {
 			String ret = "redirect:ver";
 			session ses = (session) model.asMap().get("user_inicio");
 			String enc = "";
+			String condicion = "";
+			String mensaje = "";
+			if(ses.getCondicionesHistorico().get(0).contains("c.pano")) {
+				condicion = "c.pano" +ses.getCondicionesHistorico().get(0).split("c.pano")[1] + "c.pano" +  ses.getCondicionesHistorico().get(0).split("c.pano")[2] + " and ";
+				mensaje = " ENTRE " + ses.getCondicionesHistorico().get(3).split("ENTRE")[1];
+			}
 			if (!ses.getCondicionesHistorico().contains(" > Proveedor")) {
 				ses.getCondicionesHistorico().add(
 						8,
-						"c.pipro = '" + compra.getPipro() + "' and c.pprov ="
+						condicion + "c.pipro = '" + compra.getPipro() + "' and c.pprov ="
 								+ compra.getPprov());
 				enc = "Código producto: " + compra.getPipro()
 						+ " Descripción del producto: " + compra.getPides()
 						+ " Código Proveedor: " + compra.getPprov()
-						+ " Nombre del producto: " + compra.getPpnov();
+						+ " Nombre del producto: " + compra.getPpnov() + mensaje;
 			} else {
-				ses.getCondicionesHistorico().add(8,
+				ses.getCondicionesHistorico().add(8, condicion +
 						"c.pprov = '" + compra.getPipro() + "'");
 				enc = "Código proveedor: " + compra.getPipro()
-						+ " Nombre del proveedor: " + compra.getPides();
+						+ " Nombre del proveedor: " + compra.getPides() + mensaje;
 			}
 			if (request.getParameter("next").equals("ordenado")) {
 				ses.getCondicionesHistorico().add(9, " > Ordenes");
