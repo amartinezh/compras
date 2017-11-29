@@ -270,7 +270,7 @@ public class IndexController {
 							ses.setCondicionUsuario(ses.getCondicionUsuario()
 									+ ",c1");
 						}
-						if (uss.getComp().getDescripcion()
+						/*if (uss.getComp().getDescripcion()
 								.equalsIgnoreCase("iaasa")
 								|| uss.getComp().getDescripcion()
 										.equalsIgnoreCase("todos")) {
@@ -281,7 +281,7 @@ public class IndexController {
 								ses.setCondicionUsuario(ses
 										.getCondicionUsuario() + ",c2");
 							}
-						}
+						}*/
 						if (uss.getComp().getDescripcion()
 								.equalsIgnoreCase("Biopacol")
 								|| uss.getComp().getDescripcion()

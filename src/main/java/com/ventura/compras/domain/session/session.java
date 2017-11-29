@@ -228,7 +228,7 @@ public class session implements Serializable{
 		this.camposver = new HashMap<String, String>();
 		this.condicionReporte = "";
 		this.camposvista = new HashMap<String, String>();
-		this.campover = "ord";
+		this.campover = "rec";
 		this.condicionesHistorico = new LinkedList<String>();
 	}
 	

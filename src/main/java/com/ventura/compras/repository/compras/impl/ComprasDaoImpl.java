@@ -45,6 +45,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				}
 			}
 		}
+		System.out.print("WHERE"+where);
 		// if (where.length() == 0) {
 		// where.append("c.tipoc='O'");
 		// } else {
@@ -77,7 +78,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, max(c.pvalbo) as pvalbo"
+								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -88,22 +89,17 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp + " desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
 		for (Object[] obj : result) {
-			compras.add(new Compras(new BigDecimal(obj[8].toString()).setScale(
-					0, BigDecimal.ROUND_HALF_EVEN), (String) obj[0],
-					(String) obj[1], new BigDecimal(obj[2].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[4].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[3]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[5].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[7].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[9]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+			compras.add(new Compras(
+						new BigDecimal(obj[8].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+						(String) obj[0],
+						(String) obj[1], 
+					    new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					    new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					    new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					    new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					    new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					    new BigDecimal(obj[7].toString()).setScale(0,BigDecimal.ROUND_HALF_EVEN), 
+					    new BigDecimal(obj[9].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
 			com.sumarCompras(compras.get(compras.size() - 1));
 		}
 		compras.add(com);
@@ -269,23 +265,19 @@ public class ComprasDaoImpl implements ComprasDao {
 					}
 				}
 			}
-			compras.add(new Compras(Integer.parseInt(obj[0].toString()),
-					(String) obj[1], new BigDecimal(obj[2].toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[3].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[4]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[5].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[6]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN),
-					new BigDecimal(obj[7].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), (String) obj[8],
-					new BigDecimal(obj[9].toString()).setScale(0,
-							BigDecimal.ROUND_HALF_EVEN), new BigDecimal(obj[10]
-							.toString())
-							.setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+			compras.add(new Compras(
+					Integer.parseInt(obj[0].toString()),
+					(String) obj[1], 
+					new BigDecimal(obj[2].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[3].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[4].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[5].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[6].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN),
+					new BigDecimal(obj[7].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					(String) obj[8],
+					new BigDecimal(obj[9].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
+					new BigDecimal(obj[10].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN)));
+			
 			comp.sumarProveedores(compras.get(compras.size() - 1));
 		}
 		if (compra == null) {
