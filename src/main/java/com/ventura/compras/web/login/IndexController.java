@@ -364,6 +364,7 @@ public class IndexController {
 					ses.getCamposvista().put("ord", "Ordenadas");
 					ses.getCamposvista().put("rec", "Recibidas");
 					model.addAttribute("user_inicio", ses);
+					System.out.print("Condiciones:"+ses.getCondicionUsuario());
 					return ret;
 				} else {
 					return "key/index";
