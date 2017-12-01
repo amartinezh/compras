@@ -36,7 +36,12 @@ public class ComprasDaoImpl implements ComprasDao {
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
+		System.out.println("c:"+c);
+		System.out.println("condiciones:"+condiciones);
+		System.out.println("c.length:"+c.length);
 		for (int i = 0; i < c.length; i++) {
+			System.out.println("i:"+i);
+			System.out.println("condiciones.get(c[i]).toString():"+condiciones.get(c[i]).toString());
 			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
 				if (where.length() == 0) {
 					where.append(condiciones.get(c[i]).toString());
