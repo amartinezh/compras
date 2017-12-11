@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@IdClass(ComprasPK.class)
+@IdClass(ComprasPKh.class)
 @Table(name = "compras_h", schema = "compras")
 public class Compras_h implements Serializable {
 

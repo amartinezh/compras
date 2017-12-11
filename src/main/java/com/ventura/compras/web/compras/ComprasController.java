@@ -104,11 +104,6 @@ public class ComprasController {
 					obtMen(ses.getCondicionActual().split(","),
 							ses.getValores(), ses.getCampover()).toUpperCase());
 			model.addAttribute("user_inicio", ses);
-			System.out.println("1 "+ses.getCondiciones());
-			System.out.println("2 "+ses.getCondicionActual());
-			System.out.println("3 "+ses.getFechaActual());
-			System.out.println("4 "+ses.getFechaSelec());
-			System.out.println("5 "+ses.getCampover());
 			
 			model.addAttribute(
 					"listcomp",

@@ -368,6 +368,18 @@
 								tablet : 1024,
 								phone : 480
 							};
+							
+							var options = $("#pmes option");                    // Collect options         
+							options.detach().sort(function(a,b) {               // Detach from select, then Sort
+							    var at = $(a).attr('value');
+							    var bt = $(b).attr('value');   
+							    return (parseInt(at) > parseInt(bt))?1:((parseInt(at) < parseInt(bt))?-1:0);            // Tell the sort function how to order
+							});
+							options.appendTo("#pmes");
+							
+							var d = new Date();
+						    n = d.getMonth();
+						    $('#pmes option:eq('+n+')').prop('selected', true);
 
 							$('#dt_basic')
 									.dataTable(

@@ -36,18 +36,16 @@ public class ComprasDaoImpl implements ComprasDao {
 		} else {
 			where.append("(c.pqtyd <> 0 or c.pqtyr <> 0 or c.pqtyp <> 0)");
 		}
-		System.out.println("c:"+c);
-		System.out.println("condiciones:"+condiciones);
-		System.out.println("c.length:"+c.length);
 		for (int i = 0; i < c.length; i++) {
-			System.out.println("i:"+i);
-			System.out.println("condiciones.get(c[i]).toString():"+condiciones.get(c[i]).toString());
-			if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
-				if (where.length() == 0) {
-					where.append(condiciones.get(c[i]).toString());
-				} else {
-					where.append(" and " + condiciones.get(c[i]));
-				}
+			
+			if (c[i] != null && condiciones.get(c[i]) != null){
+					if (!c[i].isEmpty() && !condiciones.get(c[i]).isEmpty()) {
+						if (where.length() == 0) {
+							where.append(condiciones.get(c[i]).toString());
+						} else {
+							where.append(" and " + condiciones.get(c[i]));
+						}
+					}
 			}
 		}
 		System.out.print("WHERE"+where);
@@ -73,10 +71,26 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvaltd"; // Valor Trans Recibido USD
 		} else {
-			camp = "pvalbd";
+			camp = "pvalbd"; // Valor Base Recibido COP
 		}
+		// Ordenado:  PVALTO: Valor Trans Ordenado USD
+		//            PVALBO Valor Base Ordenado COP
+		String sql = "SELECT c.ptype as ptype, c.ptyno as ptyno, sum(c.pqtyd) as pqtyd, sum(c.pqori) as pqori, sum(c.pqtyr) as pqtyr, sum(c."
+				+ camp
+				+ ") as "
+				+ camp
+				+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+				+ " FROM "
+				+ tab
+				+ " as c "
+				+ "WHERE "
+				+ where.toString()
+				+ " GROUP BY c.ptype, c.ptyno "
+				+ "ORDER BY "
+				+ camp + " desc";
+		System.out.println("sql "+sql);
 		List<Object[]> result = em
 				.createQuery(
 						"SELECT c.ptype as ptype, c.ptyno as ptyno, sum(c.pqtyd) as pqtyd, sum(c.pqori) as pqori, sum(c.pqtyr) as pqtyr, sum(c."
@@ -93,7 +107,9 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ "ORDER BY "
 								+ camp + " desc").getResultList();
 		List<Compras> compras = new LinkedList<Compras>();
+		System.out.println("init "+result.toString());
 		for (Object[] obj : result) {
+			System.out.println("bit "+tab);
 			compras.add(new Compras(
 						new BigDecimal(obj[8].toString()).setScale(0, BigDecimal.ROUND_HALF_EVEN), 
 						(String) obj[0],

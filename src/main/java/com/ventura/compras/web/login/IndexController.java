@@ -129,6 +129,7 @@ public class IndexController {
 									.put("a" + anoAct, "Año: " + anoAct);
 							ses.getAnos().put(anoAct + "", anoAct + "");
 						}
+						
 						ses.getCondiciones().put("ordeCond", "c.tipoc='O'");
 						ses.getValores().put("ordeCond", "");
 						for (int i = 0; i <= 12; i++) {
@@ -300,8 +301,16 @@ public class IndexController {
 								.equalsIgnoreCase("nacional")
 								|| uss.getLevel().getDescripcion()
 										.equalsIgnoreCase("todos")) {
-							ses.getCondiciones().put("l1", "c.ppais = 'COL'");
-							ses.getValores().put("l1", "Tipo: Nacional");
+							if (ses.getAutocomplete().equals(",")){
+								ses.setAutocomplete("");
+								ses.getCondiciones().put("l1", "");
+								ses.getValores().put("l1", "Tipo: Toditos todos");
+							}
+							else{
+								ses.getCondiciones().put("l1", "c.ppais = 'COL'");
+								ses.getValores().put("l1", "Tipo: Nacional");
+							}
+							
 							ses.getLevels().put("1", "Nacional");
 							ses.getCondiciones().put("l3", "");
 							ses.getValores().put("l3", "Tipo: Todos");
