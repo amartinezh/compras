@@ -81,7 +81,7 @@ public class ComprasDaoImpl implements ComprasDao {
 				+ camp
 				+ ") as "
 				+ camp
-				+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+				+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 				+ " FROM "
 				+ tab
 				+ " as c "

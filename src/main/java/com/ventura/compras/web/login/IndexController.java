@@ -92,6 +92,7 @@ public class IndexController {
 						Calendar fecha = new GregorianCalendar();
 						int anoAct = fecha.get(Calendar.YEAR);
 						int mesAct = (fecha.get(Calendar.MONTH) + 1) - 12;
+						int ban=0; // Para que detecte que llego a mes 13 en Diciembre
 						for (int i = 2015; i <= anoAct; i++) {
 							ses.getAnosreporte().put(i + "", i + "");
 							ses.getCondiciones().put(i + "anor",
@@ -198,7 +199,8 @@ public class IndexController {
 								break;
 							}
 							mesAct++;
-							if (mesAct == 13) {
+							if (mesAct == 13 && ban == 0) {
+								ban=1; // Cambia del año anterior en Diciembre
 								mesAct = 1;
 								anoAct++;
 								ses.getCondiciones().put("a" + anoAct,
@@ -206,12 +208,15 @@ public class IndexController {
 								ses.getAnos().put(anoAct + "", anoAct + "");
 								ses.getValores().put("a" + anoAct,
 										"Año: " + anoAct);
+								
 							}
 						}
 						mesAct = mesAct - 1;
 						ses.setCondicionUsuario("a" + anoAct + ",mm" + mesAct);
 						ses.setFechaActual("a" + anoAct + ",mm" + mesAct);
 						ses.setFechaSelec("a" + anoAct + ",mm" + mesAct);
+						
+						System.out.println("mesAct4:"+mesAct+" anoAct4:"+anoAct);
 						ses.setDatos(userManager.obtenerDatos());
 						if (!uss.getCent().getDescripcion()
 								.equalsIgnoreCase("n/a")) {
