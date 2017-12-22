@@ -97,7 +97,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -169,7 +169,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -258,7 +258,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, c.pnit as pnit, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -355,7 +355,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp, c.tipoc as tipoc, c.fecen as fecen, Min(c.diave) as diave, c.solic as solic, sum(c.pqtyo) as pqtyo, c.fecre as fecre, sum(c.pvalbo) as pvalbo "
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, max(c.pprep1) as pprep1, max(c.fecep1) as fecep1, max(c.pprep2) as pprep2, max(c.fecep2) as fecep2, max(c.pprep3) as pprep3, max(c.fecep3) as fecep3, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, c.punid as punid, c.pprov as pprov, c.ppnov as ppnov, c.pcstp as pcstp, c.tipoc as tipoc, c.fecen as fecen, Min(c.diave) as diave, c.solic as solic, sum(c.pqtyo) as pqtyo, c.fecre as fecre, sum(c.pvalbo) as pvalbo "
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -485,7 +485,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -572,7 +572,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
@@ -673,7 +673,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp, solic as solic"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, min(c.pcstp) as pcstp, solic as solic"
 								+ " FROM " + tab + " as c " + "WHERE "
 								+ where.toString()
 								+ "GROUP BY c.nroor, c.solic " + "ORDER BY "
@@ -756,7 +756,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp, sum(c.pqtyo) as pqtyo, max(c.fecen) as fecen, max(c.diave) as diave, c.solic as solic"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, min(c.fecre) as fecre, sum(c.pvalbo) as pvalbo, MIN(c.pcstp) as pcstp, sum(c.pqtyo) as pqtyo, max(c.fecen) as fecen, max(c.diave) as diave, c.solic as solic"
 								+ " FROM " + tab + " as c " + "WHERE "
 								+ where.toString()
 								+ "GROUP BY c.nroor, c.solic " + "ORDER BY "
@@ -850,7 +850,7 @@ public class ComprasDaoImpl implements ComprasDao {
 								+ camp
 								+ ") as "
 								+ camp
-								+ ", max(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
+								+ ", sum(c.pvalpo) as pvalpo, sum(c.ppreac) as ppreac, sum(c.pqori) as pqori, sum(c.pqtyp) as pqtyp, sum(c.pvalbo) as pvalbo"
 								+ " FROM "
 								+ tab
 								+ " as c "
