@@ -71,7 +71,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd"; // Valor Trans Recibido USD
+			camp = "pvalto"; // Valor Trans Recibido USD
 		} else {
 			camp = "pvalbd"; // Valor Base Recibido COP
 		}
@@ -159,7 +159,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -247,7 +247,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -345,7 +345,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -475,7 +475,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -562,7 +562,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -663,7 +663,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -745,7 +745,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -840,7 +840,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
@@ -922,7 +922,7 @@ public class ComprasDaoImpl implements ComprasDao {
 		}
 		String camp = null;
 		if (where.toString().contains("USD")) {
-			camp = "pvaltd";
+			camp = "pvalto";
 		} else {
 			camp = "pvalbd";
 		}
